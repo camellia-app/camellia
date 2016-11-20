@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "scripts": {
+    "prod": "gulp --production",
+    "dev": "gulp watch"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.5",
+    "jquery": "3.*",
+    "vue": "^2.0.5",
+    "webextension-polyfill": "github:mozilla/webextension-polyfill"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-util": "^3.0.7",
+    "laravel-elixir": "^6.0.0-9",
+    "laravel-elixir-vue-2": "^0.2.0",
+    "laravel-elixir-webpack-official": "^1.0.9",
+    "vue-resource": "^1.0.3"
+  }
+}
