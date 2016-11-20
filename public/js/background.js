@@ -1003,7 +1003,7 @@ let i18nObject = messages => {
 			ret[message] = browser.i18n.getMessage(message);
 		} else if (Array.isArray(message) === true && message.length > 1) {
 			let messageName = message.shift();
-			ret[message[0]] = browser.i18n.getMessage(messageName, message);
+			ret[messageName] = browser.i18n.getMessage(messageName, message);
 		}
 	});
 
