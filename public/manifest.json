@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "__MSG_app_name__",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"author": "terron",
 	"homepage_url": "https://github.com/terron-kun/camellia",
 	"description": "__MSG_app_description__",
