@@ -542,3 +542,22 @@ $(window).on('keydown', function (event) {
 
 $('html').attr('lang', browser.i18n.getMessage('locale'));
 $('title').text(browser.i18n.getMessage('new_tab'));
+
+/*
+|--------------------------------------------------------------------------
+| Google Analytics
+|--------------------------------------------------------------------------
+*/
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63968909-6', 'auto');
+
+ga('set', 'appName', chrome.runtime.getManifest().name);
+ga('set', 'appVersion', chrome.runtime.getManifest().version);
+ga('set', 'appId', chrome.i18n.getMessage('@@extension_id'));
+
+ga('send', 'pageview');
