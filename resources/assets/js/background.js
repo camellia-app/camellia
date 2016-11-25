@@ -225,6 +225,12 @@ browser.runtime.onInstalled.addListener(details => {
 		|| typeof local_storage['bookmarks_in_new_tab'] !== 'boolean') {
 			local_storage['bookmarks_in_new_tab'] = false;
 		}
+
+		// Display top sites block
+		if (typeof local_storage['top_sites'] === 'undefined'
+		|| typeof local_storage['top_sites'] !== 'boolean') {
+			local_storage['top_sites'] = true;
+		}
 		
 		browser.storage.sync.set(sync_storage);
 		browser.storage.local.set(local_storage);

@@ -26,6 +26,7 @@ Promise.all([
 				user_select:           local_storage['user_select'],
 				font_size:             local_storage['font_size'],
 				bookmarks_in_new_tab:  local_storage['bookmarks_in_new_tab'],
+				top_sites:             local_storage['top_sites'],
 
 				locale: i18nObject([
 					'save',
@@ -58,7 +59,12 @@ Promise.all([
 					'option_bookmarks_in_new_tab_label',
 					'option_bookmarks_in_new_tab_new_tab',
 					'option_bookmarks_in_new_tab_current_tab',
-					'option_bookmarks_in_new_tab_hint'
+					'option_bookmarks_in_new_tab_hint',
+
+					'option_top_sites_label',
+					'option_top_sites_display',
+					'option_top_sites_hide',
+					'option_top_sites_hint',
 				])
 			};
 		},
@@ -78,6 +84,7 @@ Promise.all([
 				local_storage['user_select']           = this.user_select == 1;
 				local_storage['font_size']             = parseInt(this.font_size);
 				local_storage['bookmarks_in_new_tab']  = this.bookmarks_in_new_tab == 1;
+				local_storage['top_sites']             = this.top_sites == 1;
 
 				chrome.storage.local.set(local_storage);
 			},
@@ -190,6 +197,24 @@ Promise.all([
 							</option>
 						</select>
 						<small>{{ locale.option_bookmarks_in_new_tab_hint }}</small>
+
+						<hr>
+
+						<label class="label" for="top_sites">
+							{{ locale.option_top_sites_label }}
+						</label>
+						<select id="top_sites" required
+						v-model="top_sites">
+							<option value="1"
+							:selected="1 == top_sites">
+								{{ locale.option_top_sites_display }}
+							</option>
+							<option value="0"
+							:selected="0 == top_sites">
+								{{ locale.option_top_sites_hide }}	
+							</option>
+						</select>
+						<small>{{ locale.option_top_sites_hint }}</small>
 
 						<hr>
 

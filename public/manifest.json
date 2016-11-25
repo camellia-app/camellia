@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "__MSG_app_name__",
-	"version": "1.0.3",
+	"version": "1.1.0",
 	"author": "terron",
 	"homepage_url": "https://github.com/terron-kun/camellia",
 	"description": "__MSG_app_description__",
@@ -17,6 +17,7 @@
 		"bookmarks",
 		"storage",
 		"notifications",
+		"topSites",
 		"<all_urls>"
 	],
 
@@ -29,6 +30,8 @@
 		"512": "/img/logo/512x512-colored.png",
 		"1000": "/img/logo/1000x1000-colored.png"
 	},
+
+	"key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApHZDfZ4slV2asvfNQWarnihzDkmlYdtu3mP+0a9oMeosTyfFn031otUwwUFI3fcccz8yT2QDD7UGv/GMrMK1Naud7Fsk2ir86Nc3trBfdmfFs9ccn0TWiP/l5idB69DI3ikrvd0gK4pdvBG6tKJbbqHNb4EjLLWb0sJ2fJs7IsOCMXnn9rmfnsPPNUwOrzERMu326yOgeeYq6gJKcRuS1bgmIfLG3o8FVYepTUxQHPimZwnN5D1Ce881VUsocExGJnAXzKvLmyfb+Hhu3skZdWsC/TedzQGjqV8GbkKhjlczAblD5pHUimsNqww2vejJUmdcP2XnWHlZL1qYG3JhlwIDAQAB",
 
 	"chrome_url_overrides" : {
 		"newtab": "/newtab.html"

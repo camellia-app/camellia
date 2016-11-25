@@ -19486,6 +19486,12 @@ if (typeof browser === "undefined") {
       "maxArgs": 2
     }
   },
+  "topSites": {
+	"get": {
+	  "minArgs": 0,
+	  "maxArgs": 0
+	}
+  },
   "webNavigation": {
     "getAllFrames": {
       "minArgs": 1,
@@ -20046,12 +20052,15 @@ String.prototype.encodeHTML = function () {
 Promise.all([
     browser.storage.local.get(),
     browser.storage.sync.get(),
-	browser.bookmarks.getTree()
+	browser.bookmarks.getTree(),
+	browser.management.getSelf(),
+	browser.topSites.get()
 ])
-.then(([local_storage, sync_storage, browserBookmarks]) => {
+.then(([local_storage, sync_storage, browserBookmarks, extensionInfo, topSites]) => {
 	let allBookmarks    = browserBookmarks[0]['children'][0]['children'];
 	let columnsCount    = local_storage['columns_count'];
 	let backgroundImage = local_storage['background_image'];
+	let openBookmarksInNewTab = local_storage['bookmarks_in_new_tab'];
 
 	/*
 	|--------------------------------------------------------------------------
@@ -20089,8 +20098,11 @@ Promise.all([
 	Vue.component('app-content', {
 		data: function () {
 			return {
-				allBookmarks: allBookmarks,
-				chunkedBookmarks: allBookmarks.chunk(columnsCount, true),
+				allBookmarks:          allBookmarks,
+				chunkedBookmarks:      allBookmarks.chunk(columnsCount, true),
+				topSites:              local_storage['top_sites'] === true ? topSites : [],
+				openBookmarksInNewTab: openBookmarksInNewTab,
+				columnSize:            Math.round(COLUMN_COUNT / columnsCount),
 
 				locale: i18nObject([
 					'add_bookmarks_to_browser'
@@ -20098,6 +20110,21 @@ Promise.all([
 			};
 		},
 		template: `<main>
+				<ul class="bookmark-tree row px-1 pb-1"
+				v-if="topSites.length > 0">
+					<li
+					:class="'col-xs-' + columnSize"
+					v-for="site in topSites">
+						<a class="icon"
+						:title="site.title"
+						:href="site.url"
+						:style="{'background-image': 'url(chrome://favicon/' + site.url + ')'}"
+						:target="openBookmarksInNewTab ? '_blank' : '_self'">
+							{{site.title}}
+						</a>
+					</li>
+				</ul>
+
 				<ul class="bookmark-tree row"
 				v-if="allBookmarks.length > 0">
 					<bookmark-column
@@ -20121,24 +20148,15 @@ Promise.all([
 	Vue.component('app-footer', {
 		data: function () {
 			return {
-				issuesUrl:      browser.runtime.getManifest().homepage_url + '/issues',
-				releasesUrl:    browser.runtime.getManifest().homepage_url + '/releases',
-				optionsUrl:     'chrome://extensions/?options=' + browser.i18n.getMessage('@@extension_id'),
-				browserVersion: 'v' + browser.runtime.getManifest().version,
+				issuesUrl:      extensionInfo.homepageUrl + '/issues',
+				releasesUrl:    extensionInfo.homepageUrl + '/releases',
+				optionsUrl:     'chrome://extensions/?options=' + extensionInfo.id,
+				browserVersion: 'v' + extensionInfo.version,
+				isDevBuild:     extensionInfo.installType === 'development',
 				locale:         i18nObject([
-					'search', 'manage_bookmarks', 'options', 'help', 'report_bug'
+					'search', 'manage_bookmarks', 'options', 'help', 'report_bug', 'extensions'
 				])
 			};
-		},
-		methods: {
-			openOptions: function () {
-				browser.runtime.openOptionsPage();
-			},
-			openBookmarksManager: function () {
-				browser.tabs.create({
-					url: 'chrome://bookmarks/'
-				});
-			}
 		},
 		template: `<footer>
 				<ul class="list-inline float-xs-right w-100 mb-0">
@@ -20146,7 +20164,10 @@ Promise.all([
 						<a href="#modal-search" data-toggle="modal" data-target="#modal-search">{{ locale.search }}</a>
 					</li>
 					<li class="list-inline-item float-xs-left">
-						<a href="chrome://bookmarks/">{{ locale.manage_bookmarks }}</a>
+						<a href="chrome://bookmarks">{{ locale.manage_bookmarks }}</a>
+					</li>
+					<li class="list-inline-item">
+						<a href="chrome://extensions">{{ locale.extensions }}</a>
 					</li>
 					<li class="list-inline-item">
 						<a
@@ -20162,6 +20183,10 @@ Promise.all([
 					<li class="list-inline-item">
 						<a
 						:href="releasesUrl">{{ browserVersion }}</a>
+
+						<template v-if="isDevBuild">
+							(dev)
+						</template>
 					</li>
 				</ul>
 			</footer>`
@@ -20418,11 +20443,11 @@ Promise.all([
 		},
 		data: function () {
 			return {
-				columnsCount: Math.round(COLUMN_COUNT / columnsCount)
+				columnSize: Math.round(COLUMN_COUNT / columnsCount)
 			};
 		},
 		template: `<li
-			:class="'col-xs-' + columnsCount">
+			:class="'col-xs-' + columnSize">
 				<ul>
 					<bookmark
 					v-for="bookmark in bookmarks"
@@ -20452,7 +20477,7 @@ Promise.all([
 			return {
 				clicksCount:           sync_storage['click_counter'],
 				displayClickCounter:   local_storage['display_click_counter'],
-				openBookmarksInNewTab: local_storage['bookmarks_in_new_tab']
+				openBookmarksInNewTab: openBookmarksInNewTab
 			};
 		},
 		computed: {
@@ -20479,7 +20504,7 @@ Promise.all([
 				:title="bookmark.title"
 				:style="isFolder ? {} : {'background-image': 'url(chrome://favicon/' + bookmark.url + ')'}"
 				:href="isFolder ? ('#collapse-id-' + bookmark.id) : bookmark.url"
-				:target="!isFolder && openBookmarksInNewTab ? '_blank' : ''"
+				:target="!isFolder && openBookmarksInNewTab ? '_blank' : '_self'"
 
 				:aria-controls="isFolder ? ('#collapse-id-' + bookmark.id) : ''"
 				:data-toggle="isFolder ? 'collapse' : ''"
@@ -20591,9 +20616,9 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
 ga('create', 'UA-63968909-6', 'auto');
 
-ga('set', 'appName', chrome.runtime.getManifest().name);
-ga('set', 'appVersion', chrome.runtime.getManifest().version);
-ga('set', 'appId', chrome.i18n.getMessage('@@extension_id'));
+ga('set', 'appName', browser.runtime.getManifest().name);
+ga('set', 'appVersion', browser.runtime.getManifest().version);
+ga('set', 'appId', browser.i18n.getMessage('@@extension_id'));
 
 ga('send', 'pageview');
 

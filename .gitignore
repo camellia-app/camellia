@@ -2,3 +2,4 @@ _examples
 .vscode
 node_modules
 *.zip
+*.tmp

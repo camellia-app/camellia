@@ -478,6 +478,12 @@ if (typeof browser === "undefined") {
       "maxArgs": 2
     }
   },
+  "topSites": {
+	"get": {
+	  "minArgs": 0,
+	  "maxArgs": 0
+	}
+  },
   "webNavigation": {
     "getAllFrames": {
       "minArgs": 1,
