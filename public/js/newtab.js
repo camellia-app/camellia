@@ -20490,18 +20490,6 @@ Promise.all([
 					&& this.isFolder === false;
 			},
 
-
-			getClicksCount: function () {
-				if (this.isFolder === true
-				|| this.isLink === true) {
-					return false;
-				}
-				
-				this.clicksCount[this.bookmark.id] = typeof this.clicksCount[this.bookmark.id] !== 'undefined'
-											  	   ? this.clicksCount[this.bookmark.id]
-											       : '';
-				return this.clicksCount[this.bookmark.id];
-			},
 			getHref: function () {
 				return this.isFolder === true
 					//? ('#collapse-id-' + this.bookmark.id)
@@ -20564,7 +20552,18 @@ Promise.all([
 				
 				this.clicksCount[this.bookmark.id]++;
 				browser.storage.sync.set({click_counter: this.clicksCount});
-			}
+			},
+			getClicksCount: function () {
+				if (this.isFolder === true
+				|| this.isLink === true) {
+					return '';
+				}
+				
+				this.clicksCount[this.bookmark.id] = typeof this.clicksCount[this.bookmark.id] !== 'undefined'
+											  	   ? this.clicksCount[this.bookmark.id]
+											       : '';
+				return this.clicksCount[this.bookmark.id];
+			},
 		},
 		template: `<li>
 				<a tabindex="0"
@@ -20575,7 +20574,7 @@ Promise.all([
 				:target="getTarget"
 				:data-toggle="getDataToggle"
 				:data-target="getDataTarget"
-				:data-counter="getClicksCount"
+				:data-counter="getClicksCount()"
 
 				@mouseup="incClicksCount">
 					{{bookmark.title}}

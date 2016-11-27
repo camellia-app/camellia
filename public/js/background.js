@@ -1197,6 +1197,12 @@ browser.runtime.onInstalled.addListener(details => {
 			sync_storage['click_counter'] = {};
 		}
 
+		for (let bookmark in sync_storage['click_counter']) {
+			if (sync_storage['click_counter'][bookmark] === 0) {
+				delete sync_storage['click_counter'][bookmark];
+			}
+		}
+
 		// Sets installation date
 		if (typeof sync_storage['installation_date'] === 'undefined'
 		|| Number.isInteger(sync_storage['installation_date']) === false) {
