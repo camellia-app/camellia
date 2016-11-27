@@ -146,7 +146,7 @@ browser.omnibox.onInputEntered.addListener(bookmarkId => {
 browser.runtime.onInstalled.addListener(details => {
 	Promise.all([
 		browser.storage.local.get(),
-		browser.storage.sync.get(),
+		browser.storage.sync.get()
 	])
 	.then(([local_storage, sync_storage]) => {
 
@@ -229,7 +229,7 @@ browser.runtime.onInstalled.addListener(details => {
 		// Display top sites block
 		if (typeof local_storage['top_sites'] === 'undefined'
 		|| typeof local_storage['top_sites'] !== 'boolean') {
-			local_storage['top_sites'] = true;
+			local_storage['top_sites'] = false;
 		}
 		
 		browser.storage.sync.set(sync_storage);

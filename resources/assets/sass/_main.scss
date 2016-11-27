@@ -37,6 +37,10 @@ body {
     flex-direction: column;
 }
 
+a[tabindex="0"] {
+	cursor: pointer;
+}
+
 main {
 	@extend .py-1;
 	@extend .pr-1;
@@ -57,7 +61,6 @@ footer {
 }
 
 ul.bookmark-tree {
-
 	&, ul {
 		@extend .list-unstyled;
 		@extend .mb-0;
@@ -72,8 +75,17 @@ ul.bookmark-tree {
 
 		a {
 			@extend .text-truncate;
+			@extend .d-block;
 
-			display: block;
+			padding: 0.2rem;
+			padding-left: 2em;
+			background-position: 0.5em 50%;
+			background-repeat: no-repeat;
+			background-size: 1em;
+
+			&.folder {
+				background-image: url(/img/icons/folder.svg);
+			}
 
 			@include hover-focus {
 				border-radius: 0.2rem;
@@ -92,18 +104,6 @@ ul.bookmark-tree {
 				content: attr(data-counter);
 			}
 		}
-	}
-}
-
-.icon {
-	padding: 0.2rem;
-	padding-left: 2em;
-	background-position: 0.5em 50%;
-	background-repeat: no-repeat;
-	background-size: 1em;
-
-	&.icon-folder {
-		background-image: url(/img/icons/folder.svg);
 	}
 }
 

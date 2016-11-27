@@ -23,6 +23,8 @@ a {
   cursor: pointer;
   color: -webkit-link;
   text-decoration: underline; }
+  a[tabindex="0"] {
+    cursor: pointer; }
 
 label {
   display: block; }

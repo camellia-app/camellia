@@ -2286,7 +2286,7 @@ a.bg-inverse:focus, a.bg-inverse:hover {
   display: table;
   clear: both; }
 
-.d-block {
+.d-block, ul.bookmark-tree li a {
   display: block !important; }
 
 .d-inline-block {
@@ -3041,6 +3041,9 @@ body {
   -webkit-box-direction: normal;
   flex-direction: column; }
 
+a[tabindex="0"] {
+  cursor: pointer; }
+
 main {
   -webkit-box-flex: 1;
   flex: 1 0 auto; }
@@ -3051,7 +3054,13 @@ footer {
 ul.bookmark-tree li {
   margin-top: 0.2rem; }
   ul.bookmark-tree li a {
-    display: block; }
+    padding: 0.2rem;
+    padding-left: 2em;
+    background-position: 0.5em 50%;
+    background-repeat: no-repeat;
+    background-size: 1em; }
+    ul.bookmark-tree li a.folder {
+      background-image: url(/img/icons/folder.svg); }
     ul.bookmark-tree li a:focus, ul.bookmark-tree li a:hover {
       border-radius: 0.2rem;
       background-color: rgba(255, 255, 255, 0.2); }
@@ -3059,15 +3068,6 @@ ul.bookmark-tree li {
         display: none; }
     ul.bookmark-tree li a:before {
       content: attr(data-counter); }
-
-.icon {
-  padding: 0.2rem;
-  padding-left: 2em;
-  background-position: 0.5em 50%;
-  background-repeat: no-repeat;
-  background-size: 1em; }
-  .icon.icon-folder {
-    background-image: url(/img/icons/folder.svg); }
 
 #app {
   overflow-y: scroll;

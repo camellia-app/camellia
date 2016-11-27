@@ -16,10 +16,14 @@ Promise.all([
 	browser.topSites.get()
 ])
 .then(([local_storage, sync_storage, browserBookmarks, extensionInfo, topSites]) => {
-	let allBookmarks    = browserBookmarks[0]['children'][0]['children'];
-	let columnsCount    = local_storage['columns_count'];
-	let backgroundImage = local_storage['background_image'];
+	let allBookmarks          = browserBookmarks[0]['children'][0]['children'];
+	let columnsCount          = local_storage['columns_count'];
+	let backgroundImage       = local_storage['background_image'];
 	let openBookmarksInNewTab = local_storage['bookmarks_in_new_tab'];
+	let allTopSites           = local_storage['top_sites'] === true ? topSites : [];
+
+	console.log(allBookmarks);
+	console.log(allTopSites);
 
 	/*
 	|--------------------------------------------------------------------------
@@ -59,7 +63,8 @@ Promise.all([
 			return {
 				allBookmarks:          allBookmarks,
 				chunkedBookmarks:      allBookmarks.chunk(columnsCount, true),
-				topSites:              local_storage['top_sites'] === true ? topSites : [],
+				allTopSites:           allTopSites,
+				chunkedTopSites:       allTopSites.chunk(columnsCount, true),
 				openBookmarksInNewTab: openBookmarksInNewTab,
 				columnSize:            Math.round(COLUMN_COUNT / columnsCount),
 
@@ -69,19 +74,11 @@ Promise.all([
 			};
 		},
 		template: `<main>
-				<ul class="bookmark-tree row px-1 pb-1"
-				v-if="topSites.length > 0">
-					<li
-					:class="'col-xs-' + columnSize"
-					v-for="site in topSites">
-						<a class="icon"
-						:title="site.title"
-						:href="site.url"
-						:style="{'background-image': 'url(chrome://favicon/' + site.url + ')'}"
-						:target="openBookmarksInNewTab ? '_blank' : '_self'">
-							{{site.title}}
-						</a>
-					</li>
+				<ul class="bookmark-tree row pb-1"
+				v-if="allTopSites.length > 0">
+					<bookmark-column
+					v-for="site in chunkedTopSites"
+					:bookmarks="site"></bookmark-column>
 				</ul>
 
 				<ul class="bookmark-tree row"
@@ -120,7 +117,7 @@ Promise.all([
 		template: `<footer>
 				<ul class="list-inline float-xs-right w-100 mb-0">
 					<li class="list-inline-item float-xs-left">
-						<a href="#modal-search" data-toggle="modal" data-target="#modal-search">{{ locale.search }}</a>
+						<a data-toggle="modal" data-target="#modal-search" tabindex="0">{{ locale.search }}</a>
 					</li>
 					<li class="list-inline-item float-xs-left">
 						<a href="chrome://bookmarks">{{ locale.manage_bookmarks }}</a>
@@ -133,7 +130,7 @@ Promise.all([
 						:href="optionsUrl">{{ locale.options }}</a>
 					</li>
 					<li class="list-inline-item">
-						<a href="#modal-help" data-toggle="modal" data-target="#modal-help">{{ locale.help }}</a>
+						<a data-toggle="modal" data-target="#modal-help" tabindex="0">{{ locale.help }}</a>
 					</li>
 					<li class="list-inline-item">
 						<a
@@ -327,7 +324,7 @@ Promise.all([
 										v-html="question.answer"></div>
 
 										<div class="text-xs-right mt-1">
-											<a href="#modal-help" class="underlined"
+											<a class="underlined" tabindex="0"
 											@click="viewQuestions">{{ locale.back_to_questions }}</a>
 										</div>
 									</div>
@@ -440,43 +437,112 @@ Promise.all([
 			};
 		},
 		computed: {
-			getClicksCount: function () {
-				this.clicksCount[this.bookmark.id] = typeof this.clicksCount[this.bookmark.id] !== 'undefined'
-											  	   ? this.clicksCount[this.bookmark.id]
-											       : 0
-				return this.clicksCount[this.bookmark.id];
-			},
 			isFolder: function () {
 				return typeof this.bookmark.children === 'object';
+			},
+			isBookmark: function () {
+				return this.isFolder === false
+					&& typeof this.bookmark.id !== 'undefined';
+			},
+			isLink: function () {
+				return this.isBookmark === false
+					&& this.isFolder === false;
+			},
+
+
+			getClicksCount: function () {
+				if (this.isFolder === true
+				|| this.isLink === true) {
+					return false;
+				}
+				
+				this.clicksCount[this.bookmark.id] = typeof this.clicksCount[this.bookmark.id] !== 'undefined'
+											  	   ? this.clicksCount[this.bookmark.id]
+											       : '';
+				return this.clicksCount[this.bookmark.id];
+			},
+			getHref: function () {
+				return this.isFolder === true
+					//? ('#collapse-id-' + this.bookmark.id)
+					? false
+					: this.bookmark.url;
+			},
+			getTarget: function () {
+				if (this.isFolder === true) {
+					return false;
+				}
+
+				return this.openBookmarksInNewTab === true
+					? '_blank'
+					: '_self';
+			},
+			getClass: function () {
+				return this.isFolder === true
+					? 'folder'
+					: false;
+			},
+			getStyle: function () {
+				if (this.isFolder === true) {
+					return false;
+				}
+
+				return {
+					'background-image': 'url(chrome://favicon/' + this.bookmark.url + ')'
+				};
+			},
+			getDataToggle: function () {
+				return this.isFolder === true ? 'collapse' : false;
+			},
+			getDataTarget: function () {
+				return this.isFolder === true
+					? ('#collapse-id-' + this.bookmark.id)
+					: false;
+			},
+
+
+			getListClass: function () {
+				return this.isFolder === true
+					? 'collapse'
+					: false;
+			},
+			getListId: function () {
+				return this.isFolder === true
+					? ('collapse-id-' + this.bookmark.id)
+					: false;
 			}
 		},
 		methods: {
-			incClicksCount: function () {
-				this.clicksCount[this.bookmark.id]++;
+			incClicksCount: function (event) {
+				if (event.which !== 1 && event.which !== 2) {
+					return;
+				}
 
+				if (this.isBookmark === false) {
+					return;
+				}
+				
+				this.clicksCount[this.bookmark.id]++;
 				browser.storage.sync.set({click_counter: this.clicksCount});
 			}
 		},
 		template: `<li>
-				<a class="icon"
-				:class="{'icon-folder': isFolder}"
+				<a tabindex="0"
+				:class="getClass"
 				:title="bookmark.title"
-				:style="isFolder ? {} : {'background-image': 'url(chrome://favicon/' + bookmark.url + ')'}"
-				:href="isFolder ? ('#collapse-id-' + bookmark.id) : bookmark.url"
-				:target="!isFolder && openBookmarksInNewTab ? '_blank' : '_self'"
+				:style="getStyle"
+				:href="getHref"
+				:target="getTarget"
+				:data-toggle="getDataToggle"
+				:data-target="getDataTarget"
+				:data-counter="getClicksCount"
 
-				:aria-controls="isFolder ? ('#collapse-id-' + bookmark.id) : ''"
-				:data-toggle="isFolder ? 'collapse' : ''"
-				:aria-expanded="isFolder ? false : ''"
-
-				:data-counter="!isFolder && getClicksCount > 0 ? getClicksCount : ''"
-				@click="incClicksCount">
+				@mouseup="incClicksCount">
 					{{bookmark.title}}
 				</a>
 
 				<ul
-				:class="{'collapse': isFolder}"
-				:id="isFolder ? ('collapse-id-' + bookmark.id) : ''"
+				:class="getListClass"
+				:id="getListId"
 				v-if="isFolder">
 					<bookmark
 					v-for="bookmark in bookmark.children"
