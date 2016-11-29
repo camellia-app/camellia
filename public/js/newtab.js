@@ -19348,6 +19348,20 @@ if (typeof browser === "undefined") {
       "maxArgs": 1
     }
   },
+  "sessions": {
+	  "getRecentlyClosed": {
+		"minArgs": 0,
+		"maxArgs": 1
+	  },
+	  "getDevices": {
+		  "minArgs": 0,
+        "maxArgs": 1
+	  },
+	  "restore": {
+		  "minArgs": 0,
+        "maxArgs": 0
+	  }
+  },
   "storage": {
     "local": {
       "clear": {
@@ -20050,21 +20064,40 @@ String.prototype.encodeHTML = function () {
 */
 
 Promise.all([
-    browser.storage.local.get(),
-    browser.storage.sync.get(),
+	browser.storage.local.get(),
+	browser.storage.sync.get(),
 	browser.bookmarks.getTree(),
 	browser.management.getSelf(),
-	browser.topSites.get()
+	browser.topSites.get(),
+	browser.sessions.getRecentlyClosed()
 ])
-.then(([local_storage, sync_storage, browserBookmarks, extensionInfo, topSites]) => {
+.then(([local_storage, sync_storage, browserBookmarks, extensionInfo, topSites, recentlyClosed]) => {
 	let allBookmarks          = browserBookmarks[0]['children'][0]['children'];
 	let columnsCount          = local_storage['columns_count'];
 	let backgroundImage       = local_storage['background_image'];
 	let openBookmarksInNewTab = local_storage['bookmarks_in_new_tab'];
 	let allTopSites           = local_storage['top_sites'] === true ? topSites : [];
 
-	console.log(allBookmarks);
-	console.log(allTopSites);
+	//
+	// Preparing recently closed tabs
+	//
+
+	let allClosedTabs = [];
+
+	if (local_storage['recently_closed'] === true) {
+		recentlyClosed.forEach(closedTab => {
+			if ( typeof closedTab['tab'] !== 'undefined'
+			&& typeof closedTab['tab']['title'] !== 'undefined'
+			&& typeof closedTab['tab']['url'] !== 'undefined') {
+				allClosedTabs.push({
+					title: closedTab['tab']['title'],
+					url:   closedTab['tab']['url']
+				});
+			}
+		});
+	}
+
+	console.log(allClosedTabs);
 
 	/*
 	|--------------------------------------------------------------------------
@@ -20106,6 +20139,8 @@ Promise.all([
 				chunkedBookmarks:      allBookmarks.chunk(columnsCount, true),
 				allTopSites:           allTopSites,
 				chunkedTopSites:       allTopSites.chunk(columnsCount, true),
+				allClosedTabs:         allClosedTabs,
+				chunkedClosedTabs:     allClosedTabs.chunk(columnsCount, true),
 				openBookmarksInNewTab: openBookmarksInNewTab,
 				columnSize:            Math.round(COLUMN_COUNT / columnsCount),
 
@@ -20115,6 +20150,13 @@ Promise.all([
 			};
 		},
 		template: `<main>
+				<ul class="bookmark-tree row pb-1"
+				v-if="allClosedTabs.length > 0">
+					<bookmark-column
+					v-for="site in chunkedClosedTabs"
+					:bookmarks="site"></bookmark-column>
+				</ul>
+
 				<ul class="bookmark-tree row pb-1"
 				v-if="allTopSites.length > 0">
 					<bookmark-column
@@ -20293,6 +20335,9 @@ Promise.all([
 				}, {
 					'title': browser.i18n.getMessage('help_why_permissions_title'),
 					'answer': browser.i18n.getMessage('help_why_permissions_answer')
+				}, {
+					'title': browser.i18n.getMessage('help_request_permissions_title'),
+					'answer': browser.i18n.getMessage('help_request_permissions_answer')
 				}, {
 					'title': browser.i18n.getMessage('help_change_theme_title'),
 					'answer': browser.i18n.getMessage('help_change_theme_answer')

@@ -340,6 +340,20 @@ if (typeof browser === "undefined") {
       "maxArgs": 1
     }
   },
+  "sessions": {
+	  "getRecentlyClosed": {
+		"minArgs": 0,
+		"maxArgs": 1
+	  },
+	  "getDevices": {
+		  "minArgs": 0,
+        "maxArgs": 1
+	  },
+	  "restore": {
+		  "minArgs": 0,
+        "maxArgs": 0
+	  }
+  },
   "storage": {
     "local": {
       "clear": {
@@ -1269,6 +1283,12 @@ browser.runtime.onInstalled.addListener(details => {
 		if (typeof local_storage['top_sites'] === 'undefined'
 		|| typeof local_storage['top_sites'] !== 'boolean') {
 			local_storage['top_sites'] = false;
+		}
+
+		// Display recently closed tabs
+		if (typeof local_storage['recently_closed'] === 'undefined'
+		|| typeof local_storage['recently_closed'] !== 'boolean') {
+			local_storage['recently_closed'] = false;
 		}
 		
 		browser.storage.sync.set(sync_storage);

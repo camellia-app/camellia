@@ -340,6 +340,20 @@ if (typeof browser === "undefined") {
       "maxArgs": 1
     }
   },
+  "sessions": {
+	  "getRecentlyClosed": {
+		"minArgs": 0,
+		"maxArgs": 1
+	  },
+	  "getDevices": {
+		  "minArgs": 0,
+        "maxArgs": 1
+	  },
+	  "restore": {
+		  "minArgs": 0,
+        "maxArgs": 0
+	  }
+  },
   "storage": {
     "local": {
       "clear": {
