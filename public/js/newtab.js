@@ -20156,11 +20156,11 @@ Promise.all([
 			};
 		},
 		template: `<footer>
-				<ul class="list-inline float-xs-right w-100 mb-0">
-					<li class="list-inline-item float-xs-left">
+				<ul class="list-inline float-md-right w-100 mb-0">
+					<li class="list-inline-item float-md-left">
 						<a data-toggle="modal" data-target="#modal-search" tabindex="0">{{ locale.search }}</a>
 					</li>
-					<li class="list-inline-item float-xs-left">
+					<li class="list-inline-item float-md-left">
 						<a href="chrome://bookmarks">{{ locale.manage_bookmarks }}</a>
 					</li>
 					<li class="list-inline-item">
@@ -20556,7 +20556,7 @@ Promise.all([
 			getClicksCount: function () {
 				if (this.isFolder === true
 				|| this.isLink === true) {
-					return '';
+					return false;
 				}
 				
 				this.clicksCount[this.bookmark.id] = typeof this.clicksCount[this.bookmark.id] !== 'undefined'
@@ -20625,7 +20625,7 @@ Promise.all([
 	}
 
 	// Set font size
-	$('#styles-from-options').append(`body { font-size: ${local_storage['font_size']}px; }`);
+	$('#configurable-styles').append(`body { font-size: ${local_storage['font_size']}px; }`);
 })
 .catch(error => {
 	browser.notifications.create({
