@@ -550,7 +550,7 @@ Promise.all([
 				}
 				
 				this.clicksCount[this.bookmark.id] = typeof this.clicksCount[this.bookmark.id] !== 'undefined'
-											  	   ? this.clicksCount[this.bookmark.id]
+											  	   ? this.clicksCount[this.bookmark.id].roundThousands()
 											       : '';
 				return this.clicksCount[this.bookmark.id];
 			},
