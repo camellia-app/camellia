@@ -1,0 +1,323 @@
+{
+	"locale": {
+		"message": "en",
+		"description": "This hack is used to detect locale displayed to user."
+	},
+
+
+
+	"app_name": {
+		"message": "Camellia",
+		"description": "The extension name"
+	},
+	"app_description": {
+		"message": "This extension allows you to see all your bookmarks at new tab page.",
+		"description": "Description of the extension. Displayed at extensions page and in stores."
+	},
+
+
+
+	"new_tab": {
+		"message": "New tab",
+		"description": "Bookmark title."
+	},
+	"search": {
+		"message": "Search",
+		"description": "Located in the footer at left side. Search modal window is opened by clicking this link."
+	},
+	"search_bookmarks": {
+		"message": "Search over bookmarks",
+		"description": "Search modal window title."
+	},
+	"enter_bookmark_query": {
+		"message": "Enter bookmark name",
+		"description": "Search modal window input placeholder."
+	},
+	"manage_bookmarks": {
+		"message": "Bookmarks manager",
+		"description": "Located in the footer at right side. Chrome built-in bookmarks manager is opened by clicking this link."
+	},
+	"options": {
+		"message": "Options",
+		"description": "Located in the footer at right side. Extension options are opened by clicking this link."
+	},
+	"help": {
+		"message": "Help",
+		"description": "Located in the footer at right side. Help modal window is opened by clicking this link."
+	},
+	"report_bug": {
+		"message": "Report a bug",
+		"description": "Located in the footer at right side. GitHub issues page is opened by clicking this link."
+	},
+	"extensions": {
+		"message": "Extensions",
+		"description": "Located in the footer at right side. Chrome extensions page is opened by clicking this link."
+	},
+	"store_page": {
+		"message": "Store page",
+		"description": "!!! DEPRECATED !!!"
+	},
+	"close": {
+		"message": "Close",
+		"description": "Used as a placeholder for cross icon for accessiblity purposes."
+	},
+	"background_loading_error_title": {
+		"message": "Could not load background",
+		"description": "This notification shown when loading background image fails. This is notification title."
+	},
+	"background_loading_error_message": {
+		"message": "Seems like this image is not available via this URL address anymore.",
+		"description": "This notification shown when loading background image fails. This is notification body."
+	},
+	"save": {
+		"message": "Save",
+		"description": "Save button. Currently it locates only at options page."
+	},
+	"error_occured": {
+		"message": "Error occured",
+		"description": "The title of the notification which appears when internal error happened."
+	},
+	"add_bookmarks_to_browser": {
+		"message": "To start work with Camellia $BOOKMARKS_MANAGER$ some bookmarks to your browser",
+		"description": "This message appears when there is no bookmarks in the browser.",
+		"placeholders": {
+			"bookmarks_manager": {
+				"content": "<a href=\"chrome://bookmarks/\" class=\"underlined\">add</a>"
+			}
+		}
+	},
+	"rate_extension": {
+		"message": "Rate the extension",
+		"description": "This is modal title which appears after 2 weeks of Camellia usage."
+	},
+	"rate_extension_description": {
+		"message": "<p>You are using Camellia for 2 weeks. It's a long period, I think. So can you rate the extension at store page please? You will lose less than a minute, but it will have tremendous support for Camellia!</p>Or click <b>G+</b> button under the &laquo;Add to Chrome&raquo;, button please. But if you are lazy to do it, no matter. Close this window and it will never disturb you again.</p>Thanks!",
+		"description": "This is modal body which appears after 2 weeks of Camellia usage.",
+		"placeholders": {
+			"rate_button": {
+				"content": "<a class=\"btn btn-block btn-danger text-truncate mb-1\" href=\"$1\">Go to store</a>"
+			}
+		}
+	},
+
+
+
+
+
+	"option_background_image_label": {
+		"message": "Background image URL address"
+	},
+	"__option_background_image_hint": {
+		"message": ""
+	},
+
+
+	"option_columns_count_label": {
+		"message": "Columns count"
+	},
+	"__option_columns_count_hint": {
+		"message": "На данный момент другие варианты количества колонок не поддерживаются."
+	},
+	"option_columns_count_column": {
+		"message": "col."
+	},
+
+
+	"option_use_custom_scrollbar_label": {
+		"message": "Scroll bar style"
+	},
+	"__option_use_custom_scrollbar_hint": {
+		"message": "Полоса прокрутки в правой части экрана."
+	},
+	"option_use_custom_scrollbar_styled": {
+		"message": "Styled"
+	},
+	"option_use_custom_scrollbar_system": {
+		"message": "System"
+	},
+
+
+	"option_display_click_counter_label": {
+		"message": "Bookmarks click counter"
+	},
+	"__option_display_click_counter_hint": {
+		"message": "Эта настройка лишь настраивает отображение счетчика. Независимо от того, что вы выберете, счетчик все равно будет запоминать переходы в фоновом режиме."
+	},
+	"option_display_click_counter_display": {
+		"message": "Display"
+	},
+	"option_display_click_counter_hide": {
+		"message": "Hide"
+	},
+
+
+	"option_user_select_label": {
+		"message": "Text selection"
+	},
+	"__option_user_select_hint": {
+		"message": "Если выделение текста раздражает вас, вы можете отключить его."
+	},
+	"option_user_select_enabled": {
+		"message": "Enable"
+	},
+	"option_user_select_disabled": {
+		"message": "Disable"
+	},
+
+
+	"option_font_size_label": {
+		"message": "Font size"
+	},
+	"__option_font_size_hint": {
+		"message": "Указывается в пикселях. Размер некоторых элементов интерфейса меняется вместе с размером шрифта."
+	},
+
+
+	"option_bookmarks_in_new_tab_label": {
+		"message": "How to open bookmarks"
+	},
+	"__option_bookmarks_in_new_tab_hint": {
+		"message": "Влияет только на закладки. Не влияет на остальные ссылки в расширении."
+	},
+	"option_bookmarks_in_new_tab_new_tab": {
+		"message": "In new tab"
+	},
+	"option_bookmarks_in_new_tab_current_tab": {
+		"message": "In current tab"
+	},
+
+
+	"option_top_sites_label": {
+		"message": "Popular sites"
+	},
+	"__option_top_sites_hint": {
+		"message": "Отображение самых популярных сайтов, что вы посещали. Данный алгоритм работает внутри браузера и никак не связан с закладками. Учитываются даже сайты, которых нет в закладках."
+	},
+	"option_top_sites_display": {
+		"message": "Display"
+	},
+	"option_top_sites_hide": {
+		"message": "Hide"
+	},
+
+
+	"option_recently_closed_label": {
+		"message": "Recently closed tabs"
+	},
+	"__option_recently_closed_hint": {
+		"message": "Отображение списка последних закрытых вкладок."
+	},
+	"option_recently_closed_display": {
+		"message": "Display"
+	},
+	"option_recently_closed_hide": {
+		"message": "Hide"
+	},
+
+
+
+	"back_to_questions": {
+		"message": "back to questions"
+	},
+
+
+	"help_reason_to_use_title": {
+		"message": "Почему вы разработали Камелию, когда существует полно аналогов?"
+	},
+	"help_reason_to_use_answer": {
+		"message": "<p>Камелия &mdash; расширение, созданное для удобной организации огромного количества закладок. С подобной проблемой часто сталкиваются люди, занимающиеся творческой или профессиональной деятельностью. Сохранять материала нужно много, и хорошо бы хранить его в самом доступном месте &mdash; в закладках браузера.</p><p>Разумеется, это не значит, что Камелия создана только для определенной группы людей. Если вы сохраняете много ссылок, которые когда-либо могут пригодиться, то Камелия &mdash; ваш выбор. Начать разработку Камелии я решил как раз после того, как не смог отыскать достойный менеджер закладок для страницы новой вкладки, который бы обеспечил мне должный уровень комфорта при работе с моими несколькими сотнями закладок.</p><p>Важно осознавать, что Камелия &mdash; это не &laquo;палочка-выручалочка&raquo;, которая может из бардака сделать &laquo;конфетку&raquo;. Для получения незабываемых ощущений при работе с расширением вам следует навести порядок самостоятельно, рассортировав все закладки по папкам и дав им понятные, не очень длинные имена.</p>"
+	},
+
+
+	"help_omnibox_search_title": {
+		"message": "Как искать закладки через адресную строку (омнибокс) браузера?"
+	},
+	"help_omnibox_search_answer": {
+		"message": "<p>Для этого введите <code>$KEYWORD$</code>, нажмите <kbd>Tab</kbd> или <kbd>Пробел</kbd>, а затем начните вводить название закладки.</p>$GIF$<p>В отличие от поиска на странице новой вкладки, поиск через омнибокс также учитывает адрес, который привязан к закладке, а ещё они сортируются по количеству кликов.</p>",
+		"placeholders": {
+			"keyword": {
+				"content": "$1"
+			},
+			"gif": {
+				"content": "<img class=\"img-fluid rounded d-block mx-auto mb-1\"src=\"/img/gifs/omnibox.gif\" alt=\"Пример поиска\">"
+			}
+		}
+	},
+
+
+	"help_which_browsers_supported_title": {
+		"message": "Какие браузеры поддерживаются?"
+	},
+	"help_which_browsers_supported_answer": {
+		"message": "Поддерживаются только Google Chrome и Chromium. Opera и Яндекс.Браузер не поддерживают функционал, позволяющий заменить страницу новой вкладки. Mozilla Firefox поддерживает подобный функционал, но реализация там совершенно другая, из-за чего портировать расширение не получится. Работа в Safari не проверялась."
+	},
+
+
+	"help_why_permissions_title": {
+		"message": "Зачем требуется доступ к чтению и записи контента всех сайтов, а также к отправке уведомлений?"
+	},
+	"help_why_permissions_answer": {
+		"message": "<p>Доступ к уведомлениям необходим лишь в случаях, когда вас <b>необходимо</b> уведомить. Например, о какой-нибудь ошибке. Уведомления не будут использоваться для рассылки информации, которая вам не нужна.</p><p>Доступ ко всем ссылкам &mdash; единственный способ сделать так, чтобы на странице отображались иконки закладок. Без этого доступа браузер ругается на то, что у расширения нет доступа к запрашиваемому сайту, и не делится с Камелией иконкой. Данный доступ используется исключительно в этом контексте. Камелия не читает и не изменяет данные на сайтах, которые вы посещаете &mdash; ей это не интересно.</p>"
+	},
+
+
+	"help_request_permissions_title": {
+		"message": "Почему расширение иногда запрашивает новые права доступа?"
+	},
+	"help_request_permissions_answer": {
+		"message": "Это необходимо для введения новых функций. Из-за реализации браузерных расширений, чтобы получить доступ к одной единственной некритичной функции, приходится запрашивать доступ сразу ко всему функционалу, который может даже не пригодиться. Например, чтобы получить доступ к последним закрытым вкладкам, приходится запрашивать доступ к функциям, которые работают с сессиями."
+	},
+
+
+	"help_change_theme_title": {
+		"message": "Можно ли изменить тему (дизайн)?"
+	},
+	"help_change_theme_answer": {
+		"message": "Нет. На данный момент подобный функционал не запланирован, однако я открыт для идей по доработке дизайна."
+	},
+
+
+	"help_screenshots_title": {
+		"message": "Почему нет скриншотов закладок как, например, в Speed Dial?"
+	},
+	"help_screenshots_answer": {
+		"message": "Основная идея данного расширения &mdash; сделать удобное управление огромным количеством грамотно структурированных закладок браузера. Соответственно, идет упор на умеренный минимализм, а превью закладок &mdash; это не то, что нужно компактной и миниматистичной Камелии."
+	},
+
+
+	"help_unrelevant_wallpaper_title": {
+		"message": "Почему на фоне стоит календула, в качестве логотипа &mdash; лотос, но при этом расширение называется Camellia?"
+	},
+	"help_unrelevant_wallpaper_answer": {
+		"message": "Это слишком хороший вопрос, чтобы на него отвечать.",
+		"description": "!!! DEPRECATED !!!"
+	},
+
+
+	"help_manage_bookmarks_title": {
+		"message": "Я могу редактировать, добавлять и удалять закладки?"
+	},
+	"help_manage_bookmarks_answer": {
+		"message": "<p>Нет, но такой функионал планируется добавить, однако на это потребуется какое-то время. Возможно, много времени. Пока что пользуйтесь встроенными в браузеры решениями.</p><p>Закладки, с которыми работает Камелия &mdash; это нативные браузерные закладки. Работать с ними можно как через панель закладок под адресной строкой браузера, так и через менеджер закладок, открыть который можно комбинацией клавиш <kbd><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd></kbd>.</p>"
+	},
+
+
+	"help_planned_features_title": {
+		"message": "Где я могу узнать список запланированных изменений?"
+	},
+	"help_planned_features_answer": {
+		"message": "В $URL$ репозитория на GitHub.",
+		"placeholders": {
+			"url": {
+				"content": "<a href=\"$1\" class=\"underlined\">проектах</a>"
+			}
+		}
+	},
+
+	"help_ctrl_f_title": {
+		"message": "Почему после открытия новой вкладки и прожатия <kbd><kbd>Ctrl</kbd> + <kbd>F</kbd></kbd> не открывается окно поиска?"
+	},
+	"help_ctrl_f_answer": {
+		"message": "<p>Дело в том, что при открытии новой вкладки фокус переведён на адресную строку браузера, а не на контент страницы, поэтому когда вы прожимаете эту комбинацию, срабатывает не событие, запрограммированное в расширении, а событие, запрограммированное в самом браузере.</p><p>Для более быстрого поиска лучше использовать поиск через омнибокс.</p>"
+	}
+}
