@@ -214,6 +214,13 @@
 		"message": "Hide"
 	},
 
+	"option_background_brightness_label": {
+		"message": "Background brightness"
+	},
+	"option_background_brightness_hint": {
+		"message": "For best readability it's recommended do not set this parameter higher than 50%."
+	},
+
 
 
 	"back_to_questions": {
@@ -286,7 +293,8 @@
 
 
 	"help_unrelevant_wallpaper_title": {
-		"message": "Почему на фоне стоит календула, в качестве логотипа &mdash; лотос, но при этом расширение называется Camellia?"
+		"message": "Почему на фоне стоит календула, в качестве логотипа &mdash; лотос, но при этом расширение называется Camellia?",
+		"description": "!!! DEPRECATED !!!"
 	},
 	"help_unrelevant_wallpaper_answer": {
 		"message": "Это слишком хороший вопрос, чтобы на него отвечать.",
@@ -319,5 +327,12 @@
 	},
 	"help_ctrl_f_answer": {
 		"message": "<p>Дело в том, что при открытии новой вкладки фокус переведён на адресную строку браузера, а не на контент страницы, поэтому когда вы прожимаете эту комбинацию, срабатывает не событие, запрограммированное в расширении, а событие, запрограммированное в самом браузере.</p><p>Для более быстрого поиска лучше использовать поиск через омнибокс.</p>"
+	},
+
+	"help_background_author_title": {
+		"message": "Кто автор фоновой картинки, которая идет по умолчанию?"
+	},
+	"help_background_author_answer": {
+		"message": "<p>Фотограф &mdash; <a href=\"https://www.facebook.com/stefancikphotography\" class=\"underlined\">Stefan Stefancik</a>. Фотография была взята с фотостока <a href=\"https://www.pexels.com/u/stefanstefancik/\" class=\"underlined\">Pexels</a>.</p>"
 	}
 }

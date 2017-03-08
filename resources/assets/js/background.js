@@ -155,20 +155,8 @@ browser.runtime.onInstalled.addListener(details => {
 		| Syncronisable default settings
 		|--------------------------------------------------------------------------
 		|
-		| This settings synced between all browsers usign one account.
+		| This settings synced between all browsers using one account.
 		*/
-
-		// Object with bookmark click counter
-		if (typeof sync_storage['click_counter'] === 'undefined'
-		|| typeof sync_storage['click_counter'] !== 'object') {
-			sync_storage['click_counter'] = {};
-		}
-
-		for (let bookmark in sync_storage['click_counter']) {
-			if (sync_storage['click_counter'][bookmark] === 0) {
-				delete sync_storage['click_counter'][bookmark];
-			}
-		}
 
 		// Sets installation date
 		if (typeof sync_storage['installation_date'] === 'undefined'
@@ -189,6 +177,12 @@ browser.runtime.onInstalled.addListener(details => {
 		|
 		| This settings may be set individually for each browser.
 		*/
+
+        // Object with bookmark click counter
+        if (typeof local_storage['click_counter'] === 'undefined'
+            || typeof local_storage['click_counter'] !== 'object') {
+            local_storage['click_counter'] = {};
+        }
 
 		// Number of columns
 		if (typeof local_storage['columns_count'] === 'undefined'
@@ -217,7 +211,7 @@ browser.runtime.onInstalled.addListener(details => {
 		// Enables and disabled text selecting
 		if (typeof local_storage['user_select'] === 'undefined'
 		|| typeof local_storage['user_select'] !== 'boolean') {
-			local_storage['user_select'] = true;
+			local_storage['user_select'] = false;
 		}
 
 		// Enables and disabled text selecting
@@ -243,6 +237,12 @@ browser.runtime.onInstalled.addListener(details => {
 		|| typeof local_storage['recently_closed'] !== 'boolean') {
 			local_storage['recently_closed'] = false;
 		}
+
+        // Background brightness
+        if (typeof local_storage['background_brightness'] === 'undefined'
+            || typeof local_storage['background_brightness'] !== 'number') {
+            local_storage['background_brightness'] = 0.5;
+        }
 		
 		browser.storage.sync.set(sync_storage);
 		browser.storage.local.set(local_storage);

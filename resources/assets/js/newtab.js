@@ -22,6 +22,7 @@ Promise.all([
 	let backgroundImage       = local_storage['background_image'];
 	let openBookmarksInNewTab = local_storage['bookmarks_in_new_tab'];
 	let allTopSites           = local_storage['top_sites'] === true ? topSites : [];
+	let backgroundBrightness  = local_storage['background_brightness'];
 
 	//
 	// Preparing recently closed tabs
@@ -31,7 +32,7 @@ Promise.all([
 
 	if (local_storage['recently_closed'] === true) {
 		recentlyClosed.forEach(closedTab => {
-			if ( typeof closedTab['tab'] !== 'undefined'
+			if (typeof closedTab['tab'] !== 'undefined'
 			&& typeof closedTab['tab']['title'] !== 'undefined'
 			&& typeof closedTab['tab']['url'] !== 'undefined') {
 				allClosedTabs.push({
@@ -99,6 +100,7 @@ Promise.all([
 				v-if="allClosedTabs.length > 0">
 					<bookmark-column
 					v-for="site in chunkedClosedTabs"
+					:key="site.id"
 					:bookmarks="site"></bookmark-column>
 				</ul>
 
@@ -106,6 +108,7 @@ Promise.all([
 				v-if="allTopSites.length > 0">
 					<bookmark-column
 					v-for="site in chunkedTopSites"
+					:key="site.id"
 					:bookmarks="site"></bookmark-column>
 				</ul>
 
@@ -113,6 +116,7 @@ Promise.all([
 				v-if="allBookmarks.length > 0">
 					<bookmark-column
 					v-for="bookmarks in chunkedBookmarks"
+					:key="bookmarks.id"
 					:bookmarks="bookmarks"></bookmark-column>
 				</ul>
 				<div class="py-3 pl-1 text-xs-center lead"
@@ -290,9 +294,6 @@ Promise.all([
 					'title': browser.i18n.getMessage('help_screenshots_title'),
 					'answer': browser.i18n.getMessage('help_screenshots_answer')
 				}, {
-					'title': browser.i18n.getMessage('help_unrelevant_wallpaper_title'),
-					'answer': '<div class="text-xs-center">¯\\_(ツ)_/¯</div>'
-				}, {
 					'title': browser.i18n.getMessage('help_manage_bookmarks_title'),
 					'answer': browser.i18n.getMessage('help_manage_bookmarks_answer')
 				}, {
@@ -303,7 +304,10 @@ Promise.all([
 				}, {
 					'title': browser.i18n.getMessage('help_ctrl_f_title'),
 					'answer': browser.i18n.getMessage('help_ctrl_f_answer')
-				}],
+				}, {
+                    'title': browser.i18n.getMessage('help_background_author_title'),
+                    'answer': browser.i18n.getMessage('help_background_author_answer')
+                }],
 				locale: i18nObject([
 					'close', 'help', 'back_to_questions'
 				])
@@ -336,9 +340,9 @@ Promise.all([
 							mode="out-in">
 								<ol
 								v-if="currentQuestion < 0">
-									<li	v-for="(question, index) in faq">
-										<a class="underlined"
-										:href="'#question' + index"
+									<li	v-for="(question, index) in faq"
+									:key="index">
+										<a class="underlined" tabindex="0"
 										v-html="question.title"
 										@click="viewAnswer(index)"></a>
 									</li>
@@ -347,6 +351,7 @@ Promise.all([
 								v-else>
 									<div
 									v-for="(question, index) in faq"
+									:key="index"
 									v-if="index === currentQuestion">
 										<h3 class="h5 pb-1"
 										v-html="question.title"></h3>
@@ -438,6 +443,7 @@ Promise.all([
 				<ul>
 					<bookmark
 					v-for="bookmark in bookmarks"
+					:key="bookmark.id"
 					:bookmark="bookmark"></bookmark>
 				</ul>
 			</li>`
@@ -462,7 +468,7 @@ Promise.all([
 		},
 		data: function () {
 			return {
-				clicksCount:           sync_storage['click_counter'],
+				clicksCount:           local_storage['click_counter'],
 				displayClickCounter:   local_storage['display_click_counter'],
 				openBookmarksInNewTab: openBookmarksInNewTab
 			};
@@ -541,17 +547,20 @@ Promise.all([
 				}
 				
 				this.clicksCount[this.bookmark.id]++;
-				browser.storage.sync.set({click_counter: this.clicksCount});
+				browser.storage.local.set({click_counter: this.clicksCount});
 			},
 			getClicksCount: function () {
 				if (this.isFolder === true
-				|| this.isLink === true) {
+				|| this.isLink === true
+				|| this.displayClickCounter === false) {
 					return false;
 				}
 				
-				this.clicksCount[this.bookmark.id] = typeof this.clicksCount[this.bookmark.id] !== 'undefined'
-											  	   ? this.clicksCount[this.bookmark.id].roundThousands()
-											       : '';
+				this.clicksCount[this.bookmark.id] =
+					typeof this.clicksCount[this.bookmark.id] !== 'undefined'
+						? this.clicksCount[this.bookmark.id].roundThousands()
+						: '';
+
 				return this.clicksCount[this.bookmark.id];
 			},
 		},
@@ -576,6 +585,7 @@ Promise.all([
 				v-if="isFolder">
 					<bookmark
 					v-for="bookmark in bookmark.children"
+					:key="bookmark.id"
 					:bookmark="bookmark"></bookmark>
 				</ul>
 			</li>`
@@ -590,11 +600,11 @@ Promise.all([
 		$(this).remove();
 
 		$('#configurable-styles')
-		.append(`body:before { background-image: url(${backgroundImage}); opacity: .2; }`);
+		.append(`body:before { background-image: url(${backgroundImage}); opacity: ${backgroundBrightness}; }`);
 	})
 	.on('error', function() {
 		$('#configurable-styles')
-		.append(`body:before { background-color: rgb(255,255,255); opacity: .2; }`);
+		.append(`body:before { background-color: rgb(255,255,255); opacity: ${backgroundBrightness}; }`);
 		
 		browser.notifications.create({
 			'type': 'basic',

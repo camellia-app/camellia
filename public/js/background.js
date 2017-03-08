@@ -889,7 +889,6 @@ const AVAILABLE_COLUMNS = [1, 2, 3, 4, 6, 12];
   * This method splits array into equal chunks
   * and allows to balance them.
   *
-  *
   * @since 1.0.0
   *
   * @param int  chunksCount How much chunks to create.
@@ -903,7 +902,7 @@ Array.prototype.chunk = function(chunksCount, balanced = true) {
     if (chunksCount < 2) {
         return [self];
     }
-    
+
     let ret = [];
     let i = 0;
     let arraySize = self.length;
@@ -930,7 +929,7 @@ Array.prototype.chunk = function(chunksCount, balanced = true) {
         if (arraySize % size === 0) {
             size--;
         }
-            
+
         while (i < size * chunksCount) {
             ret.push(self.slice(i, i += size));
         }
@@ -946,7 +945,6 @@ Array.prototype.chunk = function(chunksCount, balanced = true) {
   *
   * This method flattens nested & recursive arrays
   * into one-level array by recursion key.
-  *
   *
   * @since 1.0.0
   *
@@ -973,7 +971,6 @@ Array.prototype.flatten = function(recursionKey) {
 /**
   * Generates random integer in given range.
   *
-  *
   * @since 1.0.0
   *
   * @param int min Minimal possible value.
@@ -987,7 +984,6 @@ let getRandomInt = (min, max) => {
 
 /**
   * Highlight word from string in given format.
-  *
   *
   * @since 1.0.0
   *
@@ -1006,7 +1002,6 @@ String.prototype.highlight = function(word, replacement) {
 /**
   * Creates object with localizations.
   *
-  *
   * @since 1.0.0
   *
   * @param array messages Array of message names from _locales/.../messages.json.
@@ -1016,35 +1011,47 @@ String.prototype.highlight = function(word, replacement) {
   *                and value is localized string.
   */
 let i18nObject = messages => {
-	let ret = {};
+    let ret = {};
 
     messages.forEach(message => {
-		if (typeof message === 'string') {
-			ret[message] = browser.i18n.getMessage(message);
-		} else if (Array.isArray(message) === true && message.length > 1) {
-			let messageName = message.shift();
-			ret[messageName] = browser.i18n.getMessage(messageName, message);
-		}
-	});
+        if (typeof message === 'string') {
+            ret[message] = browser.i18n.getMessage(message);
+        } else if (Array.isArray(message) === true && message.length > 1) {
+            let messageName = message.shift();
+            ret[messageName] = browser.i18n.getMessage(messageName, message);
+        }
+    });
 
-	return ret;
+    return ret;
 }
 
 /**
   * Escapes some symbols used in HTML to prevent XSS.
-  *
   *
   * @since 1.0.0
   *
   * @return string Escaped string.
   */
 String.prototype.encodeHTML = function () {
-	return this.replace(/&/g, '&amp;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;')
-		.replace(/"/g, '&quot;')
-		.replace(/'/g, '&apos;');
-  };
+    return this.replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&apos;');
+};
+
+/**
+  * Rounds number that bigger than 1000.
+  *
+  * @since 1.3.0
+  *
+  * @return string|int Rounded to thousands number.
+  */
+Number.prototype.roundThousands = function () {
+    return this > 999
+        ? (this / 1000).toFixed(1) + 'k'
+        : this;
+}
 /*
 |--------------------------------------------------------------------------
 | Search bookmarks in omnibox
@@ -1202,20 +1209,8 @@ browser.runtime.onInstalled.addListener(details => {
 		| Syncronisable default settings
 		|--------------------------------------------------------------------------
 		|
-		| This settings synced between all browsers usign one account.
+		| This settings synced between all browsers using one account.
 		*/
-
-		// Object with bookmark click counter
-		if (typeof sync_storage['click_counter'] === 'undefined'
-		|| typeof sync_storage['click_counter'] !== 'object') {
-			sync_storage['click_counter'] = {};
-		}
-
-		for (let bookmark in sync_storage['click_counter']) {
-			if (sync_storage['click_counter'][bookmark] === 0) {
-				delete sync_storage['click_counter'][bookmark];
-			}
-		}
 
 		// Sets installation date
 		if (typeof sync_storage['installation_date'] === 'undefined'
@@ -1236,6 +1231,12 @@ browser.runtime.onInstalled.addListener(details => {
 		|
 		| This settings may be set individually for each browser.
 		*/
+
+        // Object with bookmark click counter
+        if (typeof local_storage['click_counter'] === 'undefined'
+            || typeof local_storage['click_counter'] !== 'object') {
+            local_storage['click_counter'] = {};
+        }
 
 		// Number of columns
 		if (typeof local_storage['columns_count'] === 'undefined'
@@ -1264,7 +1265,7 @@ browser.runtime.onInstalled.addListener(details => {
 		// Enables and disabled text selecting
 		if (typeof local_storage['user_select'] === 'undefined'
 		|| typeof local_storage['user_select'] !== 'boolean') {
-			local_storage['user_select'] = true;
+			local_storage['user_select'] = false;
 		}
 
 		// Enables and disabled text selecting
@@ -1290,6 +1291,12 @@ browser.runtime.onInstalled.addListener(details => {
 		|| typeof local_storage['recently_closed'] !== 'boolean') {
 			local_storage['recently_closed'] = false;
 		}
+
+        // Background brightness
+        if (typeof local_storage['background_brightness'] === 'undefined'
+            || typeof local_storage['background_brightness'] !== 'number') {
+            local_storage['background_brightness'] = 0.5;
+        }
 		
 		browser.storage.sync.set(sync_storage);
 		browser.storage.local.set(local_storage);
@@ -1303,5 +1310,3 @@ browser.runtime.onInstalled.addListener(details => {
 		});
 	});
 });
-
-//# sourceMappingURL=background.js.map

@@ -21,13 +21,14 @@ Promise.all([
 
 				background_image:      local_storage['background_image'],
 				columns_count:         local_storage['columns_count'],
-				use_custom_scrollbar:  local_storage['use_custom_scrollbar'],
-				display_click_counter: local_storage['display_click_counter'],
-				user_select:           local_storage['user_select'],
+				use_custom_scrollbar:  Number(local_storage['use_custom_scrollbar']),
+				display_click_counter: Number(local_storage['display_click_counter']),
+				user_select:           Number(local_storage['user_select']),
 				font_size:             local_storage['font_size'],
-				bookmarks_in_new_tab:  local_storage['bookmarks_in_new_tab'],
-				top_sites:             local_storage['top_sites'],
-				recently_closed:       local_storage['recently_closed'],
+				bookmarks_in_new_tab:  Number(local_storage['bookmarks_in_new_tab']),
+				top_sites:             Number(local_storage['top_sites']),
+				recently_closed:       Number(local_storage['recently_closed']),
+                background_brightness: local_storage['background_brightness'],
 
 				locale: i18nObject([
 					'save',
@@ -71,6 +72,9 @@ Promise.all([
 					'option_recently_closed_display',
 					'option_recently_closed_hide',
 					'option_recently_closed_hint',
+
+                    'option_background_brightness_label',
+                    'option_background_brightness_hint',
 				])
 			};
 		},
@@ -92,6 +96,7 @@ Promise.all([
 				local_storage['bookmarks_in_new_tab']  = this.bookmarks_in_new_tab == 1;
 				local_storage['top_sites']             = this.top_sites == 1;
 				local_storage['recently_closed']       = this.recently_closed == 1;
+				local_storage['background_brightness'] = parseFloat(this.background_brightness);
 
 				chrome.storage.local.set(local_storage);
 			},
@@ -116,8 +121,7 @@ Promise.all([
 						v-model="columns_count">
 							<option
 							v-for="columnValue in available_columns"
-							:value="columnValue"
-							:selected="columnValue == columns_count">
+							:value="columnValue">
 								{{ columnValue }}
 								{{ locale.option_columns_count_column }}
 							</option>
@@ -131,12 +135,10 @@ Promise.all([
 						</label>
 						<select id="use_custom_scrollbar" required
 						v-model="use_custom_scrollbar">
-							<option value="1"
-							:selected="1 === use_custom_scrollbar">
+							<option value="1">
 								{{ locale.option_use_custom_scrollbar_styled }}
 							</option>
-							<option value="0"
-							:selected="0 === use_custom_scrollbar">
+							<option value="0">
 								{{ locale.option_use_custom_scrollbar_system }}
 							</option>
 						</select>
@@ -149,13 +151,11 @@ Promise.all([
 						</label>
 						<select id="display_click_counter" required
 						v-model="display_click_counter">
-							<option value="1"
-							:selected="1 == display_click_counter">
-								{{ locale.option_display_click_counter_display }}
-							</option>
-							<option value="0"
-							:selected="0 == display_click_counter">
+							<option value="0">
 								{{ locale.option_display_click_counter_hide }}	
+							</option>
+							<option value="1">
+								{{ locale.option_display_click_counter_display }}
 							</option>
 						</select>
 						<small>{{ locale.option_display_click_counter_hint }}</small>
@@ -167,13 +167,11 @@ Promise.all([
 						</label>
 						<select id="user_select" required
 						v-model="user_select">
-							<option value="1"
-							:selected="1 == user_select">
-								{{ locale.option_user_select_enabled }}
+							<option value="0">
+								{{ locale.option_user_select_disabled }}
 							</option>
-							<option value="0"
-							:selected="0 == user_select">
-								{{ locale.option_user_select_disabled }}	
+							<option value="1">
+								{{ locale.option_user_select_enabled}}	
 							</option>
 						</select>
 						<small>{{ locale.option_user_select_hint }}</small>
@@ -194,12 +192,10 @@ Promise.all([
 						</label>
 						<select id="bookmarks_in_new_tab" required
 						v-model="bookmarks_in_new_tab">
-							<option value="1"
-							:selected="1 == bookmarks_in_new_tab">
+							<option value="1">
 								{{ locale.option_bookmarks_in_new_tab_new_tab }}
 							</option>
-							<option value="0"
-							:selected="0 == user_select">
+							<option value="0">
 								{{ locale.option_bookmarks_in_new_tab_current_tab }}	
 							</option>
 						</select>
@@ -212,12 +208,10 @@ Promise.all([
 						</label>
 						<select id="top_sites" required
 						v-model="top_sites">
-							<option value="1"
-							:selected="1 == top_sites">
+							<option value="1">
 								{{ locale.option_top_sites_display }}
 							</option>
-							<option value="0"
-							:selected="0 == top_sites">
+							<option value="0">
 								{{ locale.option_top_sites_hide }}	
 							</option>
 						</select>
@@ -230,16 +224,24 @@ Promise.all([
 						</label>
 						<select id="recently_closed" required
 						v-model="recently_closed">
-							<option value="1"
-							:selected="1 == recently_closed">
+							<option value="1">
 								{{ locale.option_recently_closed_display }}
 							</option>
-							<option value="0"
-							:selected="0 == recently_closed">
+							<option value="0">
 								{{ locale.option_recently_closed_hide }}	
 							</option>
 						</select>
 						<small>{{ locale.option_recently_closed_hint }}</small>
+
+						<hr>
+						
+						<label class="label" for="background_brightness">
+							{{ locale.option_background_brightness_label }}
+						</label>
+						<input type="range" id="background_brightness" required
+						min="0.1" step="0.01" max="1"
+						v-model="background_brightness">
+						<small>{{ locale.option_background_brightness_hint }}</small>
 
 						<hr>
 
