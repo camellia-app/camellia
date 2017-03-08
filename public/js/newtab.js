@@ -22023,9 +22023,12 @@ Promise.all([
 				|| this.displayClickCounter === false) {
 					return false;
 				}
+
+				console.log(this.clicksCount[this.bookmark.id]);
 				
 				this.clicksCount[this.bookmark.id] =
 					typeof this.clicksCount[this.bookmark.id] !== 'undefined'
+						&& this.clicksCount[this.bookmark.id] > 0
 						? this.clicksCount[this.bookmark.id].roundThousands()
 						: '';
 
