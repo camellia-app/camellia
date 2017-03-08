@@ -4,3 +4,4 @@ node_modules
 *.zip
 *.tmp
 mix-manifest.json
+.idea
