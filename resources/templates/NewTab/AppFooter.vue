@@ -1,6 +1,7 @@
 <template>
 	<footer>
-		<ul class="list-inline float-md-right w-100 mb-0">
+		пусто блядь
+		<!--<ul class="list-inline float-md-right w-100 mb-0">
 			<li class="list-inline-item float-md-left">
 				<a data-toggle="modal" data-target="#modal-search" tabindex="0">{{ locale.search }}</a>
 			</li>
@@ -29,23 +30,25 @@
 					(dev)
 				</template>
 			</li>
-		</ul>
+		</ul>-->
 	</footer>
 </template>
 
 <script>
 const data = function () {
 	return {
-			issuesUrl:      '',
-			releasesUrl:    '',
-			optionsUrl:     '',
-			browserVersion: '',
-			isDevBuild:     '',
-			locale:         []
-	}
+		issuesUrl:      extensionInfo.homepageUrl + '/issues',
+		releasesUrl:    extensionInfo.homepageUrl + '/releases',
+		optionsUrl:     'chrome://extensions/?options=' + extensionInfo.id,
+		browserVersion: 'v' + extensionInfo.version,
+		isDevBuild:     extensionInfo.installType === 'development',
+		locale:         i18nObject([
+			'search', 'manage_bookmarks', 'options', 'help', 'report_bug', 'extensions'
+		])
+	};
 };
 
 export default {
-	data
+	// data
 };
 </script>
