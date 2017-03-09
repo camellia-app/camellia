@@ -44,3 +44,5 @@ mix.scripts([
     './resources/assets/js/_functions.js',
     './resources/assets/js/newtab.js',
 ], './public/js/newtab.js');
+
+mix.js('resources/main.js', 'public/js/');
