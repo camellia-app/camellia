@@ -4479,14 +4479,6 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-async-computed@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/vue-async-computed/-/vue-async-computed-3.0.0.tgz#c7b436b1281d1f12ae6482864005dcba546b05c3"
-
-vue-async-data@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/vue-async-data/-/vue-async-data-1.0.2.tgz#ae0a6930f6e0bf959f12f03d161f5c375f2b0519"
-
 vue-hot-reload-api@^2.0.1:
   version "2.0.11"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.0.11.tgz#bf26374fb73366ce03f799e65ef5dfd0e28a1568"
