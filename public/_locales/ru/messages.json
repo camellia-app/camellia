@@ -127,7 +127,7 @@
 		"message": "Стиль полосы прокрутки"
 	},
 	"option_use_custom_scrollbar_hint": {
-		"message": "Полоса прокрутки в правой части экрана."
+		"message": "Вертикальная полоса прокрутки в правой части экрана (скроллбар)."
 	},
 	"option_use_custom_scrollbar_styled": {
 		"message": "Стилизованный"
