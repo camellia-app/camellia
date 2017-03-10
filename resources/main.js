@@ -2,6 +2,7 @@ import './assets/js/_functions';
 import './assets/js/_variables';
 import Vue from 'vue';
 import App from './templates/NewTab.vue';
+import AsyncComputed from 'vue-async-computed';
 
 function getAllInfo() {
 	return Promise.all([
@@ -15,7 +16,7 @@ function getAllInfo() {
 };
 
 
-async function initPage() {
+export async function initPage() {
 	const a = await getAllInfo();
 	let [local_storage, sync_storage, browserBookmarks, extensionInfo, topSites, recentlyClosed] = a;
 	let allBookmarks = browserBookmarks[0]['children'][0]['children'];
@@ -40,7 +41,7 @@ async function initPage() {
 		});
 	}
 
-	const data = JSON.parse(JSON.stringify({
+	const data = {
 				local_storage,
 				sync_storage,
 				browserBookmarks,
@@ -53,11 +54,13 @@ async function initPage() {
 				openBookmarksInNewTab,
 				allTopSites,
 				backgroundBrightness
-	}));
+	};
+	
 	return data;
 };
 
 
+Vue.use(AsyncComputed);
 
 new Vue({
 	el: '#app',

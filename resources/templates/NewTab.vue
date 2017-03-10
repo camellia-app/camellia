@@ -3,7 +3,6 @@
 		<app>
 			<app-content></app-content>
 			<app-footer></app-footer>
-
 			<modal-search></modal-search>
 			<modal-help></modal-help>
 			<modal-vote-remind></modal-vote-remind>
@@ -20,6 +19,7 @@ import ModalSearch from './NewTab/ModalSearch';
 import ModalHelp from './NewTab/ModalHelp';
 import ModalVoteRemind from './NewTab/ModalVoteRemind';
 
+
 const components = {
 	App,
 	AppContent,
@@ -28,6 +28,7 @@ const components = {
 	ModalHelp,
 	ModalVoteRemind
 };
+
 
 export default {
 	name: 'newtab',

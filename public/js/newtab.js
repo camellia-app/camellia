@@ -21565,14 +21565,14 @@ Promise.all([
 	Vue.component('app-content', {
 		data: function () {
 			return {
-				allBookmarks:          allBookmarks,
-				chunkedBookmarks:      allBookmarks.chunk(columnsCount, true),
-				allTopSites:           allTopSites,
-				chunkedTopSites:       allTopSites.chunk(columnsCount, true),
-				allClosedTabs:         allClosedTabs,
-				chunkedClosedTabs:     allClosedTabs.chunk(columnsCount, true),
+				allBookmarks: allBookmarks,
+				chunkedBookmarks: allBookmarks.chunk(columnsCount, true),
+				allTopSites: allTopSites,
+				chunkedTopSites: allTopSites.chunk(columnsCount, true),
+				allClosedTabs: allClosedTabs,
+				chunkedClosedTabs: allClosedTabs.chunk(columnsCount, true),
 				openBookmarksInNewTab: openBookmarksInNewTab,
-				columnSize:            Math.round(COLUMN_COUNT / columnsCount),
+				columnSize: Math.round(COLUMN_COUNT / columnsCount),
 
 				locale: i18nObject([
 					'add_bookmarks_to_browser'

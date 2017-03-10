@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import { initPage } from '../../main';
+
 const data = () => ({
 	show: false
 });
