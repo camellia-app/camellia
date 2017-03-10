@@ -28,15 +28,29 @@
 		v-else
 		v-html="locale.add_bookmarks_to_browser">
 		</div>
-		{{ allBookmarks }}
 	</main>
 </template>
 
 <script>
-import { initPage } from '../../main';
+// import { mapGetters } from 'vuex';
 
 // const data = function() {
 // 	return {
+// 		allBookmarks: [],
+// 		chunkedBookmarks: [],
+// 		allTopSites: [],
+// 		chunkedTopSites: [],
+// 		allClosedTabs: [],
+// 		chunkedClosedTabs: [],
+// 		openBookmarksInNewTab: [],
+// 		columnSize: Math.round(COLUMN_COUNT / columnsCount),
+
+// 		// locale: i18nObject([
+// 		// 	'add_bookmarks_to_browser'
+// 		// ])
+// 	};
+// };
+
 // 		allBookmarks: allBookmarks,
 // 		chunkedBookmarks: allBookmarks.chunk(columnsCount, true),
 // 		allTopSites: allTopSites,
@@ -49,33 +63,8 @@ import { initPage } from '../../main';
 // 		locale: i18nObject([
 // 			'add_bookmarks_to_browser'
 // 		])
-// 	};
-// };
 
-export default {
-	// data
-	asyncComputed: {
-		allBookmarks () {
-			return initPage().then(r => r.allBookmarks);
-		},
-		chunkedBookmarks () {
-			return initPage().then(r => allBookmarks.chunk(12, true));
-		},
-		allTopSites () {
-			return initPage().then(r => allTopSites);
-		},
-		chunkedTopSites () {
-			return initPage().then(r => allTopSites.chunk(12, true));
-		},
-		allClosedTabs () {
-			return initPage().then(r => allClosedTabs);
-		},
-		chunkedClosedTabs () {
-			return initPage().then(r => allClosedTabs.chunk(12, true));
-		},
-		openBookmarksInNewTab () {
-			return initPage().then(r => openBookmarksInNewTab);
-		}
-	}
-};
+// export default {
+// 	data
+// };
 </script>

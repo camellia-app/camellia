@@ -1,8 +1,8 @@
 import './assets/js/_functions';
 import './assets/js/_variables';
 import Vue from 'vue';
+import Vuex from 'vuex';
 import App from './templates/NewTab.vue';
-import AsyncComputed from 'vue-async-computed';
 
 function getAllInfo() {
 	return Promise.all([
@@ -42,27 +42,58 @@ export async function initPage() {
 	}
 
 	const data = {
-				local_storage,
-				sync_storage,
-				browserBookmarks,
-				extensionInfo,
-				topSites,
-				recentlyClosed,
-				allBookmarks,
-				columnsCount,
-				backgroundImage,
-				openBookmarksInNewTab,
-				allTopSites,
-				backgroundBrightness
+		local_storage,
+		sync_storage,
+		browserBookmarks,
+		extensionInfo,
+		topSites,
+		recentlyClosed,
+		allBookmarks,
+		columnsCount,
+		backgroundImage,
+		openBookmarksInNewTab,
+		allTopSites,
+		backgroundBrightness
 	};
 	
 	return data;
 };
 
 
-Vue.use(AsyncComputed);
+Vue.use(Vuex);
+
+const store = new Vuex.Store({
+	state: {
+		bs: {},
+		count: 0
+	},
+	getters: {
+		count: state => state.count,
+		bs: store => store.bs
+	},
+	actions: {
+		getData ({ commit }) {
+			initPage().then(r => {
+				commit('syncData', r);
+			});
+		}
+	},
+	mutations: {
+		increment (state) {
+			state.count++
+		},
+		syncData (state, data) {
+			state.bs = {
+				...state.bs,
+				...data
+			}
+		}
+	}
+})
+
 
 new Vue({
 	el: '#app',
+	store,
 	render: h => h(App)
 });

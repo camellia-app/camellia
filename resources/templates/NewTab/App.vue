@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import { initPage } from '../../main';
 
 const data = () => ({
 	show: false
 });
+
 
 const mounted = function() {
 	this.show = true;
