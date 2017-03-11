@@ -1,85 +1,85 @@
 {
 	"locale": {
-		"message": "en",
-		"description": "This hack is used to detect locale displayed to user."
+		"message": "ru",
+		"description": "Хак для определения текущей локали, которая отображается пользователю."
 	},
 
 
 
 	"app_name": {
 		"message": "Camellia",
-		"description": "The extension name"
+		"description": "Полное название расширения"
 	},
 	"app_description": {
-		"message": "This extension allows you to see all your bookmarks at new tab page.",
-		"description": "Description of the extension. Displayed at extensions page and in stores."
+		"message": "This extension lets you see your bookmarks on the page of the new tab.",
+		"description": "Описание расширения. Отображается в магазинах и на странице расширений в браузере."
 	},
 
 
 
 	"new_tab": {
 		"message": "New tab",
-		"description": "Bookmark title."
+		"description": "Заголовок вкладки, устанавливаемый при её открытии."
 	},
 	"search": {
 		"message": "Search",
-		"description": "Located in the footer at left side. Search modal window is opened by clicking this link."
+		"description": "Находится в подвале слева. При нажатии на эту ссылку открывается модальное окно поиска."
 	},
 	"search_bookmarks": {
-		"message": "Search over bookmarks",
-		"description": "Search modal window title."
+		"message": "Search among bookmarks",
+		"description": "Заголовок модального окна поиска по закладкам."
 	},
 	"enter_bookmark_query": {
-		"message": "Enter bookmark name",
-		"description": "Search modal window input placeholder."
+		"message": "Type the bookmark's title",
+		"description": "Плейсхолдер, находящийся в поле ввода в модальном окне поиска по закладкам."
 	},
 	"manage_bookmarks": {
-		"message": "Bookmarks manager",
-		"description": "Located in the footer at right side. Chrome built-in bookmarks manager is opened by clicking this link."
+		"message": "Bookmark Manager",
+		"description": "Находится в подвале слева. При нажатии на эту ссылку открывается встроенный в браузер менеджер закладок."
 	},
 	"options": {
 		"message": "Options",
-		"description": "Located in the footer at right side. Extension options are opened by clicking this link."
+		"description": "Находится в подвале справа. При нажатии на эту ссылку открывается окно настроек расширения."
 	},
 	"help": {
 		"message": "Help",
-		"description": "Located in the footer at right side. Help modal window is opened by clicking this link."
+		"description": "Находится в подвале справа. При нажатии на эту ссылку открывается модальное окно помощи."
 	},
 	"report_bug": {
 		"message": "Report a bug",
-		"description": "Located in the footer at right side. GitHub issues page is opened by clicking this link."
+		"description": "Находится в подвале справа. При нажатии на эту ссылку происходит переход на GitHub, а точнее - на страницу с Issues."
 	},
 	"extensions": {
 		"message": "Extensions",
-		"description": "Located in the footer at right side. Chrome extensions page is opened by clicking this link."
+		"description": "Находится в подвале справа. Открывает страницу в браузере с установленными расширениями."
 	},
 	"store_page": {
-		"message": "Store page",
-		"description": "!!! DEPRECATED !!!"
+		"message": "The page in the store",
+		"description": "!!! DEPRECATED !!! Находится в подвале справа. При нажатии на эту ссылку происходит переход в магазин расширений на страницу этого расширения."
 	},
 	"close": {
 		"message": "Close",
-		"description": "Used as a placeholder for cross icon for accessiblity purposes."
+		"description": "Крестик 'Закрыть'. Данное слово подставляется для пользователей с ограниченными возможностями."
 	},
 	"background_loading_error_title": {
-		"message": "Could not load background",
-		"description": "This notification shown when loading background image fails. This is notification title."
+		"message": "Couldn't load the background image",
+		"description": "Это уведомление показывается, когда не удается загрузить фоновую картину. Это его заголовок."
 	},
 	"background_loading_error_message": {
-		"message": "Seems like this image is not available via this URL address anymore.",
-		"description": "This notification shown when loading background image fails. This is notification body."
+		"message": "Perhaps this picture is not available",
+		"description": "Это уведомление показывается, когда не удается загрузить фоновую картину. Это его тело."
 	},
 	"save": {
 		"message": "Save",
-		"description": "Save button. Currently it locates only at options page."
+		"description": "Кнопка сохранения. Пока что только на странице настроек."
 	},
 	"error_occured": {
-		"message": "Error occured",
-		"description": "The title of the notification which appears when internal error happened."
+		"message": "An error occurred",
+		"description": "Заголовок уведомления, которое появляется при возникновении ошибки."
 	},
 	"add_bookmarks_to_browser": {
-		"message": "To start work with Camellia $BOOKMARKS_MANAGER$ some bookmarks to your browser",
-		"description": "This message appears when there is no bookmarks in the browser.",
+		"message": "In order to start working with Camellia, $BOOKMARKS_MANAGER$ bookmarks to your browser",
+		"description": "Это сообщение появляется вместо закладок, если их нет у пользователя.",
 		"placeholders": {
 			"bookmarks_manager": {
 				"content": "<a href=\"chrome://bookmarks/\" class=\"underlined\">add</a>"
@@ -87,15 +87,15 @@
 		}
 	},
 	"rate_extension": {
-		"message": "Rate the extension",
-		"description": "This is modal title which appears after 2 weeks of Camellia usage."
+		"message": "Rate this extension",
+		"description": "Заголовок модального окна, которое появляется, если пользователь пользуется расширением более 2-х недель."
 	},
 	"rate_extension_description": {
-		"message": "<p>You are using Camellia for 2 weeks. It's a long period, I think. So can you rate the extension at store page please? You will lose less than a minute, but it will have tremendous support for Camellia!</p>Or click <b>G+</b> button under the &laquo;Add to Chrome&raquo;, button please. But if you are lazy to do it, no matter. Close this window and it will never disturb you again.</p>Thanks!",
-		"description": "This is modal body which appears after 2 weeks of Camellia usage.",
+		"message": "<p>You've been using Camellia for two weeks. This seems like a long time, therefore could you please rate it at the extensions store? It'll take you less than a minute but it will be huge support!</p>$RATE_BUTTON$<p>Or at least press the button there <b>G+</b> below the button \"Install\", please. But if you are being lazy, don't strain yourself. Shut this window and it will never appear again.</p>Thanks!",
+		"description": "Содержимое модального окна, которое появляется, если пользователь пользуется расширением более 2-х недель.",
 		"placeholders": {
 			"rate_button": {
-				"content": "<a class=\"btn btn-block btn-danger text-truncate mb-1\" href=\"$1\">Go to store</a>"
+				"content": "<a class=\"btn btn-block btn-danger text-truncate mb-1\" href=\"$1\">Go to the store</a>"
 			}
 		}
 	},
@@ -105,18 +105,18 @@
 
 
 	"option_background_image_label": {
-		"message": "Background image URL address"
+		"message": "The link to the background picture"
 	},
-	"__option_background_image_hint": {
-		"message": ""
+	"option_background_image_hint": {
+		"message": "It's better to upload the picture to some image host like Imgur. Leave this field blank for the default picture."
 	},
 
 
 	"option_columns_count_label": {
-		"message": "Columns count"
+		"message": "The amount of columns"
 	},
-	"__option_columns_count_hint": {
-		"message": "На данный момент другие варианты количества колонок не поддерживаются."
+	"option_columns_count_hint": {
+		"message": "Other amounts of columns are yet not available."
 	},
 	"option_columns_count_column": {
 		"message": "col."
@@ -124,13 +124,13 @@
 
 
 	"option_use_custom_scrollbar_label": {
-		"message": "Scroll bar style"
+		"message": "Scrollbar style"
 	},
-	"__option_use_custom_scrollbar_hint": {
-		"message": "Полоса прокрутки в правой части экрана."
+	"option_use_custom_scrollbar_hint": {
+		"message": "Vertical scrollbar."
 	},
 	"option_use_custom_scrollbar_styled": {
-		"message": "Styled"
+		"message": "Custom"
 	},
 	"option_use_custom_scrollbar_system": {
 		"message": "System"
@@ -138,13 +138,13 @@
 
 
 	"option_display_click_counter_label": {
-		"message": "Bookmarks click counter"
+		"message": "Bookmarks clicks counter"
 	},
-	"__option_display_click_counter_hint": {
-		"message": "Эта настройка лишь настраивает отображение счетчика. Независимо от того, что вы выберете, счетчик все равно будет запоминать переходы в фоновом режиме."
+	"option_display_click_counter_hint": {
+		"message": "This option only hides/shows the counter. No matter what you choose, the clicks will still be recorded to the stat."
 	},
 	"option_display_click_counter_display": {
-		"message": "Display"
+		"message": "Show"
 	},
 	"option_display_click_counter_hide": {
 		"message": "Hide"
@@ -152,49 +152,49 @@
 
 
 	"option_user_select_label": {
-		"message": "Text selection"
+		"message": "Text emphasizing"
 	},
-	"__option_user_select_hint": {
-		"message": "Если выделение текста раздражает вас, вы можете отключить его."
+	"option_user_select_hint": {
+		"message": "If text emphasizing annoys you, you can disable it."
 	},
 	"option_user_select_enabled": {
-		"message": "Enable"
+		"message": "Enabled"
 	},
 	"option_user_select_disabled": {
-		"message": "Disable"
+		"message": "Disabled"
 	},
 
 
 	"option_font_size_label": {
 		"message": "Font size"
 	},
-	"__option_font_size_hint": {
-		"message": "Указывается в пикселях. Размер некоторых элементов интерфейса меняется вместе с размером шрифта."
+	"option_font_size_hint": {
+		"message": "Measured in pixels. The size of some interface elements will change along with the font size."
 	},
 
 
 	"option_bookmarks_in_new_tab_label": {
 		"message": "How to open bookmarks"
 	},
-	"__option_bookmarks_in_new_tab_hint": {
-		"message": "Влияет только на закладки. Не влияет на остальные ссылки в расширении."
+	"option_bookmarks_in_new_tab_hint": {
+		"message": "Affects only bookmarks. Doesn't affect other links in the extension."
 	},
 	"option_bookmarks_in_new_tab_new_tab": {
-		"message": "In new tab"
+		"message": "In a new tab"
 	},
 	"option_bookmarks_in_new_tab_current_tab": {
-		"message": "In current tab"
+		"message": "In the current tab"
 	},
 
 
 	"option_top_sites_label": {
-		"message": "Popular sites"
+		"message": "Popular websites"
 	},
-	"__option_top_sites_hint": {
-		"message": "Отображение самых популярных сайтов, что вы посещали. Данный алгоритм работает внутри браузера и никак не связан с закладками. Учитываются даже сайты, которых нет в закладках."
+	"option_top_sites_hint": {
+		"message": "Display of popular websites that you have attended. This algorithm works inside the browser and is not connected to bookmarks. Websites that are not in the bookmarks are considered, too."
 	},
 	"option_top_sites_display": {
-		"message": "Display"
+		"message": "Show"
 	},
 	"option_top_sites_hide": {
 		"message": "Hide"
@@ -202,13 +202,13 @@
 
 
 	"option_recently_closed_label": {
-		"message": "Recently closed tabs"
+		"message": "Last closed tabs"
 	},
-	"__option_recently_closed_hint": {
-		"message": "Отображение списка последних закрытых вкладок."
+	"option_recently_closed_hint": {
+		"message": "Last closed tabs list display."
 	},
 	"option_recently_closed_display": {
-		"message": "Display"
+		"message": "Show"
 	},
 	"option_recently_closed_hide": {
 		"message": "Hide"
@@ -218,10 +218,8 @@
 		"message": "Background brightness"
 	},
 	"option_background_brightness_hint": {
-		"message": "For best readability it's recommended do not set this parameter higher than 50%."
+		"message": "Brightness below 50% is recommended for better readability."
 	},
-
-
 
 	"back_to_questions": {
 		"message": "back to questions"
@@ -229,110 +227,110 @@
 
 
 	"help_reason_to_use_title": {
-		"message": "Почему вы разработали Камелию, когда существует полно аналогов?"
+		"message": "Why would you develop Camellia when there are lots of similar extensions?"
 	},
 	"help_reason_to_use_answer": {
-		"message": "<p>Камелия &mdash; расширение, созданное для удобной организации огромного количества закладок. С подобной проблемой часто сталкиваются люди, занимающиеся творческой или профессиональной деятельностью. Сохранять материала нужно много, и хорошо бы хранить его в самом доступном месте &mdash; в закладках браузера.</p><p>Разумеется, это не значит, что Камелия создана только для определенной группы людей. Если вы сохраняете много ссылок, которые когда-либо могут пригодиться, то Камелия &mdash; ваш выбор. Начать разработку Камелии я решил как раз после того, как не смог отыскать достойный менеджер закладок для страницы новой вкладки, который бы обеспечил мне должный уровень комфорта при работе с моими несколькими сотнями закладок.</p><p>Важно осознавать, что Камелия &mdash; это не &laquo;палочка-выручалочка&raquo;, которая может из бардака сделать &laquo;конфетку&raquo;. Для получения незабываемых ощущений при работе с расширением вам следует навести порядок самостоятельно, рассортировав все закладки по папкам и дав им понятные, не очень длинные имена.</p>"
+		"message": "<p>Camellia is an extension made for convenient organisation of a big amount of bookmarks. People involved in creative or professional activity often get this problem. They need to save a lot of material and it's better to keep it in the most convenient place which is browser bookmarks.</p><p>Obviously it doesn't mean that Camellia was made only for a certain group of people. If you save a lot of links that might be handy in the future, Camellia is your choice. I decided developing Camellia when I couldn't find a decent bookmarks manager in a new tab which would provide me with proper level of comfort while working with several hundreds of bookmarks.</p><p>It's important to realise that Camellia is not a \"magic wand\" that cand make a \"candy\" out of a mess. You'll have to maintain order yourself to get unforgettable experience while working with the extension, having sorted all bookmarks to folders and given them comprehensive and short names.</p>"
 	},
 
 
 	"help_omnibox_search_title": {
-		"message": "Как искать закладки через адресную строку (омнибокс) браузера?"
+		"message": "How does one search for a bookmark using the address bar (omnibox)?"
 	},
 	"help_omnibox_search_answer": {
-		"message": "<p>Для этого введите <code>$KEYWORD$</code>, нажмите <kbd>Tab</kbd> или <kbd>Пробел</kbd>, а затем начните вводить название закладки.</p>$GIF$<p>В отличие от поиска на странице новой вкладки, поиск через омнибокс также учитывает адрес, который привязан к закладке, а ещё они сортируются по количеству кликов.</p>",
+		"message": "<p>Type <code>$KEYWORD$</code>, press <kbd>Tab</kbd> or <kbd>Space</kbd>, and then start typing the name of a bookmark.</p>$GIF$<p>Unlike searching on the page of a new tab, searching via omnibox also considers the address that's linked to the bookmark, and bookmarks are also sorted by the amount of clicks.</p>",
 		"placeholders": {
 			"keyword": {
 				"content": "$1"
 			},
 			"gif": {
-				"content": "<img class=\"img-fluid rounded d-block mx-auto mb-1\"src=\"/img/gifs/omnibox.gif\" alt=\"Пример поиска\">"
+				"content": "<img class=\"img-fluid rounded d-block mx-auto mb-1\"src=\"/img/gifs/omnibox.gif\" alt=\"An example of searching\">"
 			}
 		}
 	},
 
 
 	"help_which_browsers_supported_title": {
-		"message": "Какие браузеры поддерживаются?"
+		"message": "Which browsers are supported?"
 	},
 	"help_which_browsers_supported_answer": {
-		"message": "Поддерживаются только Google Chrome и Chromium. Opera и Яндекс.Браузер не поддерживают функционал, позволяющий заменить страницу новой вкладки. Mozilla Firefox поддерживает подобный функционал, но реализация там совершенно другая, из-за чего портировать расширение не получится. Работа в Safari не проверялась."
+		"message": "Only Google Chrome and Chromium are supported. Opera and Yandex.Browser do not support the function of changing the page of a new tab. Mozilla Firefox supports such a function but it's completely different realisation-wise, that's why porting can't be done. Safari hasn't been checked."
 	},
 
 
 	"help_why_permissions_title": {
-		"message": "Зачем требуется доступ к чтению и записи контента всех сайтов, а также к отправке уведомлений?"
+		"message": "Why does it ask for access to read and write down the contents of all the websites and send notifications?"
 	},
 	"help_why_permissions_answer": {
-		"message": "<p>Доступ к уведомлениям необходим лишь в случаях, когда вас <b>необходимо</b> уведомить. Например, о какой-нибудь ошибке. Уведомления не будут использоваться для рассылки информации, которая вам не нужна.</p><p>Доступ ко всем ссылкам &mdash; единственный способ сделать так, чтобы на странице отображались иконки закладок. Без этого доступа браузер ругается на то, что у расширения нет доступа к запрашиваемому сайту, и не делится с Камелией иконкой. Данный доступ используется исключительно в этом контексте. Камелия не читает и не изменяет данные на сайтах, которые вы посещаете &mdash; ей это не интересно.</p>"
+		"message": "<p>The access to notifications is only needed when it's <b>necessary</b> to inform you. For example, in case of an error. Notifications won't be used for sending you unneeded information.</p><p>The access to all the links is the only way to showing the icons of the bookmarks. The browser says it doesn't have the access to the website and doesn't share the icon with Camellia. It's only used that way. Camellia doesn't read or change the info on the websites you attend, it's not interested in it.</p>"
 	},
 
 
 	"help_request_permissions_title": {
-		"message": "Почему расширение иногда запрашивает новые права доступа?"
+		"message": "Why does this extension sometimes ask for new access rights?"
 	},
 	"help_request_permissions_answer": {
-		"message": "Это необходимо для введения новых функций. Из-за реализации браузерных расширений, чтобы получить доступ к одной единственной некритичной функции, приходится запрашивать доступ сразу ко всему функционалу, который может даже не пригодиться. Например, чтобы получить доступ к последним закрытым вкладкам, приходится запрашивать доступ к функциям, которые работают с сессиями."
+		"message": "It's needed to implement new functions. Because of how browser extensions are treated it's needed to get access to every function even if you need just a tiny one. For example, if you need access to recently closed tabs, you need access to functions which work with the sessions."
 	},
 
 
 	"help_change_theme_title": {
-		"message": "Можно ли изменить тему (дизайн)?"
+		"message": "Is it possible to change the theme (design)?"
 	},
 	"help_change_theme_answer": {
-		"message": "Нет. На данный момент подобный функционал не запланирован, однако я открыт для идей по доработке дизайна."
+		"message": "No. This functional is not yet planned but I'm open to suggestions of design improvements."
 	},
 
 
 	"help_screenshots_title": {
-		"message": "Почему нет скриншотов закладок как, например, в Speed Dial?"
+		"message": "Why there are no screenshots of bookmarked pages like in Speed Dial?"
 	},
 	"help_screenshots_answer": {
-		"message": "Основная идея данного расширения &mdash; сделать удобное управление огромным количеством грамотно структурированных закладок браузера. Соответственно, идет упор на умеренный минимализм, а превью закладок &mdash; это не то, что нужно компактной и миниматистичной Камелии."
+		"message": "The main idea of this extension is to create the most convenient workspace of a huge amount appropriately structured browser bookmarks. That's why bookmarks preview is not something that's needed for compact and minimalistic Camellia."
 	},
 
 
 	"help_unrelevant_wallpaper_title": {
-		"message": "Почему на фоне стоит календула, в качестве логотипа &mdash; лотос, но при этом расширение называется Camellia?",
+		"message": "Why is there a calendula as the background, lotus as the logo but the extension's named Camellia?",
 		"description": "!!! DEPRECATED !!!"
 	},
 	"help_unrelevant_wallpaper_answer": {
-		"message": "Это слишком хороший вопрос, чтобы на него отвечать.",
+		"message": "This question is too good to be answered.",
 		"description": "!!! DEPRECATED !!!"
 	},
 
 
 	"help_manage_bookmarks_title": {
-		"message": "Я могу редактировать, добавлять и удалять закладки?"
+		"message": "Am I able to edit, add and remove bookmarks?"
 	},
 	"help_manage_bookmarks_answer": {
-		"message": "<p>Нет, но такой функионал планируется добавить, однако на это потребуется какое-то время. Возможно, много времени. Пока что пользуйтесь встроенными в браузеры решениями.</p><p>Закладки, с которыми работает Камелия &mdash; это нативные браузерные закладки. Работать с ними можно как через панель закладок под адресной строкой браузера, так и через менеджер закладок, открыть который можно комбинацией клавиш <kbd><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd></kbd>.</p>"
+		"message": "<p>No, it's planned to be implemented but it'll take some time. Perhaps a lot of time. You should use your browser's included solutions until then.</p><p>Bookmarks that Camellia works with are native browser bookmarks. You can work with them through the bookmarks panel under the address bar or bookmarks manager that can be opened with <kbd><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd></kbd>.</p>"
 	},
 
 
 	"help_planned_features_title": {
-		"message": "Где я могу узнать список запланированных изменений?"
+		"message": "Where can I find out planned changes?"
 	},
 	"help_planned_features_answer": {
-		"message": "В $URL$ репозитория на GitHub.",
+		"message": "In the repository's $URL$ at GitHub.",
 		"placeholders": {
 			"url": {
-				"content": "<a href=\"$1\" class=\"underlined\">проектах</a>"
+				"content": "<a href=\"$1\" class=\"underlined\">projects</a>"
 			}
 		}
 	},
 
 	"help_ctrl_f_title": {
-		"message": "Почему после открытия новой вкладки и прожатия <kbd><kbd>Ctrl</kbd> + <kbd>F</kbd></kbd> не открывается окно поиска?"
+		"message": "Why doesn't search box appear after opening a new tab and pressing <kbd><kbd>Ctrl</kbd> + <kbd>F</kbd></kbd>?"
 	},
 	"help_ctrl_f_answer": {
-		"message": "<p>Дело в том, что при открытии новой вкладки фокус переведён на адресную строку браузера, а не на контент страницы, поэтому когда вы прожимаете эту комбинацию, срабатывает не событие, запрограммированное в расширении, а событие, запрограммированное в самом браузере.</p><p>Для более быстрого поиска лучше использовать поиск через омнибокс.</p>"
+		"message": "<p>It's because the browser focuses on the address bar, not the contents of the page.</p><p>For faster searching you should use searching through the omnibox.</p>"
 	},
 
 	"help_background_author_title": {
-		"message": "Кто автор фоновой картинки, которая идет по умолчанию?"
+		"message": "Who's the author of the default background picture?"
 	},
 	"help_background_author_answer": {
-		"message": "<p>Фотограф &mdash; <a href=\"https://www.facebook.com/stefancikphotography\" class=\"underlined\">Stefan Stefancik</a>. Фотография была взята с фотостока <a href=\"https://www.pexels.com/u/stefanstefancik/\" class=\"underlined\">Pexels</a>.</p>"
+		"message": "<p>The photographer is <a href=\"https://www.facebook.com/stefancikphotography\" class=\"underlined\">Stefan Stefancik</a>. The picture was taken from <a href=\"https://www.pexels.com/u/stefanstefancik/\" class=\"underlined\">Pexels</a>.</p>"
 	}
 }
