@@ -1,6 +1,6 @@
 <template>
 	<main>
-		<ul class="bookmark-tree row pb-1"
+		<!--<ul class="bookmark-tree row pb-1"
 			v-if="allClosedTabs.length > 0">
 			<bookmark-column
 			v-for="site in chunkedClosedTabs"
@@ -27,12 +27,13 @@
 		<div class="py-3 pl-1 text-xs-center lead"
 		v-else
 		v-html="locale.add_bookmarks_to_browser">
-		</div>
+		</div>-->
+		<!--{{ bs }}-->
 	</main>
 </template>
 
 <script>
-// import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
 // const data = function() {
 // 	return {
@@ -45,9 +46,9 @@
 // 		openBookmarksInNewTab: [],
 // 		columnSize: Math.round(COLUMN_COUNT / columnsCount),
 
-// 		// locale: i18nObject([
-// 		// 	'add_bookmarks_to_browser'
-// 		// ])
+// 		locale: i18nObject([
+// 			'add_bookmarks_to_browser'
+// 		])
 // 	};
 // };
 
@@ -64,7 +65,16 @@
 // 			'add_bookmarks_to_browser'
 // 		])
 
-// export default {
-// 	data
-// };
+// const computed = mapGetters(['bs']);
+// const mounted = function () {
+// 		if (this.bs) {
+// 			this.$store.dispatch('getData');
+// 		}
+// }
+
+export default {
+	// data,
+	// mounted,
+	// computed
+};
 </script>

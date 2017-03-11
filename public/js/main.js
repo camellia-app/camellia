@@ -63,148 +63,11 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 33);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.initPage = initPage;
-
-__webpack_require__(16);
-
-__webpack_require__(17);
-
-var _vue = __webpack_require__(35);
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _vuex = __webpack_require__(37);
-
-var _vuex2 = _interopRequireDefault(_vuex);
-
-var _NewTab = __webpack_require__(21);
-
-var _NewTab2 = _interopRequireDefault(_NewTab);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getAllInfo() {
-	return Promise.all([browser.storage.local.get(), browser.storage.sync.get(), browser.bookmarks.getTree(), browser.management.getSelf(), browser.topSites.get(), browser.sessions.getRecentlyClosed()]);
-};
-
-async function initPage() {
-	const a = await getAllInfo();
-	let [local_storage, sync_storage, browserBookmarks, extensionInfo, topSites, recentlyClosed] = a;
-	let allBookmarks = browserBookmarks[0]['children'][0]['children'];
-	let columnsCount = local_storage['columns_count'];
-	let backgroundImage = local_storage['background_image'];
-	let openBookmarksInNewTab = local_storage['bookmarks_in_new_tab'];
-	let allTopSites = local_storage['top_sites'] === true ? topSites : [];
-	let backgroundBrightness = local_storage['background_brightness'];
-
-	let allClosedTabs = [];
-
-	if (local_storage['recently_closed'] === true) {
-		recentlyClosed.forEach(closedTab => {
-			if (typeof closedTab['tab'] !== 'undefined' && typeof closedTab['tab']['title'] !== 'undefined' && typeof closedTab['tab']['url'] !== 'undefined') {
-				allClosedTabs.push({
-					title: closedTab['tab']['title'],
-					url: closedTab['tab']['url']
-				});
-			}
-		});
-	}
-
-	const data = {
-		local_storage,
-		sync_storage,
-		browserBookmarks,
-		extensionInfo,
-		topSites,
-		recentlyClosed,
-		allBookmarks,
-		columnsCount,
-		backgroundImage,
-		openBookmarksInNewTab,
-		allTopSites,
-		backgroundBrightness
-	};
-
-	return data;
-};
-
-_vue2.default.use(_vuex2.default);
-
-const store = new _vuex2.default.Store({
-	state: {
-		bs: {},
-		count: 0
-	},
-	getters: {
-		count: state => state.count,
-		bs: store => store.bs
-	},
-	actions: {
-		getData({ commit }) {
-			initPage().then(r => {
-				commit('syncData', r);
-			});
-		}
-	},
-	mutations: {
-		increment(state) {
-			state.count++;
-		},
-		syncData(state, data) {
-			state.bs = _extends({}, state.bs, data);
-		}
-	}
-});
-
-new _vue2.default({
-	el: '#app',
-	store,
-	render: h => h(_NewTab2.default)
-});
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(0);
-__webpack_require__(1);
-module.exports = __webpack_require__(2);
-
-
-/***/ }),
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = function normalizeComponent (
@@ -257,7 +120,138 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 9 */
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+__webpack_require__(11);
+
+var _constants = __webpack_require__(38);
+
+var _vue = __webpack_require__(29);
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _vuex = __webpack_require__(31);
+
+var _vuex2 = _interopRequireDefault(_vuex);
+
+var _logger = __webpack_require__(30);
+
+var _logger2 = _interopRequireDefault(_logger);
+
+var _NewTab = __webpack_require__(15);
+
+var _NewTab2 = _interopRequireDefault(_NewTab);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getAllInfo() {
+	return Promise.all([browser.storage.local.get(), browser.storage.sync.get(), browser.bookmarks.getTree(), browser.management.getSelf(), browser.topSites.get(), browser.sessions.getRecentlyClosed()]);
+};
+
+async function initPage() {
+	const a = await getAllInfo();
+	let [local_storage, sync_storage, browserBookmarks, extensionInfo, topSites, recentlyClosed] = a;
+	let allBookmarks = browserBookmarks[0]['children'][0]['children'];
+	let columnsCount = local_storage['columns_count'];
+	let backgroundImage = local_storage['background_image'];
+	let openBookmarksInNewTab = local_storage['bookmarks_in_new_tab'];
+	let allTopSites = local_storage['top_sites'] === true ? topSites : [];
+	let backgroundBrightness = local_storage['background_brightness'];
+
+	let allClosedTabs = [];
+
+	if (local_storage['recently_closed'] === true) {
+		recentlyClosed.forEach(closedTab => {
+			if (typeof closedTab['tab'] !== 'undefined' && typeof closedTab['tab']['title'] !== 'undefined' && typeof closedTab['tab']['url'] !== 'undefined') {
+				allClosedTabs.push({
+					title: closedTab['tab']['title'],
+					url: closedTab['tab']['url']
+				});
+			}
+		});
+	}
+
+	const data = {
+		local_storage,
+		sync_storage,
+		browserBookmarks,
+		extensionInfo,
+		topSites,
+		recentlyClosed,
+		allBookmarks,
+		columnsCount,
+		backgroundImage,
+		openBookmarksInNewTab,
+		allTopSites,
+		allClosedTabs,
+		backgroundBrightness
+	};
+
+	return data;
+};
+
+_vue2.default.mixin({
+	data() {
+		return {
+			AVAILABLE_COLUMNS: _constants.AVAILABLE_COLUMNS,
+			COLUMN_COUNT: _constants.COLUMN_COUNT
+		};
+	}
+});
+
+_vue2.default.use(_vuex2.default);
+
+const store = new _vuex2.default.Store({
+	state: {
+		bs: {}
+	},
+	getters: {
+		bs: store => store.bs
+	},
+	actions: {
+		getData({ commit }) {
+			initPage().then(r => {
+				commit('syncData', r);
+			});
+		}
+	},
+	mutations: {
+		syncData(state, data) {
+			state.bs = _extends({}, state.bs, data);
+		}
+	},
+	plugins: [(0, _logger2.default)({
+		collapsed: false
+	})],
+	strict: true
+});
+
+new _vue2.default({
+	el: '#app',
+	store,
+	render: h => h(_NewTab2.default)
+});
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -267,27 +261,33 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _App = __webpack_require__(22);
+var _jquery = __webpack_require__(13);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _vuex = __webpack_require__(31);
+
+var _App = __webpack_require__(16);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _AppContent = __webpack_require__(23);
+var _AppContent = __webpack_require__(17);
 
 var _AppContent2 = _interopRequireDefault(_AppContent);
 
-var _AppFooter = __webpack_require__(24);
+var _AppFooter = __webpack_require__(18);
 
 var _AppFooter2 = _interopRequireDefault(_AppFooter);
 
-var _ModalSearch = __webpack_require__(26);
+var _ModalSearch = __webpack_require__(20);
 
 var _ModalSearch2 = _interopRequireDefault(_ModalSearch);
 
-var _ModalHelp = __webpack_require__(25);
+var _ModalHelp = __webpack_require__(19);
 
 var _ModalHelp2 = _interopRequireDefault(_ModalHelp);
 
-var _ModalVoteRemind = __webpack_require__(27);
+var _ModalVoteRemind = __webpack_require__(21);
 
 var _ModalVoteRemind2 = _interopRequireDefault(_ModalVoteRemind);
 
@@ -315,13 +315,87 @@ const components = {
 	ModalVoteRemind: _ModalVoteRemind2.default
 };
 
+const computed = (0, _vuex.mapGetters)(['bs']);
+
+const mounted = function () {
+	if (Object.keys(this.bs).length === 0) {
+		this.$store.dispatch('getData');
+	}
+
+	(0, _jquery2.default)(document).on('shown.bs.modal', '.modal', function () {
+		(0, _jquery2.default)(this).find('[autofocus]').focus();
+	});
+
+	(0, _jquery2.default)(document).on('click', '[href^="chrome://"]', function (event) {
+		event.preventDefault();
+
+		browser.tabs.create({
+			url: (0, _jquery2.default)(this).attr('href')
+		});
+	});
+
+	(0, _jquery2.default)(window).on('keydown', function (event) {
+		if (event.keyCode === 114 || event.ctrlKey && event.keyCode === 70) {
+			event.preventDefault();
+
+			(0, _jquery2.default)('.modal').not('#modal-search').modal('hide'); // Hide all modals but search modal
+			(0, _jquery2.default)('#modal-search').modal('toggle');
+		}
+	});
+
+	document.documentElement.lang = browser.i18n.getMessage('locale');
+	document.querySelector('title').textContent = browser.i18n.getMessage('new_tab');
+};
+
+const watch = {
+	bs: {
+		handler() {
+			const {
+				backgroundImage,
+				backgroundBrightness,
+				local_storage } = this.bs;
+
+			(0, _jquery2.default)('<img>').attr('src', backgroundImage).on('load', function () {
+				(0, _jquery2.default)(this).remove();
+
+				(0, _jquery2.default)('#configurable-styles').append(`body:before { background-image: url(${backgroundImage}); opacity: ${backgroundBrightness}; }`);
+			}).on('error', function () {
+				(0, _jquery2.default)('#configurable-styles').append(`body:before { background-color: rgb(255,255,255); opacity: ${backgroundBrightness}; }`);
+
+				browser.notifications.create({
+					'type': 'basic',
+					'iconUrl': '/img/logo/512x512-colored.png',
+					'title': browser.i18n.getMessage('background_loading_error_title'),
+					'message': browser.i18n.getMessage('background_loading_error_message')
+				});
+			});
+
+			// Style scrollbar
+			if (local_storage['use_custom_scrollbar'] === false) {
+				(0, _jquery2.default)('body').removeClass('custom-scrollbar');
+			}
+
+			// User select
+			if (local_storage['user_select'] === true) {
+				(0, _jquery2.default)('body').removeClass('disabled-user-select');
+			}
+
+			// Set font size
+			(0, _jquery2.default)('#configurable-styles').append(`body { font-size: ${local_storage['font_size']}px; }`);
+		}
+	}
+};
+
 exports.default = {
 	name: 'newtab',
-	components
+	components,
+	computed,
+	mounted,
+	watch
 };
 
 /***/ }),
-/* 10 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -354,45 +428,17 @@ exports.default = {
 };
 
 /***/ }),
-/* 11 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
-// import { mapGetters } from 'vuex';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _vuex = __webpack_require__(31);
 
 // const data = function() {
 // 	return {
@@ -405,9 +451,9 @@ exports.default = {
 // 		openBookmarksInNewTab: [],
 // 		columnSize: Math.round(COLUMN_COUNT / columnsCount),
 
-// 		// locale: i18nObject([
-// 		// 	'add_bookmarks_to_browser'
-// 		// ])
+// 		locale: i18nObject([
+// 			'add_bookmarks_to_browser'
+// 		])
 // 	};
 // };
 
@@ -424,13 +470,54 @@ exports.default = {
 // 			'add_bookmarks_to_browser'
 // 		])
 
-// export default {
-// 	data
-// };
+// const computed = mapGetters(['bs']);
+// const mounted = function () {
+// 		if (this.bs) {
+// 			this.$store.dispatch('getData');
+// 		}
+// }
 
+exports.default = {
+	// data,
+	// mounted,
+	// computed
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
-/* 12 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -492,7 +579,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 13 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -608,7 +695,7 @@ const methods = {
 exports.default = {};
 
 /***/ }),
-/* 14 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -617,6 +704,8 @@ exports.default = {};
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
 //
 //
 //
@@ -653,25 +742,32 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
+
+var _functions = __webpack_require__(11);
+
+var _vuex = __webpack_require__(31);
+
+var _Bookmark = __webpack_require__(40);
+
+var _Bookmark2 = _interopRequireDefault(_Bookmark);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const data = function () {
 	return {
 		query: '',
-		bookmarks: allBookmarks.flatten('children'),
-		locale: i18nObject(['search_bookmarks', 'enter_bookmark_query', 'close'])
+		bookmarks: [],
+		locale: (0, _functions.i18nObject)(['search_bookmarks', 'enter_bookmark_query', 'close'])
 	};
 };
 
-const computed = {
+const computed = _extends({
 	filteredBookmarks: function () {
 		return this.bookmarks.filter(bookmark => {
 			return bookmark.title.toLowerCase().indexOf(this.query.toLowerCase()) !== -1;
 		});
 	}
-};
+}, (0, _vuex.mapGetters)(['bs']));
 
 const methods = {
 	enter: function (element) {
@@ -679,17 +775,35 @@ const methods = {
 	},
 	leave: function (element) {
 		element.setAttribute('hidden', true);
+	},
+	mapBsToData(bs) {
+		this.bookmarks = bs.allBookmarks.flatten('children');
 	}
 };
 
+const watch = {
+	bs: {
+		handler() {
+			this.mapBsToData(this.bs);
+		},
+		deep: true
+	}
+};
+
+const components = {
+	Bookmark: _Bookmark2.default
+};
+
 exports.default = {
-	// data,
-	// computed,
-	// methods
+	data,
+	computed,
+	methods,
+	watch,
+	components
 };
 
 /***/ }),
-/* 15 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -736,10 +850,10 @@ const mouted = function () {
 };
 
 exports.default = {};
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)))
 
 /***/ }),
-/* 16 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -759,6 +873,9 @@ exports.default = {};
   * @return array Chunked array.
   */
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 Array.prototype.chunk = function (chunksCount, balanced = true) {
     let self = this;
 
@@ -839,7 +956,7 @@ Array.prototype.flatten = function (recursionKey) {
   *
   * @return array Random integer.
   */
-let getRandomInt = (min, max) => {
+let getRandomInt = exports.getRandomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
@@ -871,7 +988,7 @@ String.prototype.highlight = function (word, replacement) {
   * @return object Contains all passed localizations. Key is string Name
   *                and value is localized string.
   */
-let i18nObject = messages => {
+let i18nObject = exports.i18nObject = messages => {
     let ret = {};
 
     messages.forEach(message => {
@@ -909,26 +1026,8 @@ Number.prototype.roundThousands = function () {
 };
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-`use strict`;
-
-/**
- * Maximum number of columns.
- */
-const COLUMN_COUNT = 12;
-
-/**
- * Available column values.
- */
-const AVAILABLE_COLUMNS = [1, 2, 3, 4, 6, 12];
-
-/***/ }),
-/* 18 */
+/* 12 */,
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -11155,7 +11254,7 @@ return jQuery;
 
 
 /***/ }),
-/* 19 */
+/* 14 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -11341,15 +11440,14 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 20 */,
-/* 21 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Component = __webpack_require__(8)(
+var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(9),
+  __webpack_require__(4),
   /* template */
-  __webpack_require__(32),
+  __webpack_require__(26),
   /* scopeId */
   null,
   /* cssModules */
@@ -11376,14 +11474,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 22 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Component = __webpack_require__(8)(
+var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(10),
+  __webpack_require__(5),
   /* template */
-  __webpack_require__(28),
+  __webpack_require__(22),
   /* scopeId */
   null,
   /* cssModules */
@@ -11410,14 +11508,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 23 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Component = __webpack_require__(8)(
+var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(11),
+  __webpack_require__(6),
   /* template */
-  __webpack_require__(29),
+  __webpack_require__(23),
   /* scopeId */
   null,
   /* cssModules */
@@ -11444,14 +11542,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 24 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Component = __webpack_require__(8)(
+var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(12),
+  __webpack_require__(7),
   /* template */
-  __webpack_require__(30),
+  __webpack_require__(24),
   /* scopeId */
   null,
   /* cssModules */
@@ -11478,14 +11576,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 25 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Component = __webpack_require__(8)(
+var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(13),
+  __webpack_require__(8),
   /* template */
-  __webpack_require__(33),
+  __webpack_require__(27),
   /* scopeId */
   null,
   /* cssModules */
@@ -11512,14 +11610,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 26 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Component = __webpack_require__(8)(
+var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(14),
+  __webpack_require__(9),
   /* template */
-  __webpack_require__(34),
+  __webpack_require__(28),
   /* scopeId */
   null,
   /* cssModules */
@@ -11546,14 +11644,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 27 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Component = __webpack_require__(8)(
+var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(15),
+  __webpack_require__(10),
   /* template */
-  __webpack_require__(31),
+  __webpack_require__(25),
   /* scopeId */
   null,
   /* cssModules */
@@ -11580,7 +11678,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 28 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -11601,43 +11699,11 @@ if (false) {
 }
 
 /***/ }),
-/* 29 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('main', [(_vm.allClosedTabs.length > 0) ? _c('ul', {
-    staticClass: "bookmark-tree row pb-1"
-  }, _vm._l((_vm.chunkedClosedTabs), function(site) {
-    return _c('bookmark-column', {
-      key: site.id,
-      attrs: {
-        "bookmarks": site
-      }
-    })
-  })) : _vm._e(), _vm._v(" "), (_vm.allTopSites.length > 0) ? _c('ul', {
-    staticClass: "bookmark-tree row pb-1"
-  }, _vm._l((_vm.chunkedTopSites), function(site) {
-    return _c('bookmark-column', {
-      key: site.id,
-      attrs: {
-        "bookmarks": site
-      }
-    })
-  })) : _vm._e(), _vm._v(" "), (_vm.allBookmarks.length > 0) ? _c('ul', {
-    staticClass: "bookmark-tree row"
-  }, _vm._l((_vm.chunkedBookmarks), function(bookmarks) {
-    return _c('bookmark-column', {
-      key: bookmarks.id,
-      attrs: {
-        "bookmarks": bookmarks
-      }
-    })
-  })) : _c('div', {
-    staticClass: "py-3 pl-1 text-xs-center lead",
-    domProps: {
-      "innerHTML": _vm._s(_vm.locale.add_bookmarks_to_browser)
-    }
-  })])
+  return _c('main')
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -11648,7 +11714,7 @@ if (false) {
 }
 
 /***/ }),
-/* 30 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -11663,7 +11729,7 @@ if (false) {
 }
 
 /***/ }),
-/* 31 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -11687,7 +11753,7 @@ if (false) {
 }
 
 /***/ }),
-/* 32 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -11706,7 +11772,7 @@ if (false) {
 }
 
 /***/ }),
-/* 33 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -11730,7 +11796,7 @@ if (false) {
 }
 
 /***/ }),
-/* 34 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -11743,8 +11809,85 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "aria-labelledby": "modal-search-label",
       "aria-hidden": "true"
     }
-  }, [_vm._v("\n\tпусто\n\t")])
-},staticRenderFns: []}
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": _vm.locale.close
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('h2', {
+    staticClass: "h4 modal-title text-truncate",
+    attrs: {
+      "id": "modal-search-label"
+    }
+  }, [_vm._v("\n\t\t\t\t\t" + _vm._s(_vm.locale.search_bookmarks) + " "), _vm._m(0)])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    staticClass: "mb-1",
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+      }
+    }
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.query),
+      expression: "query"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "autofocus": "",
+      "required": "",
+      "placeholder": _vm.locale.enter_bookmark_query
+    },
+    domProps: {
+      "value": (_vm.query)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.query = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('transition-group', {
+    staticClass: "bookmark-tree",
+    attrs: {
+      "name": "staggered-fade",
+      "tag": "ul",
+      "css": false
+    },
+    on: {
+      "enter": _vm.enter,
+      "leave": _vm.leave
+    }
+  }, _vm._l((_vm.filteredBookmarks), function(bookmark) {
+    return _c('bookmark', {
+      key: bookmark.id,
+      attrs: {
+        "bookmark": bookmark
+      }
+    })
+  }))], 1)])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('kbd', [_c('kbd', [_vm._v("Ctrl")]), _vm._v(" + "), _c('kbd', [_vm._v("F")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -11754,7 +11897,7 @@ if (false) {
 }
 
 /***/ }),
-/* 35 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20952,37 +21095,133 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19), __webpack_require__(36)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14), __webpack_require__(32)))
 
 /***/ }),
-/* 36 */
-/***/ (function(module, exports) {
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
 
-var g;
+(function (global, factory) {
+	 true ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.createVuexLogger = factory());
+}(this, (function () { 'use strict';
 
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
+/**
+ * Get the first item that pass the test
+ * by second argument function
+ *
+ * @param {Array} list
+ * @param {Function} f
+ * @return {*}
+ */
+function find (list, f) {
+  return list.filter(f)[0]
 }
 
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
+/**
+ * Deep copy the given object considering circular structure.
+ * This function caches all nested objects and its copies.
+ * If it detects circular structure, use cached copy to avoid infinite loop.
+ *
+ * @param {*} obj
+ * @param {Array<Object>} cache
+ * @return {*}
+ */
+function deepCopy (obj, cache) {
+  if ( cache === void 0 ) cache = [];
 
-module.exports = g;
+  // just return if obj is immutable value
+  if (obj === null || typeof obj !== 'object') {
+    return obj
+  }
+
+  // if obj is hit, it is in circular structure
+  var hit = find(cache, function (c) { return c.original === obj; });
+  if (hit) {
+    return hit.copy
+  }
+
+  var copy = Array.isArray(obj) ? [] : {};
+  // put the copy into cache at first
+  // because we want to refer it in recursive deepCopy
+  cache.push({
+    original: obj,
+    copy: copy
+  });
+
+  Object.keys(obj).forEach(function (key) {
+    copy[key] = deepCopy(obj[key], cache);
+  });
+
+  return copy
+}
+
+/**
+ * forEach for object
+ */
+
+// Credits: borrowed code from fcomb/redux-logger
+
+function createLogger (ref) {
+  if ( ref === void 0 ) ref = {};
+  var collapsed = ref.collapsed; if ( collapsed === void 0 ) collapsed = true;
+  var transformer = ref.transformer; if ( transformer === void 0 ) transformer = function (state) { return state; };
+  var mutationTransformer = ref.mutationTransformer; if ( mutationTransformer === void 0 ) mutationTransformer = function (mut) { return mut; };
+
+  return function (store) {
+    var prevState = deepCopy(store.state);
+
+    store.subscribe(function (mutation, state) {
+      if (typeof console === 'undefined') {
+        return
+      }
+      var nextState = deepCopy(state);
+      var time = new Date();
+      var formattedTime = " @ " + (pad(time.getHours(), 2)) + ":" + (pad(time.getMinutes(), 2)) + ":" + (pad(time.getSeconds(), 2)) + "." + (pad(time.getMilliseconds(), 3));
+      var formattedMutation = mutationTransformer(mutation);
+      var message = "mutation " + (mutation.type) + formattedTime;
+      var startMessage = collapsed
+        ? console.groupCollapsed
+        : console.group;
+
+      // render
+      try {
+        startMessage.call(console, message);
+      } catch (e) {
+        console.log(message);
+      }
+
+      console.log('%c prev state', 'color: #9E9E9E; font-weight: bold', transformer(prevState));
+      console.log('%c mutation', 'color: #03A9F4; font-weight: bold', formattedMutation);
+      console.log('%c next state', 'color: #4CAF50; font-weight: bold', transformer(nextState));
+
+      try {
+        console.groupEnd();
+      } catch (e) {
+        console.log('—— log end ——');
+      }
+
+      prevState = nextState;
+    });
+  }
+}
+
+function repeat (str, times) {
+  return (new Array(times + 1)).join(str)
+}
+
+function pad (num, maxLength) {
+  return repeat('0', maxLength - num.toString().length) + num
+}
+
+return createLogger;
+
+})));
 
 
 /***/ }),
-/* 37 */
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21796,6 +22035,289 @@ var index_esm = {
 
 /* harmony default export */ __webpack_exports__["default"] = index_esm;
 
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(1);
+__webpack_require__(2);
+module.exports = __webpack_require__(3);
+
+
+/***/ }),
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * Maximum number of columns.
+ */
+const COLUMN_COUNT = exports.COLUMN_COUNT = 12;
+
+/**
+ * Available column values.
+ */
+const AVAILABLE_COLUMNS = exports.AVAILABLE_COLUMNS = [1, 2, 3, 4, 6, 12];
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var _vuex = __webpack_require__(31);
+
+const props = ['bookmark'];
+
+const data = function () {
+	return {
+		clicksCount: {},
+		displayClickCounter: {},
+		openBookmarksInNewTab: null
+	};
+};
+
+const computed = _extends({
+	isFolder: function () {
+		return typeof this.bookmark.children === 'object';
+	},
+	isBookmark: function () {
+		return this.isFolder === false && typeof this.bookmark.id !== 'undefined';
+	},
+	isLink: function () {
+		return this.isBookmark === false && this.isFolder === false;
+	},
+
+	getHref: function () {
+		return this.isFolder === true
+		//? ('#collapse-id-' + this.bookmark.id)
+		? false : this.bookmark.url;
+	},
+	getTarget: function () {
+		if (this.isFolder === true) {
+			return false;
+		}
+
+		return this.openBookmarksInNewTab === true ? '_blank' : '_self';
+	},
+	getClass: function () {
+		return this.isFolder === true ? 'folder' : false;
+	},
+	getStyle: function () {
+		if (this.isFolder === true) {
+			return false;
+		}
+
+		return {
+			'background-image': 'url(chrome://favicon/' + this.bookmark.url + ')'
+		};
+	},
+	getDataToggle: function () {
+		return this.isFolder === true ? 'collapse' : false;
+	},
+	getDataTarget: function () {
+		return this.isFolder === true ? '#collapse-id-' + this.bookmark.id : false;
+	},
+
+	getListClass: function () {
+		return this.isFolder === true ? 'collapse' : false;
+	},
+	getListId: function () {
+		return this.isFolder === true ? 'collapse-id-' + this.bookmark.id : false;
+	}
+}, (0, _vuex.mapGetters)(['bs']));
+
+const methods = {
+	incClicksCount: function (event) {
+		if (event.which !== 1 && event.which !== 2) {
+			return;
+		}
+
+		if (this.isBookmark === false) {
+			return;
+		}
+
+		this.clicksCount[this.bookmark.id]++;
+		browser.storage.local.set({ click_counter: this.clicksCount });
+	},
+	getClicksCount: function () {
+		if (this.isFolder === true || this.isLink === true || this.displayClickCounter === false) {
+			return false;
+		}
+
+		this.clicksCount[this.bookmark.id] = typeof this.clicksCount[this.bookmark.id] !== 'undefined' && this.clicksCount[this.bookmark.id] > 0 ? this.clicksCount[this.bookmark.id].roundThousands() : '';
+
+		return this.clicksCount[this.bookmark.id];
+	},
+	mapBsToData(bs) {
+		this.clicksCount = bs.local_storage['click_counter'];
+		this.displayClickCounter = bs.local_storage['click_counter'];
+		this.openBookmarksInNewTab = bs.local_storage['click_counter'];
+	}
+};
+
+const watch = {
+	bs: {
+		handler() {
+			this.mapBsToData(this.bs);
+		}
+	}
+};
+
+exports.default = {
+	props,
+	data,
+	computed,
+	methods,
+	watch
+};
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(39),
+  /* template */
+  __webpack_require__(41),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/dimensi/projects/camellia/resources/templates/NewTab/Bookmark.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Bookmark.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-56d43d06", Component.options)
+  } else {
+    hotAPI.reload("data-v-56d43d06", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('li', [_c('a', {
+    class: _vm.getClass,
+    style: (_vm.getStyle),
+    attrs: {
+      "tabindex": "0",
+      "title": _vm.bookmark.title,
+      "href": _vm.getHref,
+      "target": _vm.getTarget,
+      "data-toggle": _vm.getDataToggle,
+      "data-target": _vm.getDataTarget,
+      "data-counter": _vm.getClicksCount()
+    },
+    on: {
+      "mouseup": _vm.incClicksCount
+    }
+  }, [_vm._v("\n\t\t" + _vm._s(_vm.bookmark.title) + "\n\t")]), _vm._v(" "), (_vm.isFolder) ? _c('ul', {
+    class: _vm.getListClass,
+    attrs: {
+      "id": _vm.getListId
+    }
+  }, _vm._l((_vm.bookmark.children), function(bookmark) {
+    return _c('bookmark', {
+      key: bookmark.id,
+      attrs: {
+        "bookmark": bookmark
+      }
+    })
+  })) : _vm._e()])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-56d43d06", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -21408,7 +21408,7 @@ Array.prototype.flatten = function(recursionKey) {
   *
   * @return array Random integer.
   */
-let getRandomInt = (min, max) => {
+export let getRandomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
@@ -21440,7 +21440,7 @@ String.prototype.highlight = function(word, replacement) {
   * @return object Contains all passed localizations. Key is string Name
   *                and value is localized string.
   */
-let i18nObject = messages => {
+export let i18nObject = messages => {
     let ret = {};
 
     messages.forEach(message => {

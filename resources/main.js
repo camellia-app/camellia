@@ -1,7 +1,11 @@
 import './assets/js/_functions';
-import './assets/js/_variables';
+import {
+	AVAILABLE_COLUMNS,
+	COLUMN_COUNT
+} from './constants/constants';
 import Vue from 'vue';
 import Vuex from 'vuex';
+import Logger from 'vuex/dist/logger';
 import App from './templates/NewTab.vue';
 
 function getAllInfo() {
@@ -16,7 +20,7 @@ function getAllInfo() {
 };
 
 
-export async function initPage() {
+async function initPage() {
 	const a = await getAllInfo();
 	let [local_storage, sync_storage, browserBookmarks, extensionInfo, topSites, recentlyClosed] = a;
 	let allBookmarks = browserBookmarks[0]['children'][0]['children'];
@@ -26,7 +30,7 @@ export async function initPage() {
 	let allTopSites = local_storage['top_sites'] === true ? topSites : [];
 	let backgroundBrightness = local_storage['background_brightness'];
 
-		let allClosedTabs = [];
+	let allClosedTabs = [];
 
 	if (local_storage['recently_closed'] === true) {
 		recentlyClosed.forEach(closedTab => {
@@ -53,22 +57,29 @@ export async function initPage() {
 		backgroundImage,
 		openBookmarksInNewTab,
 		allTopSites,
+		allClosedTabs,
 		backgroundBrightness
 	};
 	
 	return data;
 };
 
+Vue.mixin({
+	data () {
+		return {
+			AVAILABLE_COLUMNS,
+			COLUMN_COUNT
+		}
+	}
+});
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
 	state: {
-		bs: {},
-		count: 0
+		bs: {}
 	},
 	getters: {
-		count: state => state.count,
 		bs: store => store.bs
 	},
 	actions: {
@@ -79,16 +90,19 @@ const store = new Vuex.Store({
 		}
 	},
 	mutations: {
-		increment (state) {
-			state.count++
-		},
 		syncData (state, data) {
 			state.bs = {
 				...state.bs,
 				...data
 			}
 		}
-	}
+	},
+	plugins: [
+		Logger({
+			collapsed: false
+		})
+	],
+	strict: true
 })
 
 
