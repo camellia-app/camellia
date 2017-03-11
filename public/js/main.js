@@ -960,6 +960,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.modal = modal;
+exports.collapse = collapse;
 Array.prototype.chunk = function (chunksCount, balanced = true) {
     let self = this;
 
@@ -1126,6 +1127,37 @@ function modal(el, open) {
         el.addEventListener('transitionend', function modalClose() {
             el.style.display = null;
             el.removeEventListener('transitionend', modalClose);
+        });
+    }
+}
+
+function collapse(el, open) {
+    if (open === 'show') {
+        el.classList.remove('collapse');
+        const height = el.offsetHeight;
+        el.classList.add('collapsing');
+        setTimeout(() => {
+            el.style.height = height + 'px';
+        }, 10);
+        el.addEventListener('transitionend', function collapseOpen() {
+            el.classList.remove('collapsing');
+            el.classList.add('collapse', 'in');
+            el.style.height = null;
+            el.removeEventListener('transitionend', collapseOpen);
+        });
+    } else {
+        const height = el.offsetHeight;
+        el.style.height = height + 'px';
+        el.classList.remove('collapse', 'in');
+        el.classList.add('collapsing');
+        setTimeout(() => {
+            el.style.height = 0;
+        }, 10);
+        el.addEventListener('transitionend', function collapseClose() {
+            el.classList.remove('collapsing');
+            el.classList.add('collapse');
+            el.style.height = null;
+            el.removeEventListener('transitionend', collapseClose);
         });
     }
 }
@@ -11594,6 +11626,14 @@ const mounted = function () {
 		if (event.target.matches('[data-dismiss=modal]') || event.target.closest('button') && event.target.closest('button').matches('[data-dismiss=modal]')) {
 			const modalFromButton = event.target.closest('.modal');
 			(0, _functions.modal)(modalFromButton);
+		}
+		if (event.target.matches('[data-toggle=collapse')) {
+			const folder = document.querySelector(event.target.dataset.target);
+			if (!folder.classList.contains('in')) {
+				(0, _functions.collapse)(folder, 'show');
+			} else {
+				(0, _functions.collapse)(folder);
+			}
 		}
 	});
 

@@ -20487,6 +20487,37 @@ export function modal(el, open) {
         });
     }
 }
+
+export function collapse(el, open) {
+    if (open === 'show') {
+        el.classList.remove('collapse');
+        const height = el.offsetHeight;
+        el.classList.add('collapsing');
+        setTimeout(() => {
+            el.style.height = height + 'px';
+        }, 10)
+        el.addEventListener('transitionend', function collapseOpen () {
+            el.classList.remove('collapsing');
+            el.classList.add('collapse', 'in');
+            el.style.height = null;
+            el.removeEventListener('transitionend', collapseOpen);
+        });
+    } else {
+        const height = el.offsetHeight;
+        el.style.height = height + 'px';
+        el.classList.remove('collapse', 'in');
+        el.classList.add('collapsing');
+        setTimeout(() => {
+            el.style.height = 0;
+        }, 10);
+        el.addEventListener('transitionend', function collapseClose () {
+            el.classList.remove('collapsing');
+            el.classList.add('collapse');
+            el.style.height = null;
+            el.removeEventListener('transitionend', collapseClose);
+        });
+    }
+}
 'use strict';
 
 Promise.all([

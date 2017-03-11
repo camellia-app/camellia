@@ -13,7 +13,7 @@
 <script>
 import $ from 'jquery';
 import { mapGetters } from 'vuex';
-import { modal } from '../assets/js/_functions';
+import { modal, collapse } from '../assets/js/_functions';
 
 import App from './NewTab/App';
 import AppContent from './NewTab/AppContent';
@@ -74,6 +74,14 @@ const mounted = function () {
 		if (event.target.matches('[data-dismiss=modal]') || event.target.closest('button') && event.target.closest('button').matches('[data-dismiss=modal]')) {
 			const modalFromButton = event.target.closest('.modal');
 			modal(modalFromButton);
+		}
+		if (event.target.matches('[data-toggle=collapse')) {
+			const folder = document.querySelector(event.target.dataset.target);
+			if (!folder.classList.contains('in')) {
+				collapse(folder, 'show');
+			} else {
+				collapse(folder);
+			}
 		}
 	});
 
