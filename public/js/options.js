@@ -20465,6 +20465,28 @@ Number.prototype.roundThousands = function () {
         ? (this / 1000).toFixed(1) + 'k'
         : this;
 }
+
+
+export function modal(el, open) {
+    if (open) {
+        el.style.display = 'block';
+        setTimeout(() => {
+            el.classList.add('in');
+            document.body.classList.add('modal-open');
+        }, 50);
+        el.addEventListener('transitionend', function modalOpen () {
+            el.querySelector('[autofocus]').focus();
+            el.removeEventListener('transitionend', modalOpen);
+        });
+    } else {
+        el.classList.remove('in');
+        document.body.classList.remove('modal-open');
+        el.addEventListener('transitionend', function modalClose () {
+            el.style.display = null;
+            el.removeEventListener('transitionend', modalClose);
+        });
+    }
+}
 'use strict';
 
 Promise.all([
