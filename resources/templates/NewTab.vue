@@ -48,14 +48,14 @@ const mounted = function () {
 			const modalSearch = document.querySelector('#modal-search');
 
 			if (!modalSearch.classList.contains('in')) {
-				for (let modal of modals) {
-					if (modal.classList.contains('in') && !modal.matches('#modal-search')) {
-						modal(modal, false);
+				for (let modalItem of modals) {
+					if (modalItem.classList.contains('in') && !modalItem.matches('#modal-search')) {
+						modal(modalItem);
 					}
 				}
-				modal(modalSearch, true);
+				modal(modalSearch, 'show');
 			} else {
-				modal(modalSearch, false);
+				modal(modalSearch);
 			}
 		}
 	});
@@ -67,10 +67,19 @@ const mounted = function () {
 				url: event.target.href
 			});
 		}
+		if (event.target.matches('[data-toggle=modal]')) {
+			const modalFromLink = document.querySelector(event.target.dataset.target);
+			modal(modalFromLink, 'show');
+		}
+		if (event.target.matches('[data-dismiss=modal]') || event.target.closest('button') && event.target.closest('button').matches('[data-dismiss=modal]')) {
+			const modalFromButton = event.target.closest('.modal');
+			modal(modalFromButton);
+		}
 	});
 
 	document.documentElement.lang = browser.i18n.getMessage('locale');
 	document.querySelector('title').textContent = browser.i18n.getMessage('new_tab');
+
 
 		/*
 	|--------------------------------------------------------------------------

@@ -1,7 +1,6 @@
 <template>
 	<div class="modal fade" id="modal-help" tabindex="-1" role="dialog" aria-labelledby="modal-help-label" aria-hidden="true">
-		пусто блядь
-		<!--<div class="modal-dialog" role="document">
+		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -47,11 +46,13 @@
 					</transition>
 				</div>
 			</div>
-		</div>-->
+		</div>
 	</div>
 </template>
 
 <script>
+import { i18nObject } from '../../assets/js/_functions';
+
 const data = function () {
 	return {
 		currentQuestion: -1,
@@ -109,6 +110,7 @@ const methods = {
 };
 
 export default {
-
+	data,
+	methods
 };
 </script>

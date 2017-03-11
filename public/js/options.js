@@ -20468,14 +20468,14 @@ Number.prototype.roundThousands = function () {
 
 
 export function modal(el, open) {
-    if (open) {
+    if (open === 'show') {
         el.style.display = 'block';
         setTimeout(() => {
             el.classList.add('in');
             document.body.classList.add('modal-open');
         }, 50);
         el.addEventListener('transitionend', function modalOpen () {
-            el.querySelector('[autofocus]').focus();
+            el.querySelector('[autofocus]') ? el.querySelector('[autofocus]').focus() : null;
             el.removeEventListener('transitionend', modalOpen);
         });
     } else {

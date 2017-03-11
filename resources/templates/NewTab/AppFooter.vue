@@ -35,7 +35,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { i18nObject } from '../../assets/js/_functions';
+import { i18nObject, modal } from '../../assets/js/_functions';
 
 const data = function () {
 	return {
@@ -69,6 +69,7 @@ const watch = {
 		}
 	}
 };
+
 
 export default {
 	data,

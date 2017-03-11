@@ -1110,14 +1110,14 @@ Number.prototype.roundThousands = function () {
 };
 
 function modal(el, open) {
-    if (open) {
+    if (open === 'show') {
         el.style.display = 'block';
         setTimeout(() => {
             el.classList.add('in');
             document.body.classList.add('modal-open');
         }, 50);
         el.addEventListener('transitionend', function modalOpen() {
-            el.querySelector('[autofocus]').focus();
+            el.querySelector('[autofocus]') ? el.querySelector('[autofocus]').focus() : null;
             el.removeEventListener('transitionend', modalOpen);
         });
     } else {
@@ -11568,14 +11568,14 @@ const mounted = function () {
 			const modalSearch = document.querySelector('#modal-search');
 
 			if (!modalSearch.classList.contains('in')) {
-				for (let modal of modals) {
-					if (modal.classList.contains('in') && !modal.matches('#modal-search')) {
-						modal(modal, false);
+				for (let modalItem of modals) {
+					if (modalItem.classList.contains('in') && !modalItem.matches('#modal-search')) {
+						(0, _functions.modal)(modalItem);
 					}
 				}
-				(0, _functions.modal)(modalSearch, true);
+				(0, _functions.modal)(modalSearch, 'show');
 			} else {
-				(0, _functions.modal)(modalSearch, false);
+				(0, _functions.modal)(modalSearch);
 			}
 		}
 	});
@@ -11586,6 +11586,14 @@ const mounted = function () {
 			browser.tabs.create({
 				url: event.target.href
 			});
+		}
+		if (event.target.matches('[data-toggle=modal]')) {
+			const modalFromLink = document.querySelector(event.target.dataset.target);
+			(0, _functions.modal)(modalFromLink, 'show');
+		}
+		if (event.target.matches('[data-dismiss=modal]') || event.target.closest('button') && event.target.closest('button').matches('[data-dismiss=modal]')) {
+			const modalFromButton = event.target.closest('.modal');
+			(0, _functions.modal)(modalFromButton);
 		}
 	});
 
@@ -12063,59 +12071,8 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+var _functions = __webpack_require__(2);
 
 const data = function () {
 	return {
@@ -12154,9 +12111,60 @@ const data = function () {
 			'title': browser.i18n.getMessage('help_background_author_title'),
 			'answer': browser.i18n.getMessage('help_background_author_answer')
 		}],
-		locale: i18nObject(['close', 'help', 'back_to_questions'])
+		locale: (0, _functions.i18nObject)(['close', 'help', 'back_to_questions'])
 	};
-};
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 const methods = {
 	viewAnswer: function (index) {
@@ -12167,7 +12175,10 @@ const methods = {
 	}
 };
 
-exports.default = {};
+exports.default = {
+	data,
+	methods
+};
 
 /***/ }),
 /* 13 */
@@ -12282,12 +12293,16 @@ exports.default = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {
+
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-//
+
+var _vuex = __webpack_require__(1);
+
+var _functions = __webpack_require__(2);
+
 //
 //
 //
@@ -12312,20 +12327,41 @@ Object.defineProperty(exports, "__esModule", {
 
 const data = function () {
 	return {
-		locale: i18nObject(['close', 'rate_extension', ['rate_extension_description', 'https://chrome.google.com/webstore/detail/' + browser.i18n.getMessage('@@extension_id')]])
+		sync_storage: null,
+		locale: (0, _functions.i18nObject)(['close', 'rate_extension', ['rate_extension_description', 'https://chrome.google.com/webstore/detail/' + browser.i18n.getMessage('@@extension_id')]])
 	};
 };
 
-const mouted = function () {
-	if (sync_storage['vote_remind_displayed'] === false && sync_storage['installation_date'] + 1000 * 60 * 60 * 24 * 14 < Date.now()) {
-		$('#modal-vote-remind').modal('show');
+const computed = (0, _vuex.mapGetters)(['bs']);
 
-		browser.storage.sync.set({ vote_remind_displayed: true });
+const watch = {
+	bs: {
+		handler() {
+			this.sync_storage = this.bs.sync_storage;
+			this.checkDateInstalled();
+		}
 	}
 };
 
-exports.default = {};
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+const methods = {
+	checkDateInstalled() {
+		const sync_storage = this.sync_storage;
+		if (sync_storage['vote_remind_displayed'] === false && sync_storage['installation_date'] + 1000 * 60 * 60 * 24 * 14 < Date.now()) {
+
+			const voteModal = document.querySelector('#modal-vote-remind');
+			(0, _functions.modal)(voteModal, 'show');
+
+			browser.storage.sync.set({ vote_remind_displayed: true });
+		}
+	}
+};
+
+exports.default = {
+	data,
+	computed,
+	methods,
+	watch
+};
 
 /***/ }),
 /* 15 */
@@ -12995,7 +13031,37 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "aria-labelledby": "modal-vote-remind-label",
       "aria-hidden": "true"
     }
-  }, [_vm._v("\n\tпусто блядь\n\t")])
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": _vm.locale.close
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('h2', {
+    staticClass: "h4 modal-title text-truncate",
+    attrs: {
+      "id": "modal-vote-remind-label"
+    }
+  }, [_vm._v("\n\t\t\t\t\t" + _vm._s(_vm.locale.rate_extension) + "\n\t\t\t\t")])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-body",
+    domProps: {
+      "innerHTML": _vm._s(_vm.locale.rate_extension_description)
+    }
+  })])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -13038,7 +13104,81 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "aria-labelledby": "modal-help-label",
       "aria-hidden": "true"
     }
-  }, [_vm._v("\n\tпусто блядь\n\t")])
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": _vm.locale.close
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('h2', {
+    staticClass: "h4 modal-title text-truncate",
+    attrs: {
+      "id": "modal-help-label"
+    }
+  }, [_vm._v("\n\t\t\t\t\t" + _vm._s(_vm.locale.help) + "\n\t\t\t\t")])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('transition', {
+    staticClass: "modal-body",
+    attrs: {
+      "tag": "div",
+      "name": "fade-faster",
+      "mode": "out-in"
+    }
+  }, [(_vm.currentQuestion < 0) ? _c('ol', _vm._l((_vm.faq), function(question, index) {
+    return _c('li', {
+      key: index
+    }, [_c('a', {
+      staticClass: "underlined",
+      attrs: {
+        "tabindex": "0"
+      },
+      domProps: {
+        "innerHTML": _vm._s(question.title)
+      },
+      on: {
+        "click": function($event) {
+          _vm.viewAnswer(index)
+        }
+      }
+    })])
+  })) : _c('div', _vm._l((_vm.faq), function(question, index) {
+    return (index === _vm.currentQuestion) ? _c('div', {
+      key: index
+    }, [_c('h3', {
+      staticClass: "h5 pb-1",
+      domProps: {
+        "innerHTML": _vm._s(question.title)
+      }
+    }), _vm._v(" "), _c('div', {
+      domProps: {
+        "innerHTML": _vm._s(question.answer)
+      }
+    }), _vm._v(" "), _c('div', {
+      staticClass: "text-xs-right mt-1"
+    }, [_c('a', {
+      staticClass: "underlined",
+      attrs: {
+        "tabindex": "0"
+      },
+      on: {
+        "click": _vm.viewQuestions
+      }
+    }, [_vm._v(_vm._s(_vm.locale.back_to_questions))])])]) : _vm._e()
+  }))])], 1)])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
