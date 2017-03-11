@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import $ from 'jquery';
 import { mapGetters } from 'vuex';
 import { modal, collapse } from '../assets/js/_functions';
 
@@ -43,7 +42,7 @@ const mounted = function () {
 	document.addEventListener('keydown', event => {
 		const modals = document.querySelectorAll('.modal');
 
-		if (event.code === 'F3' || (event.ctrlKey && event.code === 'KeyF' || event.code === 'KeyG')) {
+		if (event.code === 'F3' || (event.ctrlKey && event.code === 'KeyF' || event.ctrlKey && event.code === 'KeyG')) {
 			event.preventDefault();
 			const modalSearch = document.querySelector('#modal-search');
 
