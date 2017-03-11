@@ -11667,7 +11667,6 @@ const watch = {
 };
 
 exports.default = {
-	name: 'newtab',
 	components,
 	computed,
 	mounted,
@@ -11720,92 +11719,16 @@ Object.defineProperty(exports, "__esModule", {
 
 var _vuex = __webpack_require__(1);
 
-// const data = function() {
-// 	return {
-// 		allBookmarks: [],
-// 		chunkedBookmarks: [],
-// 		allTopSites: [],
-// 		chunkedTopSites: [],
-// 		allClosedTabs: [],
-// 		chunkedClosedTabs: [],
-// 		openBookmarksInNewTab: [],
-// 		columnSize: Math.round(COLUMN_COUNT / columnsCount),
+var _constants = __webpack_require__(15);
 
-// 		locale: i18nObject([
-// 			'add_bookmarks_to_browser'
-// 		])
-// 	};
-// };
+var _functions = __webpack_require__(2);
 
-// 		allBookmarks: allBookmarks,
-// 		chunkedBookmarks: allBookmarks.chunk(columnsCount, true),
-// 		allTopSites: allTopSites,
-// 		chunkedTopSites: allTopSites.chunk(columnsCount, true),
-// 		allClosedTabs: allClosedTabs,
-// 		chunkedClosedTabs: allClosedTabs.chunk(columnsCount, true),
-// 		openBookmarksInNewTab: openBookmarksInNewTab,
-// 		columnSize: Math.round(COLUMN_COUNT / columnsCount),
+var _BookmarkColumn = __webpack_require__(42);
 
-// 		locale: i18nObject([
-// 			'add_bookmarks_to_browser'
-// 		])
+var _BookmarkColumn2 = _interopRequireDefault(_BookmarkColumn);
 
-// const computed = mapGetters(['bs']);
-// const mounted = function () {
-// 		if (this.bs) {
-// 			this.$store.dispatch('getData');
-// 		}
-// }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = {
-	// data,
-	// mounted,
-	// computed
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
 //
 //
 //
@@ -11845,17 +11768,141 @@ Object.defineProperty(exports, "__esModule", {
 
 const data = function () {
 	return {
-		issuesUrl: extensionInfo.homepageUrl + '/issues',
-		releasesUrl: extensionInfo.homepageUrl + '/releases',
-		optionsUrl: 'chrome://extensions/?options=' + extensionInfo.id,
-		browserVersion: 'v' + extensionInfo.version,
-		isDevBuild: extensionInfo.installType === 'development',
-		locale: i18nObject(['search', 'manage_bookmarks', 'options', 'help', 'report_bug', 'extensions'])
+		allBookmarks: [],
+		chunkedBookmarks: [],
+		allTopSites: [],
+		chunkedTopSites: [],
+		allClosedTabs: [],
+		chunkedClosedTabs: [],
+		openBookmarksInNewTab: null,
+		columnSize: null,
+
+		locale: (0, _functions.i18nObject)(['add_bookmarks_to_browser'])
 	};
 };
 
+const computed = (0, _vuex.mapGetters)(['bs']);
+
+const methods = {
+	mapBsToData(bs) {
+		this.allBookmarks = bs.allBookmarks;
+		this.chunkedBookmarks = bs.allBookmarks.chunk(bs.columnsCount, true);
+		this.allTopSites = bs.allTopSites;
+		this.chunkedTopSites = bs.allTopSites.chunk(bs.columnsCount, true);
+		this.allClosedTabs = bs.allClosedTabs;
+		this.chunkedClosedTabs = bs.allClosedTabs.chunk(bs.columnsCount, true);
+		this.openBookmarksInNewTab = bs.openBookmarksInNewTab;
+		this.columnSize = Math.round(_constants.COLUMN_COUNT / bs.columnsCount);
+	}
+};
+
+const watch = {
+	bs: {
+		handler() {
+			this.mapBsToData(this.bs);
+		}
+	}
+};
+
+const components = {
+	BookmarkColumn: _BookmarkColumn2.default
+};
+
 exports.default = {
-	// data
+	computed,
+	methods,
+	watch,
+	data,
+	components
+};
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _vuex = __webpack_require__(1);
+
+var _functions = __webpack_require__(2);
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+const data = function () {
+	return {
+		issuesUrl: null,
+		releasesUrl: null,
+		optionsUrl: null,
+		browserVersion: null,
+		isDevBuild: null,
+		locale: (0, _functions.i18nObject)(['search', 'manage_bookmarks', 'options', 'help', 'report_bug', 'extensions'])
+	};
+};
+
+const computed = (0, _vuex.mapGetters)(['bs']);
+
+const methods = {
+	mapBsToData(bs) {
+		this.issuesUrl = bs.extensionInfo.homepageUrl + '/issues';
+		this.releasesUrl = bs.extensionInfo.homepageUrl + '/releases';
+		this.optionsUrl = 'chrome://extensions/?options=' + bs.extensionInfo.id;
+		this.browserVersion = 'v' + bs.extensionInfo.version;
+		this.isDevBuild = bs.extensionInfo.installType === 'development';
+	}
+};
+
+const watch = {
+	bs: {
+		handler() {
+			this.mapBsToData(this.bs);
+		}
+	}
+};
+
+exports.default = {
+	data,
+	computed,
+	methods,
+	watch
 };
 
 /***/ }),
@@ -11998,6 +12045,7 @@ const watch = {
 };
 
 exports.default = {
+	name: 'bookmark',
 	props,
 	data,
 	computed,
@@ -12783,7 +12831,42 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('main')
+  return _c('main', [(_vm.allClosedTabs.length > 0) ? _c('ul', {
+    staticClass: "bookmark-tree row pb-1"
+  }, _vm._l((_vm.chunkedClosedTabs), function(site) {
+    return _c('bookmark-column', {
+      key: site.id,
+      attrs: {
+        "bookmarks": site,
+        "column-size": _vm.columnSize
+      }
+    })
+  })) : _vm._e(), _vm._v(" "), (_vm.allTopSites.length > 0) ? _c('ul', {
+    staticClass: "bookmark-tree row pb-1"
+  }, _vm._l((_vm.chunkedTopSites), function(site) {
+    return _c('bookmark-column', {
+      key: site.id,
+      attrs: {
+        "bookmarks": site,
+        "column-size": _vm.columnSize
+      }
+    })
+  })) : _vm._e(), _vm._v(" "), (_vm.allBookmarks.length > 0) ? _c('ul', {
+    staticClass: "bookmark-tree row"
+  }, _vm._l((_vm.chunkedBookmarks), function(bookmarks) {
+    return _c('bookmark-column', {
+      key: bookmarks.id,
+      attrs: {
+        "bookmarks": bookmarks,
+        "column-size": _vm.columnSize
+      }
+    })
+  })) : _c('div', {
+    staticClass: "py-3 pl-1 text-xs-center lead",
+    domProps: {
+      "innerHTML": _vm._s(_vm.locale.add_bookmarks_to_browser)
+    }
+  })])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -12840,7 +12923,55 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('footer', [_vm._v("\n\tпусто блядь\n\t")])
+  return _c('footer', [_c('ul', {
+    staticClass: "list-inline float-md-right w-100 mb-0"
+  }, [_c('li', {
+    staticClass: "list-inline-item float-md-left"
+  }, [_c('a', {
+    attrs: {
+      "data-toggle": "modal",
+      "data-target": "#modal-search",
+      "tabindex": "0"
+    }
+  }, [_vm._v(_vm._s(_vm.locale.search))])]), _vm._v(" "), _c('li', {
+    staticClass: "list-inline-item float-md-left"
+  }, [_c('a', {
+    attrs: {
+      "href": "chrome://bookmarks"
+    }
+  }, [_vm._v(_vm._s(_vm.locale.manage_bookmarks))])]), _vm._v(" "), _c('li', {
+    staticClass: "list-inline-item"
+  }, [_c('a', {
+    attrs: {
+      "href": "chrome://extensions"
+    }
+  }, [_vm._v(_vm._s(_vm.locale.extensions))])]), _vm._v(" "), _c('li', {
+    staticClass: "list-inline-item"
+  }, [_c('a', {
+    attrs: {
+      "href": _vm.optionsUrl
+    }
+  }, [_vm._v(_vm._s(_vm.locale.options))])]), _vm._v(" "), _c('li', {
+    staticClass: "list-inline-item"
+  }, [_c('a', {
+    attrs: {
+      "data-toggle": "modal",
+      "data-target": "#modal-help",
+      "tabindex": "0"
+    }
+  }, [_vm._v(_vm._s(_vm.locale.help))])]), _vm._v(" "), _c('li', {
+    staticClass: "list-inline-item"
+  }, [_c('a', {
+    attrs: {
+      "href": _vm.issuesUrl
+    }
+  }, [_vm._v(_vm._s(_vm.locale.report_bug))])]), _vm._v(" "), _c('li', {
+    staticClass: "list-inline-item"
+  }, [_c('a', {
+    attrs: {
+      "href": _vm.releasesUrl
+    }
+  }, [_vm._v(_vm._s(_vm.browserVersion))]), _vm._v(" "), (_vm.isDevBuild) ? [_vm._v("\n\t\t\t\t(dev)\n\t\t\t")] : _vm._e()], 2)])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -22377,6 +22508,107 @@ __webpack_require__(4);
 __webpack_require__(5);
 module.exports = __webpack_require__(6);
 
+
+/***/ }),
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _Bookmark = __webpack_require__(21);
+
+var _Bookmark2 = _interopRequireDefault(_Bookmark);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const props = ['bookmarks', 'columnSize']; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+const components = {
+	Bookmark: _Bookmark2.default
+};
+
+exports.default = {
+	props,
+	components
+};
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(41),
+  /* template */
+  __webpack_require__(43),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/dimensi/projects/camellia/resources/templates/NewTab/BookmarkColumn.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] BookmarkColumn.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-39cd139a", Component.options)
+  } else {
+    hotAPI.reload("data-v-39cd139a", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('li', {
+    class: 'col-xs-' + _vm.columnSize
+  }, [_c('ul', _vm._l((_vm.bookmarks), function(bookmark) {
+    return _c('bookmark', {
+      key: bookmark.id,
+      attrs: {
+        "bookmark": bookmark
+      }
+    })
+  }))])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-39cd139a", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

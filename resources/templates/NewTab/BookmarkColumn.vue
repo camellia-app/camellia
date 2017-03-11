@@ -11,7 +11,16 @@
 </template>
 
 <script>
+import Bookmark from './Bookmark';
+
+const props = ['bookmarks', 'columnSize'];
+
+const components = {
+	Bookmark
+};
+
 export default {
-	props: ['bookmarks', 'columnSize']
-}
+	props,
+	components
+};
 </script>

@@ -147,7 +147,9 @@
 		}
 	}
 
+
 	export default {
+		name: 'bookmark',
 		props,
 		data,
 		computed,

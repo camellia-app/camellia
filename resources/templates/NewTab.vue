@@ -148,7 +148,6 @@ const watch = {
 };
 
 export default {
-	name: 'newtab',
 	components,
 	computed,
 	mounted,
