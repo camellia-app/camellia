@@ -5,3 +5,5 @@ node_modules
 *.tmp
 mix-manifest.json
 .idea
+/public/css/
+/public/js/
