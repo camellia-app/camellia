@@ -85,7 +85,7 @@ Promise.all([
 			saveOptions: function () {
 				this.background_image = this.background_image.length > 0
 									  ? this.background_image
-									  : '/img/wallpaper.jpg';
+									  : DEFAULT_WALLPAPER_URL;
 
 				local_storage['background_image']      = this.background_image;
 				local_storage['columns_count']         = parseInt(this.columns_count);
@@ -98,7 +98,7 @@ Promise.all([
 				local_storage['recently_closed']       = this.recently_closed == 1;
 				local_storage['background_brightness'] = parseFloat(this.background_brightness);
 
-				chrome.storage.local.set(local_storage);
+                browser.storage.local.set(local_storage);
 			},
 		},
 		template: `<transition name="fade">
@@ -108,7 +108,7 @@ Promise.all([
 						<label class="label" for="background_image">
 							{{ locale.option_background_image_label }}
 						</label>
-						<input type="text" id="background_image"
+						<input type="url" id="background_image"
 						v-model="background_image">
 						<small>{{ locale.option_background_image_hint }}</small>
 

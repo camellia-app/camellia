@@ -198,8 +198,9 @@ browser.runtime.onInstalled.addListener(details => {
 
 		// Background wallpaper
 		if (typeof local_storage['background_image'] === 'undefined'
-		|| typeof local_storage['background_image'] !== 'string') {
-			local_storage['background_image'] = '/img/wallpaper.jpg';
+		|| typeof local_storage['background_image'] !== 'string'
+		|| local_storage['background_image'] === '/img/wallpaper.jpg') {
+			local_storage['background_image'] = DEFAULT_WALLPAPER_URL;
 		}
 
 		// Display number of clicks at each bookmark
