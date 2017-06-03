@@ -45,8 +45,6 @@ Promise.all([
 		});
 	}
 
-	console.log(allClosedTabs);
-
 	/*
 	|--------------------------------------------------------------------------
 	| Application top level wrapper
@@ -596,7 +594,7 @@ Promise.all([
 				:data-id="bookmark.id"
 
 				@mouseup="incClicksCount">
-					{{bookmark.title}}
+					{{ bookmark.title || '&nbsp;' }}
 				</a>
 
 				<ul
