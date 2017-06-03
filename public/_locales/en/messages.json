@@ -53,6 +53,10 @@
 		"message": "Extensions",
 		"description": "Находится в подвале справа. Открывает страницу в браузере с установленными расширениями."
 	},
+	"chrome_apps": {
+		"message": "Apps",
+		"description": "Находится в подвале справа. Открывает страницу в браузере с установленными Chrome-приложениями (chrome://apps)."
+	},
 	"store_page": {
 		"message": "The page in the store",
 		"description": "!!! DEPRECATED !!! Находится в подвале справа. При нажатии на эту ссылку происходит переход в магазин расширений на страницу этого расширения."
@@ -331,6 +335,6 @@
 		"message": "Who's the author of the default background picture?"
 	},
 	"help_background_author_answer": {
-		"message": "<p>The photographer is <a href=\"https://www.facebook.com/stefancikphotography\" class=\"underlined\">Stefan Stefancik</a>. The picture was taken from <a href=\"https://www.pexels.com/u/stefanstefancik/\" class=\"underlined\">Pexels</a>.</p>"
+		"message": "<p>The photographer is <a href=\"https://www.pexels.com/u/joshua-nkolwa-141357/\" class=\"underlined\">Joshua Nkolwa</a>. The picture was taken from <a href=\"https://www.pexels.com/photo/clouds-countryside-dark-dawn-426613/\" class=\"underlined\">pexels.com</a>.</p><p>Previous background images:</p><ul><li><a href=\"https://www.facebook.com/stefancikphotography\" class=\"underlined\">Stefan Stefancik</a>: <a href=\"https://www.pexels.com/photo/nature-flowers-plant-rain-96920/\" class=\"underlined\">pexels.com</a> (from 1.3.0)</li></ul>"
 	}
 }

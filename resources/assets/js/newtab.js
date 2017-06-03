@@ -17,7 +17,9 @@ Promise.all([
 	browser.sessions.getRecentlyClosed()
 ])
 .then(([local_storage, sync_storage, browserBookmarks, extensionInfo, topSites, recentlyClosed]) => {
-	let allBookmarks          = browserBookmarks[0]['children'][0]['children'];
+	let allBookmarks          = browserBookmarks[0]['children'];
+	let mainBookmarks         = allBookmarks[0]['children'];
+	let otherBookmarks        = allBookmarks[1]['children'];
 	let columnsCount          = local_storage['columns_count'];
 	let backgroundImage       = local_storage['background_image'];
 	let openBookmarksInNewTab = local_storage['bookmarks_in_new_tab'];
@@ -81,8 +83,9 @@ Promise.all([
 	Vue.component('app-content', {
 		data: function () {
 			return {
-				allBookmarks:          allBookmarks,
-				chunkedBookmarks:      allBookmarks.chunk(columnsCount, true),
+                mainBookmarks:         mainBookmarks,
+				chunkedMainBookmarks:  mainBookmarks.chunk(columnsCount, true),               		    otherBookmarks:        otherBookmarks,
+                chunkedOtherBookmarks: otherBookmarks.chunk(columnsCount, true),
 				allTopSites:           allTopSites,
 				chunkedTopSites:       allTopSites.chunk(columnsCount, true),
 				allClosedTabs:         allClosedTabs,
@@ -112,15 +115,24 @@ Promise.all([
 					:bookmarks="site"></bookmark-column>
 				</ul>
 
-				<ul class="bookmark-tree row"
-				v-if="allBookmarks.length > 0">
+				<ul class="bookmark-tree row pb-1"
+				v-if="mainBookmarks.length > 0">
 					<bookmark-column
-					v-for="bookmarks in chunkedBookmarks"
+					v-for="bookmarks in chunkedMainBookmarks"
 					:key="bookmarks.id"
 					:bookmarks="bookmarks"></bookmark-column>
 				</ul>
+
+				<ul class="bookmark-tree row"
+				v-if="otherBookmarks.length > 0">
+					<bookmark-column
+					v-for="bookmarks in chunkedOtherBookmarks"
+					:key="bookmarks.id"
+					:bookmarks="bookmarks"></bookmark-column>
+				</ul>
+				
 				<div class="py-3 pl-1 text-xs-center lead"
-				v-else
+				v-if="mainBookmarks.length === 0 && otherBookmarks.length === 0"
 				v-html="locale.add_bookmarks_to_browser"></div>
 			</main>`
 	});
@@ -142,7 +154,7 @@ Promise.all([
 				browserVersion: 'v' + extensionInfo.version,
 				isDevBuild:     extensionInfo.installType === 'development',
 				locale:         i18nObject([
-					'search', 'manage_bookmarks', 'options', 'help', 'report_bug', 'extensions'
+					'search', 'manage_bookmarks', 'options', 'help', 'report_bug', 'extensions', 'chrome_apps'
 				])
 			};
 		},
@@ -156,6 +168,9 @@ Promise.all([
 					</li>
 					<li class="list-inline-item">
 						<a href="chrome://extensions">{{ locale.extensions }}</a>
+					</li>
+					<li class="list-inline-item">
+						<a href="chrome://apps">{{ locale.chrome_apps }}</a>
 					</li>
 					<li class="list-inline-item">
 						<a
@@ -545,6 +560,12 @@ Promise.all([
 				if (this.isBookmark === false) {
 					return;
 				}
+
+				if (typeof this.clicksCount[this.bookmark.id] === 'undefined') {
+                    this.clicksCount[this.bookmark.id] = 0;
+				}
+
+				this.getClicksCount();
 				
 				this.clicksCount[this.bookmark.id]++;
 				browser.storage.local.set({click_counter: this.clicksCount});
@@ -556,13 +577,10 @@ Promise.all([
 					return false;
 				}
 
-				this.clicksCount[this.bookmark.id] =
-					typeof this.clicksCount[this.bookmark.id] !== 'undefined'
-						&& this.clicksCount[this.bookmark.id] > 0
+				return typeof this.clicksCount[this.bookmark.id] !== 'undefined'
+					&& this.clicksCount[this.bookmark.id] > 0
 						? this.clicksCount[this.bookmark.id].roundThousands()
 						: '';
-
-				return this.clicksCount[this.bookmark.id];
 			},
 		},
 		template: `<li>
@@ -575,6 +593,7 @@ Promise.all([
 				:data-toggle="getDataToggle"
 				:data-target="getDataTarget"
 				:data-counter="getClicksCount()"
+				:data-id="bookmark.id"
 
 				@mouseup="incClicksCount">
 					{{bookmark.title}}
@@ -658,7 +677,7 @@ $(document).on('click', '[href^="chrome://"]', function (event) {
 });
 
 $(window).on('keydown', function (event) {
-	if (event.keyCode === 114 || (event.ctrlKey && event.keyCode === 70)) { 
+	if (event.keyCode === 114 || (event.ctrlKey && event.keyCode === 70) || (event.ctrlKey && event.keyCode === 71)) {
 		event.preventDefault();
 
 		$('.modal').not('#modal-search').modal('hide'); // Hide all modals but search modal
