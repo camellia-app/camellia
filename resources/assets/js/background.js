@@ -31,12 +31,12 @@ browser.omnibox.onInputChanged.addListener((text, suggest) => {
 		}
 
 		let sortedBookmarks = filteredBookmarks.sort((a, b) => {
-			a.clicks = typeof sync_storage['click_counter'][a.id] !== 'undefined'
-					 ? sync_storage['click_counter'][a.id]
+			a.clicks = typeof local_storage['click_counter'][a.id] !== 'undefined'
+					 ? local_storage['click_counter'][a.id]
 					 : 0;
 
-			b.clicks = typeof sync_storage['click_counter'][b.id] !== 'undefined'
-					 ? sync_storage['click_counter'][b.id]
+			b.clicks = typeof local_storage['click_counter'][b.id] !== 'undefined'
+					 ? local_storage['click_counter'][b.id]
 					 : 0;
 
 			return b.clicks - a.clicks;
@@ -59,9 +59,9 @@ browser.omnibox.onInputChanged.addListener((text, suggest) => {
 			}
 
 			if (local_storage['display_click_counter'] === true
-			&& typeof sync_storage['click_counter'][bookmark.id] !== 'undefined'
-			&& sync_storage['click_counter'][bookmark.id] > 0) {
-				title += ' <dim>(' + sync_storage['click_counter'][bookmark.id] + ')</dim>';
+			&& typeof local_storage['click_counter'][bookmark.id] !== 'undefined'
+			&& local_storage['click_counter'][bookmark.id] > 0) {
+				title += ' <dim>(' + local_storage['click_counter'][bookmark.id] + ')</dim>';
 			}
 
 			suggestions.push({
@@ -104,13 +104,13 @@ browser.omnibox.onInputEntered.addListener(bookmarkId => {
 	.then(([sync_storage, local_storage, browserBookmarks]) => {
 		let bookmark = browserBookmarks[0];
 
-		sync_storage['click_counter'][bookmark.id] = typeof sync_storage['click_counter'][bookmark.id] !== 'undefined'
-			? sync_storage['click_counter'][bookmark.id]
+        local_storage['click_counter'][bookmark.id] = typeof local_storage['click_counter'][bookmark.id] !== 'undefined'
+			? local_storage['click_counter'][bookmark.id]
 			: 0;
 
-		sync_storage['click_counter'][bookmark.id]++;
+        local_storage['click_counter'][bookmark.id]++;
 
-		browser.storage.sync.set(sync_storage);
+		browser.storage.local.set(local_storage);
 
 		if (local_storage['bookmarks_in_new_tab'] === true) {
 			browser.tabs.create({
