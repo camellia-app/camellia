@@ -112,19 +112,19 @@ Promise.all([
 					:key="site.id"
 					:bookmarks="site"></bookmark-column>
 				</ul>
-
+				
 				<ul class="bookmark-tree row pb-1"
-				v-if="mainBookmarks.length > 0">
+				v-if="otherBookmarks.length > 0">
 					<bookmark-column
-					v-for="bookmarks in chunkedMainBookmarks"
+					v-for="bookmarks in chunkedOtherBookmarks"
 					:key="bookmarks.id"
 					:bookmarks="bookmarks"></bookmark-column>
 				</ul>
 
 				<ul class="bookmark-tree row"
-				v-if="otherBookmarks.length > 0">
+				v-if="mainBookmarks.length > 0">
 					<bookmark-column
-					v-for="bookmarks in chunkedOtherBookmarks"
+					v-for="bookmarks in chunkedMainBookmarks"
 					:key="bookmarks.id"
 					:bookmarks="bookmarks"></bookmark-column>
 				</ul>
@@ -623,13 +623,6 @@ Promise.all([
 	.on('error', function() {
 		$('#configurable-styles')
 		.append(`body:before { background-color: rgb(255,255,255); opacity: ${backgroundBrightness}; }`);
-		
-		browser.notifications.create({
-			'type': 'basic',
-			'iconUrl': '/img/logo/512x512-colored.png',
-			'title': browser.i18n.getMessage('background_loading_error_title'),
-			'message': browser.i18n.getMessage('background_loading_error_message')
-		});
 	});
 
 	// Style scrollbar
