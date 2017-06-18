@@ -18,7 +18,9 @@ browser.omnibox.onInputChanged.addListener((text, suggest) => {
 			return;
 		}
 
-		let allBookmarks     = browserBookmarks[0]['children'][0]['children'];
+        let allBookmarks = browserBookmarks[0]['children'][0]['children'].concat(
+        	browserBookmarks[0]['children'][1]['children']
+		);
 		let flattedBookmarks = allBookmarks.flatten('children');
 
 		let filteredBookmarks = flattedBookmarks.filter(item => {
@@ -31,12 +33,12 @@ browser.omnibox.onInputChanged.addListener((text, suggest) => {
 		}
 
 		let sortedBookmarks = filteredBookmarks.sort((a, b) => {
-			a.clicks = typeof local_storage['click_counter'][a.id] !== 'undefined'
-					 ? local_storage['click_counter'][a.id]
+			a.clicks = typeof sync_storage['click_counter'][CryptoJS.MD5(a.url)] !== 'undefined'
+					 ? sync_storage['click_counter'][a.url]
 					 : 0;
 
-			b.clicks = typeof local_storage['click_counter'][b.id] !== 'undefined'
-					 ? local_storage['click_counter'][b.id]
+			b.clicks = typeof sync_storage['click_counter'][CryptoJS.MD5(b.url)] !== 'undefined'
+					 ? sync_storage['click_counter'][b.url]
 					 : 0;
 
 			return b.clicks - a.clicks;
@@ -58,10 +60,12 @@ browser.omnibox.onInputChanged.addListener((text, suggest) => {
 				url = url.highlight(text, '<match>$1</match>');
 			}
 
+			let bookmarkMd5 = CryptoJS.MD5(bookmark.url);
+
 			if (local_storage['display_click_counter'] === true
-			&& typeof local_storage['click_counter'][bookmark.id] !== 'undefined'
-			&& local_storage['click_counter'][bookmark.id] > 0) {
-				title += ' <dim>(' + local_storage['click_counter'][bookmark.id] + ')</dim>';
+			&& typeof sync_storage['click_counter'][bookmarkMd5] !== 'undefined'
+			&& sync_storage['click_counter'][bookmarkMd5] > 0) {
+				title += ' <dim>(' + sync_storage['click_counter'][bookmarkMd5] + ')</dim>';
 			}
 
 			suggestions.push({
@@ -104,21 +108,22 @@ browser.omnibox.onInputEntered.addListener(bookmarkId => {
 	.then(([sync_storage, local_storage, browserBookmarks]) => {
 		let bookmark = browserBookmarks[0];
 
-        local_storage['click_counter'][bookmark.id] = typeof local_storage['click_counter'][bookmark.id] !== 'undefined'
-			? local_storage['click_counter'][bookmark.id]
+		let bookmarkMd5 = CryptoJS.MD5(bookmark.url);
+
+        sync_storage['click_counter'][bookmarkMd5] = typeof sync_storage['click_counter'][bookmarkMd5] !== 'undefined'
+			? sync_storage['click_counter'][bookmarkMd5]
 			: 0;
 
-        local_storage['click_counter'][bookmark.id]++;
+        sync_storage['click_counter'][bookmarkMd5]++;
 
-		browser.storage.local.set(local_storage);
+		browser.storage.sync.set(sync_storage);
 
 		if (local_storage['bookmarks_in_new_tab'] === true) {
 			browser.tabs.create({
 				url: bookmark.url
 			});
 		} else {
-			browser.tabs.query({active: true, currentWindow: true})
-			.then(tabs => {
+			browser.tabs.query({active: true, currentWindow: true}).then(tabs => {
 				browser.tabs.update(tabs[0].id, {url: bookmark.url});
 			});
 		}
@@ -169,6 +174,12 @@ browser.runtime.onInstalled.addListener(details => {
 		|| typeof sync_storage['vote_remind_displayed'] !== 'boolean') {
 			sync_storage['vote_remind_displayed'] = false;
 		}
+
+        // Object with bookmark click counter
+        if (typeof sync_storage['click_counter'] === 'undefined'
+            || typeof sync_storage['click_counter'] !== 'object') {
+            sync_storage['click_counter'] = {};
+        }
 		
 		/*
 		|--------------------------------------------------------------------------
@@ -177,12 +188,6 @@ browser.runtime.onInstalled.addListener(details => {
 		|
 		| This settings may be set individually for each browser.
 		*/
-
-        // Object with bookmark click counter
-        if (typeof local_storage['click_counter'] === 'undefined'
-            || typeof local_storage['click_counter'] !== 'object') {
-            local_storage['click_counter'] = {};
-        }
 
 		// Number of columns
 		if (typeof local_storage['columns_count'] === 'undefined'

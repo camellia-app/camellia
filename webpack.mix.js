@@ -25,6 +25,7 @@ mix.scripts([
 
 /* Background */
 mix.scripts([
+    './node_modules/crypto-js-npm/rollups/md5.js',
     './resources/assets/js/vendor/browser-polyfill.js',
     './resources/assets/js/_variables.js',
     './resources/assets/js/_functions.js',
@@ -34,6 +35,7 @@ mix.scripts([
 /* Newtab */
 mix.sass('./resources/assets/sass/newtab.scss', './public/css/newtab.css');
 mix.scripts([
+    './node_modules/crypto-js-npm/rollups/md5.js',
     './node_modules/vue/dist/vue.js',
     './node_modules/jquery/dist/jquery.js',
     './node_modules/bootstrap/js/dist/util.js',

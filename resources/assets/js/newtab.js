@@ -17,9 +17,9 @@ Promise.all([
 	browser.sessions.getRecentlyClosed()
 ])
 .then(([local_storage, sync_storage, browserBookmarks, extensionInfo, topSites, recentlyClosed]) => {
-	let allBookmarks          = browserBookmarks[0]['children'];
-	let mainBookmarks         = allBookmarks[0]['children'];
-	let otherBookmarks        = allBookmarks[1]['children'];
+	let allBookmarks          = browserBookmarks[0]['children'][0]['children'].concat(
+	    browserBookmarks[0]['children'][1]['children']
+    );
 	let columnsCount          = local_storage['columns_count'];
 	let backgroundImage       = local_storage['background_image'];
 	let openBookmarksInNewTab = local_storage['bookmarks_in_new_tab'];
@@ -81,9 +81,8 @@ Promise.all([
 	Vue.component('app-content', {
 		data: function () {
 			return {
-                mainBookmarks:         mainBookmarks,
-				chunkedMainBookmarks:  mainBookmarks.chunk(columnsCount, true),               		    otherBookmarks:        otherBookmarks,
-                chunkedOtherBookmarks: otherBookmarks.chunk(columnsCount, true),
+                allBookmarks:          allBookmarks,
+				chunkedAllBookmarks:   allBookmarks.chunk(columnsCount, true),
 				allTopSites:           allTopSites,
 				chunkedTopSites:       allTopSites.chunk(columnsCount, true),
 				allClosedTabs:         allClosedTabs,
@@ -114,23 +113,15 @@ Promise.all([
 				</ul>
 				
 				<ul class="bookmark-tree row pb-1"
-				v-if="otherBookmarks.length > 0">
+				v-if="allBookmarks.length > 0">
 					<bookmark-column
-					v-for="bookmarks in chunkedOtherBookmarks"
-					:key="bookmarks.id"
-					:bookmarks="bookmarks"></bookmark-column>
-				</ul>
-
-				<ul class="bookmark-tree row"
-				v-if="mainBookmarks.length > 0">
-					<bookmark-column
-					v-for="bookmarks in chunkedMainBookmarks"
+					v-for="bookmarks in chunkedAllBookmarks"
 					:key="bookmarks.id"
 					:bookmarks="bookmarks"></bookmark-column>
 				</ul>
 				
 				<div class="py-3 pl-1 text-xs-center lead"
-				v-if="mainBookmarks.length === 0 && otherBookmarks.length === 0"
+				v-if="allBookmarks.length === 0"
 				v-html="locale.add_bookmarks_to_browser"></div>
 			</main>`
 	});
@@ -481,7 +472,7 @@ Promise.all([
 		},
 		data: function () {
 			return {
-				clicksCount:           local_storage['click_counter'],
+				clicksCount:           sync_storage['click_counter'],
 				displayClickCounter:   local_storage['display_click_counter'],
 				openBookmarksInNewTab: openBookmarksInNewTab
 			};
@@ -559,14 +550,16 @@ Promise.all([
 					return;
 				}
 
-				if (typeof this.clicksCount[this.bookmark.id] === 'undefined') {
-                    this.clicksCount[this.bookmark.id] = 0;
+				let bookmarkMd5 = CryptoJS.MD5(this.bookmark.url);
+
+				if (typeof this.clicksCount[bookmarkMd5] === 'undefined') {
+                    this.clicksCount[bookmarkMd5] = 0;
 				}
 
 				this.getClicksCount();
 				
-				this.clicksCount[this.bookmark.id]++;
-				browser.storage.local.set({click_counter: this.clicksCount});
+				this.clicksCount[bookmarkMd5]++;
+				browser.storage.sync.set({click_counter: this.clicksCount});
 			},
 			getClicksCount: function () {
 				if (this.isFolder === true
@@ -575,9 +568,11 @@ Promise.all([
 					return false;
 				}
 
-				return typeof this.clicksCount[this.bookmark.id] !== 'undefined'
-					&& this.clicksCount[this.bookmark.id] > 0
-						? this.clicksCount[this.bookmark.id].roundThousands()
+                let bookmarkMd5 = CryptoJS.MD5(this.bookmark.url);
+
+				return typeof this.clicksCount[bookmarkMd5] !== 'undefined'
+					&& this.clicksCount[bookmarkMd5] > 0
+						? this.clicksCount[bookmarkMd5].roundThousands()
 						: '';
 			},
 		},

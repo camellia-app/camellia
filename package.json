@@ -15,7 +15,8 @@
     "bootstrap": "4.0.0-alpha.5",
     "jquery": "3.*",
     "vue": "^2.0.5",
-    "webextension-polyfill": "github:mozilla/webextension-polyfill"
+    "webextension-polyfill": "github:mozilla/webextension-polyfill",
+    "crypto-js-npm": "github:ssimplix/crypto-js-npm"
   },
   "devDependencies": {
     "laravel-mix": "0.*"
