@@ -147,6 +147,11 @@ Promise.all([
 				])
 			};
 		},
+        methods: {
+            openOptions: function () {
+                chrome.runtime.openOptionsPage();
+            },
+        },
 		template: `<footer>
 				<ul class="list-inline float-md-right w-100 mb-0">
 					<li class="list-inline-item float-md-left">
@@ -161,9 +166,8 @@ Promise.all([
 					<li class="list-inline-item">
 						<a href="chrome://apps">{{ locale.chrome_apps }}</a>
 					</li>
-					<li class="list-inline-item">
-						<a
-						:href="optionsUrl">{{ locale.options }}</a>
+					<li class="list-inline-item cursor-pointer">
+						<a @click="openOptions">{{ locale.options }}</a>
 					</li>
 					<li class="list-inline-item">
 						<a data-toggle="modal" data-target="#modal-help" tabindex="0">{{ locale.help }}</a>

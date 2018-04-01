@@ -140,3 +140,7 @@ body.disabled-user-select {
 a.underlined {
 	border-bottom: 1px dotted transparentize($link-color, 0.5);
 }
+
+.cursor-pointer {
+	cursor: pointer;
+}
