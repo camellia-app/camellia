@@ -4,9 +4,13 @@ It's 1.x branch, which will not be supported anymore. Only bugs will be fixed un
 
 ## About Camellia 2.0
 
+### Design prototype
+
+![Design prototype](https://user-images.githubusercontent.com/12474739/58906814-78aa4b00-8715-11e9-90ea-8b015da8f824.png)
+
 ### When it will be released?
 
-In late 2019, maybe 2020. At least we should wait for [Vue.js 3.0 release](https://medium.com/the-vue-point/plans-for-the-next-iteration-of-vue-js-777ffea6fabf).
+In late 2019, maybe 2020.
 
 ### What's new planned for 2.0?
 
