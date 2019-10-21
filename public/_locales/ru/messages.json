@@ -335,6 +335,6 @@
 		"message": "Кто автор фоновой картинки, которая идет по умолчанию?"
 	},
 	"help_background_author_answer": {
-		"message": "<p>Фотограф &mdash; <a href=\"https://www.pexels.com/u/joshua-nkolwa-141357/\" class=\"underlined\">Joshua Nkolwa</a>. Фотография была взята с фотостока <a href=\"https://www.pexels.com/photo/clouds-countryside-dark-dawn-426613/\" class=\"underlined\">pexels.com</a>.</p><p>Предыдущие фоны:</p><ul><li><a href=\"https://www.facebook.com/stefancikphotography\" class=\"underlined\">Stefan Stefancik</a>: <a href=\"https://www.pexels.com/photo/nature-flowers-plant-rain-96920/\" class=\"underlined\">pexels.com</a> (c 1.3.0)</li></ul>"
+		"message": "<p>Фотограф &mdash; <a href=\"https://www.pexels.com/@fatamorkidd/\" class=\"underlined\">Fatan ZW</a>. Фотография была взята с фотостока <a href=\"https://www.pexels.com/photo/white-5-petaled-flower-1587575/\" class=\"underlined\">pexels.com</a>.</p>"
 	}
 }

@@ -19,27 +19,27 @@ Promise.all([
 				show: false,
 				available_columns: AVAILABLE_COLUMNS,
 
-				background_image:      local_storage['background_image'],
+				background_image:      sync_storage['background_image'],
 				columns_count:         local_storage['columns_count'],
 				use_custom_scrollbar:  Number(local_storage['use_custom_scrollbar']),
-				display_click_counter: Number(local_storage['display_click_counter']),
-				user_select:           Number(local_storage['user_select']),
+				display_click_counter: Number(sync_storage['display_click_counter']),
+				user_select:           Number(sync_storage['user_select']),
 				font_size:             local_storage['font_size'],
-				bookmarks_in_new_tab:  Number(local_storage['bookmarks_in_new_tab']),
+				bookmarks_in_new_tab:  Number(sync_storage['bookmarks_in_new_tab']),
 				top_sites:             Number(local_storage['top_sites']),
 				recently_closed:       Number(local_storage['recently_closed']),
-                background_brightness: local_storage['background_brightness'],
+        background_brightness: sync_storage['background_brightness'],
 
 				locale: i18nObject([
 					'save',
 
 					'option_background_image_label',
 					'option_background_image_hint',
-					
+
 					'option_columns_count_label',
 					'option_columns_count_column',
 					'option_columns_count_hint',
-					
+
 					'option_use_custom_scrollbar_label',
 					'option_use_custom_scrollbar_styled',
 					'option_use_custom_scrollbar_system',
@@ -87,16 +87,16 @@ Promise.all([
 									  ? this.background_image
 									  : DEFAULT_WALLPAPER_URL;
 
-				local_storage['background_image']      = this.background_image;
+				sync_storage['background_image']       = this.background_image;
 				local_storage['columns_count']         = parseInt(this.columns_count);
 				local_storage['use_custom_scrollbar']  = this.use_custom_scrollbar == 1;
-				local_storage['display_click_counter'] = this.display_click_counter == 1;
-				local_storage['user_select']           = this.user_select == 1;
+				sync_storage['display_click_counter']  = this.display_click_counter == 1;
+				sync_storage['user_select']            = this.user_select == 1;
 				local_storage['font_size']             = parseInt(this.font_size);
-				local_storage['bookmarks_in_new_tab']  = this.bookmarks_in_new_tab == 1;
+				sync_storage['bookmarks_in_new_tab']   = this.bookmarks_in_new_tab == 1;
 				local_storage['top_sites']             = this.top_sites == 1;
 				local_storage['recently_closed']       = this.recently_closed == 1;
-				local_storage['background_brightness'] = parseFloat(this.background_brightness);
+				sync_storage['background_brightness']  = parseFloat(this.background_brightness);
 
                 browser.storage.local.set(local_storage);
 			},

@@ -21,10 +21,10 @@ Promise.all([
 	    browserBookmarks[0]['children'][1]['children']
     );
 	let columnsCount          = local_storage['columns_count'];
-	let backgroundImage       = local_storage['background_image'];
-	let openBookmarksInNewTab = local_storage['bookmarks_in_new_tab'];
+	let backgroundImage       = sync_storage['background_image'];
+	let openBookmarksInNewTab = sync_storage['bookmarks_in_new_tab'];
 	let allTopSites           = local_storage['top_sites'] === true ? topSites : [];
-	let backgroundBrightness  = local_storage['background_brightness'];
+	let backgroundBrightness  = sync_storage['background_brightness'];
 
 	//
 	// Preparing recently closed tabs
@@ -434,7 +434,7 @@ Promise.all([
 	|--------------------------------------------------------------------------
 	|
 	| This component gets bookmarks array splitted in N sub-arrays
-	| and inserts all sub-arrays in columns at main page. 
+	| and inserts all sub-arrays in columns at main page.
 	*/
 
 	Vue.component('bookmark-column', {
@@ -477,7 +477,7 @@ Promise.all([
 		data: function () {
 			return {
 				clicksCount:           sync_storage['click_counter'],
-				displayClickCounter:   local_storage['display_click_counter'],
+				displayClickCounter:   sync_storage['display_click_counter'],
 				openBookmarksInNewTab: openBookmarksInNewTab
 			};
 		},
@@ -561,7 +561,7 @@ Promise.all([
 				}
 
 				this.getClicksCount();
-				
+
 				this.clicksCount[bookmarkMd5]++;
 				browser.storage.sync.set({click_counter: this.clicksCount});
 			},
@@ -630,7 +630,7 @@ Promise.all([
 	}
 
 	// User select
-	if (local_storage['user_select'] === true) {
+	if (sync_storage['user_select'] === true) {
 		$('body').removeClass('disabled-user-select');
 	}
 
@@ -660,7 +660,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
 
 $(document).on('click', '[href^="chrome://"]', function (event) {
 	event.preventDefault();
-	
+
 	browser.tabs.create({
 		url: $(this).attr('href')
 	});

@@ -62,7 +62,7 @@ browser.omnibox.onInputChanged.addListener((text, suggest) => {
 
 			let bookmarkMd5 = CryptoJS.MD5(bookmark.url);
 
-			if (local_storage['display_click_counter'] === true
+			if (sync_storage['display_click_counter'] === true
 			&& typeof sync_storage['click_counter'][bookmarkMd5] !== 'undefined'
 			&& sync_storage['click_counter'][bookmarkMd5] > 0) {
 				title += ' <dim>(' + sync_storage['click_counter'][bookmarkMd5] + ')</dim>';
@@ -118,7 +118,7 @@ browser.omnibox.onInputEntered.addListener(bookmarkId => {
 
 		browser.storage.sync.set(sync_storage);
 
-		if (local_storage['bookmarks_in_new_tab'] === true) {
+		if (sync_storage['bookmarks_in_new_tab'] === true) {
 			browser.tabs.create({
 				url: bookmark.url
 			});
@@ -127,7 +127,7 @@ browser.omnibox.onInputEntered.addListener(bookmarkId => {
 				browser.tabs.update(tabs[0].id, {url: bookmark.url});
 			});
 		}
-		
+
 	})
 	.catch(error => {
 		browser.notifications.create({
@@ -175,12 +175,52 @@ browser.runtime.onInstalled.addListener(details => {
 			sync_storage['vote_remind_displayed'] = false;
 		}
 
-        // Object with bookmark click counter
-        if (typeof sync_storage['click_counter'] === 'undefined'
-            || typeof sync_storage['click_counter'] !== 'object') {
-            sync_storage['click_counter'] = {};
-        }
-		
+		// Object with bookmark click counter
+		if (typeof sync_storage['click_counter'] === 'undefined'
+				|| typeof sync_storage['click_counter'] !== 'object') {
+				sync_storage['click_counter'] = {};
+		}
+
+		// Background wallpaper
+		if (typeof sync_storage['background_image'] === 'undefined'
+			|| typeof sync_storage['background_image'] !== 'string') {
+			sync_storage['background_image'] = local_storage['background_image'] !== undefined
+				? local_storage['background_image']
+				: DEFAULT_WALLPAPER_URL;
+		}
+
+		// Background brightness
+		if (typeof sync_storage['background_brightness'] === 'undefined'
+			|| typeof sync_storage['background_brightness'] !== 'number') {
+			sync_storage['background_brightness'] = local_storage['background_brightness'] !== undefined
+				? local_storage['background_brightness']
+				: 0.5;
+		}
+
+		// Opens all links in new tab
+		if (typeof sync_storage['bookmarks_in_new_tab'] === 'undefined'
+			|| typeof sync_storage['bookmarks_in_new_tab'] !== 'boolean') {
+			sync_storage['bookmarks_in_new_tab'] = local_storage['bookmarks_in_new_tab'] !== undefined
+				? local_storage['bookmarks_in_new_tab']
+				: false;
+		}
+
+		// Enables and disabled text selecting
+		if (typeof sync_storage['user_select'] === 'undefined'
+			|| typeof sync_storage['user_select'] !== 'boolean') {
+			sync_storage['user_select'] = local_storage['user_select'] !== undefined
+				? local_storage['user_select']
+				: false;
+		}
+
+		// Shows and hides click counter
+		if (typeof sync_storage['display_click_counter'] === 'undefined'
+			|| typeof sync_storage['display_click_counter'] !== 'boolean') {
+			sync_storage['display_click_counter'] = local_storage['display_click_counter'] !== undefined
+				? local_storage['display_click_counter']
+				: true;
+		}
+
 		/*
 		|--------------------------------------------------------------------------
 		| Local default settings
@@ -201,35 +241,10 @@ browser.runtime.onInstalled.addListener(details => {
 			local_storage['use_custom_scrollbar'] = true;
 		}
 
-		// Background wallpaper
-		if (typeof local_storage['background_image'] === 'undefined'
-		|| typeof local_storage['background_image'] !== 'string'
-		|| local_storage['background_image'] === '/img/wallpaper.jpg') {
-			local_storage['background_image'] = DEFAULT_WALLPAPER_URL;
-		}
-
-		// Display number of clicks at each bookmark
-		if (typeof local_storage['display_click_counter'] === 'undefined'
-		|| typeof local_storage['display_click_counter'] !== 'boolean') {
-			local_storage['display_click_counter'] = true;
-		}
-
-		// Enables and disabled text selecting
-		if (typeof local_storage['user_select'] === 'undefined'
-		|| typeof local_storage['user_select'] !== 'boolean') {
-			local_storage['user_select'] = false;
-		}
-
 		// Enables and disabled text selecting
 		if (typeof local_storage['font_size'] === 'undefined'
 		|| Number.isInteger(local_storage['font_size']) === false) {
 			local_storage['font_size'] = 16;
-		}
-
-		// Opens all links in new tab
-		if (typeof local_storage['bookmarks_in_new_tab'] === 'undefined'
-		|| typeof local_storage['bookmarks_in_new_tab'] !== 'boolean') {
-			local_storage['bookmarks_in_new_tab'] = false;
 		}
 
 		// Display top sites block
@@ -244,12 +259,6 @@ browser.runtime.onInstalled.addListener(details => {
 			local_storage['recently_closed'] = false;
 		}
 
-        // Background brightness
-        if (typeof local_storage['background_brightness'] === 'undefined'
-            || typeof local_storage['background_brightness'] !== 'number') {
-            local_storage['background_brightness'] = 0.5;
-        }
-		
 		browser.storage.sync.set(sync_storage);
 		browser.storage.local.set(local_storage);
 	})

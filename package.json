@@ -19,10 +19,10 @@
     "crypto-js-npm": "github:ssimplix/crypto-js-npm"
   },
   "devDependencies": {
-    "laravel-mix": "0.*"
+    "laravel-mix": "^0.12.1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/terron-kun/camellia.git"
+    "url": "git+https://github.com/neluzhin/camellia.git"
   }
 }
