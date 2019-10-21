@@ -99,6 +99,7 @@ Promise.all([
 				sync_storage['background_brightness']  = parseFloat(this.background_brightness);
 
                 browser.storage.local.set(local_storage);
+                browser.storage.sync.set(sync_storage);
 			},
 		},
 		template: `<transition name="fade">
