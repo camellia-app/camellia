@@ -20,6 +20,7 @@ Promise.all([
 	let allBookmarks          = browserBookmarks[0]['children'][0]['children'].concat(
 	    browserBookmarks[0]['children'][1]['children']
     );
+	let bookmarksByGroup = browserBookmarks[0]['children'];
 	let columnsCount          = local_storage['columns_count'];
 	let backgroundImage       = sync_storage['background_image'];
 	let openBookmarksInNewTab = sync_storage['bookmarks_in_new_tab'];
@@ -81,7 +82,14 @@ Promise.all([
 	Vue.component('app-content', {
 		data: function () {
 			return {
-                allBookmarks:          allBookmarks,
+        allBookmarks:          allBookmarks,
+				bookmarksByGroup: bookmarksByGroup.map(bookmarkGroup => {
+					return {
+						title: bookmarkGroup.title,
+						children: bookmarkGroup.children,
+						chunkedChildren: bookmarkGroup.children.chunk(columnsCount, true),
+					};
+				}),
 				chunkedAllBookmarks:   allBookmarks.chunk(columnsCount, true),
 				allTopSites:           allTopSites,
 				chunkedTopSites:       allTopSites.chunk(columnsCount, true),
@@ -91,11 +99,14 @@ Promise.all([
 				columnSize:            Math.round(COLUMN_COUNT / columnsCount),
 
 				locale: i18nObject([
-					'add_bookmarks_to_browser'
+					'add_bookmarks_to_browser',
+					'heading_top_sites',
+					'heading_closed_tabs',
 				])
 			};
 		},
 		template: `<main>
+        <h2 class="section-heading" v-if="allClosedTabs.length > 0">{{ locale.heading_closed_tabs }}</h2>
 				<ul class="bookmark-tree row pb-1"
 				v-if="allClosedTabs.length > 0">
 					<bookmark-column
@@ -104,6 +115,7 @@ Promise.all([
 					:bookmarks="site"></bookmark-column>
 				</ul>
 
+        <h2 class="section-heading" v-if="allTopSites.length > 0">{{ locale.heading_top_sites }}</h2>
 				<ul class="bookmark-tree row pb-1"
 				v-if="allTopSites.length > 0">
 					<bookmark-column
@@ -112,13 +124,15 @@ Promise.all([
 					:bookmarks="site"></bookmark-column>
 				</ul>
 				
-				<ul class="bookmark-tree row pb-1"
-				v-if="allBookmarks.length > 0">
-					<bookmark-column
-					v-for="bookmarks in chunkedAllBookmarks"
-					:key="bookmarks.id"
-					:bookmarks="bookmarks"></bookmark-column>
-				</ul>
+				<template v-for="bookmarkGroup in bookmarksByGroup">
+					<h2 class="section-heading" :key="bookmarkGroup.id" v-if="bookmarkGroup.children.length > 0">{{ bookmarkGroup.title }}</h2>
+					<ul class="bookmark-tree row pb-1" v-if="bookmarkGroup.children.length > 0">
+						<bookmark-column
+						v-for="bookmarks of bookmarkGroup.chunkedChildren"
+						:key="bookmarks.id"
+						:bookmarks="bookmarks"></bookmark-column>
+					</ul>
+        </template>
 				
 				<div class="py-3 pl-1 text-xs-center lead"
 				v-if="allBookmarks.length === 0"
@@ -478,7 +492,7 @@ Promise.all([
 			return {
 				clicksCount:           sync_storage['click_counter'],
 				displayClickCounter:   sync_storage['display_click_counter'],
-				openBookmarksInNewTab: openBookmarksInNewTab
+				openBookmarksInNewTab: openBookmarksInNewTab,
 			};
 		},
 		computed: {
@@ -532,7 +546,6 @@ Promise.all([
 					: false;
 			},
 
-
 			getListClass: function () {
 				return this.isFolder === true
 					? 'collapse'
@@ -579,6 +592,20 @@ Promise.all([
 						? this.clicksCount[bookmarkMd5].roundThousands()
 						: '';
 			},
+			getLabel: function () {
+				if (this.bookmark.title) {
+					return this.bookmark.title;
+				}
+
+				let matches = this.bookmark.url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
+				let domain = matches && matches[1];
+
+				if (domain) {
+					return domain;
+				}
+
+				return '&nbsp;';
+			},
 		},
 		template: `<li>
 				<a tabindex="0"
@@ -593,7 +620,7 @@ Promise.all([
 				:data-id="bookmark.id"
 
 				@mouseup="incClicksCount">
-					{{ bookmark.title || '&nbsp;' }}
+					{{ getLabel() }}
 				</a>
 
 				<ul

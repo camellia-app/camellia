@@ -105,7 +105,12 @@
 	},
 
 
-
+	"heading_top_sites": {
+		"message": "Frequently visited sites"
+	},
+	"heading_closed_tabs": {
+		"message": "Recently closed tabs"
+	},
 
 
 	"option_background_image_label": {

@@ -52,6 +52,14 @@ main {
 	@extend .pr-0;
 }
 
+.section-heading {
+   padding-left: 1rem;
+   padding-top: 1rem;
+   font-size: 0.8em;
+   text-transform: uppercase;
+   opacity: 0.8;
+}
+
 footer {
 	@extend .p-1;
 	@extend .pr-2;

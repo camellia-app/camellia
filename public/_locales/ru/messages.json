@@ -105,7 +105,12 @@
 	},
 
 
-
+	"heading_top_sites": {
+		"message": "Посещаемые сайты"
+	},
+	"heading_closed_tabs": {
+		"message": "Недавно закрытые вкладки"
+	},
 
 
 	"option_background_image_label": {
