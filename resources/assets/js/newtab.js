@@ -534,7 +534,7 @@ Promise.all([
 				}
 
 				return {
-					'background-image': 'url(chrome://favicon/' + this.bookmark.url + ')'
+					'background-image': `url(chrome://favicon/size/16@${window.devicePixelRatio}x/${this.bookmark.url})`
 				};
 			},
 			getDataToggle: function () {
