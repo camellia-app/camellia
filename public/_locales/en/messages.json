@@ -109,7 +109,8 @@
 		"message": "Frequently visited sites"
 	},
 	"heading_closed_tabs": {
-		"message": "Recently closed tabs"
+		"message": "Recently closed tabs",
+		"description": "!!! DEPRECATED !!! Seems like Chrome 78 removed support."
 	},
 
 
@@ -211,16 +212,20 @@
 
 
 	"option_recently_closed_label": {
-		"message": "Last closed tabs"
+		"message": "Last closed tabs",
+		"description": "!!! DEPRECATED !!! Seems like Chrome 78 removed support."
 	},
 	"option_recently_closed_hint": {
-		"message": "Last closed tabs list display."
+		"message": "Last closed tabs list display.",
+		"description": "!!! DEPRECATED !!! Seems like Chrome 78 removed support."
 	},
 	"option_recently_closed_display": {
-		"message": "Show"
+		"message": "Show",
+		"description": "!!! DEPRECATED !!! Seems like Chrome 78 removed support."
 	},
 	"option_recently_closed_hide": {
-		"message": "Hide"
+		"message": "Hide",
+		"description": "!!! DEPRECATED !!! Seems like Chrome 78 removed support."
 	},
 
 	"option_background_brightness_label": {
@@ -279,7 +284,7 @@
 		"message": "Why does this extension sometimes ask for new access rights?"
 	},
 	"help_request_permissions_answer": {
-		"message": "It's needed to implement new functions. Because of how browser extensions are treated it's needed to get access to every function even if you need just a tiny one. For example, if you need access to recently closed tabs, you need access to functions which work with the sessions."
+		"message": "It's needed to implement new functions. Because of how browser extensions are treated it's needed to get access to every function even if you need just a tiny one."
 	},
 
 

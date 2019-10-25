@@ -14,9 +14,8 @@ Promise.all([
 	browser.bookmarks.getTree(),
 	browser.management.getSelf(),
 	browser.topSites.get(),
-	browser.sessions.getRecentlyClosed()
 ])
-.then(([local_storage, sync_storage, browserBookmarks, extensionInfo, topSites, recentlyClosed]) => {
+.then(([local_storage, sync_storage, browserBookmarks, extensionInfo, topSites]) => {
 	let allBookmarks          = browserBookmarks[0]['children'][0]['children'].concat(
 	    browserBookmarks[0]['children'][1]['children']
     );
@@ -26,25 +25,6 @@ Promise.all([
 	let openBookmarksInNewTab = sync_storage['bookmarks_in_new_tab'];
 	let allTopSites           = local_storage['top_sites'] === true ? topSites : [];
 	let backgroundBrightness  = sync_storage['background_brightness'];
-
-	//
-	// Preparing recently closed tabs
-	//
-
-	let allClosedTabs = [];
-
-	if (local_storage['recently_closed'] === true) {
-		recentlyClosed.forEach(closedTab => {
-			if (typeof closedTab['tab'] !== 'undefined'
-			&& typeof closedTab['tab']['title'] !== 'undefined'
-			&& typeof closedTab['tab']['url'] !== 'undefined') {
-				allClosedTabs.push({
-					title: closedTab['tab']['title'],
-					url:   closedTab['tab']['url']
-				});
-			}
-		});
-	}
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,28 +73,16 @@ Promise.all([
 				chunkedAllBookmarks:   allBookmarks.chunk(columnsCount, true),
 				allTopSites:           allTopSites,
 				chunkedTopSites:       allTopSites.chunk(columnsCount, true),
-				allClosedTabs:         allClosedTabs,
-				chunkedClosedTabs:     allClosedTabs.chunk(columnsCount, true),
 				openBookmarksInNewTab: openBookmarksInNewTab,
 				columnSize:            Math.round(COLUMN_COUNT / columnsCount),
 
 				locale: i18nObject([
 					'add_bookmarks_to_browser',
 					'heading_top_sites',
-					'heading_closed_tabs',
 				])
 			};
 		},
 		template: `<main>
-        <h2 class="section-heading" v-if="allClosedTabs.length > 0">{{ locale.heading_closed_tabs }}</h2>
-				<ul class="bookmark-tree row pb-1"
-				v-if="allClosedTabs.length > 0">
-					<bookmark-column
-					v-for="site in chunkedClosedTabs"
-					:key="site.id"
-					:bookmarks="site"></bookmark-column>
-				</ul>
-
         <h2 class="section-heading" v-if="allTopSites.length > 0">{{ locale.heading_top_sites }}</h2>
 				<ul class="bookmark-tree row pb-1"
 				v-if="allTopSites.length > 0">

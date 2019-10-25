@@ -109,7 +109,8 @@
 		"message": "Посещаемые сайты"
 	},
 	"heading_closed_tabs": {
-		"message": "Недавно закрытые вкладки"
+		"message": "Недавно закрытые вкладки",
+		"description": "!!! DEPRECATED !!! Seems like Chrome 78 removed support."
 	},
 
 
@@ -211,16 +212,20 @@
 
 
 	"option_recently_closed_label": {
-		"message": "Последние закрытые вкладки"
+		"message": "Последние закрытые вкладки",
+		"description": "!!! DEPRECATED !!! Seems like Chrome 78 removed support."
 	},
 	"option_recently_closed_hint": {
-		"message": "Отображение списка последних закрытых вкладок."
+		"message": "Отображение списка последних закрытых вкладок.",
+		"description": "!!! DEPRECATED !!! Seems like Chrome 78 removed support."
 	},
 	"option_recently_closed_display": {
-		"message": "Отображать"
+		"message": "Отображать",
+		"description": "!!! DEPRECATED !!! Seems like Chrome 78 removed support."
 	},
 	"option_recently_closed_hide": {
-		"message": "Скрывать"
+		"message": "Скрывать",
+		"description": "!!! DEPRECATED !!! Seems like Chrome 78 removed support."
 	},
 
 	"option_background_brightness_label": {
@@ -279,7 +284,7 @@
 		"message": "Почему расширение иногда запрашивает новые права доступа?"
 	},
 	"help_request_permissions_answer": {
-		"message": "Это необходимо для введения новых функций. Из-за реализации браузерных расширений, чтобы получить доступ к одной единственной некритичной функции, приходится запрашивать доступ сразу ко всему функционалу, который может даже не пригодиться. Например, чтобы получить доступ к последним закрытым вкладкам, приходится запрашивать доступ к функциям, которые работают с сессиями."
+		"message": "Это необходимо для введения новых функций. Из-за реализации браузерных расширений, чтобы получить доступ к одной единственной некритичной функции, приходится запрашивать доступ сразу ко всему функционалу, который может даже не пригодиться."
 	},
 
 

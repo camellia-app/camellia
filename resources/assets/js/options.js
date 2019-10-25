@@ -27,7 +27,6 @@ Promise.all([
 				font_size:             local_storage['font_size'],
 				bookmarks_in_new_tab:  Number(sync_storage['bookmarks_in_new_tab']),
 				top_sites:             Number(local_storage['top_sites']),
-				recently_closed:       Number(local_storage['recently_closed']),
         background_brightness: sync_storage['background_brightness'],
 
 				locale: i18nObject([
@@ -68,11 +67,6 @@ Promise.all([
 					'option_top_sites_hide',
 					'option_top_sites_hint',
 
-					'option_recently_closed_label',
-					'option_recently_closed_display',
-					'option_recently_closed_hide',
-					'option_recently_closed_hint',
-
                     'option_background_brightness_label',
                     'option_background_brightness_hint',
 				])
@@ -95,7 +89,6 @@ Promise.all([
 				local_storage['font_size']             = parseInt(this.font_size);
 				sync_storage['bookmarks_in_new_tab']   = this.bookmarks_in_new_tab == 1;
 				local_storage['top_sites']             = this.top_sites == 1;
-				local_storage['recently_closed']       = this.recently_closed == 1;
 				sync_storage['background_brightness']  = parseFloat(this.background_brightness);
 
                 browser.storage.local.set(local_storage);
@@ -217,22 +210,6 @@ Promise.all([
 							</option>
 						</select>
 						<small>{{ locale.option_top_sites_hint }}</small>
-
-						<hr>
-
-						<label class="label" for="recently_closed">
-							{{ locale.option_recently_closed_label }}
-						</label>
-						<select id="recently_closed" required
-						v-model="recently_closed">
-							<option value="1">
-								{{ locale.option_recently_closed_display }}
-							</option>
-							<option value="0">
-								{{ locale.option_recently_closed_hide }}	
-							</option>
-						</select>
-						<small>{{ locale.option_recently_closed_hint }}</small>
 
 						<hr>
 						

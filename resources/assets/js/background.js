@@ -253,12 +253,6 @@ browser.runtime.onInstalled.addListener(details => {
 			local_storage['top_sites'] = false;
 		}
 
-		// Display recently closed tabs
-		if (typeof local_storage['recently_closed'] === 'undefined'
-		|| typeof local_storage['recently_closed'] !== 'boolean') {
-			local_storage['recently_closed'] = false;
-		}
-
 		browser.storage.sync.set(sync_storage);
 		browser.storage.local.set(local_storage);
 	})
