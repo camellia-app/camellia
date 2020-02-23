@@ -7,6 +7,7 @@
     "lib": ["dom", "es2015"],
     "jsxFactory": "h",
     "noEmitHelpers": true,
-    "importHelpers": true
+    "importHelpers": true,
+    "typeRoots": ["node_modules/@types", "node_modules/web-ext-types"]
   }
 }
