@@ -5,7 +5,7 @@ if (process.env.NODE_ENV==='development') {
 import BookmarkTreeNode = browser.bookmarks.BookmarkTreeNode;
 import {render, h, Component} from 'preact';
 import { getTree } from './BrowserAPI/Bookmark';
-import BookmarkCategory from './components/BookmarkCategory';
+import BookmarkCategory from './components/BookmarkCategory/BookmarkCategory';
 
 export interface AppProps {
     rootBookmarkTree: Promise<BookmarkTreeNode[]>;

@@ -1,0 +1,6 @@
+.bookmark {
+    all: unset;
+    display: inline-block;
+    background-color: #EEEEEE;
+    border-radius: 16px;
+}

@@ -1,5 +1,5 @@
 import {Component, h, Fragment} from 'preact';
-import Bookmark from './Bookmark';
+import Bookmark from './../Bookmark/Bookmark';
 import BookmarkTreeNode = browser.bookmarks.BookmarkTreeNode;
 
 export interface BookmarkCategoryProps {
