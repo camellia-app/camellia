@@ -16,6 +16,7 @@
     "start": "webpack-dev-server --mode=development --progress --open"
   },
   "devDependencies": {
+    "@teamsupercell/typings-for-css-modules-loader": "2.1.0",
     "webpack-dev-server": "3.10.3"
   },
   "dependencies": {
@@ -27,7 +28,6 @@
     "ts-loader": "6.2.1",
     "tslib": "1.11.0",
     "typescript": "3.8.2",
-    "typings-for-css-modules-loader": "1.7.0",
     "web-ext-types": "3.2.1",
     "webpack": "4.41.6",
     "webpack-cli": "3.3.11"

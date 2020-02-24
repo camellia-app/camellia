@@ -33,12 +33,12 @@ module.exports = (env, argv) => {
           include: path.join(__dirname, 'src', 'components'),
           use: [
             'style-loader',
+            '@teamsupercell/typings-for-css-modules-loader',
             {
-              loader: 'typings-for-css-modules-loader',
+              loader: 'css-loader',
               options: {
-                camelCase: true,
+                localsConvention: 'camelCase',
                 modules: true,
-                namedExport: true,
               }
             }
           ]
@@ -51,6 +51,9 @@ module.exports = (env, argv) => {
       ]
     },
     plugins: [
+      new webpack.WatchIgnorePlugin([
+        /css\.d\.ts$/
+      ]),
       new HtmlWebpackPlugin({
         template: './index.html',
         hash: true,
