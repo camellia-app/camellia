@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "webpack --mode=production",
-    "start": "webpack-dev-server --mode=development --progress --config webpack.config.js"
+    "start": "webpack-dev-server --mode=development --progress --open"
   },
   "devDependencies": {
     "webpack-dev-server": "3.10.3"

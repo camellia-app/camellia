@@ -49,8 +49,10 @@ module.exports = (env, argv) => {
   if (argv.mode === 'development') {
     config.devServer = {
       contentBase: path.join(__dirname, 'dist'),
-        compress: true,
-        port: 8080
+      compress: true,
+      hot: true,
+      historyApiFallback: true,
+      port: process.env.PORT || 8080
     };
   }
 
