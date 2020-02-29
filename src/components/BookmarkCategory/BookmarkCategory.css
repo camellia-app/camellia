@@ -3,9 +3,9 @@
 .bookmark-list {
   all: unset;
   display: grid;
-  justify-items: start;
-  grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
   grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
+  justify-items: start;
   margin-bottom: 1rem;
   margin-left: 2rem;
   margin-right: 2rem;
@@ -13,15 +13,14 @@
 
 .bookmark-category-title {
   all: unset;
+  color: var(--bookmark-category-title-text-color);
   display: block;
   font-family: var(--font-family-sans-serif);
-  color: var(--bookmark-category-title-text-color);
-  text-transform: uppercase;
+  font-size: 0.875em;
   font-weight: lighter;
-  margin-top: 2rem;
   margin-bottom: 1rem;
   margin-left: 2rem;
   margin-right: 2rem;
-
-  font-size: 0.875em;
+  margin-top: 2rem;
+  text-transform: uppercase;
 }

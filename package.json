@@ -17,6 +17,9 @@
   },
   "devDependencies": {
     "@teamsupercell/typings-for-css-modules-loader": "2.1.0",
+    "stylelint": "13.2.0",
+    "stylelint-config-standard": "20.0.0",
+    "stylelint-order": "4.0.0",
     "webpack-dev-server": "3.10.3"
   },
   "dependencies": {
