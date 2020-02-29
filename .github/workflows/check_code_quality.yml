@@ -21,3 +21,6 @@ jobs:
 
     - name: Lint with stylelint
       run: npx stylelint src/**/*.css
+
+    - name: Lint with ESLint
+      run: npx eslint . --ext .js,.jsx,.ts,.tsx

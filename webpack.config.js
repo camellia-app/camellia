@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const { HotModuleReplacementPlugin } = webpack;
 const port = 3000;
-const context = __dirname + '/src';
+const context = `${__dirname}/src`;
 
 module.exports = (env, argv) => {
   const config = {
@@ -15,15 +15,15 @@ module.exports = (env, argv) => {
       app: [
         `webpack-dev-server/client?http://localhost:${port}`,
         'webpack/hot/only-dev-server',
-        './index'
-      ]
+        './index',
+      ],
     },
     output: {
       filename: '[name].js',
-      path: path.resolve(__dirname, 'dist')
+      path: path.resolve(__dirname, 'dist'),
     },
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', 'jsx']
+      extensions: ['.ts', '.tsx', '.js', 'jsx'],
     },
     devtool: argv.mode === 'production' ? 'source-map' : 'cheap-eval-source-map',
     module: {
@@ -39,29 +39,29 @@ module.exports = (env, argv) => {
               options: {
                 localsConvention: 'camelCaseOnly',
                 modules: true,
-              }
-            }
-          ]
+              },
+            },
+          ],
         },
         {
           test: /\.tsx?$/,
           loader: 'ts-loader',
-          exclude: /node_modules/
-        }
-      ]
+          exclude: /node_modules/,
+        },
+      ],
     },
     plugins: [
       new webpack.WatchIgnorePlugin([
-        /css\.d\.ts$/
+        /css\.d\.ts$/,
       ]),
       new HtmlWebpackPlugin({
         template: './index.html',
         hash: true,
         filename: 'index.html',
-        inject: 'body'
+        inject: 'body',
       }),
-      new HotModuleReplacementPlugin()
-    ]
+      new HotModuleReplacementPlugin(),
+    ],
   };
 
   if (argv.mode === 'development') {
@@ -70,7 +70,7 @@ module.exports = (env, argv) => {
       compress: true,
       hot: true,
       historyApiFallback: true,
-      port: process.env.PORT || 8080
+      port: process.env.PORT || 8080,
     };
   }
 
