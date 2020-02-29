@@ -1,6 +1,46 @@
+@import "../variables.css";
+
+.bookmark-item {
+  all: unset;
+  display: inline-block;
+}
+
 .bookmark {
-    all: unset;
-    display: inline-block;
-    background-color: #EEEEEE;
-    border-radius: 16px;
+  all: unset;
+  display: inline-block;
+  font-size: 0.875em;
+  background-position: 8px;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-color: var(--bookmark-background-color);
+  border-radius: 1rem;
+  color: var(--bookmark-text-color);
+  padding-left: 32px;
+  padding-right: 12px;
+  font-family: var(--font-family-sans-serif);
+  cursor: pointer;
+  transition: background-color 0.5s;
+  line-height: 2rem;
+  text-shadow: rgba(33, 33, 33, 1) 0 0 3px;
+  /*backdrop-filter: brightness(40%);*/
+}
+
+.bookmark:hover {
+  background-color: var(--bookmark-background-color-hover);
+}
+
+.bookmark:focus {
+  border-width: 2px;
+  border-style: solid;
+  border-color: highlight;
+  margin: -2px;
+  text-decoration: underline;
+}
+
+.bookmark-link {
+  background-image: var(--bookmark-icon);
+}
+
+.bookmark-folder {
+  background-image: url(https://fonts.gstatic.com/s/i/materialicons/folder/v4/24px.svg);
 }

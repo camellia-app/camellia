@@ -37,7 +37,7 @@ module.exports = (env, argv) => {
             {
               loader: 'css-loader',
               options: {
-                localsConvention: 'camelCase',
+                localsConvention: 'camelCaseOnly',
                 modules: true,
               }
             }
