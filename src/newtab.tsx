@@ -1,10 +1,7 @@
-import { render, h, Component } from 'preact';
+import { Component, h, render } from 'preact';
 import { getTree } from './BrowserAPI/Bookmark';
 import BookmarkCategory from './components/BookmarkCategory/BookmarkCategory';
-
-if (process.env.NODE_ENV === 'development') {
-  require('preact/debug');
-}
+import IndeterminateIndicator from './components/IndeterminateIndicator/IndeterminateIndicator';
 
 import BookmarkTreeNode = browser.bookmarks.BookmarkTreeNode;
 
@@ -20,14 +17,15 @@ export interface AppState {
 export default class App extends Component<AppProps, AppState> {
   constructor() {
     super();
+
     this.state = {
-      loaded: false,
       categories: [],
+      loaded: false,
     };
   }
 
   async componentDidMount() {
-    await this.props.rootBookmarkTree.then((rootBookmarkTree: BookmarkTreeNode[]) => {
+    this.props.rootBookmarkTree.then((rootBookmarkTree: BookmarkTreeNode[]) => {
       this.setState({
         categories: rootBookmarkTree[0].children,
         loaded: true,
@@ -35,14 +33,15 @@ export default class App extends Component<AppProps, AppState> {
     });
   }
 
-  render(props, state) {
+  render(props: AppProps, state: AppState) {
     if (state.loaded) {
       return state.categories.map((item) => (
-        <BookmarkCategory bookmarks={item.children} categoryTitle={item.title} />
+        <BookmarkCategory key={item.id} bookmarks={item.children} categoryTitle={item.title} />
       ));
     }
+
     return (
-      <div>loading...</div>
+      <IndeterminateIndicator />
     );
   }
 }

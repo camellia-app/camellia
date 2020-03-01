@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "Camellia 2.0",
+  "version": "2.0.0",
+  "author": "Petr Flaks",
+  "homepage_url": "https://github.com/neluzhin/camellia",
+  "description": "Camellia 2.0. Unstable dev build.",
+  "short_name": "Camellia",
+  "minimum_chrome_version": "80",
+
+  "permissions": [
+    "bookmarks",
+    "storage",
+    "chrome://favicon/"
+  ],
+
+  "icons": {
+    "128": "logo.png"
+  },
+
+  "chrome_url_overrides" : {
+    "newtab": "/newtab.html"
+  },
+
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  }
+}

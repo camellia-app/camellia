@@ -1,19 +1,25 @@
 module.exports = {
-  root: true,
-  parser: '@typescript-eslint/parser',
-  plugins: [
-    '@typescript-eslint',
-  ],
-  extends: [
-    'airbnb-typescript',
-  ],
-  settings: {
-    react: { pragma: 'h' },
-  },
   env: {
     browser: true,
   },
+  extends: [
+    'airbnb-typescript',
+  ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
+  },
+  plugins: [
+    '@typescript-eslint',
+  ],
+  root: true,
+  rules: {
+    "newline-before-return": ["error"],
+    "sort-keys": ["error", "asc", {"caseSensitive": true, "natural": false, "minKeys": 2}]
+  },
+  settings: {
+    react: {
+      pragma: 'h',
+    },
   },
 };

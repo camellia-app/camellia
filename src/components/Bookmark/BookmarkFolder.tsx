@@ -10,6 +10,8 @@ interface BookmarkProps {
 
 export default (props: BookmarkProps) => (
   <li className={s.bookmarkItem}>
-    <button className={classnames(s.bookmark, s.bookmarkFolder)}>{props.bookmark.title}</button>
+    <button className={classnames(s.bookmark, s.bookmarkFolder)} title={props.bookmark.title} type="button">
+      {props.bookmark.title}
+    </button>
   </li>
 );

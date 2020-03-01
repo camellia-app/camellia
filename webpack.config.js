@@ -1,36 +1,27 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtensionReloader = require('webpack-extension-reloader');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
-const { HotModuleReplacementPlugin } = webpack;
-const port = 3000;
-const context = `${__dirname}/src`;
-
-module.exports = (env, argv) => {
+module.exports = () => {
   const config = {
-    name: 'client',
-    target: 'web',
-    context,
+    context: `${__dirname}/src`,
+    devtool: 'source-map',
     entry: {
-      app: [
-        `webpack-dev-server/client?http://localhost:${port}`,
-        'webpack/hot/only-dev-server',
-        './index',
+      background: [
+        './background.js',
+      ],
+      newtab: [
+        './newtab',
       ],
     },
-    output: {
-      filename: '[name].js',
-      path: path.resolve(__dirname, 'dist'),
-    },
-    resolve: {
-      extensions: ['.ts', '.tsx', '.js', 'jsx'],
-    },
-    devtool: argv.mode === 'production' ? 'source-map' : 'cheap-eval-source-map',
     module: {
       rules: [
         {
-          test: /\.css$/,
           include: path.join(__dirname, 'src', 'components'),
+          test: /\.css$/,
           use: [
             'style-loader',
             '@teamsupercell/typings-for-css-modules-loader',
@@ -44,35 +35,57 @@ module.exports = (env, argv) => {
           ],
         },
         {
-          test: /\.tsx?$/,
-          loader: 'ts-loader',
+          test: /\.svg(\?.*)?$/, // match img.svg and img.svg?param=value
+          use: [
+            'svg-url-loader', // or file-loader or svg-url-loader
+            'svg-transform-loader',
+          ],
+        },
+        {
           exclude: /node_modules/,
+          loader: 'ts-loader',
+          test: /\.tsx?$/,
         },
       ],
     },
+    name: 'client',
+    output: {
+      filename: '[name].js',
+      path: path.resolve(__dirname, 'dist'),
+    },
     plugins: [
+      new Dotenv(),
+      new ExtensionReloader({
+        entries: { // The entries used for the content/background scripts or extension pages
+          background: 'background',
+          contentScript: null,
+          extensionPage: null,
+          newtab: 'newtab',
+        },
+        manifest: path.join(__dirname, 'src', 'manifest.json'),
+        port: 9090, // Which port use to create the server
+        reloadPage: true, // Force the reload of the page also
+      }),
+      new CopyWebpackPlugin([
+        { from: './manifest.json' },
+        { from: './logo.png' },
+      ]),
       new webpack.WatchIgnorePlugin([
         /css\.d\.ts$/,
       ]),
       new HtmlWebpackPlugin({
-        template: './index.html',
+        filename: 'newtab.html',
         hash: true,
-        filename: 'index.html',
         inject: 'body',
+        template: './newtab.html',
       }),
-      new HotModuleReplacementPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
     ],
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js', 'jsx'],
+    },
+    target: 'web',
   };
-
-  if (argv.mode === 'development') {
-    config.devServer = {
-      contentBase: path.join(__dirname, 'dist'),
-      compress: true,
-      hot: true,
-      historyApiFallback: true,
-      port: process.env.PORT || 8080,
-    };
-  }
 
   return config;
 };

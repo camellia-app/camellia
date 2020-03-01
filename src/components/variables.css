@@ -1,7 +1,9 @@
 :root {
-  --font-family-sans-serif: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* stylelint-disable-line value-keyword-case */
-  --bookmark-category-title-text-color: #eee;
   --bookmark-background-color: rgba(238, 238, 238, 0.1);
   --bookmark-background-color-hover: rgba(238, 238, 238, 0.2);
+  --bookmark-category-title-text-color: #eee;
+  --bookmark-column-min-width: 235px;
+  --bookmark-icon: none; /* this variable always will be overwritten by inline CSS */
   --bookmark-text-color: #eee;
+  --font-family-sans-serif: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }

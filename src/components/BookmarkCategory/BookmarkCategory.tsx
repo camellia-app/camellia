@@ -1,7 +1,7 @@
-import { Component, h, Fragment } from 'preact';
-import Link from '../Bookmark/Link';
+import { h } from 'preact';
+import BookmarkLink from '../Bookmark/BookmarkLink';
 import * as s from './BookmarkCategory.css';
-import Folder from '../Bookmark/Folder';
+import BookmarkFolder from '../Bookmark/BookmarkFolder';
 
 import BookmarkTreeNode = browser.bookmarks.BookmarkTreeNode;
 
@@ -10,24 +10,21 @@ export interface BookmarkCategoryProps {
   bookmarks: BookmarkTreeNode[];
 }
 
-export default class BookmarkCategory extends Component<BookmarkCategoryProps> {
-  render(props: BookmarkCategoryProps) {
-    return (
-      <section>
-        <h2 className={s.bookmarkCategoryTitle}>{props.categoryTitle}</h2>
-        <ul className={s.bookmarkList}>
-          {props.bookmarks.map((item) => {
-            if (item.url !== undefined) {
-              return (
-                <Link bookmark={item} />
-              );
-            }
-            return (
-              <Folder bookmark={item} />
-            );
-          })}
-        </ul>
-      </section>
-    );
-  }
-}
+export default (props: BookmarkCategoryProps) => (
+  <section>
+    <h2 className={s.bookmarkCategoryTitle}>{props.categoryTitle}</h2>
+    <ul className={s.bookmarkList}>
+      {props.bookmarks.map((item) => {
+        if (item.url !== undefined) {
+          return (
+            <BookmarkLink key={item.id} bookmark={item} />
+          );
+        }
+
+        return (
+          <BookmarkFolder key={item.id} bookmark={item} />
+        );
+      })}
+    </ul>
+  </section>
+);
