@@ -15,6 +15,7 @@ module.exports = {
   root: true,
   rules: {
     "newline-before-return": ["error"],
+    "react/destructuring-assignment": 0,
     "sort-keys": ["error", "asc", {"caseSensitive": true, "natural": false, "minKeys": 2}]
   },
   settings: {
