@@ -1,0 +1,8 @@
+.bookmark-browser {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.bookmark-browser.loading {
+  opacity: 0;
+}
