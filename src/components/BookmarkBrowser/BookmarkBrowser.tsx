@@ -26,8 +26,10 @@ export default class BookmarkBrowser extends Component<BookmarkBrowserProps, Boo
 
   async componentDidMount() {
     this.props.bookmarkCategories.then((rootBookmarkTree: BookmarkTreeNode[]) => {
+      const categories = rootBookmarkTree[0].children;
+
       this.setState({
-        categories: rootBookmarkTree[0].children,
+        categories: categories.filter((category: BookmarkTreeNode) => category.children.length > 0),
         loaded: true,
       });
     });
@@ -37,6 +39,16 @@ export default class BookmarkBrowser extends Component<BookmarkBrowserProps, Boo
     const classes = state.loaded === false
       ? classnames(s.bookmarkBrowser, s.loading)
       : s.bookmarkBrowser;
+
+    if (state.categories.length === 0) {
+      return (
+        <main className={classes}>
+          <p className={s.noBookmarksMessage}>
+            Add your first bookmarks to get started with Camellia
+          </p>
+        </main>
+      );
+    }
 
     return (
       <main className={classes}>

@@ -2,6 +2,7 @@ declare namespace BookmarkBrowserCssModule {
   export interface IBookmarkBrowserCss {
     bookmarkBrowser: string;
     loading: string;
+    noBookmarksMessage: string;
   }
 }
 

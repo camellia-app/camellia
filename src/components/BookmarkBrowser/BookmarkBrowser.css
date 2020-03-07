@@ -1,8 +1,25 @@
+@import "../variables.css";
+
 .bookmark-browser {
+  all: unset;
+  display: block;
   opacity: 1;
   transition: opacity 1s;
 }
 
 .bookmark-browser.loading {
   opacity: 0;
+}
+
+.no-bookmarks-message {
+  all: unset;
+  color: var(--bookmark-text-color);
+  display: block;
+  font-family: var(--font-family-sans-serif);
+  font-size: 1.5em;
+  position: absolute;
+  text-align: center;
+  text-shadow: rgba(33, 33, 33, 1) 0 0 3px;
+  top: 50%;
+  width: 100%;
 }
