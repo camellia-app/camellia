@@ -10,12 +10,8 @@ module.exports = () => {
     context: `${__dirname}/src`,
     devtool: 'source-map',
     entry: {
-      background: [
-        './background.js',
-      ],
-      newtab: [
-        './newtab',
-      ],
+      background: './background.js',
+      newtab: './newtab',
     },
     module: {
       rules: [
@@ -58,13 +54,9 @@ module.exports = () => {
       new ExtensionReloader({
         entries: { // The entries used for the content/background scripts or extension pages
           background: 'background',
-          contentScript: null,
-          extensionPage: null,
-          newtab: 'newtab',
+          contentScript: 'newtab',
         },
-        manifest: path.join(__dirname, 'src', 'manifest.json'),
-        port: 9090, // Which port use to create the server
-        reloadPage: true, // Force the reload of the page also
+        reloadPage: false, // Force the reload of the page also
       }),
       new CopyWebpackPlugin([
         { from: './manifest.json' },
@@ -74,6 +66,7 @@ module.exports = () => {
         /css\.d\.ts$/,
       ]),
       new HtmlWebpackPlugin({
+        chunks: ['newtab'],
         filename: 'newtab.html',
         hash: true,
         inject: 'body',
