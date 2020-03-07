@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "webpack --mode=production",
-    "start": "NODE_ENV=development webpack --config webpack.config.js --mode=development --watch",
+    "start": "webpack --config webpack.config.js --mode=development --watch",
     "fix-cs": "npx stylelint \"**/*.css\" --fix && npx eslint . --ext .js,.jsx,.ts,.tsx --fix"
   },
   "devDependencies": {
@@ -29,9 +29,7 @@
     "eslint-plugin-react-hooks": "2.5.0",
     "stylelint": "13.2.0",
     "stylelint-config-standard": "20.0.0",
-    "stylelint-order": "4.0.0",
-    "webpack-dev-server": "3.10.3",
-    "webpack-extension-reloader": "1.1.4"
+    "stylelint-order": "4.0.0"
   },
   "dependencies": {
     "@types/chrome": "0.0.98",

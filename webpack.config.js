@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtensionReloader = require('webpack-extension-reloader');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
@@ -51,13 +50,6 @@ module.exports = () => {
     },
     plugins: [
       new Dotenv(),
-      new ExtensionReloader({
-        entries: { // The entries used for the content/background scripts or extension pages
-          background: 'background',
-          contentScript: 'newtab',
-        },
-        reloadPage: false, // Force the reload of the page also
-      }),
       new CopyWebpackPlugin([
         { from: './manifest.json' },
         { from: './logo.png' },
@@ -78,6 +70,12 @@ module.exports = () => {
       extensions: ['.ts', '.tsx', '.js', 'jsx'],
     },
     target: 'web',
+    watch: true,
+    watchOptions: {
+      aggregateTimeout: 300,
+      ignored: /node_modules/,
+      poll: 1000,
+    },
   };
 
   return config;
