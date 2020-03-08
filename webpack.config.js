@@ -3,6 +3,9 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const LiveReloadPlugin = require('webpack-livereload-plugin');
+const package = require('./package.json');
 
 module.exports = () => {
   const config = {
@@ -49,11 +52,28 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
+      new CleanWebpackPlugin(),
       new Dotenv(),
+      new LiveReloadPlugin(),
       new CopyWebpackPlugin([
-        { from: './manifest.json' },
+        {
+          from: './manifest.json',
+          transform(content) {
+            const manifest = JSON.parse(content.toString());
+
+            manifest.author = package.author.name;
+            manifest.homepage_url = package.homepage;
+            manifest.version = package.version;
+            manifest.version_name = `${package.version} (DP)`;
+            manifest.content_security_policy = `${manifest.content_security_policy} script-src-elem 'self' http://localhost:35729;`;
+
+            return JSON.stringify(manifest, null, 2);
+          },
+        },
         { from: './logo.png' },
-      ]),
+      ], {
+        copyUnmodified: true,
+      }),
       new webpack.WatchIgnorePlugin([
         /css\.d\.ts$/,
       ]),
@@ -62,15 +82,17 @@ module.exports = () => {
         filename: 'newtab.html',
         hash: true,
         inject: 'body',
-        template: './newtab.html',
+        liveReload: {
+          enabled: true,
+          scriptUrl: 'http://localhost:35729/livereload.js',
+        },
+        template: './newtab.ejs',
       }),
-      new webpack.HotModuleReplacementPlugin(),
     ],
     resolve: {
       extensions: ['.ts', '.tsx', '.js', 'jsx'],
     },
     target: 'web',
-    watch: true,
     watchOptions: {
       aggregateTimeout: 300,
       ignored: /node_modules/,

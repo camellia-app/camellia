@@ -14,6 +14,10 @@
       background-position-x: center;
     }
   </style>
+
+  <% if (htmlWebpackPlugin.options.liveReload.enabled === true) { %>
+  <script src="<%= htmlWebpackPlugin.options.liveReload.scriptUrl %>"></script>
+  <% } %>
 </head>
 <body>
   <div id="root"></div>
