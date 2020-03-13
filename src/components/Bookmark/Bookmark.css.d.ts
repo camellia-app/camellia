@@ -2,8 +2,9 @@ declare namespace BookmarkCssModule {
   export interface IBookmarkCss {
     bookmark: string;
     bookmarkFolder: string;
+    bookmarkIcon: string;
     bookmarkItem: string;
-    bookmarkLink: string;
+    bookmarkLabel: string;
   }
 }
 

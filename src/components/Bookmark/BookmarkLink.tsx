@@ -1,5 +1,4 @@
 import { h } from 'preact';
-import * as classnames from 'classnames';
 import * as s from './Bookmark.css';
 import { getFaviconUrl } from '../../BrowserAPI/Bookmark';
 
@@ -11,8 +10,9 @@ interface BookmarkProps {
 
 export default (props: BookmarkProps) => (
   <li className={s.bookmarkItem}>
-    <a className={classnames(s.bookmark, s.bookmarkLink)} title={props.bookmark.title} href={props.bookmark.url} rel="noopener" target="_self" style={`--bookmark-icon: url(${getFaviconUrl(props.bookmark.url)})`}>
-      {props.bookmark.title}
+    <a className={s.bookmark} title={props.bookmark.title} href={props.bookmark.url} rel="noopener" target="_self">
+      <img className={s.bookmarkIcon} src={getFaviconUrl(props.bookmark.url)} alt="Favicon" height="16" width="16" />
+      <span className={s.bookmarkLabel}>{props.bookmark.title}</span>
     </a>
   </li>
 );
