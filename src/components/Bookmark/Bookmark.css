@@ -24,10 +24,7 @@
 }
 
 .bookmark:focus {
-  border-color: highlight;
-  border-style: solid;
-  border-width: 2px;
-  margin: -2px;
+  box-shadow: 0 0 0 var(--outline-width) var(--outline-color);
   text-decoration: underline;
 }
 
