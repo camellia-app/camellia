@@ -55,5 +55,6 @@
   flex-shrink: 0;
   height: 16px;
   margin: 8px;
+  pointer-events: none;
   width: 16px;
 }
