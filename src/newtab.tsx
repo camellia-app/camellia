@@ -1,24 +1,23 @@
 import {
   Component, Fragment, h, render,
 } from 'preact';
-import { getTree } from './BrowserAPI/Bookmark';
+import { getTree } from './bookmarks/BookmarkManager';
 import BookmarkBrowser from './components/BookmarkBrowser/BookmarkBrowser';
 import BackgroundImage from './components/BackgroundMedia/BackgroundImage';
-
-import BookmarkTreeNode = browser.bookmarks.BookmarkTreeNode;
+import BookmarkRootCategory from './bookmarks/BookmarkRootCategory';
 
 export interface AppProps {
-  rootBookmarkTree: Promise<BookmarkTreeNode[]>;
+  bookmarkCategories: Promise<BookmarkRootCategory[]>;
 }
 
 export interface AppState {
 }
 
 export default class App extends Component<AppProps, AppState> {
-  render() {
+  render(props: AppProps) {
     return (
       <Fragment>
-        <BookmarkBrowser bookmarkCategories={getTree()} />
+        <BookmarkBrowser bookmarkCategories={props.bookmarkCategories} />
         <BackgroundImage url="https://source.unsplash.com/1920x1080/?dark" />
       </Fragment>
     );
@@ -26,6 +25,6 @@ export default class App extends Component<AppProps, AppState> {
 }
 
 render(
-  <App rootBookmarkTree={getTree()} />,
+  <App bookmarkCategories={getTree()} />,
   document.querySelector('#root'),
 );

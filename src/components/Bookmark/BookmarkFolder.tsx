@@ -1,11 +1,10 @@
 import { h } from 'preact';
 import * as classnames from 'classnames';
 import * as s from './Bookmark.css';
-
-import BookmarkTreeNode = browser.bookmarks.BookmarkTreeNode;
+import Folder from '../../bookmarks/Folder';
 
 interface BookmarkProps {
-  bookmark: BookmarkTreeNode;
+  bookmark: Folder;
 }
 
 export default (props: BookmarkProps) => (

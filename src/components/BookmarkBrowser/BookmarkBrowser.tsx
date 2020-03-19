@@ -2,16 +2,15 @@ import { Component, h } from 'preact';
 import * as classnames from 'classnames';
 import * as s from './BookmarkBrowser.css';
 import BookmarkCategory from '../BookmarkCategory/BookmarkCategory';
-
-import BookmarkTreeNode = browser.bookmarks.BookmarkTreeNode;
+import BookmarkRootCategory from '../../bookmarks/BookmarkRootCategory';
 
 export interface BookmarkBrowserProps {
-  bookmarkCategories: Promise<BookmarkTreeNode[]>;
+  bookmarkCategories: Promise<BookmarkRootCategory[]>;
 }
 
 export interface BookmarkBrowserState {
   loaded: boolean;
-  categories: BookmarkTreeNode[];
+  categories: BookmarkRootCategory[];
 }
 
 export default class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBrowserState> {
@@ -25,11 +24,9 @@ export default class BookmarkBrowser extends Component<BookmarkBrowserProps, Boo
   }
 
   async componentDidMount() {
-    this.props.bookmarkCategories.then((rootBookmarkTree: BookmarkTreeNode[]) => {
-      const categories = rootBookmarkTree[0].children;
-
+    this.props.bookmarkCategories.then((categories: BookmarkRootCategory[]) => {
       this.setState({
-        categories: categories.filter((category: BookmarkTreeNode) => category.children.length > 0),
+        categories: categories.filter((category: BookmarkRootCategory) => category.children.length > 0),
         loaded: true,
       });
     });
@@ -53,7 +50,7 @@ export default class BookmarkBrowser extends Component<BookmarkBrowserProps, Boo
     return (
       <main className={classes}>
         {state.categories.map((item) => (
-          <BookmarkCategory key={item.id} bookmarks={item.children} categoryTitle={item.title} />
+          <BookmarkCategory key={item.browserId} bookmarks={item.children} categoryTitle={item.title} />
         ))}
       </main>
     );
