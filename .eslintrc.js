@@ -14,7 +14,7 @@ module.exports = {
   ],
   root: true,
   rules: {
-    "max-len": ["error", { "code": 120 }],
+    "max-len": 0,
     "newline-before-return": ["error"],
     "react/destructuring-assignment": 0,
     "sort-keys": ["error", "asc", {"caseSensitive": true, "natural": false, "minKeys": 2}]

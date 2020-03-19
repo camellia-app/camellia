@@ -1,33 +1,38 @@
+interface FaviconByDpi {
+  dpi: number;
+
+  url: string;
+}
+
 export default class Favicon {
-  public readonly x1: string;
-
-  public readonly x2: string;
-
-  public readonly x3: string;
-
-  public readonly x4: string;
-
   private static SIZE = 16;
 
-  constructor(
-    x1: string,
-    x2: string,
-    x3: string,
-    x4: string,
-  ) {
-    this.x1 = x1;
-    this.x2 = x2;
-    this.x3 = x3;
-    this.x4 = x4;
+  private static SUPPORTED_DPI = [1, 1.5, 2, 2.5, 3];
+
+  private readonly favicons: FaviconByDpi[];
+
+  private readonly defaultFavicon: FaviconByDpi;
+
+  constructor(url: string) {
+    this.defaultFavicon = {
+      dpi: 1,
+      url: Favicon.formatLinkByDPI(1, url),
+    };
+
+    this.favicons = Favicon.SUPPORTED_DPI.map((dpi) => ({
+      dpi,
+      url: Favicon.formatLinkByDPI(dpi, url),
+    }));
   }
 
-  static createFromInternalBrowserUrl(url: string): Favicon {
-    return new Favicon(
-      Favicon.formatLinkByDPI(1, url),
-      Favicon.formatLinkByDPI(2, url),
-      Favicon.formatLinkByDPI(3, url),
-      Favicon.formatLinkByDPI(4, url),
-    );
+  getSrcSetString(): string {
+    return this.favicons
+      .map((favicon) => `${favicon.url} ${favicon.dpi}x`)
+      .join(', ');
+  }
+
+  getDefaultFavicon(): FaviconByDpi {
+    return this.defaultFavicon;
   }
 
   private static formatLinkByDPI(dpi: number, url: string): string {

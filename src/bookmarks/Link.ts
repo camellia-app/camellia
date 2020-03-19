@@ -17,6 +17,6 @@ export default class Link extends Bookmark {
     );
 
     this.url = url;
-    this.favicon = Favicon.createFromInternalBrowserUrl(url);
+    this.favicon = new Favicon(url);
   }
 }

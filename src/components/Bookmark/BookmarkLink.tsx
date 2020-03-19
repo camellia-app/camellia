@@ -9,7 +9,11 @@ interface BookmarkProps {
 export default (props: BookmarkProps) => (
   <li className={s.bookmarkItem}>
     <a className={s.bookmark} title={props.bookmark.title} href={props.bookmark.url} rel="noopener" target="_self">
-      <img className={s.bookmarkIcon} src={props.bookmark.favicon.x1} alt="Favicon" height="16" width="16" />
+      <picture className={s.bookmarkIcon}>
+        <source srcSet={props.bookmark.favicon.getSrcSetString()} />
+        <img src={props.bookmark.favicon.getDefaultFavicon().url} alt="Favicon" height="16" width="16" />
+      </picture>
+
       <span className={s.bookmarkLabel}>{props.bookmark.title}</span>
     </a>
   </li>
