@@ -5,6 +5,7 @@ import BookmarkFolder from '../Bookmark/BookmarkFolder';
 import Bookmark from '../../bookmarks/Bookmark';
 import Link from '../../bookmarks/Link';
 import Folder from '../../bookmarks/Folder';
+import BookmarkList from '../BookmarkList/BookmarkList';
 
 export interface BookmarkCategoryProps {
   categoryTitle: string;
@@ -12,24 +13,9 @@ export interface BookmarkCategoryProps {
 }
 
 export default (props: BookmarkCategoryProps) => (
-  <section>
+  <section className={s.bookmarkCategory}>
     <h2 className={s.bookmarkCategoryTitle}>{props.categoryTitle}</h2>
-    <ul className={s.bookmarkList}>
-      {props.bookmarks.map((item) => {
-        if (item instanceof Link) {
-          return (
-            <BookmarkLink key={item.browserId} bookmark={item} />
-          );
-        }
 
-        if (item instanceof Folder) {
-          return (
-            <BookmarkFolder key={item.browserId} bookmark={item} />
-          );
-        }
-
-        throw Error('unknown bookmark type');
-      })}
-    </ul>
+    <BookmarkList bookmarks={props.bookmarks} />
   </section>
 );

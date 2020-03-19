@@ -5,6 +5,7 @@ declare namespace BookmarkCssModule {
     bookmarkIcon: string;
     bookmarkItem: string;
     bookmarkLabel: string;
+    open: string;
   }
 }
 

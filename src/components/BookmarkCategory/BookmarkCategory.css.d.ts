@@ -1,7 +1,7 @@
 declare namespace BookmarkCategoryCssModule {
   export interface IBookmarkCategoryCss {
+    bookmarkCategory: string;
     bookmarkCategoryTitle: string;
-    bookmarkList: string;
   }
 }
 
