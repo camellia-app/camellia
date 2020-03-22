@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Camellia 2.0",
+  "name": "Camellia",
   "description": "Camellia 2.0. Unstable dev build.",
   "short_name": "Camellia",
   "minimum_chrome_version": "80",

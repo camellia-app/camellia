@@ -14,8 +14,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "build": "webpack --mode=production",
-    "start": "webpack --mode=development --watch",
+    "start": "NODE_ENV=local webpack --watch",
     "fix-cs": "npx stylelint \"**/*.css\" --fix && npx eslint . --ext .js,.jsx,.ts,.tsx --fix"
   },
   "devDependencies": {

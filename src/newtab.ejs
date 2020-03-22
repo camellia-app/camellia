@@ -11,8 +11,8 @@
     }
   </style>
 
-  <% if (htmlWebpackPlugin.options.liveReload.enabled === true) { %>
-  <script src="<%= htmlWebpackPlugin.options.liveReload.scriptUrl %>"></script>
+  <% if (process.env.NODE_ENV === 'local') { %>
+  <script src="http://localhost:35729/livereload.js"></script>
   <% } %>
 </head>
 <body>
