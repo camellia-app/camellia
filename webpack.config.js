@@ -97,7 +97,7 @@ module.exports = () => {
             return JSON.stringify(manifest, null, process.env.NODE_ENV === 'local' ? 2 : 0);
           },
         },
-        { from: './old-logo.png' },
+        { from: './logo.png' },
       ], {
         copyUnmodified: true,
       }),

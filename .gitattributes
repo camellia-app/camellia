@@ -1,1 +1,2 @@
-* test eol=lf
+* text eol=lf
+*.png binary
