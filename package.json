@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@types/chrome": "0.0.98",
+    "chrome-webstore-upload-cli": "1.2.0",
     "classnames": "2.2.6",
     "copy-webpack-plugin": "5.1.1",
     "css-loader": "3.4.2",

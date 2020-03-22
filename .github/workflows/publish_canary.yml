@@ -1,0 +1,46 @@
+name: Publish (canary)
+
+on:
+  push:
+    branches:
+    - master
+    - next
+
+jobs:
+  chrome_web_store:
+    name: Chrome Web Store
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@master
+
+    - name: Setup Node.js
+      uses: actions/setup-node@master
+      with:
+        node-version: '13.x'
+
+    - name: Install npm dependencies
+      run: npm ci
+
+    - name: Build extension
+      run: npx webpack
+      env:
+        NODE_ENV: canary
+        BUILD_NUMBER: ${{ github.run_number }}
+
+    - name: Upload to Chrome Web Store
+      run: npx webstore upload --extension-id $APP_ID --source dist
+      env:
+        APP_ID: dadaaofggncbhcmekkijnadeffpcblib
+        CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
+        REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
+
+    - name: Publish at Chrome Web Store
+      run: npx webstore publish --extension-id $APP_ID --trusted-testers
+      env:
+        APP_ID: dadaaofggncbhcmekkijnadeffpcblib
+        CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
+        REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
