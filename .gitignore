@@ -1,9 +1,0 @@
-_examples
-.vscode
-node_modules
-*.zip
-*.tmp
-mix-manifest.json
-.idea
-/public/css/
-/public/js/
