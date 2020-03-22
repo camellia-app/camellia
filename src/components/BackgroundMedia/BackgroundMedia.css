@@ -1,6 +1,7 @@
 .background-media-container {
   all: unset;
   display: block;
+  height: 100%;
   position: fixed;
   top: 0;
   width: 100%;
