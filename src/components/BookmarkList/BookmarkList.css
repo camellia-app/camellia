@@ -1,0 +1,11 @@
+.bookmark-list {
+  all: unset;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(var(--bookmark-column-min-width), 1fr));
+  justify-items: start;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: var(--outline-width);
+}

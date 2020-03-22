@@ -1,0 +1,42 @@
+name: Quality assurance
+
+on: push
+
+jobs:
+  stylelint:
+    name: stylelint
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@master
+
+    - name: Setup Node.js
+      uses: actions/setup-node@master
+      with:
+        node-version: '13.x'
+
+    - name: Install npm dependencies
+      run: npm ci
+
+    - name: Lint with stylelint
+      run: npx stylelint src/**/*.css
+
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@master
+
+    - name: Setup Node.js
+      uses: actions/setup-node@master
+      with:
+        node-version: '13.x'
+
+    - name: Install npm dependencies
+      run: npm ci
+
+    - name: Lint with ESLint
+      run: npx eslint . --ext .js,.jsx,.ts,.tsx

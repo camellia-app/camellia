@@ -1,0 +1,10 @@
+:root {
+  --bookmark-background-color: rgba(238, 238, 238, 0.1);
+  --bookmark-background-color-hover: rgba(238, 238, 238, 0.2);
+  --bookmark-category-title-text-color: #eee;
+  --bookmark-column-min-width: 235px;
+  --bookmark-text-color: #eee;
+  --font-family-sans-serif: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --outline-color: #0288d1;
+  --outline-width: 0.125rem; /* 2px */
+}

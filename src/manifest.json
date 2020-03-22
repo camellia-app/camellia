@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "Camellia",
+  "description": "Camellia 2.0. Unstable dev build.",
+  "short_name": "Camellia",
+  "minimum_chrome_version": "80",
+
+  "permissions": [
+    "bookmarks",
+    "storage",
+    "chrome://favicon/"
+  ],
+
+  "content_security_policy": "script-src 'self'; object-src 'none';",
+
+  "icons": {
+    "128": "logo.png"
+  },
+
+  "chrome_url_overrides" : {
+    "newtab": "/newtab.html"
+  },
+
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  }
+}

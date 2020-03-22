@@ -1,0 +1,43 @@
+.folder-popup {
+  --folder-position-x: 0;
+  --folder-position-y: 0;
+
+  all: unset;
+  backdrop-filter: blur(2px);
+  background: rgba(33, 33, 33, 0.75);
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: var(--bookmark-text-color);
+  display: block;
+  font-family: var(--font-family-sans-serif);
+  left: var(--folder-position-x);
+  opacity: 1;
+  position: fixed;
+  top: var(--folder-position-y);
+  transition: opacity 0.3s;
+  user-select: none;
+}
+
+.folder-popup.loading {
+  opacity: 0;
+}
+
+.folder-popup-title {
+  all: unset;
+  display: block;
+  font-size: 0.875em;
+  line-height: 40px;
+  overflow: hidden;
+  padding-left: 12px;
+  padding-right: 12px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bookmark-list-container {
+  max-height: 40vh;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
