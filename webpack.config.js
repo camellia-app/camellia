@@ -85,7 +85,7 @@ module.exports = () => {
                 break;
 
               case 'canary':
-                manifest.name = `${manifest.name} (canary)`;
+                manifest.name = `${manifest.name} Canary`;
                 manifest.version_name = `${manifest.version_name} (canary)`;
 
                 break;

@@ -1,4 +1,4 @@
-name: Publish (canary)
+name: Publish Canary
 
 on:
   push:
