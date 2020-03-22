@@ -14,7 +14,7 @@
   "content_security_policy": "script-src 'self'; object-src 'none';",
 
   "icons": {
-    "128": "logo.png"
+    "128": "old-logo.png"
   },
 
   "chrome_url_overrides" : {
