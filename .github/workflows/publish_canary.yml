@@ -25,7 +25,7 @@ jobs:
     - name: Build extension
       run: npx webpack
       env:
-        NODE_ENV: canary
+        APP_ENV: canary
         BUILD_NUMBER: ${{ github.run_number }}
 
     - name: Upload to Chrome Web Store

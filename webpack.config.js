@@ -3,14 +3,13 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const package = require('./package.json');
 
-if (process.env.NODE_ENV === undefined) {
-  process.env.NODE_ENV = 'local';
+if (process.env.APP_ENV === undefined) {
+  process.env.APP_ENV = 'local';
 
-  console.warn('Environment variable NODE_ENV is not defined, using "local" as default value');
+  console.warn('Environment variable APP_ENV is not defined, using "local" as default value');
 }
 
 if (process.env.BUILD_NUMBER === undefined) {
@@ -63,7 +62,6 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      new CleanWebpackPlugin(),
       new Dotenv(),
       new CopyWebpackPlugin([
         {
@@ -76,7 +74,7 @@ module.exports = () => {
             manifest.version = `${package.version}.${process.env.BUILD_NUMBER}`;
             manifest.version_name = `${package.version} build ${process.env.BUILD_NUMBER}`;
 
-            switch (process.env.NODE_ENV) {
+            switch (process.env.APP_ENV) {
               case 'local':
                 manifest.name = `${manifest.name} (dev)`;
                 manifest.version_name = `${manifest.version_name} (dev)`;
@@ -94,7 +92,7 @@ module.exports = () => {
                 break;
             }
 
-            return JSON.stringify(manifest, null, process.env.NODE_ENV === 'local' ? 2 : 0);
+            return JSON.stringify(manifest, null, process.env.APP_ENV === 'local' ? 2 : 0);
           },
         },
         { from: './logo.png' },
@@ -106,6 +104,9 @@ module.exports = () => {
         filename: 'newtab.html',
         inject: 'body',
         template: './newtab.ejs',
+        templateParameters: {
+          env: process.env.APP_ENV,
+        },
       }),
     ],
     resolve: {
@@ -114,9 +115,7 @@ module.exports = () => {
     target: 'web',
   };
 
-  const env = process.env.NODE_ENV;
-
-  switch (process.env.NODE_ENV) {
+  switch (process.env.APP_ENV) {
     case 'production':
       break;
 
