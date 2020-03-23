@@ -1,6 +1,7 @@
 .folder-popup {
   --folder-position-x: 0;
   --folder-position-y: 0;
+  --popup-height: auto;
 
   all: unset;
   backdrop-filter: blur(2px);
@@ -10,9 +11,10 @@
   color: var(--bookmark-text-color);
   display: block;
   font-family: var(--font-family-sans-serif);
+  height: var(--popup-height);
   left: var(--folder-position-x);
   opacity: 1;
-  position: fixed;
+  position: absolute;
   top: var(--folder-position-y);
   transition: opacity 0.3s;
   user-select: none;
@@ -26,7 +28,7 @@
   all: unset;
   display: block;
   font-size: 0.875em;
-  line-height: 40px;
+  line-height: var(--folder-title-height);
   overflow: hidden;
   padding-left: 12px;
   padding-right: 12px;
@@ -36,7 +38,7 @@
 }
 
 .bookmark-list-container {
-  max-height: 40vh;
+  max-height: calc(100% - var(--folder-title-height));
   -webkit-overflow-scrolling: touch;
   overflow-y: auto;
   scrollbar-width: thin;
