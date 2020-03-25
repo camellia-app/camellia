@@ -18,130 +18,128 @@ if (process.env.BUILD_NUMBER === undefined) {
   console.warn('Environment variable BUILD_NUMBER is not defined, using "0" as default value');
 }
 
-module.exports = () => {
-  const commonConfig = {
-    context: path.join(__dirname, 'src'),
-    entry: {
-      background: './background.js',
-      newtab: './newtab.tsx',
-    },
-    mode: 'production',
-    module: {
-      rules: [
-        {
-          include: path.join(__dirname, 'src', 'components'),
-          test: /\.css$/,
-          use: [
-            'style-loader',
-            '@teamsupercell/typings-for-css-modules-loader',
-            {
-              loader: 'css-loader',
-              options: {
-                localsConvention: 'camelCaseOnly',
-                modules: true,
-              },
+const commonConfig = {
+  context: path.join(__dirname, 'src'),
+  entry: {
+    background: './background.js',
+    newtab: './newtab.tsx',
+  },
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        // include: path.join(__dirname, 'src', 'components'),
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          '@teamsupercell/typings-for-css-modules-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              localsConvention: 'camelCaseOnly',
+              modules: true,
             },
-          ],
-        },
-        {
-          test: /\.svg(\?.*)?$/, // match img.svg and img.svg?param=value
-          use: [
-            'svg-url-loader', // or file-loader or svg-url-loader
-            'svg-transform-loader',
-          ],
-        },
-        {
-          exclude: /node_modules/,
-          loader: 'ts-loader',
-          test: /\.tsx?$/,
-        },
-      ],
-    },
-    output: {
-      filename: '[name].js',
-      path: path.resolve(__dirname, 'dist'),
-    },
-    plugins: [
-      new Dotenv(),
-      new CopyWebpackPlugin([
-        {
-          from: './manifest.json',
-          transform(content) {
-            const manifest = JSON.parse(content.toString());
-
-            manifest.author = package.author.name;
-            manifest.homepage_url = package.homepage;
-            manifest.version = `${package.version}.${process.env.BUILD_NUMBER}`;
-            manifest.version_name = `${package.version} build ${process.env.BUILD_NUMBER}`;
-
-            switch (process.env.APP_ENV) {
-              case 'local':
-                manifest.name = `${manifest.name} (dev)`;
-                manifest.version_name = `${manifest.version_name} (dev)`;
-                manifest.content_security_policy = `${manifest.content_security_policy} script-src-elem 'self' http://localhost:35729;`;
-
-                break;
-
-              case 'canary':
-                manifest.name = `${manifest.name} Canary`;
-                manifest.version_name = `${manifest.version_name} (canary)`;
-
-                break;
-
-              default:
-                break;
-            }
-
-            return JSON.stringify(manifest, null, process.env.APP_ENV === 'local' ? 2 : 0);
           },
-        },
-        { from: './logo.png' },
-      ], {
-        copyUnmodified: true,
-      }),
-      new HtmlWebpackPlugin({
-        chunks: ['newtab'],
-        filename: 'newtab.html',
-        inject: 'body',
-        template: './newtab.ejs',
-        templateParameters: {
-          env: process.env.APP_ENV,
-        },
-      }),
+        ],
+      },
+      {
+        test: /\.svg(\?.*)?$/, // match img.svg and img.svg?param=value
+        use: [
+          'svg-url-loader', // or file-loader or svg-url-loader
+          'svg-transform-loader',
+        ],
+      },
+      {
+        exclude: /node_modules/,
+        loader: 'ts-loader',
+        test: /\.tsx?$/,
+      },
     ],
-    resolve: {
-      extensions: ['.ts', '.tsx', '.js', 'jsx'],
-    },
-    target: 'web',
-  };
+  },
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  plugins: [
+    new Dotenv(),
+    new CopyWebpackPlugin([
+      {
+        from: './manifest.json',
+        transform(content) {
+          const manifest = JSON.parse(content.toString());
 
-  switch (process.env.APP_ENV) {
-    case 'production':
-      break;
+          manifest.author = package.author.name;
+          manifest.homepage_url = package.homepage;
+          manifest.version = `${package.version}.${process.env.BUILD_NUMBER}`;
+          manifest.version_name = `${package.version} build ${process.env.BUILD_NUMBER}`;
 
-    case 'canary':
-      break;
+          switch (process.env.APP_ENV) {
+            case 'local':
+              manifest.name = `${manifest.name} (dev)`;
+              manifest.version_name = `${manifest.version_name} (dev)`;
+              manifest.content_security_policy = `${manifest.content_security_policy} script-src-elem 'self' http://localhost:35729;`;
 
-    case 'local':
-      commonConfig.mode = 'development';
-      commonConfig.devtool = 'source-map';
+              break;
 
-      commonConfig.watchOptions = {
-        aggregateTimeout: 300,
-        ignored: /node_modules/,
-        poll: 1000,
-      };
+            case 'canary':
+              manifest.name = `${manifest.name} Canary`;
+              manifest.version_name = `${manifest.version_name} (canary)`;
 
-      commonConfig.plugins.push(new LiveReloadPlugin());
-      commonConfig.plugins.push(new webpack.WatchIgnorePlugin([
-        /css\.d\.ts$/,
-      ]));
+              break;
 
-      break;
+            default:
+              break;
+          }
 
-    default:
-      throw Error('Unknown environment name');
-  }
-
-  return commonConfig;
+          return JSON.stringify(manifest, null, process.env.APP_ENV === 'local' ? 2 : 0);
+        },
+      },
+      { from: './logo.png' },
+    ], {
+      copyUnmodified: true,
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['newtab'],
+      filename: 'newtab.html',
+      inject: 'body',
+      template: './newtab.ejs',
+      templateParameters: {
+        env: process.env.APP_ENV,
+      },
+    }),
+  ],
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', 'jsx'],
+  },
+  target: 'web',
 };
+
+switch (process.env.APP_ENV) {
+  case 'production':
+    break;
+
+  case 'canary':
+    break;
+
+  case 'local':
+    commonConfig.mode = 'development';
+    commonConfig.devtool = 'source-map';
+
+    commonConfig.watchOptions = {
+      aggregateTimeout: 300,
+      ignored: /node_modules/,
+      poll: 1000,
+    };
+
+    commonConfig.plugins.push(new LiveReloadPlugin());
+    commonConfig.plugins.push(new webpack.WatchIgnorePlugin([
+      /css\.d\.ts$/,
+    ]));
+
+    break;
+
+  default:
+    throw Error('Unknown environment name');
+}
+
+module.exports = commonConfig;
