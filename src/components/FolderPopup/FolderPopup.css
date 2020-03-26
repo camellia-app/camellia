@@ -14,7 +14,7 @@
   height: var(--popup-height);
   left: var(--folder-position-x);
   opacity: 1;
-  position: absolute;
+  position: fixed;
   top: var(--folder-position-y);
   transition: opacity 0.3s;
   user-select: none;

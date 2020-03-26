@@ -8,10 +8,14 @@ interface BookmarkFolderProps {
   bookmark: Folder;
 }
 
+export interface ClickPosition {
+  x: number;
+  y: number;
+}
+
 interface BookmarkFolderState {
   opened: boolean;
-  x?: number,
-  y?: number
+  clickPosition?: ClickPosition;
 }
 
 export default class BookmarkFolder extends Component<BookmarkFolderProps, BookmarkFolderState> {
@@ -28,12 +32,15 @@ export default class BookmarkFolder extends Component<BookmarkFolderProps, Bookm
   handleClick(event: MouseEvent) {
     if (this.state.opened === false) {
       this.setState({
+        clickPosition: {
+          x: event.pageX,
+          y: event.pageY,
+        },
         opened: true,
-        x: event.pageX,
-        y: event.pageY,
       });
     } else {
       this.setState({
+        clickPosition: null,
         opened: false,
       });
     }
@@ -46,7 +53,7 @@ export default class BookmarkFolder extends Component<BookmarkFolderProps, Bookm
 
     return (
       <li className={s.bookmarkItem}>
-        {state.opened ? <FolderPopup popupTitle={props.bookmark.title} positionX={state.x} positionY={state.y} childrenBookmarks={props.bookmark.children} /> : ''}
+        {state.opened ? <FolderPopup popupTitle={props.bookmark.title} clickPosition={state.clickPosition} childrenBookmarks={props.bookmark.children} /> : ''}
 
         <button className={classes} title={props.bookmark.title} type="button" onClick={this.handleClick}>
           <span className={s.bookmarkLabel}>{props.bookmark.title}</span>
