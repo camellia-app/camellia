@@ -3,7 +3,7 @@
 .bookmark-item {
   all: unset;
   display: block;
-  max-width: var(--bookmark-column-min-width);
+  max-width: 100%;
 }
 
 .bookmark {
