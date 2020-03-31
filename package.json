@@ -34,6 +34,7 @@
     "webpack-livereload-plugin": "2.3.0"
   },
   "dependencies": {
+    "@sentry/browser": "5.15.4",
     "@types/chrome": "0.0.101",
     "chrome-webstore-upload-cli": "1.2.0",
     "classnames": "2.2.6",

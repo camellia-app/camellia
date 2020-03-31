@@ -26,6 +26,8 @@ jobs:
       run: npx webpack
       env:
         APP_ENV: canary
+        SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+        GIT_VERSION: ${{ github.sha }}
         BUILD_NUMBER: ${{ github.run_number }}
 
     - name: Upload to Chrome Web Store
