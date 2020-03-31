@@ -61,7 +61,9 @@ const commonConfig = {
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
-    new Dotenv(),
+    new Dotenv({
+      systemvars: true,
+    }),
     new CopyWebpackPlugin([
       {
         from: './manifest.json',
