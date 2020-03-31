@@ -115,7 +115,7 @@ const commonConfig = {
 };
 
 switch (process.env.APP_ENV) {
-  case 'production':
+  case 'stable':
     break;
 
   case 'canary':
