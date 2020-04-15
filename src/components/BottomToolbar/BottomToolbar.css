@@ -1,21 +1,20 @@
 @import "../variables.css";
 
 .bottom-toolbar {
+  align-items: center;
   all: unset;
-  display: block;
+  display: flex;
   grid-row-end: 3;
   grid-row-start: 2;
+  height: 64px;
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
 .bottom-toolbar__items {
-  align-items: center;
   all: unset;
   display: grid;
   grid-auto-columns: min-content;
   grid-auto-flow: column;
   grid-gap: 1rem;
-  height: 64px;
-  justify-items: start;
 }
