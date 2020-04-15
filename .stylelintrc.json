@@ -8,6 +8,11 @@
       "custom-properties",
       "declarations"
     ],
-    "order/properties-alphabetical-order": true
+    "order/properties-order": [
+      ["all"],
+      {
+        "unspecified": "bottomAlphabetical"
+      }
+    ]
   }
 }

@@ -1,11 +1,9 @@
 @import "../variables.css";
 
 .bottom-toolbar {
-  align-items: center;
   all: unset;
+  align-items: center;
   display: flex;
-  grid-row-end: 3;
-  grid-row-start: 2;
   height: 64px;
   padding-left: 1rem;
   padding-right: 1rem;
