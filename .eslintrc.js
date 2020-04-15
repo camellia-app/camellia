@@ -17,7 +17,8 @@ module.exports = {
     "max-len": 0,
     "newline-before-return": ["error"],
     "react/destructuring-assignment": 0,
-    "sort-keys": ["error", "asc", {"caseSensitive": true, "natural": false, "minKeys": 2}]
+    "sort-keys": ["error", "asc", {"caseSensitive": true, "natural": false, "minKeys": 2}],
+    "sort-keys-fix/sort-keys-fix": "warn",
   },
   settings: {
     react: {
