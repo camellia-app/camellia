@@ -1,8 +1,11 @@
 import { Component, h } from 'preact';
-import * as classnames from 'classnames';
 import * as s from './Bookmark.css';
 import Folder from '../../bookmarks/Folder';
 import FolderPopup from '../FolderPopup/FolderPopup';
+import Chip, { BorderShape } from '../Chip/Chip';
+
+const iconFolder = require('../../../node_modules/material-design-icons/file/svg/production/ic_folder_48px.svg?fill=%23eee');
+const iconFolderOpen = require('../../../node_modules/material-design-icons/file/svg/production/ic_folder_open_48px.svg?fill=%23eee');
 
 interface BookmarkFolderProps {
   bookmark: Folder;
@@ -47,16 +50,16 @@ export default class BookmarkFolder extends Component<BookmarkFolderProps, Bookm
   }
 
   render(props: BookmarkFolderProps, state: BookmarkFolderState) {
-    const classes = state.opened === false
-      ? classnames(s.bookmark, s.bookmarkFolder)
-      : classnames(s.bookmark, s.bookmarkFolder, s.open);
+    const icon = state.opened === false
+      ? iconFolder
+      : iconFolderOpen;
 
     return (
       <li className={s.bookmarkItem}>
         {state.opened ? <FolderPopup popupTitle={props.bookmark.title} clickPosition={state.clickPosition} childrenBookmarks={props.bookmark.children} /> : ''}
 
-        <button className={classes} title={props.bookmark.title} type="button" onClick={this.handleClick}>
-          <span className={s.bookmarkLabel}>{props.bookmark.title}</span>
+        <button className={s.bookmark} type="button" onClick={this.handleClick}>
+          <Chip label={props.bookmark.title} icon={icon} shape={BorderShape.Rounded} />
         </button>
       </li>
     );

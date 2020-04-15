@@ -1,6 +1,7 @@
 import { h } from 'preact';
 import * as s from './Bookmark.css';
 import Link from '../../bookmarks/Link';
+import Chip, { BorderShape } from '../Chip/Chip';
 
 interface BookmarkProps {
   bookmark: Link;
@@ -8,13 +9,8 @@ interface BookmarkProps {
 
 export default (props: BookmarkProps) => (
   <li className={s.bookmarkItem}>
-    <a className={s.bookmark} title={props.bookmark.title} href={props.bookmark.url} rel="noopener" target="_self">
-      <picture className={s.bookmarkIcon}>
-        <source srcSet={props.bookmark.favicon.getSrcSetString()} />
-        <img src={props.bookmark.favicon.getDefaultFavicon().url} alt="Favicon" height="16" width="16" />
-      </picture>
-
-      <span className={s.bookmarkLabel}>{props.bookmark.title}</span>
+    <a className={s.bookmark} href={props.bookmark.url} rel="noopener" target="_self">
+      <Chip label={props.bookmark.title} icon={props.bookmark.favicon} shape={BorderShape.Rounded} />
     </a>
   </li>
 );
