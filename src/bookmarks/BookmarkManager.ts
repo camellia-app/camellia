@@ -47,3 +47,13 @@ export async function getTree(): Promise<BookmarkRootCategory[]> {
 
   return bookmarks as BookmarkRootCategory[];
 }
+
+export async function openBookmarkManager(): Promise<void> {
+  if (chrome === undefined || chrome.tabs === undefined) {
+    throw Error('This browser does not have bookmark manager.');
+  }
+
+  return new Promise((resolve) => chrome.tabs.create({
+    url: 'chrome://bookmarks',
+  }, () => resolve()));
+}

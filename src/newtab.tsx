@@ -6,6 +6,7 @@ import { getTree } from './bookmarks/BookmarkManager';
 import BookmarkBrowser from './components/BookmarkBrowser/BookmarkBrowser';
 import BackgroundImage from './components/BackgroundMedia/BackgroundImage';
 import BookmarkRootCategory from './bookmarks/BookmarkRootCategory';
+import BottomToolbar from './components/BottomToolbar/BottomToolbar';
 
 Sentry.init({
   debug: process.env.APP_ENV !== 'stable',
@@ -26,6 +27,7 @@ export default class App extends Component<AppProps, AppState> {
     return (
       <Fragment>
         <BookmarkBrowser bookmarkCategories={props.bookmarkCategories} />
+        <BottomToolbar />
         <BackgroundImage url="https://source.unsplash.com/1920x1080/?dark" />
       </Fragment>
     );

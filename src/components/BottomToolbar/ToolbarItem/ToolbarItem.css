@@ -1,0 +1,10 @@
+.toolbar-item-entry {
+  all: unset;
+  display: block;
+  max-width: 100%;
+}
+
+.toolbar-item {
+  all: unset;
+  display: block;
+}

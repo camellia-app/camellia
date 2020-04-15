@@ -4,10 +4,21 @@
   <meta charset="utf-8">
   <title>New Tab</title>
   <style>
+    :root {
+      height: 100%;
+    }
+
     body {
       all: unset;
-      display: block;
       background-color: #000;
+      height: 100%;
+      display: block;
+    }
+
+    #root {
+      min-height: 100%;
+      display: grid;
+      grid-template-rows: 1fr auto;
     }
   </style>
 
