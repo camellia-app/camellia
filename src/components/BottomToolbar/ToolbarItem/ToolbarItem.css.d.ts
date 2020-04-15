@@ -1,7 +1,6 @@
 declare namespace ToolbarItemCssModule {
   export interface IToolbarItemCss {
-    toolbarItem: string;
-    toolbarItemEntry: string;
+    bookmarkToolbarItem: string;
   }
 }
 

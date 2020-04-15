@@ -4,8 +4,6 @@ declare namespace ChipCssModule {
     chipIcon: string;
     chipIconInline: string;
     chipLabel: string;
-    chipRounded: string;
-    chipSquared: string;
   }
 }
 

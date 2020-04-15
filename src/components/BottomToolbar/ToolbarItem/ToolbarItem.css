@@ -1,10 +1,5 @@
-.toolbar-item-entry {
-  all: unset;
-  display: block;
-  max-width: 100%;
-}
+@import "../../variables.css";
 
-.toolbar-item {
-  all: unset;
-  display: block;
+.bookmark--toolbar-item {
+  border-radius: var(--chip-squared-border-radius);
 }

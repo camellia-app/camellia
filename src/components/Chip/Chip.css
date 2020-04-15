@@ -1,12 +1,9 @@
 @import "../variables.css";
 
 .chip {
-  --chip-rounded-border-radius: 0;
-
-  align-items: flex-start;
   all: unset;
+  align-items: flex-start;
   background-color: var(--bookmark-background-color);
-  border-radius: var(--chip-rounded-border-radius);
   color: var(--bookmark-text-color);
   cursor: pointer;
   display: flex;
@@ -16,21 +13,8 @@
   transition: background-color 0.5s;
 }
 
-.chip--rounded {
-  --chip-rounded-border-radius: 1rem;
-}
-
-.chip--squared {
-  --chip-rounded-border-radius: 0.5rem;
-}
-
 .chip:hover {
   background-color: var(--bookmark-background-color-hover);
-}
-
-.chip:focus {
-  box-shadow: 0 0 0 var(--outline-width) var(--outline-color);
-  text-decoration: underline;
 }
 
 .chip-label {

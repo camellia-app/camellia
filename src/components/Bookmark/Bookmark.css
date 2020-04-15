@@ -8,5 +8,14 @@
 
 .bookmark {
   all: unset;
+  border-radius: var(--chip-rounded-border-radius);
   display: block;
+  overflow: hidden;
+}
+
+.bookmark:focus {
+  box-shadow: 0 0 0 var(--outline-width) var(--outline-color);
+  text-decoration-color: var(--bookmark-text-color);
+  text-decoration-line: underline;
+  text-decoration-style: initial;
 }
