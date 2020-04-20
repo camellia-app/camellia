@@ -24,11 +24,16 @@ export interface AppState {
 
 export default class App extends Component<AppProps, AppState> {
   render(props: AppProps) {
+    const pixelRatio = window.devicePixelRatio;
+
+    const realWidth = Math.round(window.screen.width * pixelRatio);
+    const realHeight = Math.round(window.screen.height * pixelRatio);
+
     return (
       <Fragment>
         <BookmarkBrowser bookmarkCategories={props.bookmarkCategories} />
         <BottomToolbar />
-        <BackgroundImage url="https://source.unsplash.com/1920x1080/?dark" />
+        <BackgroundImage url={`https://source.unsplash.com/${realWidth}x${realHeight}/?dark`} />
       </Fragment>
     );
   }
