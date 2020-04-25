@@ -13,8 +13,23 @@
   transition: background-color 0.5s;
 }
 
+.chip.chip--rounded {
+  border-radius: var(--chip-rounded-border-radius);
+}
+
+.chip.chip--squared {
+  border-radius: var(--chip-squared-border-radius);
+}
+
 .chip:hover {
   background-color: var(--bookmark-background-color-hover);
+}
+
+:focus .chip {
+  box-shadow: inset 0 0 0 var(--outline-width) var(--outline-color);
+  text-decoration-color: var(--bookmark-text-color);
+  text-decoration-line: underline;
+  text-decoration-style: initial;
 }
 
 .chip-label {

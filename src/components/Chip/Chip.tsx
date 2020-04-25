@@ -3,10 +3,16 @@ import * as classnames from 'classnames';
 import * as s from './Chip.css';
 import Favicon from '../../bookmarks/Favicon';
 
+export enum ChipShape {
+  Rounded,
+  Squared,
+}
+
 interface ChipProps {
   label: string;
   tooltip?: string;
   icon: string | Favicon;
+  shape: ChipShape;
 }
 
 export default (props: ChipProps) => {
@@ -21,8 +27,25 @@ export default (props: ChipProps) => {
 
   const tooltip = props.tooltip || props.label;
 
+  let shapeClass;
+
+  switch (props.shape) {
+    case ChipShape.Rounded:
+      shapeClass = s.chipRounded;
+
+      break;
+
+    case ChipShape.Squared:
+      shapeClass = s.chipSquared;
+
+      break;
+
+    default:
+      throw Error('Unsupported chip shape');
+  }
+
   return (
-    <div className={s.chip} title={tooltip}>
+    <div className={classnames(s.chip, shapeClass)} title={tooltip}>
       {icon}
 
       <span className={s.chipLabel}>{props.label}</span>

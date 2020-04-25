@@ -2,7 +2,7 @@ import { Component, h } from 'preact';
 import * as s from './Bookmark.css';
 import Folder from '../../bookmarks/Folder';
 import FolderPopup from '../FolderPopup/FolderPopup';
-import Chip from '../Chip/Chip';
+import Chip, { ChipShape } from '../Chip/Chip';
 
 const iconFolder = require('../../../node_modules/material-design-icons/file/svg/production/ic_folder_48px.svg?fill=%23eee');
 const iconFolderOpen = require('../../../node_modules/material-design-icons/file/svg/production/ic_folder_open_48px.svg?fill=%23eee');
@@ -59,7 +59,7 @@ export default class BookmarkFolder extends Component<BookmarkFolderProps, Bookm
         {state.opened ? <FolderPopup popupTitle={props.bookmark.title} clickPosition={state.clickPosition} childrenBookmarks={props.bookmark.children} /> : ''}
 
         <button className={s.bookmark} type="button" onClick={this.handleClick}>
-          <Chip label={props.bookmark.title} icon={icon} />
+          <Chip label={props.bookmark.title} icon={icon} shape={ChipShape.Rounded} />
         </button>
       </li>
     );

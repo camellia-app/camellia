@@ -1,5 +1,0 @@
-@import "../../variables.css";
-
-.bookmark--toolbar-item {
-  border-radius: var(--chip-squared-border-radius);
-}

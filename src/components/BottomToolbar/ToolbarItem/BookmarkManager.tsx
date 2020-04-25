@@ -1,8 +1,6 @@
 import { h } from 'preact';
-import * as classnames from 'classnames';
 import * as bookmarkStyles from '../../Bookmark/Bookmark.css';
-import * as toolbarItemStyles from './ToolbarItem.css';
-import Chip from '../../Chip/Chip';
+import Chip, { ChipShape } from '../../Chip/Chip';
 import { openBookmarkManager } from '../../../bookmarks/BookmarkManager';
 
 const iconStar = require('../../../../node_modules/material-design-icons/toggle/svg/production/ic_star_24px.svg?fill=%23eee');
@@ -20,8 +18,8 @@ export default () => {
 
   return (
     <li className={bookmarkStyles.bookmarkItem}>
-      <a className={classnames(bookmarkStyles.bookmark, toolbarItemStyles.bookmarkToolbarItem)} href={url} rel="noopener" target="_self" onClick={handleClick}>
-        <Chip label={label} tooltip={tooltip} icon={iconStar} />
+      <a className={bookmarkStyles.bookmark} href={url} rel="noopener" target="_self" onClick={handleClick}>
+        <Chip label={label} tooltip={tooltip} icon={iconStar} shape={ChipShape.Squared} />
       </a>
     </li>
   );
