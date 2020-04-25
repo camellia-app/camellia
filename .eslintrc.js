@@ -11,6 +11,7 @@ module.exports = {
   },
   plugins: [
     '@typescript-eslint',
+    'sort-keys-fix',
   ],
   root: true,
   rules: {
