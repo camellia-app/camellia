@@ -10,7 +10,7 @@
   max-width: 100%;
   text-shadow: rgba(33, 33, 33, 1) 0 0 3px;
   touch-action: manipulation;
-  transition: background-color 0.5s;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .chip.chip--rounded {
@@ -23,6 +23,13 @@
 
 .chip:hover {
   background-color: var(--bookmark-background-color-hover);
+}
+
+/* We do such animation for high DPI displays only because it looks blurry and ugly with small DPI */
+@media only screen and (min-resolution: 192dpi) {
+  .chip:hover {
+    transform: translateZ(0) scale(1.048);
+  }
 }
 
 :focus .chip {
