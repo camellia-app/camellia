@@ -6,6 +6,12 @@ import * as s from './BackgroundMedia.css';
 
 interface BackgroundImageProps {
   url: string;
+  dimensions?: ImageDimensions;
+}
+
+export interface ImageDimensions {
+  height: number;
+  width: number;
 }
 
 export interface BackgroundImageState {
@@ -30,7 +36,7 @@ export default class BackgroundImage extends Component<BackgroundImageProps, Bac
 
     return (
       <div className={s.backgroundMediaContainer}>
-        <img className={classes} src={props.url} alt="" onLoad={this.handleImageLoad} crossOrigin="anonymous" />
+        <img className={classes} src={props.url} alt="" onLoad={this.handleImageLoad} height={props.dimensions?.height} width={props.dimensions?.width} crossOrigin="anonymous" />
       </div>
     );
   }
