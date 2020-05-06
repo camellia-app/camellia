@@ -111,6 +111,9 @@ const commonConfig = {
     }),
   ],
   resolve: {
+    alias: {
+      mdi: 'material-design-icons',
+    },
     extensions: ['.ts', '.tsx', '.js', 'jsx'],
   },
   target: 'web',

@@ -3,7 +3,7 @@ import * as bookmarkStyles from '../../Bookmark/Bookmark.css';
 import Chip, { ChipShape } from '../../Chip/Chip';
 import { openBookmarkManager } from '../../../bookmarks/BookmarkManager';
 
-const iconStar = require('../../../../node_modules/material-design-icons/toggle/svg/production/ic_star_24px.svg?fill=%23eee');
+const iconStar = require('mdi/toggle/svg/production/ic_star_24px.svg?fill=%23eee');
 
 const handleClick = (event: MouseEvent): void => {
   event.preventDefault();

@@ -4,8 +4,8 @@ import Folder from '../../bookmarks/Folder';
 import FolderPopup from '../FolderPopup/FolderPopup';
 import Chip, { ChipShape } from '../Chip/Chip';
 
-const iconFolder = require('../../../node_modules/material-design-icons/file/svg/production/ic_folder_48px.svg?fill=%23eee');
-const iconFolderOpen = require('../../../node_modules/material-design-icons/file/svg/production/ic_folder_open_48px.svg?fill=%23eee');
+const iconFolder = require('mdi/file/svg/production/ic_folder_48px.svg?fill=%23eee');
+const iconFolderOpen = require('mdi/file/svg/production/ic_folder_open_48px.svg?fill=%23eee');
 
 interface BookmarkFolderProps {
   bookmark: Folder;
