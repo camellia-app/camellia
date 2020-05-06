@@ -57,3 +57,19 @@ export async function openBookmarkManager(): Promise<void> {
     url: 'chrome://bookmarks',
   }, () => resolve()));
 }
+
+
+export async function search(query: string): Promise<Bookmark[]> {
+  let bookmarks: Bookmark[];
+
+  if (chrome !== undefined && chrome.bookmarks !== undefined) {
+    bookmarks = await new Promise((resolve) => chrome.bookmarks.search(query, (data) => {
+      resolve(data.map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark)));
+    }));
+  } else {
+    bookmarks = (await browser.bookmarks.search(query))
+      .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark));
+  }
+
+  return bookmarks;
+}

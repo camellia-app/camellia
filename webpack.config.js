@@ -22,7 +22,7 @@ const commonConfig = {
   context: path.join(__dirname, 'src'),
   entry: {
     background: './background.js',
-    newtab: './newtab.tsx',
+    newtab: './Newtab.tsx',
   },
   mode: 'production',
   module: {
@@ -111,6 +111,9 @@ const commonConfig = {
     }),
   ],
   resolve: {
+    alias: {
+      mdi: 'material-design-icons',
+    },
     extensions: ['.ts', '.tsx', '.js', 'jsx'],
   },
   target: 'web',
@@ -125,7 +128,7 @@ switch (process.env.APP_ENV) {
 
   case 'local':
     commonConfig.mode = 'development';
-    commonConfig.devtool = 'source-map';
+    commonConfig.devtool = 'inline-source-map';
 
     commonConfig.watchOptions = {
       aggregateTimeout: 300,

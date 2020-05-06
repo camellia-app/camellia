@@ -10,4 +10,6 @@
   --outline-color: #0288d1;
   --outline-width: 0.125rem; /* 2px */
   --folder-title-height: 40px;
+  --search-bar-height: 64px;
+  --search-placeholder-color: rgba(238, 238, 238, 0.6);
 }
