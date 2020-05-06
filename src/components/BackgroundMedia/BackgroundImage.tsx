@@ -4,6 +4,18 @@ import {
 import * as classnames from 'classnames';
 import * as s from './BackgroundMedia.css';
 
+declare module 'preact' {
+  namespace h {
+    namespace JSX {
+      interface HTMLAttributes {
+        decoding?: string;
+        importance?: string;
+        referrerpolicy?: string;
+      }
+    }
+  }
+}
+
 interface BackgroundImageProps {
   url: string;
   dimensions?: ImageDimensions;
@@ -36,7 +48,7 @@ export default class BackgroundImage extends Component<BackgroundImageProps, Bac
 
     return (
       <div className={s.backgroundMediaContainer}>
-        <img className={classes} src={props.url} alt="" onLoad={this.handleImageLoad} height={props.dimensions?.height} width={props.dimensions?.width} crossOrigin="anonymous" />
+        <img className={classes} src={props.url} alt="" onLoad={this.handleImageLoad} height={props.dimensions?.height} width={props.dimensions?.width} crossOrigin="anonymous" referrerpolicy="no-referrer" importance="low" decoding="async" />
       </div>
     );
   }
