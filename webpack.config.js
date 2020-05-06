@@ -22,7 +22,7 @@ const commonConfig = {
   context: path.join(__dirname, 'src'),
   entry: {
     background: './background.js',
-    newtab: './newtab.tsx',
+    newtab: './Newtab.tsx',
   },
   mode: 'production',
   module: {

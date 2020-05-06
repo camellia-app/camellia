@@ -15,15 +15,15 @@ Sentry.init({
   release: process.env.GIT_VERSION,
 });
 
-export interface AppProps {
+export interface NewtabProps {
   bookmarkCategories: Promise<BookmarkRootCategory[]>;
 }
 
-export interface AppState {
+export interface NewtabState {
 }
 
-export default class App extends Component<AppProps, AppState> {
-  render(props: AppProps) {
+export default class Newtab extends Component<NewtabProps, NewtabState> {
+  render(props: NewtabProps, state: NewtabState) {
     const pixelRatio = window.devicePixelRatio;
 
     const realWidth = Math.round(window.screen.width * pixelRatio);
@@ -40,6 +40,6 @@ export default class App extends Component<AppProps, AppState> {
 }
 
 render(
-  <App bookmarkCategories={getTree()} />,
+  <Newtab bookmarkCategories={getTree()} />,
   document.querySelector('#root'),
 );
