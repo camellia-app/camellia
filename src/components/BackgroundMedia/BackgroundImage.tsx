@@ -13,21 +13,15 @@ export interface BackgroundImageState {
 }
 
 export default class BackgroundImage extends Component<BackgroundImageProps, BackgroundImageState> {
-  constructor() {
-    super();
+  state = {
+    loaded: false,
+  };
 
-    this.handleImageLoaded = this.handleImageLoaded.bind(this);
-
-    this.state = {
-      loaded: false,
-    };
-  }
-
-  handleImageLoaded() {
+  handleImageLoad = () => {
     this.setState({
       loaded: true,
     });
-  }
+  };
 
   render(props: BackgroundImageProps, state: BackgroundImageState) {
     const classes = state.loaded === false
@@ -36,12 +30,7 @@ export default class BackgroundImage extends Component<BackgroundImageProps, Bac
 
     return (
       <div className={s.backgroundMediaContainer}>
-        <img
-          className={classes}
-          src={props.url}
-          alt=""
-          onLoad={this.handleImageLoaded}
-        />
+        <img className={classes} src={props.url} alt="" onLoad={this.handleImageLoad} crossOrigin="anonymous" />
       </div>
     );
   }
