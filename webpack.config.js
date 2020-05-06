@@ -128,7 +128,7 @@ switch (process.env.APP_ENV) {
 
   case 'local':
     commonConfig.mode = 'development';
-    commonConfig.devtool = 'source-map';
+    commonConfig.devtool = 'inline-source-map';
 
     commonConfig.watchOptions = {
       aggregateTimeout: 300,
