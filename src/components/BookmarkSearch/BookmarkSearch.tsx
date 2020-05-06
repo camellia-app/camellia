@@ -2,12 +2,13 @@ import {
   Component, createRef, h, JSX,
 } from 'preact';
 import * as s from './BookmarkSearch.css';
-import Bookmark from '../../bookmarks/Bookmark';
 import { search } from '../../bookmarks/BookmarkManager';
+import Link from '../../bookmarks/Link';
 
 export interface BookmarkSearchProps {
   hideSearchBar: () => void;
-  updateSearchResults: (bookmarks: Promise<Bookmark[]>) => void;
+  updateSearchResults: (bookmarks: Promise<Link[]>) => void;
+  firstResult: Link | null;
 }
 
 export interface BookmarkSearchState {
@@ -52,13 +53,29 @@ export default class BookmarkSearch extends Component<BookmarkSearchProps, Bookm
     this.props.hideSearchBar();
   };
 
+  private submitHandler = (event: JSX.TargetedEvent<HTMLFormElement, Event>) => {
+    event.preventDefault();
+
+    this.openFirstSearchResult();
+  };
+
+  private openFirstSearchResult = () => {
+    const { firstResult } = this.props;
+
+    if (firstResult === null) {
+      return;
+    }
+
+    window.location.href = firstResult.url;
+  };
+
   private inputHandler = (event: JSX.TargetedEvent<HTMLInputElement, Event>) => {
     this.props.updateSearchResults(search(event.currentTarget.value));
   };
 
   render() {
     return (
-      <form className={s.bookmarkSearch} onReset={this.resetHandler}>
+      <form className={s.bookmarkSearch} onReset={this.resetHandler} onSubmit={this.submitHandler}>
         <input ref={this.searchField} type="search" placeholder="Start typing to search bookmarks..." className={s.bookmarkSearchField} onChange={this.inputHandler} />
         <button type="reset" className={s.bookmarkSearchCloseButton} title="Close search">Close search</button>
       </form>

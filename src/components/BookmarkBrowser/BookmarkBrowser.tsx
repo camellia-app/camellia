@@ -4,7 +4,7 @@ import * as s from './BookmarkBrowser.css';
 import BookmarkCategory from '../BookmarkCategory/BookmarkCategory';
 import BookmarkRootCategory from '../../bookmarks/BookmarkRootCategory';
 import BookmarkSearch from '../BookmarkSearch/BookmarkSearch';
-import Bookmark from '../../bookmarks/Bookmark';
+import Link from '../../bookmarks/Link';
 
 export interface BookmarkBrowserProps {
   bookmarkCategories: Promise<BookmarkRootCategory[]>;
@@ -14,7 +14,7 @@ export interface BookmarkBrowserState {
   loaded: boolean;
   showSearchBar: boolean;
   categories: BookmarkRootCategory[];
-  searchResults: Bookmark[];
+  searchResults: Link[];
 }
 
 export default class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBrowserState> {
@@ -82,7 +82,7 @@ export default class BookmarkBrowser extends Component<BookmarkBrowserProps, Boo
     });
   };
 
-  private updateSearchResults = (searchResults: Promise<Bookmark[]>): void => {
+  private updateSearchResults = (searchResults: Promise<Link[]>): void => {
     searchResults.then((bookmarks) => {
       this.setState({
         searchResults: bookmarks,
@@ -108,7 +108,7 @@ export default class BookmarkBrowser extends Component<BookmarkBrowserProps, Boo
     if (state.showSearchBar) {
       return (
         <main className={classes}>
-          <BookmarkSearch hideSearchBar={this.hideSearchBar} updateSearchResults={this.updateSearchResults} />
+          <BookmarkSearch hideSearchBar={this.hideSearchBar} updateSearchResults={this.updateSearchResults} firstResult={state.searchResults[0] || null} />
           <BookmarkCategory bookmarks={state.searchResults} categoryTitle="Search results" />
         </main>
       );
