@@ -1,12 +1,14 @@
 import {
   Component, createRef, h,
 } from 'preact';
+import * as classnames from 'classnames';
 import * as s from './BackgroundMedia.css';
 
 interface AnimatedGradientProps {
 }
 
 export interface AnimatedGradientState {
+  loaded: boolean;
 }
 
 class Pixel {
@@ -67,14 +69,30 @@ const animateCanvasGradient = (canvas: HTMLCanvasElement) => {
 export default class AnimatedGradient extends Component<AnimatedGradientProps, AnimatedGradientState> {
   canvasElement = createRef();
 
+  state = {
+    loaded: false,
+  };
+
   componentDidMount(): void {
     animateCanvasGradient(this.canvasElement.current);
+
+    this.showBackground();
   }
 
-  render() {
+  private showBackground(): void {
+    this.setState({
+      loaded: true,
+    });
+  }
+
+  render(props: AnimatedGradientProps, state: AnimatedGradientState) {
+    const classes = state.loaded === true
+      ? classnames(s.backgroundMedia, s.loaded)
+      : s.backgroundMedia;
+
     return (
       <div className={s.backgroundMediaContainer}>
-        <canvas ref={this.canvasElement} className={s.backgroundMedia} width="2" height="2" />
+        <canvas ref={this.canvasElement} className={classes} width="2" height="2" />
       </div>
     );
   }

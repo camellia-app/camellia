@@ -19,6 +19,7 @@ declare module 'preact' {
 interface BackgroundImageProps {
   url: string;
   dimensions?: ImageDimensions;
+  imageLoadingFailureHandler: () => void;
 }
 
 export interface ImageDimensions {
@@ -41,14 +42,20 @@ export default class BackgroundImage extends Component<BackgroundImageProps, Bac
     });
   };
 
+  handleImageError = () => {
+    console.warn('Failed to load background image, falling back to animated gradient');
+
+    this.props.imageLoadingFailureHandler();
+  };
+
   render(props: BackgroundImageProps, state: BackgroundImageState) {
-    const classes = state.loaded === false
-      ? classnames(s.backgroundMedia, s.loading)
+    const classes = state.loaded === true
+      ? classnames(s.backgroundMedia, s.loaded)
       : s.backgroundMedia;
 
     return (
       <div className={s.backgroundMediaContainer}>
-        <img className={classes} src={props.url} alt="" onLoad={this.handleImageLoad} height={props.dimensions?.height} width={props.dimensions?.width} crossOrigin="anonymous" referrerpolicy="no-referrer" importance="low" decoding="async" />
+        <img className={classes} src={props.url} alt="" onLoad={this.handleImageLoad} onError={this.handleImageError} height={props.dimensions?.height} width={props.dimensions?.width} crossOrigin="anonymous" referrerpolicy="no-referrer" importance="low" decoding="async" />
       </div>
     );
   }
