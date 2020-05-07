@@ -39,7 +39,7 @@ class Pixel {
   render = (ctx: CanvasRenderingContext2D) => {
     const hue = Math.round(this.hue);
 
-    ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+    ctx.fillStyle = `hsl(${hue}, 40%, 60%)`;
     ctx.fillRect(this.x, this.y, 1, 1);
   };
 }
