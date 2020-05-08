@@ -14,7 +14,7 @@
   to { opacity: 0.5; }
 }
 
-.background-media-container__visible {
+.background-media-container--visible {
   animation: fadein 1s forwards;
 }
 
