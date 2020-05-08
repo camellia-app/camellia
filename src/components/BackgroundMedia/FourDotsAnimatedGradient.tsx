@@ -12,6 +12,11 @@ enum ProgressionDirection {
 
 const getRandomDirection = (): ProgressionDirection => (Math.random() > 0.5 ? -1 : 1);
 
+const pixelRatio = window.devicePixelRatio;
+
+const canvasWidth = Math.round(window.screen.width * pixelRatio);
+const canvasHeight = Math.round(window.screen.height * pixelRatio);
+
 // based on https://codepen.io/desandro/pen/BzJkQv
 class Pixel {
   private readonly x: number;
@@ -79,8 +84,12 @@ class Pixel {
     const { saturation } = this;
     const { brightness } = this;
 
-    ctx.fillStyle = `hsl(${hue}, ${saturation}%, ${brightness}%)`;
-    ctx.fillRect(this.x, this.y, 1, 1);
+    const gradient = ctx.createRadialGradient(this.x, this.y, 1, this.x, this.y, Math.max(canvasWidth, canvasHeight) * 1.5);
+    gradient.addColorStop(0, `hsla(${hue}, ${saturation}%, ${brightness}%, .9)`);
+    gradient.addColorStop(1, 'rgba(0,0,0,0)');
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
   };
 }
 
@@ -89,9 +98,9 @@ const animateCanvasGradient = (canvas: HTMLCanvasElement) => {
 
   const pixels = [
     new Pixel(0, 0),
-    new Pixel(1, 0),
-    new Pixel(0, 1),
-    new Pixel(1, 1),
+    new Pixel(canvasWidth - 1, 0),
+    new Pixel(0, canvasHeight - 1),
+    new Pixel(canvasWidth - 1, canvasHeight - 1),
   ];
 
   const animate = () => {
@@ -116,5 +125,5 @@ export default () => {
     context.makeVisible();
   }, []);
 
-  return <canvas ref={canvasElement} className={s.backgroundMedia} width="2" height="2" />;
+  return <canvas ref={canvasElement} className={s.backgroundMedia} width={canvasWidth} height={canvasHeight} />;
 };
