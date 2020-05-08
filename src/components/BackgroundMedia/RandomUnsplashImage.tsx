@@ -1,11 +1,7 @@
 import { h } from 'preact';
 import BackgroundImage from './BackgroundImage';
 
-interface RandomUnsplashImageProps {
-  imageLoadingFailureHandler: () => void;
-}
-
-export default (props: RandomUnsplashImageProps) => {
+export default () => {
   const pixelRatio = window.devicePixelRatio;
 
   const realWidth = Math.round(window.screen.width * pixelRatio);
@@ -17,6 +13,6 @@ export default (props: RandomUnsplashImageProps) => {
   };
 
   return (
-    <BackgroundImage url={`https://source.unsplash.com/featured/${realWidth}x${realHeight}/daily/?dark`} dimensions={dimensions} imageLoadingFailureHandler={props.imageLoadingFailureHandler} />
+    <BackgroundImage url={`https://source.unsplash.com/featured/${realWidth}x${realHeight}/daily/?dark`} dimensions={dimensions} />
   );
 };

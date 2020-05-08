@@ -2,10 +2,20 @@
   all: unset;
   display: block;
   height: 100%;
+  opacity: 0;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: -1;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 0.5; }
+}
+
+.background-media-container__visible {
+  animation: fadein 1s forwards;
 }
 
 .background-media {
@@ -15,17 +25,7 @@
   max-height: 100vh;
   max-width: 100vw;
   object-fit: cover;
-  opacity: 0;
   pointer-events: none;
   user-select: none;
   width: 100%;
-}
-
-@keyframes fadein {
-  from { opacity: 0; }
-  to { opacity: 0.5; }
-}
-
-.background-media.loaded {
-  animation: fadein 1s forwards;
 }

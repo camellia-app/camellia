@@ -1,8 +1,7 @@
-import {
-  Component, h,
-} from 'preact';
-import * as classnames from 'classnames';
+import { h } from 'preact';
+import { useContext } from 'preact/hooks';
 import * as s from './BackgroundMedia.css';
+import { BackgroundMediaVisibility } from './BackgroundMedia';
 
 declare module 'preact' {
   namespace h {
@@ -16,47 +15,28 @@ declare module 'preact' {
   }
 }
 
-interface BackgroundImageProps {
-  url: string;
-  dimensions?: ImageDimensions;
-  imageLoadingFailureHandler: () => void;
-}
-
 export interface ImageDimensions {
   height: number;
   width: number;
 }
 
-export interface BackgroundImageState {
-  loaded: boolean;
+interface BackgroundImageProps {
+  url: string;
+  dimensions?: ImageDimensions;
 }
 
-export default class BackgroundImage extends Component<BackgroundImageProps, BackgroundImageState> {
-  state = {
-    loaded: false,
+export default (props: BackgroundImageProps) => {
+  const context = useContext(BackgroundMediaVisibility);
+
+  const handleImageError = () => {
+    console.warn('Failed to load background image, falling back to default background media');
+
+    context.loadDefaultBackgroundMedia();
   };
 
-  handleImageLoad = () => {
-    this.setState({
-      loaded: true,
-    });
+  const handleImageLoad = () => {
+    context.makeVisible();
   };
 
-  handleImageError = () => {
-    console.warn('Failed to load background image, falling back to animated gradient');
-
-    this.props.imageLoadingFailureHandler();
-  };
-
-  render(props: BackgroundImageProps, state: BackgroundImageState) {
-    const classes = state.loaded === true
-      ? classnames(s.backgroundMedia, s.loaded)
-      : s.backgroundMedia;
-
-    return (
-      <div className={s.backgroundMediaContainer}>
-        <img className={classes} src={props.url} alt="" onLoad={this.handleImageLoad} onError={this.handleImageError} height={props.dimensions?.height} width={props.dimensions?.width} crossOrigin="anonymous" referrerpolicy="no-referrer" importance="low" decoding="async" />
-      </div>
-    );
-  }
-}
+  return <img className={s.backgroundMedia} src={props.url} alt="" onLoad={handleImageLoad} onError={handleImageError} height={props.dimensions?.height} width={props.dimensions?.width} crossOrigin="anonymous" referrerpolicy="no-referrer" importance="low" decoding="async" />;
+};

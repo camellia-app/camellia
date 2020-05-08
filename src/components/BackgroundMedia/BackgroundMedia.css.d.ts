@@ -2,8 +2,8 @@ declare namespace BackgroundMediaCssModule {
   export interface IBackgroundMediaCss {
     backgroundMedia: string;
     backgroundMediaContainer: string;
+    backgroundMediaContainerVisible: string;
     fadein: string;
-    loaded: string;
   }
 }
 
