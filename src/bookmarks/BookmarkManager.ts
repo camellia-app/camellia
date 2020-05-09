@@ -1,11 +1,10 @@
-import Bookmark from './Bookmark';
-import Link from './Link';
-import Folder from './Folder';
-import BookmarkRootCategory from './BookmarkRootCategory';
+import {
+  Bookmark, BookmarkRootCategory, Folder, Link,
+} from './Bookmark';
 
 import BookmarkTreeNode = browser.bookmarks.BookmarkTreeNode;
 
-function normalizeBookmarkFromBrowserBookmark(bookmark: BookmarkTreeNode): Bookmark {
+const normalizeBookmarkFromBrowserBookmark = (bookmark: BookmarkTreeNode): Bookmark => {
   if (bookmark.url !== undefined) {
     return new Link(
       bookmark.id,
@@ -29,10 +28,9 @@ function normalizeBookmarkFromBrowserBookmark(bookmark: BookmarkTreeNode): Bookm
     bookmark.title,
     children,
   );
-}
+};
 
-
-export async function getTree(): Promise<BookmarkRootCategory[]> {
+export const getTree = async (): Promise<BookmarkRootCategory[]> => {
   let bookmarks = [];
 
   if (chrome !== undefined && chrome.bookmarks !== undefined) {
@@ -46,9 +44,9 @@ export async function getTree(): Promise<BookmarkRootCategory[]> {
   }
 
   return bookmarks as BookmarkRootCategory[];
-}
+};
 
-export async function openBookmarkManager(): Promise<void> {
+export const openBookmarkManager = async (): Promise<void> => {
   if (chrome === undefined || chrome.tabs === undefined) {
     throw Error('This browser does not have bookmark manager.');
   }
@@ -56,10 +54,9 @@ export async function openBookmarkManager(): Promise<void> {
   return new Promise((resolve) => chrome.tabs.create({
     url: 'chrome://bookmarks',
   }, () => resolve()));
-}
+};
 
-
-export async function search(query: string): Promise<Link[]> {
+export const search = async (query: string): Promise<Link[]> => {
   let bookmarks: Bookmark[];
 
   if (chrome !== undefined && chrome.bookmarks !== undefined) {
@@ -72,4 +69,4 @@ export async function search(query: string): Promise<Link[]> {
   }
 
   return bookmarks as Link[];
-}
+};

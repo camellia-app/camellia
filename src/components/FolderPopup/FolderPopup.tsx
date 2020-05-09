@@ -2,8 +2,8 @@ import { Component, createRef, h } from 'preact';
 import { createPortal } from 'preact/compat';
 import * as classnames from 'classnames';
 import * as s from './FolderPopup.css';
-import Bookmark from '../../bookmarks/Bookmark';
-import BookmarkList from '../BookmarkList/BookmarkList';
+import { Bookmark } from '../../bookmarks/Bookmark';
+import { BookmarkList } from '../BookmarkList/BookmarkList';
 import { ClickPosition } from '../Bookmark/BookmarkFolder';
 
 const CURSOR_PADDING = 1;
@@ -26,7 +26,7 @@ interface FolderPopupState {
   placement: PopupPlacement,
 }
 
-export default class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
+export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
   private static calculatePopupPlacement(
     clickX: number,
     clickY: number,

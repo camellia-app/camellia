@@ -1,8 +1,8 @@
 import { Component, h } from 'preact';
 import * as s from './Bookmark.css';
-import Folder from '../../bookmarks/Folder';
-import FolderPopup from '../FolderPopup/FolderPopup';
-import Chip, { ChipShape } from '../Chip/Chip';
+import { FolderPopup } from '../FolderPopup/FolderPopup';
+import { Chip, ChipShape } from '../Chip/Chip';
+import { Folder } from '../../bookmarks/Bookmark';
 
 const iconFolder = require('mdi/file/svg/production/ic_folder_48px.svg?fill=%23eee');
 const iconFolderOpen = require('mdi/file/svg/production/ic_folder_open_48px.svg?fill=%23eee');
@@ -21,7 +21,7 @@ interface BookmarkFolderState {
   clickPosition?: ClickPosition;
 }
 
-export default class BookmarkFolder extends Component<BookmarkFolderProps, BookmarkFolderState> {
+export class BookmarkFolder extends Component<BookmarkFolderProps, BookmarkFolderState> {
   constructor() {
     super();
 

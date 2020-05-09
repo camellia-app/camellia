@@ -1,16 +1,14 @@
 import { h } from 'preact';
-import BookmarkLink from '../Bookmark/BookmarkLink';
+import { BookmarkLink } from '../Bookmark/BookmarkLink';
 import * as s from './BookmarkList.css';
-import BookmarkFolder from '../Bookmark/BookmarkFolder';
-import Bookmark from '../../bookmarks/Bookmark';
-import Link from '../../bookmarks/Link';
-import Folder from '../../bookmarks/Folder';
+import { BookmarkFolder } from '../Bookmark/BookmarkFolder';
+import { Bookmark, Folder, Link } from '../../bookmarks/Bookmark';
 
-export interface BookmarkListProps {
+interface BookmarkListProps {
   bookmarks: Bookmark[];
 }
 
-export default (props: BookmarkListProps) => (
+export const BookmarkList = (props: BookmarkListProps) => (
   <ul className={s.bookmarkList}>
     {props.bookmarks.map((item) => {
       if (item instanceof Link) {

@@ -4,7 +4,7 @@ interface FaviconByDpi {
   url: string;
 }
 
-export default class Favicon {
+export class Favicon {
   private static SIZE = 16;
 
   private static SUPPORTED_DPI = [1, 1.5, 2, 2.5, 3];

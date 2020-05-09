@@ -1,5 +1,5 @@
 import {
-  Component, createRef, h,
+  createRef, h,
 } from 'preact';
 import { useContext, useEffect } from 'preact/hooks';
 import * as s from './BackgroundMedia.css';
@@ -46,7 +46,7 @@ class Pixel {
     this.saturation = Math.floor(Math.random() * 75);
     this.brightness = Math.floor(Math.random() * 75);
 
-    this.velocity = (Math.random() * 30 + 20) * 0.01 * getRandomDirection() / 5;
+    this.velocity = ((Math.random() * 30 + 20) * 0.01 * getRandomDirection()) / 5;
   }
 
   update = () => {
@@ -117,13 +117,14 @@ const animateCanvasGradient = (canvas: HTMLCanvasElement) => {
 
 const canvasElement = createRef();
 
-export default () => {
+export const FourDotsAnimatedGradient = () => {
+  const context = useContext(BackgroundMediaVisibility);
+
   useEffect(() => {
     animateCanvasGradient(canvasElement.current);
 
-    const context = useContext(BackgroundMediaVisibility);
     context.makeVisible();
-  }, []);
+  });
 
   return <canvas ref={canvasElement} className={s.backgroundMedia} width={canvasWidth} height={canvasHeight} />;
 };

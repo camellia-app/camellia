@@ -1,23 +1,22 @@
-import { Component, Fragment, h } from 'preact';
+import { Component, h } from 'preact';
 import * as classnames from 'classnames';
 import * as s from './BookmarkBrowser.css';
-import BookmarkCategory from '../BookmarkCategory/BookmarkCategory';
-import BookmarkRootCategory from '../../bookmarks/BookmarkRootCategory';
-import BookmarkSearch from '../BookmarkSearch/BookmarkSearch';
-import Link from '../../bookmarks/Link';
+import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
+import { BookmarkSearch } from '../BookmarkSearch/BookmarkSearch';
+import { BookmarkRootCategory, Link } from '../../bookmarks/Bookmark';
 
-export interface BookmarkBrowserProps {
+interface BookmarkBrowserProps {
   bookmarkCategories: Promise<BookmarkRootCategory[]>;
 }
 
-export interface BookmarkBrowserState {
+interface BookmarkBrowserState {
   loaded: boolean;
   showSearchBar: boolean;
   categories: BookmarkRootCategory[];
   searchResults: Link[];
 }
 
-export default class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBrowserState> {
+export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBrowserState> {
   constructor() {
     super();
 

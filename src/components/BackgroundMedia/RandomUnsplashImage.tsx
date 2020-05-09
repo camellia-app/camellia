@@ -1,7 +1,7 @@
 import { h } from 'preact';
-import BackgroundImage from './BackgroundImage';
+import { BackgroundImage } from './BackgroundImage';
 
-export default () => {
+export const RandomUnsplashImage = () => {
   const pixelRatio = window.devicePixelRatio;
 
   const realWidth = Math.round(window.screen.width * pixelRatio);

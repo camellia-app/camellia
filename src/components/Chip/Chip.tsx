@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import * as classnames from 'classnames';
 import * as s from './Chip.css';
-import Favicon from '../../bookmarks/Favicon';
+import { Favicon } from '../../bookmarks/Favicon';
 
 export enum ChipShape {
   Rounded,
@@ -15,7 +15,7 @@ interface ChipProps {
   shape: ChipShape;
 }
 
-export default (props: ChipProps) => {
+export const Chip = (props: ChipProps) => {
   const icon = props.icon instanceof Favicon ? (
     <img className={s.chipIcon} src={props.icon.getDefaultFavicon().url} srcSet={props.icon.getSrcSetString()} alt="Favicon" height="16" width="16" />
   ) : (

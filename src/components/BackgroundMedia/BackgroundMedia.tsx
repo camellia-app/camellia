@@ -2,7 +2,7 @@ import { createContext, h, VNode } from 'preact';
 import * as classnames from 'classnames';
 import { useState } from 'preact/hooks';
 import * as s from './BackgroundMedia.css';
-import FourDotsAnimatedGradient from './FourDotsAnimatedGradient';
+import { FourDotsAnimatedGradient } from './FourDotsAnimatedGradient';
 
 interface BackgroundMediaProps {
   children: VNode
@@ -16,7 +16,7 @@ interface BackgroundMediaVisibilityContext {
 
 export const BackgroundMediaVisibility = createContext<BackgroundMediaVisibilityContext>(undefined);
 
-export default (props: BackgroundMediaProps) => {
+export const BackgroundMedia = (props: BackgroundMediaProps) => {
   const [isVisible, setVisibility] = useState(false);
   const [backgroundMediaHasError, loadFallbackMedia] = useState(false);
 

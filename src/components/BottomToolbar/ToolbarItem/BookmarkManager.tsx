@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import * as bookmarkStyles from '../../Bookmark/Bookmark.css';
-import Chip, { ChipShape } from '../../Chip/Chip';
+import { Chip, ChipShape } from '../../Chip/Chip';
 import { openBookmarkManager } from '../../../bookmarks/BookmarkManager';
 
 const iconStar = require('mdi/toggle/svg/production/ic_star_24px.svg?fill=%23eee');
@@ -11,7 +11,7 @@ const handleClick = (event: MouseEvent): void => {
   openBookmarkManager();
 };
 
-export default () => {
+export const BookmarkManager = () => {
   const label = 'Bookmark manager';
   const tooltip = `${label} (Ctrl+Shift+O)`;
   const url = 'chrome://bookmarks';

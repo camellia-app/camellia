@@ -3,18 +3,18 @@ import {
 } from 'preact';
 import * as s from './BookmarkSearch.css';
 import { search } from '../../bookmarks/BookmarkManager';
-import Link from '../../bookmarks/Link';
+import { Link } from '../../bookmarks/Bookmark';
 
-export interface BookmarkSearchProps {
+interface BookmarkSearchProps {
   hideSearchBar: () => void;
   updateSearchResults: (bookmarks: Promise<Link[]>) => void;
   firstResult: Link | null;
 }
 
-export interface BookmarkSearchState {
+interface BookmarkSearchState {
 }
 
-export default class BookmarkSearch extends Component<BookmarkSearchProps, BookmarkSearchState> {
+export class BookmarkSearch extends Component<BookmarkSearchProps, BookmarkSearchState> {
   searchField = createRef();
 
   componentDidMount(): void {

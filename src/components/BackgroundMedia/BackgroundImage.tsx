@@ -15,7 +15,7 @@ declare module 'preact' {
   }
 }
 
-export interface ImageDimensions {
+interface ImageDimensions {
   height: number;
   width: number;
 }
@@ -25,7 +25,7 @@ interface BackgroundImageProps {
   dimensions?: ImageDimensions;
 }
 
-export default (props: BackgroundImageProps) => {
+export const BackgroundImage = (props: BackgroundImageProps) => {
   const context = useContext(BackgroundMediaVisibility);
 
   const handleImageError = () => {
