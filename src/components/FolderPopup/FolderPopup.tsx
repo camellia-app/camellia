@@ -2,7 +2,7 @@ import { Component, createRef, h } from 'preact';
 import { createPortal } from 'preact/compat';
 import * as classnames from 'classnames';
 import * as s from './FolderPopup.css';
-import { Bookmark } from '../../bookmarks/Bookmark';
+import { Folder } from '../../bookmarks/Bookmark';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
 import { ClickPosition } from '../Bookmark/BookmarkFolder';
 
@@ -10,9 +10,8 @@ const CURSOR_PADDING = 1;
 const SCREEN_EDGE_SAFE_PADDING = 16;
 
 interface FolderPopupProps {
-  childrenBookmarks: Bookmark[]
+  folder: Folder,
   clickPosition: ClickPosition,
-  popupTitle: string,
 }
 
 interface PopupPlacement {
@@ -25,6 +24,8 @@ interface FolderPopupState {
   loaded: boolean,
   placement: PopupPlacement,
 }
+
+export const getFolderPopupAttributeId = (folder: Folder): string => `folder-popup-${folder.browserId}`;
 
 export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
   private static calculatePopupPlacement(
@@ -88,7 +89,7 @@ export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
     this.popup = createRef();
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     const rect = this.popup.current.getBoundingClientRect();
 
     const calculatedPlacement = FolderPopup.calculatePopupPlacement(
@@ -115,11 +116,11 @@ export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
     const height = state.placement.height === null ? 'auto' : `${state.placement.height}px`;
 
     const popup = (
-      <div ref={this.popup} className={classes} style={`--folder-position-x: ${state.placement.x}px; --folder-position-y: ${state.placement.y}px; --popup-height: ${height};`}>
-        <h2 className={s.folderPopupTitle}>{props.popupTitle}</h2>
+      <div ref={this.popup} className={classes} id={getFolderPopupAttributeId(props.folder)} style={`--folder-position-x: ${state.placement.x}px; --folder-position-y: ${state.placement.y}px; --popup-height: ${height};`}>
+        <h2 className={s.folderPopupTitle}>{props.folder.title}</h2>
 
         <div className={s.bookmarkListContainer}>
-          <BookmarkList bookmarks={props.childrenBookmarks} />
+          <BookmarkList bookmarks={props.folder.children} />
         </div>
       </div>
     );

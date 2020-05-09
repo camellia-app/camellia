@@ -1,6 +1,6 @@
 import { Component, h } from 'preact';
 import * as s from './Bookmark.css';
-import { FolderPopup } from '../FolderPopup/FolderPopup';
+import { FolderPopup, getFolderPopupAttributeId } from '../FolderPopup/FolderPopup';
 import { Chip, ChipShape } from '../Chip/Chip';
 import { Folder } from '../../bookmarks/Bookmark';
 
@@ -21,33 +21,64 @@ interface BookmarkFolderState {
   clickPosition?: ClickPosition;
 }
 
+export const getFolderBookmarkAttributeId = (folder: Folder): string => `folder-bookmark-${folder.browserId}`;
+
 export class BookmarkFolder extends Component<BookmarkFolderProps, BookmarkFolderState> {
   constructor() {
     super();
-
-    this.handleClick = this.handleClick.bind(this);
 
     this.state = {
       opened: false,
     };
   }
 
-  handleClick(event: MouseEvent) {
-    if (this.state.opened === false) {
-      this.setState({
-        clickPosition: {
-          x: event.pageX,
-          y: event.pageY,
-        },
-        opened: true,
-      });
-    } else {
-      this.setState({
-        clickPosition: null,
-        opened: false,
-      });
-    }
+  componentWillUnmount(): void {
+    document.removeEventListener('click', this.closingPopupClickHandler);
   }
+
+  openPopup = (x: number, y: number) => {
+    this.setState({
+      clickPosition: {
+        x,
+        y,
+      },
+      opened: true,
+    });
+
+    document.addEventListener('click', this.closingPopupClickHandler);
+  };
+
+  closingPopupClickHandler = (event: MouseEvent) => {
+    if (!(event.target instanceof Element)) {
+      return;
+    }
+
+    const isClickedOnBookmark = event.target.closest(`#${getFolderBookmarkAttributeId(this.props.bookmark)}`);
+    const isClickedOnPopup = event.target.closest(`#${getFolderPopupAttributeId(this.props.bookmark)}`);
+
+    if (isClickedOnBookmark || isClickedOnPopup) {
+      return;
+    }
+
+    this.closePopup();
+  };
+
+  closePopup = () => {
+    this.setState({
+      clickPosition: null,
+      opened: false,
+    });
+
+    document.removeEventListener('click', this.closingPopupClickHandler);
+  };
+
+  handleFolderClick = (event: MouseEvent) => {
+    if (this.state.opened === false) {
+      this.openPopup(event.pageX, event.pageY);
+    } else {
+      this.closePopup();
+    }
+  };
 
   render(props: BookmarkFolderProps, state: BookmarkFolderState) {
     const icon = state.opened === false
@@ -56,9 +87,9 @@ export class BookmarkFolder extends Component<BookmarkFolderProps, BookmarkFolde
 
     return (
       <li className={s.bookmarkItem}>
-        {state.opened ? <FolderPopup popupTitle={props.bookmark.title} clickPosition={state.clickPosition} childrenBookmarks={props.bookmark.children} /> : ''}
+        {state.opened ? <FolderPopup folder={props.bookmark} clickPosition={state.clickPosition} /> : ''}
 
-        <button className={s.bookmark} type="button" onClick={this.handleClick}>
+        <button className={s.bookmark} type="button" onClick={this.handleFolderClick} id={getFolderBookmarkAttributeId(props.bookmark)}>
           <Chip label={props.bookmark.title} icon={icon} shape={ChipShape.Rounded} />
         </button>
       </li>
