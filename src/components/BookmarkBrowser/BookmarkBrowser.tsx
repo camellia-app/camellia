@@ -145,10 +145,12 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
         openedPopups = openedPopups.slice(0, folder.nestingLevel);
       }
 
-      openedPopups[folder.nestingLevel] = {
-        clickPosition,
-        folder,
-      };
+      if (this.isPopupWithSameIdOpened(folder) === false) {
+        openedPopups[folder.nestingLevel] = {
+          clickPosition,
+          folder,
+        };
+      }
 
       return {
         openedPopups,
