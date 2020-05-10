@@ -22,6 +22,9 @@
       <option name="USE_DOUBLE_QUOTES" value="false" />
       <option name="FORCE_QUOTE_STYlE" value="true" />
     </TypeScriptCodeStyleSettings>
+    <editorconfig>
+      <option name="ENABLED" value="false" />
+    </editorconfig>
     <yaml>
       <option name="INDENT_SEQUENCE_VALUE" value="false" />
       <option name="AUTOINSERT_SEQUENCE_MARKER" value="false" />
