@@ -128,12 +128,10 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
 
   private togglePopup = (folder: Folder, clickPosition: ClickPosition) => {
     this.setState((state) => {
-      const { openedPopups } = state;
+      let { openedPopups } = state;
 
       if (BookmarkBrowser.isPopupOpened(openedPopups, folder)) {
-        return {
-          openedPopups: openedPopups.slice(0, folder.nestingLevel),
-        };
+        openedPopups = openedPopups.slice(0, folder.nestingLevel);
       }
 
       openedPopups[folder.nestingLevel] = {
