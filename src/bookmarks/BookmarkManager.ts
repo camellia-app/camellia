@@ -4,21 +4,23 @@ import {
 
 import BookmarkTreeNode = browser.bookmarks.BookmarkTreeNode;
 
-const normalizeBookmarkFromBrowserBookmark = (bookmark: BookmarkTreeNode): Bookmark => {
+const normalizeBookmarkFromBrowserBookmark = (bookmark: BookmarkTreeNode, nestingLevel: number): Bookmark => {
   if (bookmark.url !== undefined) {
     return new Link(
       bookmark.id,
       bookmark.title,
+      nestingLevel,
       bookmark.url,
     );
   }
 
-  const children = (bookmark.children || []).map((child) => normalizeBookmarkFromBrowserBookmark(child));
+  const children = (bookmark.children || []).map((child) => normalizeBookmarkFromBrowserBookmark(child, nestingLevel + 1));
 
   if (bookmark.parentId === undefined) {
     return new BookmarkRootCategory(
       bookmark.id,
       bookmark.title,
+      nestingLevel,
       children,
     );
   }
@@ -26,6 +28,7 @@ const normalizeBookmarkFromBrowserBookmark = (bookmark: BookmarkTreeNode): Bookm
   return new Folder(
     bookmark.id,
     bookmark.title,
+    nestingLevel,
     children,
   );
 };
@@ -36,11 +39,11 @@ export const getTree = async (): Promise<BookmarkRootCategory[]> => {
   if (chrome !== undefined && chrome.bookmarks !== undefined) {
     bookmarks = await new Promise((resolve) => chrome.bookmarks.getTree((data) => {
       resolve(data[0].children
-        .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark)));
+        .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0)));
     }));
   } else {
     bookmarks = (await browser.bookmarks.getTree())[0].children
-      .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark));
+      .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0));
   }
 
   return bookmarks as BookmarkRootCategory[];
@@ -61,11 +64,11 @@ export const search = async (query: string): Promise<Link[]> => {
 
   if (chrome !== undefined && chrome.bookmarks !== undefined) {
     bookmarks = await new Promise((resolve) => chrome.bookmarks.search(query, (data) => {
-      resolve(data.map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark)));
+      resolve(data.map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0)));
     }));
   } else {
     bookmarks = (await browser.bookmarks.search(query))
-      .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark));
+      .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0));
   }
 
   return bookmarks as Link[];

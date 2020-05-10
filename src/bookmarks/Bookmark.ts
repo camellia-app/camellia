@@ -5,12 +5,16 @@ export abstract class Bookmark {
 
   public readonly title: string;
 
+  public readonly nestingLevel: number;
+
   protected constructor(
     browserId: string,
     title: string,
+    nestingLevel: number,
   ) {
     this.browserId = browserId;
     this.title = title;
+    this.nestingLevel = nestingLevel;
   }
 }
 
@@ -22,11 +26,13 @@ export class Link extends Bookmark {
   constructor(
     browserId: string,
     title: string,
+    nestingLevel: number,
     url: string,
   ) {
     super(
       browserId,
       title,
+      nestingLevel,
     );
 
     this.url = url;
@@ -40,11 +46,13 @@ export class Folder extends Bookmark {
   constructor(
     browserId: string,
     title: string,
+    nestingLevel: number,
     children: Bookmark[],
   ) {
     super(
       browserId,
       title,
+      nestingLevel,
     );
 
     this.children = children;
