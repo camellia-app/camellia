@@ -23,6 +23,8 @@ module.exports = {
   ],
   root: true,
   rules: {
+    "jsx-a11y/click-events-have-key-events": OFF,
+    "jsx-a11y/no-noninteractive-element-interactions": OFF,
     "import/no-unresolved": OFF,
     "import/prefer-default-export": OFF,
     "import/no-cycle": OFF,
@@ -40,6 +42,7 @@ module.exports = {
     }],
     "react/destructuring-assignment": OFF,
     "react/no-unused-state": OFF,
+    "react/state-in-constructor": OFF,
     "react-hooks/rules-of-hooks": ERROR,
     "react-hooks/exhaustive-deps": WARN,
     "sort-keys": [WARN, "asc", {"caseSensitive": true, "natural": false, "minKeys": 2}],
