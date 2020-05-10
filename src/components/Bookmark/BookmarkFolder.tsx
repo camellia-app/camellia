@@ -6,7 +6,7 @@ import { Folder } from '../../bookmarks/Bookmark';
 import { Popups } from '../BookmarkBrowser/BookmarkBrowser';
 
 const iconFolder = require('mdi/file/svg/production/ic_folder_48px.svg?fill=%23eee');
-// const iconFolderOpen = require('mdi/file/svg/production/ic_folder_open_48px.svg?fill=%23eee');
+const iconFolderOpen = require('mdi/file/svg/production/ic_folder_open_48px.svg?fill=%23eee');
 
 interface BookmarkFolderProps {
   bookmark: Folder;
@@ -29,10 +29,14 @@ export const BookmarkFolder = (props: BookmarkFolderProps) => {
     context.togglePopup(props.bookmark, clickPosition);
   };
 
+  const icon = context.isPopupOpened(props.bookmark) === false
+    ? iconFolder
+    : iconFolderOpen;
+
   return (
     <li className={s.bookmarkItem}>
       <button className={s.bookmark} type="button" onClick={handleFolderClick}>
-        <Chip label={props.bookmark.title} icon={iconFolder} shape={ChipShape.Rounded} />
+        <Chip label={props.bookmark.title} icon={icon} shape={ChipShape.Rounded} />
       </button>
     </li>
   );

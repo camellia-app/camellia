@@ -30,14 +30,13 @@ interface BookmarkBrowserState {
 interface PopupContext {
   closeAllNextPopups: (folder: Folder) => void;
   closeAllPopups: () => void;
+  isPopupOpened: (folder: Folder) => boolean;
   togglePopup: (folder: Folder, clickPosition: ClickPosition) => void;
 }
 
 export const Popups = createContext<PopupContext>(undefined);
 
 export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBrowserState> {
-  private static isPopupOpened = (openedPopups: Popup[], folder: Folder) => openedPopups[folder.nestingLevel] !== undefined;
-
   state = {
     categories: [],
     loaded: false,
@@ -126,11 +125,23 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
     this.showSearchBar();
   };
 
+  private isPopupWithSameNestingLevelOpened = (folder: Folder) => this.state.openedPopups[folder.nestingLevel] !== undefined;
+
+  private isPopupWithSameIdOpened = (folder: Folder) => this.state.openedPopups.findIndex((popup) => {
+    const isPopup = (value: any): value is Popup => value instanceof Object;
+
+    if (isPopup(popup) === false) {
+      return false;
+    }
+
+    return popup.folder.browserId === folder.browserId;
+  }) !== -1;
+
   private togglePopup = (folder: Folder, clickPosition: ClickPosition) => {
     this.setState((state) => {
       let { openedPopups } = state;
 
-      if (BookmarkBrowser.isPopupOpened(openedPopups, folder)) {
+      if (this.isPopupWithSameNestingLevelOpened(folder)) {
         openedPopups = openedPopups.slice(0, folder.nestingLevel);
       }
 
@@ -196,6 +207,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
     const context = {
       closeAllNextPopups: this.closeAllNextPopups,
       closeAllPopups: this.closeAllPopups,
+      isPopupOpened: this.isPopupWithSameIdOpened,
       togglePopup: this.togglePopup,
     };
 
