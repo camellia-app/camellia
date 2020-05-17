@@ -14,12 +14,22 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@master
 
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
     - name: Setup Node.js
       uses: actions/setup-node@master
       with:
         node-version: '13.x'
 
     - name: Install npm dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
       run: npm ci
 
     - name: Build extension
