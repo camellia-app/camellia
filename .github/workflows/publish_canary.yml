@@ -19,9 +19,9 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
-          ${{ runner.os }}-node-
+          ${{ runner.os }}-npm-
 
     - name: Setup Node.js
       uses: actions/setup-node@master
@@ -29,7 +29,6 @@ jobs:
         node-version: '13.x'
 
     - name: Install npm dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
       run: npm ci
 
     - name: Build extension

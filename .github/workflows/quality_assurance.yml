@@ -11,6 +11,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@master
 
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-npm-
+
     - name: Setup Node.js
       uses: actions/setup-node@master
       with:
@@ -29,6 +38,15 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@master
+
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-npm-
 
     - name: Setup Node.js
       uses: actions/setup-node@master
