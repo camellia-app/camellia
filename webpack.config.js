@@ -20,6 +20,7 @@ if (process.env.BUILD_NUMBER === undefined) {
 
 const commonConfig = {
   context: path.join(__dirname, 'src'),
+  devtool: 'inline-source-map',
   entry: {
     background: './background.js',
     newtab: './Newtab.tsx',
@@ -128,7 +129,6 @@ switch (process.env.APP_ENV) {
 
   case 'local':
     commonConfig.mode = 'development';
-    commonConfig.devtool = 'inline-source-map';
 
     commonConfig.watchOptions = {
       aggregateTimeout: 300,
