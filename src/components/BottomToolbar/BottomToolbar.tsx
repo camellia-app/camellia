@@ -5,7 +5,7 @@ import { BookmarkManager } from './ToolbarItem/BookmarkManager';
 export const BottomToolbar = () => {
   const toolbarItems = [];
 
-  if (process.env.TARGET_PLATFORM === 'chrome') {
+  if (process.env.TARGET_PLATFORM === 'chromium') {
     toolbarItems.push(<BookmarkManager />);
   }
 
