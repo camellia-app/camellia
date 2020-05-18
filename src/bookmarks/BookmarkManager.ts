@@ -71,5 +71,5 @@ export const search = async (query: string): Promise<Link[]> => {
       .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0));
   }
 
-  return bookmarks as Link[];
+  return bookmarks.filter((bookmark) => bookmark instanceof Link) as Link[];
 };
