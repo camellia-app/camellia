@@ -197,15 +197,6 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
       );
     }
 
-    if (state.showSearchBar) {
-      return (
-        <main className={classes}>
-          <BookmarkSearch hideSearchBar={this.hideSearchBar} updateSearchResults={this.updateSearchResults} firstResult={state.searchResults[0] || null} />
-          <BookmarkCategory bookmarks={state.searchResults} categoryTitle="Search results" />
-        </main>
-      );
-    }
-
     const context = {
       closeAllNextPopups: this.closeAllNextPopups,
       closeAllPopups: this.closeAllPopups,
@@ -218,6 +209,19 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
       <FolderPopup folder={popup.folder} clickPosition={popup.clickPosition} key={popup.folder.browserId} closeAllNextPopups={this.closeAllNextPopups} />,
       body,
     ));
+
+    if (state.showSearchBar) {
+      return (
+        <main className={classes}>
+          <Popups.Provider value={context}>
+            <BookmarkSearch hideSearchBar={this.hideSearchBar} updateSearchResults={this.updateSearchResults} firstResult={state.searchResults[0] || null} />
+            <BookmarkCategory bookmarks={state.searchResults} categoryTitle="Search results" />
+
+            { popupPortals }
+          </Popups.Provider>
+        </main>
+      );
+    }
 
     return (
       <main className={classes}>
