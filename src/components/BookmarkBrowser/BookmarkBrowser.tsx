@@ -50,6 +50,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
     document.addEventListener('keydown', this.searchHotkeyPressHandler);
     document.addEventListener('keydown', this.popupEscapeKeyPressHandler);
     document.addEventListener('click', this.closeAllPopupsHandler);
+    window.addEventListener('resize', this.screenResizeHandler);
 
     this.props.bookmarkCategories.then((categories: BookmarkRootCategory[]) => {
       this.setState({
@@ -64,6 +65,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
     document.removeEventListener('keydown', this.searchHotkeyPressHandler);
     document.removeEventListener('keydown', this.popupEscapeKeyPressHandler);
     document.removeEventListener('click', this.closeAllPopupsHandler);
+    window.removeEventListener('resize', this.screenResizeHandler);
   }
 
   private closeAllPopupsHandler = (event: MouseEvent) => {
@@ -97,6 +99,10 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
 
       this.showSearchBar();
     }
+  };
+
+  private screenResizeHandler = () => {
+    this.closeAllPopups();
   };
 
   private hideSearchBar = (): void => {
