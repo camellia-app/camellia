@@ -1,16 +1,27 @@
 import { h } from 'preact';
+import { useState } from 'preact/hooks';
 import * as s from './Bookmark.css';
 import { Chip, ChipShape } from '../Chip/Chip';
 import { Link } from '../../bookmarks/Bookmark';
+
+const iconPublic = require('mdi/social/svg/production/ic_public_48px.svg?fill=%23eee');
 
 interface BookmarkProps {
   bookmark: Link;
 }
 
-export const BookmarkLink = (props: BookmarkProps) => (
-  <li className={s.bookmarkItem}>
-    <a className={s.bookmark} href={props.bookmark.url} rel="noopener" target="_self">
-      <Chip label={props.bookmark.title} icon={props.bookmark.favicon} shape={ChipShape.Rounded} />
-    </a>
-  </li>
-);
+export const BookmarkLink = (props: BookmarkProps) => {
+  const [icon, setIcon] = useState(props.bookmark.favicon);
+
+  const handleFaviconLoadingError = () => {
+    setIcon(iconPublic);
+  };
+
+  return (
+    <li className={s.bookmarkItem}>
+      <a className={s.bookmark} href={props.bookmark.url} rel="noopener" target="_self">
+        <Chip label={props.bookmark.title} icon={icon} shape={ChipShape.Rounded} handleFaviconLoadingError={handleFaviconLoadingError} />
+      </a>
+    </li>
+  );
+};

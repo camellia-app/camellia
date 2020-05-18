@@ -56,6 +56,7 @@
   display: inline-block;
   flex-grow: 0;
   flex-shrink: 0;
+  font-size: 0;
   height: 16px;
   margin: 8px;
   pointer-events: none;
