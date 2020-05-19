@@ -158,7 +158,7 @@ jobs:
         SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
 
     - name: Upload source maps to Sentry
-      run: sentry-cli releases files $(sentry-cli releases propose-version) upload-sourcemaps --ext ts --ext tsx --ext map /dist
+      run: sentry-cli releases files $(sentry-cli releases propose-version) upload-sourcemaps --ext ts --ext tsx --ext map dist
       env:
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
