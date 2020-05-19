@@ -1,13 +1,13 @@
-declare namespace BottomToolbarCssModule {
+declare namespace BottomToolbarCssNamespace {
   export interface IBottomToolbarCss {
     bottomToolbar: string;
     bottomToolbarItems: string;
   }
 }
 
-declare const BottomToolbarCssModule: BottomToolbarCssModule.IBottomToolbarCss & {
+declare const BottomToolbarCssModule: BottomToolbarCssNamespace.IBottomToolbarCss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: BottomToolbarCssModule.IBottomToolbarCss;
+  locals: BottomToolbarCssNamespace.IBottomToolbarCss;
 };
 
 export = BottomToolbarCssModule;

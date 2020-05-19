@@ -1,4 +1,4 @@
-declare namespace ChipCssModule {
+declare namespace ChipCssNamespace {
   export interface IChipCss {
     chip: string;
     chipIcon: string;
@@ -9,9 +9,9 @@ declare namespace ChipCssModule {
   }
 }
 
-declare const ChipCssModule: ChipCssModule.IChipCss & {
+declare const ChipCssModule: ChipCssNamespace.IChipCss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: ChipCssModule.IChipCss;
+  locals: ChipCssNamespace.IChipCss;
 };
 
 export = ChipCssModule;

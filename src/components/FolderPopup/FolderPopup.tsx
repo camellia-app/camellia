@@ -10,20 +10,20 @@ const CURSOR_PADDING = 1;
 const SCREEN_EDGE_SAFE_PADDING = 16;
 
 interface FolderPopupProps {
-  folder: Folder,
-  clickPosition: ClickPosition,
-  closeAllNextPopups: (folder: Folder) => void,
+  folder: Folder;
+  clickPosition: ClickPosition;
+  closeAllNextPopups: (folder: Folder) => void;
 }
 
 interface PopupPlacement {
-  height: number | null,
-  x: number,
-  y: number,
+  height: number | null;
+  x: number;
+  y: number;
 }
 
 interface FolderPopupState {
-  isVisible: boolean,
-  placement: PopupPlacement,
+  isVisible: boolean;
+  placement: PopupPlacement;
 }
 
 const calculatePopupPlacement = (

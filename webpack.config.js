@@ -65,41 +65,41 @@ const commonConfig = {
     new Dotenv({
       systemvars: true,
     }),
-    new CopyWebpackPlugin([
-      {
-        from: './manifest.json',
-        transform(content) {
-          const manifest = JSON.parse(content.toString());
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: './manifest.json',
+          transform(content) {
+            const manifest = JSON.parse(content.toString());
 
-          manifest.author = package.author.name;
-          manifest.homepage_url = package.homepage;
-          manifest.version = `${package.version}.${process.env.BUILD_NUMBER}`;
-          manifest.version_name = `${package.version} build ${process.env.BUILD_NUMBER}`;
+            manifest.author = package.author.name;
+            manifest.homepage_url = package.homepage;
+            manifest.version = `${package.version}.${process.env.BUILD_NUMBER}`;
+            manifest.version_name = `${package.version} build ${process.env.BUILD_NUMBER}`;
 
-          switch (process.env.APP_ENV) {
-            case 'local':
-              manifest.name = `${manifest.name} (dev)`;
-              manifest.version_name = `${manifest.version_name} (dev)`;
-              manifest.content_security_policy = `${manifest.content_security_policy} script-src-elem 'self' http://localhost:35729;`;
+            switch (process.env.APP_ENV) {
+              case 'local':
+                manifest.name = `${manifest.name} (dev)`;
+                manifest.version_name = `${manifest.version_name} (dev)`;
+                manifest.content_security_policy = `${manifest.content_security_policy} script-src-elem 'self' http://localhost:35729;`;
 
-              break;
+                break;
 
-            case 'canary':
-              manifest.name = `${manifest.name} Canary`;
-              manifest.version_name = `${manifest.version_name} (canary)`;
+              case 'canary':
+                manifest.name = `${manifest.name} Canary`;
+                manifest.version_name = `${manifest.version_name} (canary)`;
 
-              break;
+                break;
 
-            default:
-              break;
-          }
+              default:
+                break;
+            }
 
-          return JSON.stringify(manifest, null, process.env.APP_ENV === 'local' ? 2 : 0);
+            return JSON.stringify(manifest, null, process.env.APP_ENV === 'local' ? 2 : 0);
+          },
         },
-      },
-      { from: './logo.png' },
-    ], {
-      copyUnmodified: true,
+        { from: './logo.png' },
+      ],
     }),
     new HtmlWebpackPlugin({
       chunks: ['newtab'],

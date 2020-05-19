@@ -11,8 +11,8 @@ import * as bookmarkClasses from '../Bookmark/Bookmark.css';
 import * as folderPopupClasses from '../FolderPopup/FolderPopup.css';
 
 export interface Popup {
-  clickPosition: ClickPosition,
-  folder: Folder,
+  clickPosition: ClickPosition;
+  folder: Folder;
 }
 
 interface BookmarkBrowserProps {
@@ -24,7 +24,7 @@ interface BookmarkBrowserState {
   showSearchBar: boolean;
   categories: BookmarkRootCategory[];
   searchResults: Link[];
-  openedPopups: Popup[],
+  openedPopups: Popup[];
 }
 
 interface PopupContext {

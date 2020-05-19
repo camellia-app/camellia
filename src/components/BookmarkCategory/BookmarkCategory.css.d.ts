@@ -1,13 +1,13 @@
-declare namespace BookmarkCategoryCssModule {
+declare namespace BookmarkCategoryCssNamespace {
   export interface IBookmarkCategoryCss {
     bookmarkCategory: string;
     bookmarkCategoryTitle: string;
   }
 }
 
-declare const BookmarkCategoryCssModule: BookmarkCategoryCssModule.IBookmarkCategoryCss & {
+declare const BookmarkCategoryCssModule: BookmarkCategoryCssNamespace.IBookmarkCategoryCss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: BookmarkCategoryCssModule.IBookmarkCategoryCss;
+  locals: BookmarkCategoryCssNamespace.IBookmarkCategoryCss;
 };
 
 export = BookmarkCategoryCssModule;

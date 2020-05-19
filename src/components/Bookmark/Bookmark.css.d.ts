@@ -1,13 +1,13 @@
-declare namespace BookmarkCssModule {
+declare namespace BookmarkCssNamespace {
   export interface IBookmarkCss {
     bookmark: string;
     bookmarkItem: string;
   }
 }
 
-declare const BookmarkCssModule: BookmarkCssModule.IBookmarkCss & {
+declare const BookmarkCssModule: BookmarkCssNamespace.IBookmarkCss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: BookmarkCssModule.IBookmarkCss;
+  locals: BookmarkCssNamespace.IBookmarkCss;
 };
 
 export = BookmarkCssModule;

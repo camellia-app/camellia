@@ -1,4 +1,4 @@
-declare namespace BookmarkSearchCssModule {
+declare namespace BookmarkSearchCssNamespace {
   export interface IBookmarkSearchCss {
     bookmarkSearch: string;
     bookmarkSearchCloseButton: string;
@@ -6,9 +6,9 @@ declare namespace BookmarkSearchCssModule {
   }
 }
 
-declare const BookmarkSearchCssModule: BookmarkSearchCssModule.IBookmarkSearchCss & {
+declare const BookmarkSearchCssModule: BookmarkSearchCssNamespace.IBookmarkSearchCss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: BookmarkSearchCssModule.IBookmarkSearchCss;
+  locals: BookmarkSearchCssNamespace.IBookmarkSearchCss;
 };
 
 export = BookmarkSearchCssModule;

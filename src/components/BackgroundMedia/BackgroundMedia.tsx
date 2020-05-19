@@ -5,7 +5,7 @@ import * as s from './BackgroundMedia.css';
 import { FourDotsAnimatedGradient } from './FourDotsAnimatedGradient';
 
 interface BackgroundMediaProps {
-  children: VNode
+  children: VNode;
 }
 
 interface BackgroundMediaVisibilityContext {

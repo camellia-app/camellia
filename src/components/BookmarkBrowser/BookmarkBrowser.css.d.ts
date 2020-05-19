@@ -1,4 +1,4 @@
-declare namespace BookmarkBrowserCssModule {
+declare namespace BookmarkBrowserCssNamespace {
   export interface IBookmarkBrowserCss {
     bookmarkBrowser: string;
     loading: string;
@@ -6,9 +6,9 @@ declare namespace BookmarkBrowserCssModule {
   }
 }
 
-declare const BookmarkBrowserCssModule: BookmarkBrowserCssModule.IBookmarkBrowserCss & {
+declare const BookmarkBrowserCssModule: BookmarkBrowserCssNamespace.IBookmarkBrowserCss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: BookmarkBrowserCssModule.IBookmarkBrowserCss;
+  locals: BookmarkBrowserCssNamespace.IBookmarkBrowserCss;
 };
 
 export = BookmarkBrowserCssModule;

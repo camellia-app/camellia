@@ -1,4 +1,4 @@
-declare namespace FolderPopupCssModule {
+declare namespace FolderPopupCssNamespace {
   export interface IFolderPopupCss {
     bookmarkListContainer: string;
     folderPopup: string;
@@ -7,9 +7,9 @@ declare namespace FolderPopupCssModule {
   }
 }
 
-declare const FolderPopupCssModule: FolderPopupCssModule.IFolderPopupCss & {
+declare const FolderPopupCssModule: FolderPopupCssNamespace.IFolderPopupCss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: FolderPopupCssModule.IFolderPopupCss;
+  locals: FolderPopupCssNamespace.IFolderPopupCss;
 };
 
 export = FolderPopupCssModule;

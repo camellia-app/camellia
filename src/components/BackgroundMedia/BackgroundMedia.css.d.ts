@@ -1,4 +1,4 @@
-declare namespace BackgroundMediaCssModule {
+declare namespace BackgroundMediaCssNamespace {
   export interface IBackgroundMediaCss {
     backgroundMedia: string;
     backgroundMediaContainer: string;
@@ -7,9 +7,9 @@ declare namespace BackgroundMediaCssModule {
   }
 }
 
-declare const BackgroundMediaCssModule: BackgroundMediaCssModule.IBackgroundMediaCss & {
+declare const BackgroundMediaCssModule: BackgroundMediaCssNamespace.IBackgroundMediaCss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: BackgroundMediaCssModule.IBackgroundMediaCss;
+  locals: BackgroundMediaCssNamespace.IBackgroundMediaCss;
 };
 
 export = BackgroundMediaCssModule;
