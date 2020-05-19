@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
+const { WatchIgnorePlugin, SourceMapDevToolPlugin } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
@@ -20,7 +20,7 @@ if (process.env.BUILD_NUMBER === undefined) {
 
 const commonConfig = {
   context: path.join(__dirname, 'src'),
-  devtool: 'inline-source-map',
+  devtool: false,
   entry: {
     background: './background.js',
     newtab: './Newtab.tsx',
@@ -122,12 +122,16 @@ const commonConfig = {
 
 switch (process.env.APP_ENV) {
   case 'stable':
-    break;
-
   case 'canary':
+    commonConfig.plugins.push(new SourceMapDevToolPlugin({
+      append: false,
+      filename: '[file].map',
+    }));
+
     break;
 
   case 'local':
+    commonConfig.devtool = 'inline-source-map';
     commonConfig.mode = 'development';
 
     commonConfig.watchOptions = {
@@ -137,7 +141,7 @@ switch (process.env.APP_ENV) {
     };
 
     commonConfig.plugins.push(new LiveReloadPlugin());
-    commonConfig.plugins.push(new webpack.WatchIgnorePlugin([
+    commonConfig.plugins.push(new WatchIgnorePlugin([
       /css\.d\.ts$/,
     ]));
 
