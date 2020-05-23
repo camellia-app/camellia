@@ -85,6 +85,8 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
 
   private showSearchBar = () => {
     if (this.state.showSearchBar === false) {
+      this.closeAllPopups();
+
       this.setState({
         showSearchBar: true,
       });
