@@ -10,9 +10,9 @@ const CURSOR_PADDING = 1;
 const SCREEN_EDGE_SAFE_PADDING = 16;
 
 interface FolderPopupProps {
-  folder: Folder;
   clickPosition: ClickPosition;
   closeAllNextPopups: (folder: Folder) => void;
+  folder: Folder;
 }
 
 interface PopupPlacement {

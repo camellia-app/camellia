@@ -6,9 +6,9 @@ import { search } from '../../bookmarks/BookmarkManager';
 import { Link } from '../../bookmarks/Bookmark';
 
 interface BookmarkSearchProps {
+  firstResult: Link | null;
   hideSearchBar: () => void;
   updateSearchResults: (bookmarks: Promise<Link[]>) => void;
-  firstResult: Link | null;
 }
 
 interface BookmarkSearchState {

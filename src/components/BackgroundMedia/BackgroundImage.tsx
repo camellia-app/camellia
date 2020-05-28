@@ -21,8 +21,8 @@ interface ImageDimensions {
 }
 
 interface BackgroundImageProps {
-  url: string;
   dimensions?: ImageDimensions;
+  url: string;
 }
 
 export const BackgroundImage = (props: BackgroundImageProps) => {

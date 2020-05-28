@@ -4,8 +4,6 @@ import { JSXInternal } from 'preact/src/jsx';
 import * as s from './Chip.css';
 import { Favicon } from '../../bookmarks/Favicon';
 
-import TargetedEvent = JSXInternal.TargetedEvent;
-
 declare module 'preact' {
   namespace h {
     namespace JSX {
@@ -24,15 +22,15 @@ export enum ChipShape {
 }
 
 interface ChipProps {
-  label: string;
-  tooltip?: string;
-  icon: string | Favicon;
-  shape: ChipShape;
   handleFaviconLoadingError?: () => void;
+  icon: string | Favicon;
+  label: string;
+  shape: ChipShape;
+  tooltip?: string;
 }
 
 export const Chip = (props: ChipProps) => {
-  const handleImageError = (event: TargetedEvent<HTMLImageElement, Event>) => {
+  const handleImageError = (event: JSXInternal.TargetedEvent<HTMLImageElement, Event>) => {
     if (!(event.target instanceof HTMLImageElement)) {
       return;
     }

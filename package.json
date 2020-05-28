@@ -29,6 +29,7 @@
     "eslint-plugin-react": "7.20.0",
     "eslint-plugin-react-hooks": "4.0.2",
     "eslint-plugin-sort-keys-fix": "1.1.1",
+    "eslint-plugin-typescript-sort-keys": "1.2.0",
     "stylelint": "13.4.1",
     "stylelint-config-standard": "20.0.0",
     "stylelint-order": "4.0.0",

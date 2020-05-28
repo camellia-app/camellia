@@ -20,11 +20,11 @@ interface BookmarkBrowserProps {
 }
 
 interface BookmarkBrowserState {
-  loaded: boolean;
-  showSearchBar: boolean;
   categories: BookmarkRootCategory[];
-  searchResults: Link[];
+  loaded: boolean;
   openedPopups: Popup[];
+  searchResults: Link[];
+  showSearchBar: boolean;
 }
 
 interface PopupContext {

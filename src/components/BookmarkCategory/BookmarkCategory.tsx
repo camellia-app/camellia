@@ -4,8 +4,8 @@ import { Bookmark } from '../../bookmarks/Bookmark';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
 
 interface BookmarkCategoryProps {
-  categoryTitle: string;
   bookmarks: Bookmark[];
+  categoryTitle: string;
 }
 
 export const BookmarkCategory = (props: BookmarkCategoryProps) => (

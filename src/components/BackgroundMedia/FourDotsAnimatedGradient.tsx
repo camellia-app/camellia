@@ -85,6 +85,7 @@ class Pixel {
     const { brightness } = this;
 
     const gradient = ctx.createRadialGradient(this.x, this.y, 1, this.x, this.y, Math.max(canvasWidth, canvasHeight) * 1.5);
+
     gradient.addColorStop(0, `hsla(${hue}, ${saturation}%, ${brightness}%, .9)`);
     gradient.addColorStop(1, 'rgba(0,0,0,0)');
 

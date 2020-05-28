@@ -1,4 +1,2 @@
-/node_modules
 /dist
-/.eslintrc.js
 *.css.d.ts

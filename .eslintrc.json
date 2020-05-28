@@ -1,0 +1,53 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true,
+    "webextensions": true
+  },
+  "extends": [
+    "airbnb-typescript"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "typescript-sort-keys",
+    "sort-keys-fix",
+    "react-hooks"
+  ],
+  "root": true,
+  "rules": {
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "import/prefer-default-export": "off",
+    "import/no-cycle": "off",
+    "import/no-default-export": "error",
+    "max-classes-per-file": "off",
+    "max-len": "off",
+    "newline-after-var": ["warn"],
+    "newline-before-return": ["warn"],
+    "no-console": ["warn", {"allow": ["info", "warn"]}],
+    "no-multiple-empty-lines": ["warn", {"max": 1, "maxBOF": 0, "maxEOF": 0}],
+    "padding-line-between-statements": ["warn", {"blankLine": "never", "prev": "import", "next": "import"}],
+    "no-shadow": ["warn", {"allow": ["h"]}],
+    "react/button-has-type": ["warn", {"button": true, "submit": true, "reset": true}],
+    "react/destructuring-assignment": "off",
+    "react/no-unused-state": "off",
+    "react/state-in-constructor": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "sort-keys-fix/sort-keys-fix": ["warn", "asc", {"caseSensitive": true, "natural": false}],
+    "typescript-sort-keys/interface": "warn",
+    "typescript-sort-keys/string-enum": "warn"
+  },
+  "settings": {
+    "react": {
+      "pragma": "h"
+    }
+  }
+}

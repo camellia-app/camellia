@@ -2,9 +2,7 @@ import {
   Bookmark, BookmarkRootCategory, Folder, Link,
 } from './Bookmark';
 
-import BookmarkTreeNode = browser.bookmarks.BookmarkTreeNode;
-
-const normalizeBookmarkFromBrowserBookmark = (bookmark: BookmarkTreeNode, nestingLevel: number): Bookmark => {
+const normalizeBookmarkFromBrowserBookmark = (bookmark: browser.bookmarks.BookmarkTreeNode, nestingLevel: number): Bookmark => {
   if (bookmark.url !== undefined) {
     return new Link(
       bookmark.id,
