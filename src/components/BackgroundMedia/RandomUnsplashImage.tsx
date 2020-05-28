@@ -13,6 +13,6 @@ export const RandomUnsplashImage = () => {
   };
 
   return (
-    <BackgroundImage url={`https://source.unsplash.com/featured/${realWidth}x${realHeight}/daily/?dark`} dimensions={dimensions} />
+    <BackgroundImage dimensions={dimensions} url={`https://source.unsplash.com/featured/${realWidth}x${realHeight}/daily/?dark`} />
   );
 };

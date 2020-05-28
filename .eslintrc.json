@@ -37,6 +37,7 @@
     "no-shadow": ["warn", {"allow": ["h"]}],
     "react/button-has-type": ["warn", {"button": true, "submit": true, "reset": true}],
     "react/destructuring-assignment": "off",
+    "react/jsx-sort-props": "warn",
     "react/no-unused-state": "off",
     "react/state-in-constructor": "off",
     "react-hooks/rules-of-hooks": "error",

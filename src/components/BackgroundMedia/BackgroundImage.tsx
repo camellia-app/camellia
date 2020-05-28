@@ -38,5 +38,5 @@ export const BackgroundImage = (props: BackgroundImageProps) => {
     context.makeVisible();
   };
 
-  return <img className={s.backgroundMedia} src={props.url} alt="" onLoad={handleImageLoad} onError={handleImageError} height={props.dimensions?.height} width={props.dimensions?.width} crossOrigin="anonymous" referrerpolicy="no-referrer" importance="low" decoding="async" />;
+  return <img alt="" className={s.backgroundMedia} crossOrigin="anonymous" decoding="async" height={props.dimensions?.height} importance="low" onError={handleImageError} onLoad={handleImageLoad} referrerpolicy="no-referrer" src={props.url} width={props.dimensions?.width} />;
 };

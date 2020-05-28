@@ -76,8 +76,8 @@ export class BookmarkSearch extends Component<BookmarkSearchProps, BookmarkSearc
   render() {
     return (
       <form className={s.bookmarkSearch} onReset={this.resetHandler} onSubmit={this.submitHandler}>
-        <input ref={this.searchField} type="search" placeholder="Start typing to search bookmarks..." className={s.bookmarkSearchField} onChange={this.inputHandler} />
-        <button type="reset" className={s.bookmarkSearchCloseButton} title="Close search">Close search</button>
+        <input ref={this.searchField} className={s.bookmarkSearchField} onChange={this.inputHandler} placeholder="Start typing to search bookmarks..." type="search" />
+        <button className={s.bookmarkSearchCloseButton} title="Close search" type="reset">Close search</button>
       </form>
     );
   }

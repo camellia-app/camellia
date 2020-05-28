@@ -129,13 +129,13 @@ export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
     return (
       <div
         ref={this.popupElement}
+        aria-labelledby={headerId}
         className={classes}
         onClick={this.handlePopupBodyClick}
         role="dialog"
-        aria-labelledby={headerId}
         style={`--folder-position-x: ${state.placement.x}px; --folder-position-y: ${state.placement.y}px; --popup-height: ${height};`}
       >
-        <h2 id={headerId} className={s.folderPopupTitle}>{props.folder.title}</h2>
+        <h2 className={s.folderPopupTitle} id={headerId}>{props.folder.title}</h2>
 
         <div className={s.bookmarkListContainer}>
           <BookmarkList bookmarks={props.folder.children} />

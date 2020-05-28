@@ -18,8 +18,8 @@ export const BookmarkManager = () => {
 
   return (
     <li className={bookmarkStyles.bookmarkItem}>
-      <a className={bookmarkStyles.bookmark} href={url} rel="noopener" target="_self" onClick={handleClick}>
-        <Chip label={label} tooltip={tooltip} icon={iconStar} shape={ChipShape.Squared} />
+      <a className={bookmarkStyles.bookmark} href={url} onClick={handleClick} rel="noopener" target="_self">
+        <Chip icon={iconStar} label={label} shape={ChipShape.Squared} tooltip={tooltip} />
       </a>
     </li>
   );

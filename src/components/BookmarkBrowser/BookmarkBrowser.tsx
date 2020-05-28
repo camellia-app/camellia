@@ -214,7 +214,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
 
     const body = document.querySelector('body');
     const popupPortals = state.openedPopups.map((popup) => createPortal(
-      <FolderPopup folder={popup.folder} clickPosition={popup.clickPosition} key={popup.folder.browserId} closeAllNextPopups={this.closeAllNextPopups} />,
+      <FolderPopup key={popup.folder.browserId} clickPosition={popup.clickPosition} closeAllNextPopups={this.closeAllNextPopups} folder={popup.folder} />,
       body,
     ));
 
@@ -222,7 +222,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
       return (
         <main className={classes}>
           <Popups.Provider value={context}>
-            <BookmarkSearch hideSearchBar={this.hideSearchBar} updateSearchResults={this.updateSearchResults} firstResult={state.searchResults[0] || null} />
+            <BookmarkSearch firstResult={state.searchResults[0] || null} hideSearchBar={this.hideSearchBar} updateSearchResults={this.updateSearchResults} />
             <BookmarkCategory bookmarks={state.searchResults} categoryTitle="Search results" />
 
             { popupPortals }

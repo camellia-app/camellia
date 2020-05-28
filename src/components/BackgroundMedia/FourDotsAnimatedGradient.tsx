@@ -127,5 +127,5 @@ export const FourDotsAnimatedGradient = () => {
     context.makeVisible();
   });
 
-  return <canvas ref={canvasElement} className={s.backgroundMedia} width={canvasWidth} height={canvasHeight} />;
+  return <canvas ref={canvasElement} className={s.backgroundMedia} height={canvasHeight} width={canvasWidth} />;
 };

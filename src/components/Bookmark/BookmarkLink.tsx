@@ -20,7 +20,7 @@ export const BookmarkLink = (props: BookmarkProps) => {
   return (
     <li className={s.bookmarkItem}>
       <a className={s.bookmark} href={props.bookmark.url} rel="noopener" target="_self">
-        <Chip label={props.bookmark.title} icon={icon} shape={ChipShape.Rounded} handleFaviconLoadingError={handleFaviconLoadingError} />
+        <Chip handleFaviconLoadingError={handleFaviconLoadingError} icon={icon} label={props.bookmark.title} shape={ChipShape.Rounded} />
       </a>
     </li>
   );
