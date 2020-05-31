@@ -195,7 +195,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
     }
   };
 
-  render(props: BookmarkBrowserProps, state: BookmarkBrowserState) {
+  render(_: BookmarkBrowserProps, state: BookmarkBrowserState) {
     const classes = state.loaded === false
       ? classnames(s.bookmarkBrowser, s.loading)
       : s.bookmarkBrowser;

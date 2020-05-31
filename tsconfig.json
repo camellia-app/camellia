@@ -4,13 +4,15 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strict": true,
-    "jsx": "react",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "target": "ES2019",
-    "module": "commonjs",
-    "lib": ["dom", "ES2020"],
+    "module": "CommonJS",
+    "lib": ["DOM", "ES2020"],
+    "jsx": "react",
     "jsxFactory": "h",
-    "noEmitHelpers": true,
-    "importHelpers": true,
     "typeRoots": ["node_modules/@types", "node_modules/web-ext-types"]
   }
 }
