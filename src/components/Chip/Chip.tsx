@@ -37,7 +37,9 @@ export const Chip = (props: ChipProps) => {
 
     console.warn('Could not load favicon %s, loading fallback icon instead', event.target.src);
 
-    props.handleFaviconLoadingError(); // TODO: It may be undefined!
+    if (props.handleFaviconLoadingError !== undefined) {
+      props.handleFaviconLoadingError();
+    }
   };
 
   const iconElement = props.icon instanceof Favicon ? (

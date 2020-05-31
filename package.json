@@ -38,6 +38,7 @@
   "dependencies": {
     "@sentry/browser": "5.15.5",
     "@types/chrome": "0.0.112",
+    "@types/classnames": "2.2.10",
     "chrome-webstore-upload-cli": "1.2.0",
     "classnames": "2.2.6",
     "copy-webpack-plugin": "6.0.1",

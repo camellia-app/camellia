@@ -30,7 +30,13 @@ export const Newtab = (props: NewtabProps) => (
   </Fragment>
 );
 
+const root = document.querySelector('#root');
+
+if (root === null) {
+  throw new Error('Can not find #root element to initialize the app');
+}
+
 render(
   <Newtab bookmarkCategories={getTree()} />,
-  document.querySelector('#root'),
+  root,
 );

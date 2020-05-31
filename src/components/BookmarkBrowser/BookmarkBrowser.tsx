@@ -34,7 +34,12 @@ interface PopupContext {
   togglePopup: (folder: Folder, clickPosition: ClickPosition) => void;
 }
 
-export const Popups = createContext<PopupContext>(undefined);
+export const Popups = createContext<PopupContext>({
+  closeAllNextPopups: () => {},
+  closeAllPopups: () => {},
+  isPopupOpened: () => false,
+  togglePopup: () => {},
+});
 
 export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBrowserState> {
   state = {
@@ -135,7 +140,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
 
   private isPopupWithSameNestingLevelOpened = (folder: Folder) => this.state.openedPopups[folder.nestingLevel] !== undefined;
 
-  private isPopupWithSameIdOpened = (folder: Folder) => this.state.openedPopups.findIndex((popup) => {
+  private isPopupWithSameIdOpened = (folder: Folder) => this.state.openedPopups.findIndex((popup: Popup) => {
     const isPopup = (value: any): value is Popup => value instanceof Object;
 
     if (isPopup(popup) === false) {
@@ -213,6 +218,11 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
     };
 
     const body = document.querySelector('body');
+
+    if (body === null) {
+      throw new Error('Can not find body element to create popup portals');
+    }
+
     const popupPortals = state.openedPopups.map((popup) => createPortal(
       <FolderPopup key={popup.folder.browserId} clickPosition={popup.clickPosition} closeAllNextPopups={this.closeAllNextPopups} folder={popup.folder} />,
       body,

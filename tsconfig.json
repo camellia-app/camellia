@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strict": true,
     "jsx": "react",
     "target": "ES2019",
     "module": "commonjs",

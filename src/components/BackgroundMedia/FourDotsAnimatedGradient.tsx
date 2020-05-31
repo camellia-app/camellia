@@ -46,6 +46,9 @@ class Pixel {
     this.saturation = Math.floor(Math.random() * 75);
     this.brightness = Math.floor(Math.random() * 75);
 
+    this.saturationDirection = getRandomDirection();
+    this.brightnessDirection = getRandomDirection();
+
     this.velocity = ((Math.random() * 30 + 20) * 0.01 * getRandomDirection()) / 5;
   }
 
@@ -96,6 +99,10 @@ class Pixel {
 
 const animateCanvasGradient = (canvas: HTMLCanvasElement) => {
   const ctx = canvas.getContext('2d');
+
+  if (ctx === null) {
+    throw new Error('Can not get canvas 2d context to initialize gradient animation');
+  }
 
   const pixels = [
     new Pixel(0, 0),

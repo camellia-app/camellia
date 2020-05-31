@@ -32,15 +32,15 @@ const normalizeBookmarkFromBrowserBookmark = (bookmark: browser.bookmarks.Bookma
 };
 
 export const getTree = async (): Promise<BookmarkRootCategory[]> => {
-  let bookmarks = [];
+  let bookmarks: Bookmark[];
 
   if (chrome !== undefined && chrome.bookmarks !== undefined) {
     bookmarks = await new Promise((resolve) => chrome.bookmarks.getTree((data) => {
-      resolve(data[0].children
+      resolve((data[0].children || [])
         .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0)));
     }));
   } else {
-    bookmarks = (await browser.bookmarks.getTree())[0].children
+    bookmarks = ((await browser.bookmarks.getTree())[0].children || [])
       .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0));
   }
 

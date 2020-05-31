@@ -14,7 +14,11 @@ interface BackgroundMediaVisibilityContext {
   makeVisible: () => void;
 }
 
-export const BackgroundMediaVisibility = createContext<BackgroundMediaVisibilityContext>(undefined);
+export const BackgroundMediaVisibility = createContext<BackgroundMediaVisibilityContext>({
+  isVisible: false,
+  loadDefaultBackgroundMedia: () => {},
+  makeVisible: () => {},
+});
 
 export const BackgroundMedia = (props: BackgroundMediaProps) => {
   const [isVisible, setVisibility] = useState(false);
