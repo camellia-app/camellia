@@ -1,9 +1,9 @@
 import { h } from 'preact';
 import { useContext } from 'preact/hooks';
-import * as s from './Bookmark.css';
-import { Chip, ChipShape } from '../Chip/Chip';
 import { Folder } from '../../bookmarks/Bookmark';
 import { Popups } from '../BookmarkBrowser/BookmarkBrowser';
+import { Chip, ChipShape } from '../Chip/Chip';
+import * as s from './Bookmark.css';
 
 const iconFolder = require('mdi/file/svg/production/ic_folder_48px.svg?fill=%23eee');
 const iconFolderOpen = require('mdi/file/svg/production/ic_folder_open_48px.svg?fill=%23eee');

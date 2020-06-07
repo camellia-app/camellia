@@ -1,14 +1,14 @@
-import { Component, createContext, h } from 'preact';
 import * as classnames from 'classnames';
+import { Component, createContext, h } from 'preact';
 import { createPortal } from 'preact/compat';
-import * as s from './BookmarkBrowser.css';
+import { BookmarkRootCategory, Folder, Link } from '../../bookmarks/Bookmark';
+import * as bookmarkClasses from '../Bookmark/Bookmark.css';
+import { ClickPosition } from '../Bookmark/BookmarkFolder';
 import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
 import { BookmarkSearch } from '../BookmarkSearch/BookmarkSearch';
-import { BookmarkRootCategory, Folder, Link } from '../../bookmarks/Bookmark';
 import { FolderPopup } from '../FolderPopup/FolderPopup';
-import { ClickPosition } from '../Bookmark/BookmarkFolder';
-import * as bookmarkClasses from '../Bookmark/Bookmark.css';
 import * as folderPopupClasses from '../FolderPopup/FolderPopup.css';
+import * as s from './BookmarkBrowser.css';
 
 export interface Popup {
   clickPosition: ClickPosition;

@@ -2,8 +2,8 @@ import {
   createRef, h,
 } from 'preact';
 import { useContext, useEffect } from 'preact/hooks';
-import * as s from './BackgroundMedia.css';
 import { BackgroundMediaVisibility } from './BackgroundMedia';
+import * as s from './BackgroundMedia.css';
 
 enum ProgressionDirection {
   Increacing = 1,

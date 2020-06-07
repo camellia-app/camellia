@@ -2,12 +2,12 @@ import * as Sentry from '@sentry/browser';
 import {
   Fragment, h, render,
 } from 'preact';
+import { BookmarkRootCategory } from './bookmarks/Bookmark';
 import { getTree } from './bookmarks/BookmarkManager';
+import { BackgroundMedia } from './components/BackgroundMedia/BackgroundMedia';
+import { RandomUnsplashImage } from './components/BackgroundMedia/RandomUnsplashImage';
 import { BookmarkBrowser } from './components/BookmarkBrowser/BookmarkBrowser';
 import { BottomToolbar } from './components/BottomToolbar/BottomToolbar';
-import { RandomUnsplashImage } from './components/BackgroundMedia/RandomUnsplashImage';
-import { BackgroundMedia } from './components/BackgroundMedia/BackgroundMedia';
-import { BookmarkRootCategory } from './bookmarks/Bookmark';
 
 Sentry.init({
   debug: process.env.APP_ENV !== 'stable',

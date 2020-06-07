@@ -1,8 +1,8 @@
 import { h } from 'preact';
 import { useState } from 'preact/hooks';
-import * as s from './Bookmark.css';
-import { Chip, ChipShape } from '../Chip/Chip';
 import { Link } from '../../bookmarks/Bookmark';
+import { Chip, ChipShape } from '../Chip/Chip';
+import * as s from './Bookmark.css';
 
 const iconPublic = require('mdi/social/svg/production/ic_public_48px.svg?fill=%23eee');
 

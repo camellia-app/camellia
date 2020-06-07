@@ -1,8 +1,8 @@
 const path = require('path');
-const { WatchIgnorePlugin, SourceMapDevToolPlugin } = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { WatchIgnorePlugin, SourceMapDevToolPlugin } = require('webpack');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const package = require('./package.json');
 

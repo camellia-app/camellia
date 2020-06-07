@@ -1,5 +1,5 @@
-import { createContext, h, VNode } from 'preact';
 import * as classnames from 'classnames';
+import { createContext, h, VNode } from 'preact';
 import { useState } from 'preact/hooks';
 import * as s from './BackgroundMedia.css';
 import { FourDotsAnimatedGradient } from './FourDotsAnimatedGradient';

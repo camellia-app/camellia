@@ -1,8 +1,8 @@
-import { h } from 'preact';
 import * as classnames from 'classnames';
+import { h } from 'preact';
 import { JSXInternal } from 'preact/src/jsx';
-import * as s from './Chip.css';
 import { Favicon } from '../../bookmarks/Favicon';
+import * as s from './Chip.css';
 
 declare module 'preact' {
   namespace h {

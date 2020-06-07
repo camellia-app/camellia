@@ -1,10 +1,10 @@
-import { Component, createRef, h } from 'preact';
 import * as classnames from 'classnames';
-import * as s from './FolderPopup.css';
-import * as bookmarkClasses from '../Bookmark/Bookmark.css';
+import { Component, createRef, h } from 'preact';
 import { Folder } from '../../bookmarks/Bookmark';
-import { BookmarkList } from '../BookmarkList/BookmarkList';
+import * as bookmarkClasses from '../Bookmark/Bookmark.css';
 import { ClickPosition } from '../Bookmark/BookmarkFolder';
+import { BookmarkList } from '../BookmarkList/BookmarkList';
+import * as s from './FolderPopup.css';
 
 const CURSOR_PADDING = 1;
 const SCREEN_EDGE_SAFE_PADDING = 16;

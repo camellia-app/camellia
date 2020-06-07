@@ -1,9 +1,9 @@
 import {
   Component, createRef, h, JSX,
 } from 'preact';
-import * as s from './BookmarkSearch.css';
-import { search } from '../../bookmarks/BookmarkManager';
 import { Link } from '../../bookmarks/Bookmark';
+import { search } from '../../bookmarks/BookmarkManager';
+import * as s from './BookmarkSearch.css';
 
 interface BookmarkSearchProps {
   firstResult: Link | null;
