@@ -18,6 +18,12 @@ if (process.env.BUILD_NUMBER === undefined) {
   console.warn('Environment variable BUILD_NUMBER is not defined, using "0" as default value');
 }
 
+if (process.env.TARGET_PLATFORM === undefined) {
+  process.env.TARGET_PLATFORM = 'chromium';
+
+  console.warn('Environment variable TARGET_PLATFORM is not defined, using "chromium" as default value');
+}
+
 const commonConfig = {
   context: path.join(__dirname, 'src'),
   devtool: false,
@@ -58,7 +64,7 @@ const commonConfig = {
     ],
   },
   output: {
-    filename: '[name].js',
+    filename: `[name]-${process.env.TARGET_PLATFORM}.js`,
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
@@ -76,6 +82,7 @@ const commonConfig = {
             manifest.homepage_url = package.homepage;
             manifest.version = `${package.version}.${process.env.BUILD_NUMBER}`;
             manifest.version_name = `${package.version} build ${process.env.BUILD_NUMBER}`;
+            manifest.background.scripts.push(`background-${process.env.TARGET_PLATFORM}.js`);
 
             switch (process.env.APP_ENV) {
               case 'local':

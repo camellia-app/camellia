@@ -26,7 +26,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@master
       with:
-        node-version: '13.x'
+        node-version: '14.x'
 
     - name: Install npm dependencies
       run: npm ci
@@ -40,10 +40,19 @@ jobs:
         GIT_VERSION: ${{ github.sha }}
         BUILD_NUMBER: ${{ github.run_number }}
 
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v1
+    - name: Save source maps artifacts
+      uses: actions/upload-artifact@v2
       with:
-        name: chromium-canary
+        name: camellia-canary-chromium-source-maps
+        path: dist/*.js.map
+
+    - name: Remove source maps
+      run: rm dist/*.js.map
+
+    - name: Save build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: camellia-canary-chromium
         path: dist
 
   build_webext:
@@ -66,7 +75,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@master
       with:
-        node-version: '13.x'
+        node-version: '14.x'
 
     - name: Install npm dependencies
       run: npm ci
@@ -80,10 +89,19 @@ jobs:
         GIT_VERSION: ${{ github.sha }}
         BUILD_NUMBER: ${{ github.run_number }}
 
-    - name: Upload build artifacts
+    - name: Save source maps artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: webext-canary
+        name: camellia-canary-webext-source-maps
+        path: dist/*.js.map
+
+    - name: Remove source maps
+      run: rm dist/*.js.map
+
+    - name: Save build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: camellia-canary-webext
         path: dist
 
   sentry_release:
@@ -95,10 +113,28 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@master
 
-    - name: Download build artifacts
+    - name: Download Camellia (Chromium) build artifacts
       uses: actions/download-artifact@v2
       with:
-        name: chromium-canary
+        name: camellia-canary-chromium
+        path: dist
+
+    - name: Download Camellia (Chromium) source maps artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: camellia-canary-chromium-source-maps
+        path: dist
+
+    - name: Download Camellia (WebExtensions) build artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: camellia-canary-webext
+        path: dist
+
+    - name: Download Camellia (WebExtensions) source maps artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: camellia-canary-webext-source-maps
         path: dist
 
     - name: Setup Sentry CLI
@@ -134,22 +170,28 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@master
 
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-npm-
+
     - name: Download build artifacts
       uses: actions/download-artifact@v2
       with:
-        name: chromium-canary
+        name: camellia-canary-chromium
         path: dist
 
     - name: Setup Node.js
       uses: actions/setup-node@master
       with:
-        node-version: '13.x'
+        node-version: '14.x'
 
     - name: Install npm dependencies
       run: npm ci
-
-    - name: Remove source maps
-      run: rm dist/*.js.map
 
     - name: Upload to Chrome Web Store
       run: npx webstore upload --extension-id $APP_ID --source dist
