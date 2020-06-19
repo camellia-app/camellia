@@ -21,7 +21,7 @@ Camellia supports shortcuts for better application usability and to be more acce
 | `Command ⌘` + `F` | Open search                                    |
 | `Command ⌘` + `G` | Open search                                    |
 | any character key | Open search and fill it with pressed character |
-| `Esc`             | Cancel search                                  |
+| `Esc ⎋`           | Cancel search                                  |
 | `Return ↩`        | Open first found bookmark in current tab       |
 
 To make these combinations work you should interact with Camellia first otherwise shortcuts will be overtaken by your browser. That's the reason why native search bar opens sometimes when you press `Command ⌘` + `F` or `Command ⌘` + `G`.
@@ -32,6 +32,6 @@ All "Bookmark browser" shortcuts are also available if you press `Tab ⇥` to ch
 
 | Shortcut | Action       |
 |----------|--------------|
-| `Esc`    | Cancel popup |
+| `Esc ⎋`  | Cancel popup |
 
 All "Bookmark browser" shortcuts are also available in folder popups.
