@@ -8,7 +8,7 @@ import * as s from './BookmarkSearch.css';
 interface BookmarkSearchProps {
   firstResult: Link | null;
   hideSearchBar: () => void;
-  updateSearchResults: (bookmarks: Promise<Link[]>) => void;
+  updateSearchResults: (bookmarks: Promise<Link[]>) => Promise<void>;
 }
 
 interface BookmarkSearchState {

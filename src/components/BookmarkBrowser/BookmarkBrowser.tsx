@@ -118,7 +118,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
     });
   };
 
-  private updateSearchResults = (searchResults: Promise<Link[]>): void => {
+  private updateSearchResults = async (searchResults: Promise<Link[]>): Promise<void> => {
     searchResults.then((bookmarks) => {
       this.setState({
         searchResults: bookmarks,
