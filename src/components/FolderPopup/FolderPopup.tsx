@@ -6,7 +6,7 @@ import { ClickPosition } from '../Bookmark/BookmarkFolder';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
 import * as s from './FolderPopup.css';
 
-const CURSOR_PADDING = 1;
+const CURSOR_PADDING = 3;
 const SCREEN_EDGE_SAFE_PADDING = 16;
 
 interface FolderPopupProps {
