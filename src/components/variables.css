@@ -4,6 +4,9 @@
   --bookmark-category-title-text-color: #eee;
   --bookmark-column-min-width: 235px;
   --bookmark-text-color: #eee;
+  --chip-loading-strip-size: 20px;
+  --chip-loading-strip-color-1: rgba(238, 238, 238, 0.1);
+  --chip-loading-strip-color-2: rgba(238, 238, 238, 0.2);
   --chip-rounded-border-radius: 1rem;
   --chip-squared-border-radius: 0.5rem;
   --font-family-sans-serif: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";

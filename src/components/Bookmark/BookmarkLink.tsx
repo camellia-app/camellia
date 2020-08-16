@@ -12,15 +12,24 @@ interface BookmarkProps {
 
 export const BookmarkLink = (props: BookmarkProps) => {
   const [icon, setIcon] = useState(props.bookmark.favicon);
+  const [isLoading, setLoading] = useState(false);
 
   const handleFaviconLoadingError = () => {
     setIcon(iconPublic);
   };
 
+  const handleClick = () => {
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  };
+
   return (
     <li className={s.bookmarkItem}>
-      <a className={s.bookmark} href={props.bookmark.url} rel="noopener" target="_self">
-        <Chip handleFaviconLoadingError={handleFaviconLoadingError} icon={icon} label={props.bookmark.title} shape={ChipShape.Rounded} />
+      <a className={s.bookmark} href={props.bookmark.url} onClick={handleClick} rel="noopener" target="_self">
+        <Chip handleFaviconLoadingError={handleFaviconLoadingError} icon={icon} label={props.bookmark.title} loading={isLoading} shape={ChipShape.Rounded} />
       </a>
     </li>
   );

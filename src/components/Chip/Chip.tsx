@@ -25,6 +25,7 @@ interface ChipProps {
   handleFaviconLoadingError?: () => void;
   icon: string | Favicon;
   label: string;
+  loading: boolean;
   shape: ChipShape;
   tooltip?: string;
 }
@@ -50,16 +51,16 @@ export const Chip = (props: ChipProps) => {
 
   const tooltip = props.tooltip || props.label;
 
-  let shapeClass;
+  const chipClasses = [s.chip];
 
   switch (props.shape) {
     case ChipShape.Rounded:
-      shapeClass = s.chipRounded;
+      chipClasses.push(s.chipRounded);
 
       break;
 
     case ChipShape.Squared:
-      shapeClass = s.chipSquared;
+      chipClasses.push(s.chipSquared);
 
       break;
 
@@ -67,8 +68,12 @@ export const Chip = (props: ChipProps) => {
       throw Error('Unsupported chip shape');
   }
 
+  if (props.loading) {
+    chipClasses.push(s.loading);
+  }
+
   return (
-    <div className={classnames(s.chip, shapeClass)} title={tooltip}>
+    <div className={classnames(chipClasses)} title={tooltip}>
       {iconElement}
 
       <span className={s.chipLabel}>{props.label}</span>

@@ -36,7 +36,7 @@ export const BookmarkFolder = (props: BookmarkFolderProps) => {
   return (
     <li className={s.bookmarkItem}>
       <button className={s.bookmark} onClick={handleFolderClick} type="button">
-        <Chip icon={icon} label={props.bookmark.title} shape={ChipShape.Rounded} />
+        <Chip icon={icon} label={props.bookmark.title} loading={false} shape={ChipShape.Rounded} />
       </button>
     </li>
   );

@@ -1,11 +1,13 @@
 declare namespace ChipCssNamespace {
   export interface IChipCss {
+    backgroundStripAnimation: string;
     chip: string;
     chipIcon: string;
     chipIconInline: string;
     chipLabel: string;
     chipRounded: string;
     chipSquared: string;
+    loading: string;
   }
 }
 
