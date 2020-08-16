@@ -133,7 +133,11 @@ export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
         className={classes}
         onClick={this.handlePopupBodyClick}
         role="dialog"
-        style={`--folder-position-x: ${state.placement.x}px; --folder-position-y: ${state.placement.y}px; --popup-height: ${height};`}
+        style={{
+          '--folder-position-x': `${state.placement.x}px`,
+          '--folder-position-y': `${state.placement.y}px`,
+          '--popup-height': height,
+        }}
       >
         <h2 className={s.folderPopupTitle} id={headerId}>{props.folder.title}</h2>
 

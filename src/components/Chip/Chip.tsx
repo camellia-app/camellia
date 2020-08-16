@@ -46,7 +46,12 @@ export const Chip = (props: ChipProps) => {
   const iconElement = props.icon instanceof Favicon ? (
     <img alt="Favicon" className={s.chipIcon} height="16" onError={handleImageError} src={props.icon.getDefaultFavicon().url} srcSet={props.icon.getSrcSetString()} width="16" />
   ) : (
-    <span className={classnames(s.chipIcon, s.chipIconInline)} style={`--inline-icon: url("${props.icon}");`} />
+    <span
+      className={classnames(s.chipIcon, s.chipIconInline)}
+      style={{
+        '--inline-icon': `url("${props.icon}")`,
+      }}
+    />
   );
 
   const tooltip = props.tooltip || props.label;
