@@ -9,4 +9,5 @@
 .bookmark {
   all: unset;
   display: block;
+  touch-action: manipulation;
 }
