@@ -18,7 +18,7 @@ export const BookmarkLink = (props: BookmarkProps) => {
     setIcon(iconPublic);
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     setLoading(true);
 
     setTimeout(() => {
