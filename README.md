@@ -16,7 +16,7 @@ Look at the screen shot attached above (please note that it's early build, somet
 
 ### When will it be released?
 
-It's planned to release is Q3 of 2020. Initial release will cover the same features as those in the latest version of first generation, but with new design, new codebase and performance improvements. Nothing new to expect at this time.
+It's planned to release is Q2-Q3 of 2021. Initial release will cover the same features as those in the latest version of first generation, but with new design, new codebase and performance improvements. Nothing new to expect at this time.
 
 Your 1st gen Camellia will automatically update to 2nd gen, so no additional actions required. However, if you'll prefer 1st gen version for some reason, we'll provide an option to install it separately via CRX-file.
 
