@@ -3,7 +3,7 @@ import {
 } from 'preact';
 import { Bookmark, isLink } from '../../bookmarks/Bookmark';
 import { search } from '../../bookmarks/BookmarkManager';
-import * as s from './BookmarkSearch.css';
+import s from './BookmarkSearch.css';
 
 interface BookmarkSearchProps {
   hideSearchBar: () => void;

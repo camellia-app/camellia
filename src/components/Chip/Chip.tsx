@@ -1,8 +1,8 @@
-import * as classnames from 'classnames';
+import cn from 'classnames';
 import { h } from 'preact';
 import { JSXInternal } from 'preact/src/jsx';
 import { Favicon } from '../../bookmarks/Favicon';
-import * as s from './Chip.css';
+import s from './Chip.css';
 
 declare module 'preact' {
   namespace h {
@@ -47,7 +47,7 @@ export const Chip = (props: ChipProps) => {
     <img alt="Favicon" className={s.chipIcon} height="16" onError={handleImageError} src={props.icon.getDefaultFavicon().url} srcSet={props.icon.getSrcSetString()} width="16" />
   ) : (
     <span
-      className={classnames(s.chipIcon, s.chipIconInline)}
+      className={cn(s.chipIcon, s.chipIconInline)}
       style={{
         '--inline-icon': `url("${props.icon}")`,
       }}
@@ -56,29 +56,15 @@ export const Chip = (props: ChipProps) => {
 
   const tooltip = props.tooltip || props.label;
 
-  const chipClasses = [s.chip];
-
-  switch (props.shape) {
-    case ChipShape.Rounded:
-      chipClasses.push(s.chipRounded);
-
-      break;
-
-    case ChipShape.Squared:
-      chipClasses.push(s.chipSquared);
-
-      break;
-
-    default:
-      throw Error('Unsupported chip shape');
-  }
-
-  if (props.loading) {
-    chipClasses.push(s.loading);
-  }
-
   return (
-    <div className={classnames(chipClasses)} title={tooltip}>
+    <div
+      className={cn(s.chip, {
+        [s.loading]: props.loading,
+        [s.chipSquared]: props.shape === ChipShape.Squared,
+        [s.chipRounded]: props.shape === ChipShape.Rounded,
+      })}
+      title={tooltip}
+    >
       {iconElement}
 
       <span className={s.chipLabel}>{props.label}</span>

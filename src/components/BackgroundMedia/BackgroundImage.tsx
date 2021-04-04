@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import { useContext } from 'preact/hooks';
 import { BackgroundMediaVisibility } from './BackgroundMedia';
-import * as s from './BackgroundMedia.css';
+import s from './BackgroundMedia.css';
 
 declare module 'preact' {
   namespace h {

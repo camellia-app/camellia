@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import { Bookmark } from '../../bookmarks/Bookmark';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
-import * as s from './BookmarkCategory.css';
+import s from './BookmarkCategory.css';
 
 interface BookmarkCategoryProps {
   bookmarks: Bookmark[];

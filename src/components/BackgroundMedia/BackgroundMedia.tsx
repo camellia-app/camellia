@@ -1,7 +1,7 @@
-import * as classnames from 'classnames';
+import cn from 'classnames';
 import { createContext, h, VNode } from 'preact';
 import { useState } from 'preact/hooks';
-import * as s from './BackgroundMedia.css';
+import s from './BackgroundMedia.css';
 import { FourDotsAnimatedGradient } from './FourDotsAnimatedGradient';
 
 interface BackgroundMediaProps {
@@ -42,13 +42,12 @@ export const BackgroundMedia = (props: BackgroundMediaProps) => {
     makeVisible,
   };
 
-  const classes = isVisible === true
-    ? classnames(s.backgroundMediaContainer, s.backgroundMediaContainerVisible)
-    : s.backgroundMediaContainer;
-
   return (
     <BackgroundMediaVisibility.Provider value={context}>
-      <div className={classes}>
+      <div className={cn(s.backgroundMediaContainer, {
+        [s.backgroundMediaContainerVisible]: isVisible,
+      })}
+      >
         { backgroundMedia }
       </div>
     </BackgroundMediaVisibility.Provider>

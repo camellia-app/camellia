@@ -3,7 +3,7 @@ import {
 } from 'preact';
 import { useContext, useEffect } from 'preact/hooks';
 import { BackgroundMediaVisibility } from './BackgroundMedia';
-import * as s from './BackgroundMedia.css';
+import s from './BackgroundMedia.css';
 
 enum ProgressionDirection {
   Increacing = 1,

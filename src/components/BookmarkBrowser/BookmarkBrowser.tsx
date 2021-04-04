@@ -1,4 +1,4 @@
-import * as classnames from 'classnames';
+import cn from 'classnames';
 import { Component, createContext, h } from 'preact';
 import { createPortal } from 'preact/compat';
 import {
@@ -10,7 +10,7 @@ import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
 import { BookmarkSearch } from '../BookmarkSearch/BookmarkSearch';
 import { FolderPopup } from '../FolderPopup/FolderPopup';
 import * as folderPopupClasses from '../FolderPopup/FolderPopup.css';
-import * as s from './BookmarkBrowser.css';
+import s from './BookmarkBrowser.css';
 
 export interface Popup {
   clickPosition: ClickPosition;
@@ -198,13 +198,13 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
   };
 
   render(_: BookmarkBrowserProps, state: BookmarkBrowserState) {
-    const classes = state.loaded === false
-      ? classnames(s.bookmarkBrowser, s.loading)
-      : s.bookmarkBrowser;
+    const mainClasses = cn(s.bookmarkBrowser, {
+      [s.loading]: !this.state.loaded,
+    });
 
     if (state.categories.length === 0) {
       return (
-        <main className={classes}>
+        <main className={mainClasses}>
           <p className={s.noBookmarksMessage}>
             Add your first bookmarks to get started with Camellia
           </p>
@@ -219,20 +219,14 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
       togglePopup: this.togglePopup,
     };
 
-    const body = document.querySelector('body');
-
-    if (body === null) {
-      throw new Error('Can not find body element to create popup portals');
-    }
-
     const popupPortals = state.openedPopups.map((popup) => createPortal(
       <FolderPopup key={popup.folder.idLocal} clickPosition={popup.clickPosition} closeAllNextPopups={this.closeAllNextPopups} folder={popup.folder} />,
-      body,
+      document.body,
     ));
 
     if (state.showSearchBar) {
       return (
-        <main className={classes}>
+        <main className={mainClasses}>
           <Popups.Provider value={context}>
             <BookmarkSearch hideSearchBar={this.hideSearchBar} searchResults={state.searchResults} updateSearchResults={this.updateSearchResults} />
             <BookmarkCategory bookmarks={state.searchResults} categoryTitle="Search results" />
@@ -244,7 +238,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
     }
 
     return (
-      <main className={classes}>
+      <main className={mainClasses}>
         <Popups.Provider value={context}>
           {state.categories.map((item) => (
             <BookmarkCategory key={item.idLocal} bookmarks={item.children} categoryTitle={item.title} />

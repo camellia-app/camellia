@@ -31,7 +31,7 @@ const normalizeBookmarkFromBrowserBookmark = (bookmark: browser.bookmarks.Bookma
   );
 };
 
-export const getFolderChildren = async (id: BookmarkLocalId): Promise<Bookmark[]> => {
+const getFolderChildren = async (id: BookmarkLocalId): Promise<Bookmark[]> => {
   let bookmarks: Bookmark[];
 
   if (chrome !== undefined && chrome.bookmarks !== undefined) {

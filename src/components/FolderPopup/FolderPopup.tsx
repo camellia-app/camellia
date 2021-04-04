@@ -1,10 +1,10 @@
-import * as classnames from 'classnames';
+import cn from 'classnames';
 import { Component, createRef, h } from 'preact';
 import { Folder } from '../../bookmarks/Bookmark';
 import * as bookmarkClasses from '../Bookmark/Bookmark.css';
 import { ClickPosition } from '../Bookmark/BookmarkFolder';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
-import * as s from './FolderPopup.css';
+import s from './FolderPopup.css';
 
 const CURSOR_PADDING = 3;
 const SCREEN_EDGE_SAFE_PADDING = 16;
@@ -118,10 +118,6 @@ export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
   };
 
   render(props: FolderPopupProps, state: FolderPopupState) {
-    const classes = state.isVisible === false
-      ? classnames(s.folderPopup, s.loading)
-      : s.folderPopup;
-
     const height = state.placement.height === null ? 'auto' : `${state.placement.height}px`;
 
     const headerId = `folder-popup-${props.folder.idLocal}-header`;
@@ -130,7 +126,9 @@ export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
       <div
         ref={this.popupElement}
         aria-labelledby={headerId}
-        className={classes}
+        className={cn(s.folderPopup, {
+          [s.loading]: !state.isVisible,
+        })}
         onClick={this.handlePopupBodyClick}
         role="dialog"
         style={{

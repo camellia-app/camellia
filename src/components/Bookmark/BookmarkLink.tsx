@@ -2,7 +2,7 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 import { Link } from '../../bookmarks/Bookmark';
 import { Chip, ChipShape } from '../Chip/Chip';
-import * as s from './Bookmark.css';
+import s from './Bookmark.css';
 
 const iconPublic = require('mdi/social/svg/production/ic_public_48px.svg?fill=%23eee');
 
@@ -20,6 +20,10 @@ export const BookmarkLink = (props: BookmarkProps) => {
 
   const handleClick = async () => {
     setLoading(true);
+
+    if (isLoading) {
+      return;
+    }
 
     setTimeout(() => {
       setLoading(false);

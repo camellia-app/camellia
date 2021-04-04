@@ -2,7 +2,7 @@ import { h } from 'preact';
 import { Bookmark, isFolder, isLink } from '../../bookmarks/Bookmark';
 import { BookmarkFolder } from '../Bookmark/BookmarkFolder';
 import { BookmarkLink } from '../Bookmark/BookmarkLink';
-import * as s from './BookmarkList.css';
+import s from './BookmarkList.css';
 
 interface BookmarkListProps {
   bookmarks: Bookmark[];
