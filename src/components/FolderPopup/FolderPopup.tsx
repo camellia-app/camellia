@@ -124,7 +124,7 @@ export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
 
     const height = state.placement.height === null ? 'auto' : `${state.placement.height}px`;
 
-    const headerId = `folder-popup-${props.folder.browserId}-header`;
+    const headerId = `folder-popup-${props.folder.idLocal}-header`;
 
     return (
       <div

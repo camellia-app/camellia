@@ -1,18 +1,20 @@
 import { Favicon } from './Favicon';
 
+export type BookmarkLocalId = string;
+
 export abstract class Bookmark {
-  public readonly browserId: string;
+  public readonly idLocal: BookmarkLocalId;
 
   public readonly title: string;
 
   public readonly nestingLevel: number;
 
   protected constructor(
-    browserId: string,
+    idLocal: BookmarkLocalId,
     title: string,
     nestingLevel: number,
   ) {
-    this.browserId = browserId;
+    this.idLocal = idLocal;
     this.title = title;
     this.nestingLevel = nestingLevel;
   }
@@ -24,13 +26,13 @@ export class Link extends Bookmark {
   public readonly favicon: Favicon;
 
   constructor(
-    browserId: string,
+    idLocal: BookmarkLocalId,
     title: string,
     nestingLevel: number,
     url: string,
   ) {
     super(
-      browserId,
+      idLocal,
       title,
       nestingLevel,
     );
@@ -44,13 +46,13 @@ export class Folder extends Bookmark {
   public readonly children: Bookmark[];
 
   constructor(
-    browserId: string,
+    idLocal: BookmarkLocalId,
     title: string,
     nestingLevel: number,
     children: Bookmark[],
   ) {
     super(
-      browserId,
+      idLocal,
       title,
       nestingLevel,
     );
@@ -64,4 +66,12 @@ export class Folder extends Bookmark {
 }
 
 export class BookmarkRootCategory extends Folder {
+}
+
+export function isFolder(bookmark: any): bookmark is Folder {
+  return bookmark.children !== undefined;
+}
+
+export function isLink(bookmark: any): bookmark is Link {
+  return bookmark.url !== undefined;
 }

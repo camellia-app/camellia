@@ -1,14 +1,14 @@
 import {
   Component, createRef, h, JSX,
 } from 'preact';
-import { Link } from '../../bookmarks/Bookmark';
+import { Bookmark, isLink } from '../../bookmarks/Bookmark';
 import { search } from '../../bookmarks/BookmarkManager';
 import * as s from './BookmarkSearch.css';
 
 interface BookmarkSearchProps {
-  firstResult: Link | null;
   hideSearchBar: () => void;
-  updateSearchResults: (bookmarks: Promise<Link[]>) => Promise<void>;
+  searchResults: Bookmark[];
+  updateSearchResults: (bookmarks: Promise<Bookmark[]>) => Promise<void>;
 }
 
 interface BookmarkSearchState {
@@ -60,13 +60,15 @@ export class BookmarkSearch extends Component<BookmarkSearchProps, BookmarkSearc
   };
 
   private openFirstSearchResult = () => {
-    const { firstResult } = this.props;
+    const { searchResults } = this.props;
 
-    if (firstResult === null) {
-      return;
+    for (const bookmark of searchResults) {
+      if (isLink(bookmark)) {
+        window.location.href = bookmark.url;
+
+        break;
+      }
     }
-
-    window.location.href = firstResult.url;
   };
 
   private inputHandler = (event: JSX.TargetedEvent<HTMLInputElement, Event>) => {

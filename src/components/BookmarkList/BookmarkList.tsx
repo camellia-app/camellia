@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { Bookmark, Folder, Link } from '../../bookmarks/Bookmark';
+import { Bookmark, isFolder, isLink } from '../../bookmarks/Bookmark';
 import { BookmarkFolder } from '../Bookmark/BookmarkFolder';
 import { BookmarkLink } from '../Bookmark/BookmarkLink';
 import * as s from './BookmarkList.css';
@@ -11,15 +11,15 @@ interface BookmarkListProps {
 export const BookmarkList = (props: BookmarkListProps) => (
   <ul className={s.bookmarkList}>
     {props.bookmarks.map((item) => {
-      if (item instanceof Link) {
+      if (isLink(item)) {
         return (
-          <BookmarkLink key={item.browserId} bookmark={item} />
+          <BookmarkLink key={item.idLocal} bookmark={item} />
         );
       }
 
-      if (item instanceof Folder) {
+      if (isFolder(item)) {
         return (
-          <BookmarkFolder key={item.browserId} bookmark={item} />
+          <BookmarkFolder key={item.idLocal} bookmark={item} />
         );
       }
 

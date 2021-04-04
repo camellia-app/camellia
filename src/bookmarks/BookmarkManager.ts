@@ -1,5 +1,5 @@
 import {
-  Bookmark, BookmarkRootCategory, Folder, Link,
+  Bookmark, BookmarkLocalId, BookmarkRootCategory, Folder, isFolder, Link,
 } from './Bookmark';
 
 const normalizeBookmarkFromBrowserBookmark = (bookmark: browser.bookmarks.BookmarkTreeNode, nestingLevel: number): Bookmark => {
@@ -31,6 +31,27 @@ const normalizeBookmarkFromBrowserBookmark = (bookmark: browser.bookmarks.Bookma
   );
 };
 
+export const getFolderChildren = async (id: BookmarkLocalId): Promise<Bookmark[]> => {
+  let bookmarks: Bookmark[];
+
+  if (chrome !== undefined && chrome.bookmarks !== undefined) {
+    bookmarks = await new Promise((resolve) => chrome.bookmarks.getSubTree(id, (data) => {
+      resolve(data.map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0)));
+    }));
+  } else {
+    bookmarks = (await browser.bookmarks.getSubTree(id))
+      .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0));
+  }
+
+  const bookmark = bookmarks[0];
+
+  if (isFolder(bookmark)) {
+    return bookmark.children;
+  }
+
+  return [];
+};
+
 export const getTree = async (): Promise<BookmarkRootCategory[]> => {
   let bookmarks: Bookmark[];
 
@@ -57,7 +78,7 @@ export const openBookmarkManager = async (): Promise<void> => {
   }, () => resolve()));
 };
 
-export const search = async (query: string): Promise<Link[]> => {
+export const search = async (query: string): Promise<Bookmark[]> => {
   let bookmarks: Bookmark[];
 
   if (chrome !== undefined && chrome.bookmarks !== undefined) {
@@ -69,5 +90,14 @@ export const search = async (query: string): Promise<Link[]> => {
       .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0));
   }
 
-  return bookmarks.filter((bookmark) => bookmark instanceof Link) as Link[];
+  return Promise.all(bookmarks.map(async (bookmark) => {
+    if (isFolder(bookmark)) {
+      return {
+        ...bookmark,
+        children: await getFolderChildren(bookmark.idLocal),
+      };
+    }
+
+    return bookmark;
+  }));
 };

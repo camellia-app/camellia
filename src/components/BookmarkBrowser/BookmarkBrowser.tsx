@@ -1,7 +1,9 @@
 import * as classnames from 'classnames';
 import { Component, createContext, h } from 'preact';
 import { createPortal } from 'preact/compat';
-import { BookmarkRootCategory, Folder, Link } from '../../bookmarks/Bookmark';
+import {
+  Bookmark, BookmarkRootCategory, Folder,
+} from '../../bookmarks/Bookmark';
 import * as bookmarkClasses from '../Bookmark/Bookmark.css';
 import { ClickPosition } from '../Bookmark/BookmarkFolder';
 import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
@@ -23,7 +25,7 @@ interface BookmarkBrowserState {
   categories: BookmarkRootCategory[];
   loaded: boolean;
   openedPopups: Popup[];
-  searchResults: Link[];
+  searchResults: Bookmark[];
   showSearchBar: boolean;
 }
 
@@ -118,7 +120,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
     });
   };
 
-  private updateSearchResults = async (searchResults: Promise<Link[]>): Promise<void> => {
+  private updateSearchResults = async (searchResults: Promise<Bookmark[]>): Promise<void> => {
     searchResults.then((bookmarks) => {
       this.setState({
         searchResults: bookmarks,
@@ -147,7 +149,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
       return false;
     }
 
-    return popup.folder.browserId === folder.browserId;
+    return popup.folder.idLocal === folder.idLocal;
   }) !== -1;
 
   private togglePopup = (folder: Folder, clickPosition: ClickPosition) => {
@@ -224,7 +226,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
     }
 
     const popupPortals = state.openedPopups.map((popup) => createPortal(
-      <FolderPopup key={popup.folder.browserId} clickPosition={popup.clickPosition} closeAllNextPopups={this.closeAllNextPopups} folder={popup.folder} />,
+      <FolderPopup key={popup.folder.idLocal} clickPosition={popup.clickPosition} closeAllNextPopups={this.closeAllNextPopups} folder={popup.folder} />,
       body,
     ));
 
@@ -232,7 +234,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
       return (
         <main className={classes}>
           <Popups.Provider value={context}>
-            <BookmarkSearch firstResult={state.searchResults[0] || null} hideSearchBar={this.hideSearchBar} updateSearchResults={this.updateSearchResults} />
+            <BookmarkSearch hideSearchBar={this.hideSearchBar} searchResults={state.searchResults} updateSearchResults={this.updateSearchResults} />
             <BookmarkCategory bookmarks={state.searchResults} categoryTitle="Search results" />
 
             { popupPortals }
@@ -245,7 +247,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
       <main className={classes}>
         <Popups.Provider value={context}>
           {state.categories.map((item) => (
-            <BookmarkCategory key={item.browserId} bookmarks={item.children} categoryTitle={item.title} />
+            <BookmarkCategory key={item.idLocal} bookmarks={item.children} categoryTitle={item.title} />
           ))}
 
           { popupPortals }
