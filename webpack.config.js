@@ -36,17 +36,17 @@ const commonConfig = {
     rules: [
       {
         // include: path.join(__dirname, 'src', 'components'),
-        test: /\.css$/,
+        test: /\.module\.css$/,
         use: [
           'style-loader',
-          '@teamsupercell/typings-for-css-modules-loader',
           {
             loader: 'css-loader',
             options: {
-              localsConvention: 'camelCaseOnly',
               modules: true,
+              importLoaders: 1,
             },
           },
+          "postcss-loader"
         ],
       },
       {
@@ -148,9 +148,6 @@ switch (process.env.APP_ENV) {
     };
 
     commonConfig.plugins.push(new LiveReloadPlugin());
-    commonConfig.plugins.push(new WatchIgnorePlugin([
-      /css\.d\.ts$/,
-    ]));
 
     break;
 

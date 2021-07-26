@@ -1,9 +1,9 @@
 import {
-  Component, createRef, h, JSX,
-} from 'preact';
+  ChangeEventHandler, Component, createRef, FormEventHandler,
+} from 'react';
 import { Bookmark, isLink } from '../../bookmarks/Bookmark';
 import { search } from '../../bookmarks/BookmarkManager';
-import s from './BookmarkSearch.css';
+import s from './BookmarkSearch.module.css';
 
 interface BookmarkSearchProps {
   hideSearchBar: () => void;
@@ -15,7 +15,7 @@ interface BookmarkSearchState {
 }
 
 export class BookmarkSearch extends Component<BookmarkSearchProps, BookmarkSearchState> {
-  searchField = createRef();
+  searchField = createRef<HTMLInputElement>();
 
   componentDidMount(): void {
     document.addEventListener('keydown', this.escapeKeyPressHandler);
@@ -32,7 +32,7 @@ export class BookmarkSearch extends Component<BookmarkSearchProps, BookmarkSearc
   }
 
   private focusInput = (): void => {
-    this.searchField.current.focus();
+    this.searchField.current?.focus();
   };
 
   private characterKeyPressHandler = (event: KeyboardEvent) => {
@@ -49,11 +49,11 @@ export class BookmarkSearch extends Component<BookmarkSearchProps, BookmarkSearc
     }
   };
 
-  private resetHandler = () => {
+  private resetHandler: FormEventHandler<HTMLFormElement> = () => {
     this.props.hideSearchBar();
   };
 
-  private submitHandler = (event: JSX.TargetedEvent<HTMLFormElement, Event>) => {
+  private submitHandler: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
     this.openFirstSearchResult();
@@ -71,7 +71,7 @@ export class BookmarkSearch extends Component<BookmarkSearchProps, BookmarkSearc
     }
   };
 
-  private inputHandler = (event: JSX.TargetedEvent<HTMLInputElement, Event>) => {
+  private inputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
     this.props.updateSearchResults(search(event.currentTarget.value));
   };
 

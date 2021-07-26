@@ -1,5 +1,4 @@
-import { h } from 'preact';
-import s from './BottomToolbar.css';
+import s from './BottomToolbar.module.css';
 import { BookmarkManager } from './ToolbarItem/BookmarkManager';
 
 export const BottomToolbar = () => {

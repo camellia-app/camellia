@@ -1,19 +1,6 @@
-import { h } from 'preact';
-import { useContext } from 'preact/hooks';
+import { useContext } from 'react';
 import { BackgroundMediaVisibility } from './BackgroundMedia';
-import s from './BackgroundMedia.css';
-
-declare module 'preact' {
-  namespace h {
-    namespace JSX {
-      interface HTMLAttributes {
-        decoding?: string;
-        importance?: string;
-        referrerpolicy?: string;
-      }
-    }
-  }
-}
+import s from './BackgroundMedia.module.css';
 
 interface ImageDimensions {
   height: number;
@@ -38,5 +25,5 @@ export const BackgroundImage = (props: BackgroundImageProps) => {
     context.makeVisible();
   };
 
-  return <img alt="" className={s.backgroundMedia} crossOrigin="anonymous" decoding="async" height={props.dimensions?.height} importance="low" onError={handleImageError} onLoad={handleImageLoad} referrerpolicy="no-referrer" src={props.url} width={props.dimensions?.width} />;
+  return <img alt="" className={s.backgroundMedia} crossOrigin="anonymous" decoding="async" height={props.dimensions?.height} importance="low" onError={handleImageError} onLoad={handleImageLoad} referrerPolicy="no-referrer" src={props.url} width={props.dimensions?.width} />;
 };

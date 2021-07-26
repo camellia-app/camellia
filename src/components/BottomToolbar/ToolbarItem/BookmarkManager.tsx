@@ -1,11 +1,11 @@
-import { h } from 'preact';
+import { MouseEventHandler } from 'react';
 import { openBookmarkManager } from '../../../bookmarks/BookmarkManager';
-import * as bookmarkStyles from '../../Bookmark/Bookmark.css';
+import bookmarkStyles from '../../Bookmark/Bookmark.module.css';
 import { Chip, ChipShape } from '../../Chip/Chip';
 
 const iconStar = require('mdi/toggle/svg/production/ic_star_24px.svg?fill=%23eee');
 
-const handleClick = (event: MouseEvent): void => {
+const handleClick: MouseEventHandler<HTMLElement> = (event): void => {
   event.preventDefault();
 
   openBookmarkManager();

@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import { BackgroundImage } from './BackgroundImage';
 
 export const RandomUnsplashImage = () => {

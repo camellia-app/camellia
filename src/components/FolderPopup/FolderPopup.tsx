@@ -1,10 +1,10 @@
 import cn from 'classnames';
-import { Component, createRef, h } from 'preact';
+import { Component, createRef, MouseEventHandler } from 'react';
 import { Folder } from '../../bookmarks/Bookmark';
-import * as bookmarkClasses from '../Bookmark/Bookmark.css';
+import bookmarkClasses from '../Bookmark/Bookmark.module.css';
 import { ClickPosition } from '../Bookmark/BookmarkFolder';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
-import s from './FolderPopup.css';
+import s from './FolderPopup.module.css';
 
 const CURSOR_PADDING = 3;
 const SCREEN_EDGE_SAFE_PADDING = 16;
@@ -71,9 +71,9 @@ const calculatePopupPlacement = (
 };
 
 export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
-  popupElement = createRef();
+  popupElement = createRef<HTMLDivElement>();
 
-  state = {
+  state: FolderPopupState = {
     isVisible: false,
     placement: {
       height: null,
@@ -83,7 +83,13 @@ export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
   };
 
   componentDidMount(): void {
-    const rect = this.popupElement.current.getBoundingClientRect();
+    const element = this.popupElement.current;
+
+    if (element === null) {
+      return;
+    }
+
+    const rect = element.getBoundingClientRect();
 
     const calculatedPlacement = calculatePopupPlacement(
       this.props.clickPosition.x,
@@ -103,7 +109,7 @@ export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
     }
   }
 
-  handlePopupBodyClick = (event: MouseEvent) => {
+  handlePopupBodyClick: MouseEventHandler<HTMLElement> = (event) => {
     if (!(event.target instanceof Element)) {
       return;
     }
@@ -117,30 +123,30 @@ export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
     this.props.closeAllNextPopups(this.props.folder);
   };
 
-  render(props: FolderPopupProps, state: FolderPopupState) {
-    const height = state.placement.height === null ? 'auto' : `${state.placement.height}px`;
+  render() {
+    const height = this.state.placement.height === null ? 'auto' : `${this.state.placement.height}px`;
 
-    const headerId = `folder-popup-${props.folder.idLocal}-header`;
+    const headerId = `folder-popup-${this.props.folder.idLocal}-header`;
 
     return (
       <div
         ref={this.popupElement}
         aria-labelledby={headerId}
         className={cn(s.folderPopup, {
-          [s.loading]: !state.isVisible,
+          [s.loading]: !this.state.isVisible,
         })}
         onClick={this.handlePopupBodyClick}
         role="dialog"
         style={{
-          '--folder-position-x': `${state.placement.x}px`,
-          '--folder-position-y': `${state.placement.y}px`,
-          '--popup-height': height,
+          ['--folder-position-x' as any]: `${this.state.placement.x}px`,
+          ['--folder-position-y' as any]: `${this.state.placement.y}px`,
+          ['--popup-height' as any]: height,
         }}
       >
-        <h2 className={s.folderPopupTitle} id={headerId}>{props.folder.title}</h2>
+        <h2 className={s.folderPopupTitle} id={headerId}>{this.props.folder.title}</h2>
 
         <div className={s.bookmarkListContainer}>
-          <BookmarkList bookmarks={props.folder.children} />
+          <BookmarkList bookmarks={this.props.folder.children} />
         </div>
       </div>
     );

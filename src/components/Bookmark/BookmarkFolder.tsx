@@ -1,9 +1,8 @@
-import { h } from 'preact';
-import { useContext } from 'preact/hooks';
+import { MouseEventHandler, useContext } from 'react';
 import { Folder } from '../../bookmarks/Bookmark';
 import { Popups } from '../BookmarkBrowser/BookmarkBrowser';
 import { Chip, ChipShape } from '../Chip/Chip';
-import s from './Bookmark.css';
+import s from './Bookmark.module.css';
 
 const iconFolder = require('mdi/file/svg/production/ic_folder_48px.svg?fill=%23eee');
 const iconFolderOpen = require('mdi/file/svg/production/ic_folder_open_48px.svg?fill=%23eee');
@@ -20,7 +19,7 @@ export interface ClickPosition {
 export const BookmarkFolder = (props: BookmarkFolderProps) => {
   const context = useContext(Popups);
 
-  const handleFolderClick = (event: MouseEvent) => {
+  const handleFolderClick: MouseEventHandler<HTMLElement> = (event) => {
     const clickPosition = {
       x: event.pageX,
       y: event.pageY,

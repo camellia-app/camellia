@@ -1,20 +1,7 @@
 import cn from 'classnames';
-import { h } from 'preact';
-import { JSXInternal } from 'preact/src/jsx';
+import { ReactEventHandler } from 'react';
 import { Favicon } from '../../bookmarks/Favicon';
-import s from './Chip.css';
-
-declare module 'preact' {
-  namespace h {
-    namespace JSX {
-      interface HTMLAttributes {
-        decoding?: string;
-        importance?: string;
-        referrerpolicy?: string;
-      }
-    }
-  }
-}
+import s from './Chip.module.css';
 
 export enum ChipShape {
   Rounded,
@@ -31,7 +18,7 @@ interface ChipProps {
 }
 
 export const Chip = (props: ChipProps) => {
-  const handleImageError = (event: JSXInternal.TargetedEvent<HTMLImageElement, Event>) => {
+  const handleImageError: ReactEventHandler<HTMLImageElement> = (event) => {
     if (!(event.target instanceof HTMLImageElement)) {
       return;
     }
@@ -49,7 +36,7 @@ export const Chip = (props: ChipProps) => {
     <span
       className={cn(s.chipIcon, s.chipIconInline)}
       style={{
-        '--inline-icon': `url("${props.icon}")`,
+        ['--inline-icon' as any]: `url("${props.icon}")`,
       }}
     />
   );

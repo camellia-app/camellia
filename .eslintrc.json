@@ -40,6 +40,8 @@
     "react/button-has-type": ["warn", {"button": true, "submit": true, "reset": true}],
     "react/destructuring-assignment": "off",
     "react/jsx-sort-props": "warn",
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
     "react/no-unused-state": "off",
     "react/state-in-constructor": "off",
     "react-hooks/rules-of-hooks": "error",
@@ -52,8 +54,7 @@
   },
   "settings": {
     "react": {
-      "pragma": "h",
-      "version": "16.13"
+      "version": "detect"
     }
   }
 }
