@@ -36,10 +36,6 @@ export class Favicon {
   }
 
   private static formatLinkByDPI(dpi: number, url: string): string {
-    if (process.env.TARGET_PLATFORM === 'chromium') {
-      return `chrome://favicon/size/${Favicon.SIZE}@${dpi}x/${url}`;
-    }
-
     return `https://www.google.com/s2/favicons?domain_url=${url}`;
   }
 }

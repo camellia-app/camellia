@@ -30,7 +30,6 @@ const commonConfig = {
   context: path.join(__dirname, 'src'),
   devtool: false,
   entry: {
-    background: './background.js',
     newtab: './Newtab.tsx',
   },
   mode: 'production',
@@ -84,13 +83,12 @@ const commonConfig = {
             manifest.homepage_url = package.homepage;
             manifest.version = `${package.version}.${process.env.BUILD_NUMBER}`;
             manifest.version_name = `${package.version} build ${process.env.BUILD_NUMBER}`;
-            manifest.background.scripts.push(`background-${process.env.TARGET_PLATFORM}.js`);
 
             switch (process.env.APP_ENV) {
               case 'local':
                 manifest.name = `${manifest.name} (dev)`;
                 manifest.version_name = `${manifest.version_name} (dev)`;
-                manifest.content_security_policy = `${manifest.content_security_policy} script-src-elem 'self' http://localhost:35729;`;
+                manifest.content_security_policy.extension_pages = `${manifest.content_security_policy.extension_pages} script-src-elem 'self' http://localhost:35729;`;
 
                 break;
 

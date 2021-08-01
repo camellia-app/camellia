@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Camellia",
   "description": "Camellia 2.0. Unstable dev build.",
   "short_name": "Camellia",
@@ -7,11 +7,12 @@
 
   "permissions": [
     "bookmarks",
-    "storage",
-    "chrome://favicon/"
+    "storage"
   ],
 
-  "content_security_policy": "script-src 'self'; object-src 'none';",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none';"
+  },
 
   "icons": {
     "128": "logo.png"
@@ -22,6 +23,6 @@
   },
 
   "background": {
-    "scripts": []
+    "service_workers": []
   }
 }
