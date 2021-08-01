@@ -1,7 +1,7 @@
 import {
-  ChangeEventHandler, Component, createRef, FormEventHandler,
+  ChangeEventHandler, Component, createRef, FormEventHandler, ReactElement,
 } from 'react';
-import { Bookmark, isLink } from '../../bookmarks/Bookmark';
+import { Bookmark } from '../../bookmarks/Bookmark';
 import { search } from '../../bookmarks/BookmarkManager';
 import s from './BookmarkSearch.module.css';
 
@@ -11,10 +11,7 @@ interface BookmarkSearchProps {
   updateSearchResults: (bookmarks: Promise<Bookmark[]>) => Promise<void>;
 }
 
-interface BookmarkSearchState {
-}
-
-export class BookmarkSearch extends Component<BookmarkSearchProps, BookmarkSearchState> {
+export class BookmarkSearch extends Component<BookmarkSearchProps> {
   searchField = createRef<HTMLInputElement>();
 
   componentDidMount(): void {
@@ -63,7 +60,7 @@ export class BookmarkSearch extends Component<BookmarkSearchProps, BookmarkSearc
     const { searchResults } = this.props;
 
     for (const bookmark of searchResults) {
-      if (isLink(bookmark)) {
+      if (bookmark.type === 'link') {
         window.location.href = bookmark.url;
 
         break;
@@ -75,7 +72,7 @@ export class BookmarkSearch extends Component<BookmarkSearchProps, BookmarkSearc
     this.props.updateSearchResults(search(event.currentTarget.value));
   };
 
-  render() {
+  render(): ReactElement {
     return (
       <form className={s.bookmarkSearch} onReset={this.resetHandler} onSubmit={this.submitHandler}>
         <input ref={this.searchField} className={s.bookmarkSearchField} onChange={this.inputHandler} placeholder="Start typing to search bookmarks..." type="search" />

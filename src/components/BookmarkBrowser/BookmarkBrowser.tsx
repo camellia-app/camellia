@@ -1,8 +1,8 @@
 import cn from 'classnames';
-import { Component, createContext } from 'react';
+import {Component, createContext, ReactElement} from 'react';
 import { createPortal } from 'react-dom';
 import {
-  Bookmark, BookmarkRootCategory, Folder,
+  Bookmark, Folder,
 } from '../../bookmarks/Bookmark';
 import bookmarkClasses from '../Bookmark/Bookmark.module.css';
 import { ClickPosition } from '../Bookmark/BookmarkFolder';
@@ -18,11 +18,11 @@ export interface Popup {
 }
 
 interface BookmarkBrowserProps {
-  bookmarkCategories: Promise<BookmarkRootCategory[]>;
+  bookmarkCategories: Promise<Folder[]>;
 }
 
 interface BookmarkBrowserState {
-  categories: BookmarkRootCategory[];
+  categories: Folder[];
   loaded: boolean;
   openedPopups: Popup[];
   searchResults: Bookmark[];
@@ -30,17 +30,17 @@ interface BookmarkBrowserState {
 }
 
 interface PopupContext {
-  closeAllNextPopups: (folder: Folder) => void;
-  closeAllPopups: () => void;
-  isPopupOpened: (folder: Folder) => boolean;
-  togglePopup: (folder: Folder, clickPosition: ClickPosition) => void;
+  closeAllNextPopups?: (folder: Folder) => void;
+  closeAllPopups?: () => void;
+  isPopupOpened?: (folder: Folder) => boolean;
+  togglePopup?: (folder: Folder, clickPosition: ClickPosition) => void;
 }
 
 export const Popups = createContext<PopupContext>({
-  closeAllNextPopups: () => {},
-  closeAllPopups: () => {},
-  isPopupOpened: () => false,
-  togglePopup: () => {},
+  closeAllNextPopups: undefined,
+  closeAllPopups: undefined,
+  isPopupOpened: undefined,
+  togglePopup: undefined,
 });
 
 export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBrowserState> {
@@ -52,16 +52,16 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
     showSearchBar: false,
   };
 
-  componentDidMount() {
+  componentDidMount(): void {
     document.addEventListener('keydown', this.characterKeyPressHandler);
     document.addEventListener('keydown', this.searchHotkeyPressHandler);
     document.addEventListener('keydown', this.popupEscapeKeyPressHandler);
     document.addEventListener('click', this.closeAllPopupsHandler);
     window.addEventListener('resize', this.screenResizeHandler);
 
-    this.props.bookmarkCategories.then((categories: BookmarkRootCategory[]) => {
+    this.props.bookmarkCategories.then((categories: Folder[]) => {
       this.setState({
-        categories: categories.filter((category: BookmarkRootCategory) => category.children.length > 0),
+        categories: categories.filter((category: Folder) => category.children.length > 0),
         loaded: true,
       });
     });
@@ -143,9 +143,8 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
   private isPopupWithSameNestingLevelOpened = (folder: Folder) => this.state.openedPopups[folder.nestingLevel] !== undefined;
 
   private isPopupWithSameIdOpened = (folder: Folder) => this.state.openedPopups.findIndex((popup: Popup) => {
-    const isPopup = (value: any): value is Popup => value instanceof Object;
-
-    if (isPopup(popup) === false) {
+    // TODO: it seems like hack
+    if (popup === undefined) {
       return false;
     }
 
@@ -197,7 +196,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
     }
   };
 
-  render() {
+  render(): ReactElement {
     const mainClasses = cn(s.bookmarkBrowser, {
       [s.loading]: !this.state.loaded,
     });

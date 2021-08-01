@@ -25,6 +25,10 @@
   opacity: 0;
 }
 
+.folder-popup-content {
+  height: 100%;
+}
+
 .folder-popup-title {
   all: unset;
   display: block;

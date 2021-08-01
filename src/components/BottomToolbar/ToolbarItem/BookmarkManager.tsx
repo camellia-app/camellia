@@ -1,8 +1,9 @@
-import { MouseEventHandler } from 'react';
+import {MouseEventHandler, VoidFunctionComponent} from 'react';
 import { openBookmarkManager } from '../../../bookmarks/BookmarkManager';
 import bookmarkStyles from '../../Bookmark/Bookmark.module.css';
 import { Chip, ChipShape } from '../../Chip/Chip';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconStar = require('mdi/toggle/svg/production/ic_star_24px.svg?fill=%23eee');
 
 const handleClick: MouseEventHandler<HTMLElement> = (event): void => {
@@ -11,7 +12,7 @@ const handleClick: MouseEventHandler<HTMLElement> = (event): void => {
   openBookmarkManager();
 };
 
-export const BookmarkManager = () => {
+export const BookmarkManager: VoidFunctionComponent = () => {
   const label = 'Bookmark manager';
   const tooltip = `${label} (Ctrl+Shift+O)`;
   const url = 'chrome://bookmarks';

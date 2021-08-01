@@ -1,16 +1,17 @@
 import { render } from 'react-dom';
-import { BookmarkRootCategory } from './bookmarks/Bookmark';
 import { getTree } from './bookmarks/BookmarkManager';
 import { BackgroundMedia } from './components/BackgroundMedia/BackgroundMedia';
 import { RandomUnsplashImage } from './components/BackgroundMedia/RandomUnsplashImage';
 import { BookmarkBrowser } from './components/BookmarkBrowser/BookmarkBrowser';
 import { BottomToolbar } from './components/BottomToolbar/BottomToolbar';
+import { FunctionComponent} from "react";
+import {Folder} from "./bookmarks/Bookmark";
 
 interface NewtabProps {
-  bookmarkCategories: Promise<BookmarkRootCategory[]>;
+  bookmarkCategories: Promise<Folder[]>;
 }
 
-export const Newtab = (props: NewtabProps) => (
+export const Newtab: FunctionComponent<NewtabProps> = (props) => (
   <>
     <BookmarkBrowser bookmarkCategories={props.bookmarkCategories} />
     <BottomToolbar />

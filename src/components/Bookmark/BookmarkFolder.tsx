@@ -1,10 +1,13 @@
-import { MouseEventHandler, useContext } from 'react';
+import {MouseEventHandler, useContext, VoidFunctionComponent} from 'react';
 import { Folder } from '../../bookmarks/Bookmark';
 import { Popups } from '../BookmarkBrowser/BookmarkBrowser';
 import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconFolder = require('mdi/file/svg/production/ic_folder_48px.svg?fill=%23eee');
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconFolderOpen = require('mdi/file/svg/production/ic_folder_open_48px.svg?fill=%23eee');
 
 interface BookmarkFolderProps {
@@ -16,7 +19,7 @@ export interface ClickPosition {
   y: number;
 }
 
-export const BookmarkFolder = (props: BookmarkFolderProps) => {
+export const BookmarkFolder: VoidFunctionComponent<BookmarkFolderProps> = (props) => {
   const context = useContext(Popups);
 
   const handleFolderClick: MouseEventHandler<HTMLElement> = (event) => {
@@ -25,10 +28,12 @@ export const BookmarkFolder = (props: BookmarkFolderProps) => {
       y: event.pageY,
     };
 
-    context.togglePopup(props.bookmark, clickPosition);
+    if (context.togglePopup !== undefined) {
+      context.togglePopup(props.bookmark, clickPosition);
+    }
   };
 
-  const icon = context.isPopupOpened(props.bookmark) === false
+  const icon = context.isPopupOpened !== undefined && context.isPopupOpened(props.bookmark) === false
     ? iconFolder
     : iconFolderOpen;
 

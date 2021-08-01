@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { ReactEventHandler } from 'react';
+import {ReactEventHandler, VoidFunctionComponent} from 'react';
 import { Favicon } from '../../bookmarks/Favicon';
 import s from './Chip.module.css';
 
@@ -17,7 +17,7 @@ interface ChipProps {
   tooltip?: string;
 }
 
-export const Chip = (props: ChipProps) => {
+export const Chip: VoidFunctionComponent<ChipProps> = (props) => {
   const handleImageError: ReactEventHandler<HTMLImageElement> = (event) => {
     if (!(event.target instanceof HTMLImageElement)) {
       return;
@@ -36,7 +36,7 @@ export const Chip = (props: ChipProps) => {
     <span
       className={cn(s.chipIcon, s.chipIconInline)}
       style={{
-        ['--inline-icon' as any]: `url("${props.icon}")`,
+        ['--inline-icon' as string]: `url("${props.icon}")`,
       }}
     />
   );

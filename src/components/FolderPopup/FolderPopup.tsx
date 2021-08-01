@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { Component, createRef, MouseEventHandler } from 'react';
+import {Component, createRef, MouseEventHandler, ReactElement} from 'react';
 import { Folder } from '../../bookmarks/Bookmark';
 import bookmarkClasses from '../Bookmark/Bookmark.module.css';
 import { ClickPosition } from '../Bookmark/BookmarkFolder';
@@ -71,7 +71,7 @@ const calculatePopupPlacement = (
 };
 
 export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
-  popupElement = createRef<HTMLDivElement>();
+  popupElement = createRef<HTMLDialogElement>();
 
   state: FolderPopupState = {
     isVisible: false,
@@ -123,32 +123,33 @@ export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
     this.props.closeAllNextPopups(this.props.folder);
   };
 
-  render() {
+  render(): ReactElement {
     const height = this.state.placement.height === null ? 'auto' : `${this.state.placement.height}px`;
 
     const headerId = `folder-popup-${this.props.folder.idLocal}-header`;
 
     return (
-      <div
+      <dialog
         ref={this.popupElement}
         aria-labelledby={headerId}
         className={cn(s.folderPopup, {
           [s.loading]: !this.state.isVisible,
         })}
-        onClick={this.handlePopupBodyClick}
-        role="dialog"
+        open={true}
         style={{
-          ['--folder-position-x' as any]: `${this.state.placement.x}px`,
-          ['--folder-position-y' as any]: `${this.state.placement.y}px`,
-          ['--popup-height' as any]: height,
+          ['--folder-position-x' as string]: `${this.state.placement.x}px`,
+          ['--folder-position-y' as string]: `${this.state.placement.y}px`,
+          ['--popup-height' as string]: height,
         }}
       >
-        <h2 className={s.folderPopupTitle} id={headerId}>{this.props.folder.title}</h2>
+        <div role="presentation" className={s.folderPopupContent} onClick={this.handlePopupBodyClick}>
+          <h2 className={s.folderPopupTitle} id={headerId}>{this.props.folder.title}</h2>
 
-        <div className={s.bookmarkListContainer}>
-          <BookmarkList bookmarks={this.props.folder.children} />
+          <div className={s.bookmarkListContainer}>
+            <BookmarkList bookmarks={this.props.folder.children} />
+          </div>
         </div>
-      </div>
+      </dialog>
     );
   }
 }

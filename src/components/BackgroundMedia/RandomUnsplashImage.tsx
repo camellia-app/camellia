@@ -1,6 +1,7 @@
 import { BackgroundImage } from './BackgroundImage';
+import {VoidFunctionComponent} from "react";
 
-export const RandomUnsplashImage = () => {
+export const RandomUnsplashImage: VoidFunctionComponent = () => {
   const pixelRatio = window.devicePixelRatio;
 
   const realWidth = Math.round(window.screen.width * pixelRatio);
