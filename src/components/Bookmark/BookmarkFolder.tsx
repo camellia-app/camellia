@@ -1,4 +1,4 @@
-import {MouseEventHandler, useContext, VoidFunctionComponent} from 'react';
+import { MouseEventHandler, useContext, VoidFunctionComponent } from 'react';
 import { Folder } from '../../bookmarks/Bookmark';
 import { Popups } from '../BookmarkBrowser/BookmarkBrowser';
 import { Chip, ChipShape } from '../Chip/Chip';
@@ -33,9 +33,10 @@ export const BookmarkFolder: VoidFunctionComponent<BookmarkFolderProps> = (props
     }
   };
 
-  const icon = context.isPopupOpened !== undefined && context.isPopupOpened(props.bookmark) === false
-    ? iconFolder
-    : iconFolderOpen;
+  const icon =
+    context.isPopupOpened !== undefined && context.isPopupOpened(props.bookmark) === false
+      ? iconFolder
+      : iconFolderOpen;
 
   return (
     <li className={s.bookmarkItem}>

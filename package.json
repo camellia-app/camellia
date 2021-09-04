@@ -52,13 +52,15 @@
     "eslint": "7.32.0",
     "eslint-plugin-import": "2.23.4",
     "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-react": "7.24.0",
     "eslint-plugin-react-hooks": "4.2.0",
     "eslint-plugin-sort-keys-fix": "1.1.1",
     "eslint-plugin-typescript-sort-keys": "1.7.0",
     "eslint-plugin-unused-imports": "1.1.2",
+    "prettier": "2.3.2",
     "stylelint": "13.13.1",
-    "stylelint-config-standard": "22.0.0",
+    "stylelint-config-recommended": "5.0.0",
     "stylelint-order": "4.1.0",
     "webpack-livereload-plugin": "3.0.1"
   }

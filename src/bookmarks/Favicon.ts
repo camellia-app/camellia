@@ -26,9 +26,7 @@ export class Favicon {
   }
 
   getSrcSetString(): string {
-    return this.favicons
-      .map((favicon) => `${favicon.url} ${favicon.dpi}x`)
-      .join(', ');
+    return this.favicons.map((favicon) => `${favicon.url} ${favicon.dpi}x`).join(', ');
   }
 
   getDefaultFavicon(): FaviconByDpi {

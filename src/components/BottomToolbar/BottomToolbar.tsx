@@ -1,6 +1,6 @@
 import s from './BottomToolbar.module.css';
 import { BookmarkManager } from './ToolbarItem/BookmarkManager';
-import {VoidFunctionComponent} from "react";
+import { VoidFunctionComponent } from 'react';
 
 export const BottomToolbar: VoidFunctionComponent = () => {
   const toolbarItems = [];
@@ -11,9 +11,7 @@ export const BottomToolbar: VoidFunctionComponent = () => {
 
   return (
     <footer className={s.bottomToolbar}>
-      <ul className={s.bottomToolbarItems}>
-        {toolbarItems}
-      </ul>
+      <ul className={s.bottomToolbarItems}>{toolbarItems}</ul>
     </footer>
   );
 };

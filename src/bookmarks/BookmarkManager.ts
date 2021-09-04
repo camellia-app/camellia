@@ -1,9 +1,10 @@
-import {
-  Bookmark, BookmarkLocalId, Folder, Link,
-} from './Bookmark';
-import {Favicon} from "./Favicon";
+import { Bookmark, BookmarkLocalId, Folder, Link } from './Bookmark';
+import { Favicon } from './Favicon';
 
-const normalizeBookmarkFromBrowserBookmark = (bookmark: browser.bookmarks.BookmarkTreeNode, nestingLevel: number): Bookmark => {
+const normalizeBookmarkFromBrowserBookmark = (
+  bookmark: browser.bookmarks.BookmarkTreeNode,
+  nestingLevel: number,
+): Bookmark => {
   if (bookmark.url !== undefined) {
     const link: Link = {
       idLocal: bookmark.id,
@@ -12,12 +13,14 @@ const normalizeBookmarkFromBrowserBookmark = (bookmark: browser.bookmarks.Bookma
       url: bookmark.url,
       type: 'link',
       favicon: new Favicon(bookmark.url),
-    }
+    };
 
     return link;
   }
 
-  const children = (bookmark.children || []).map((child) => normalizeBookmarkFromBrowserBookmark(child, nestingLevel + 1));
+  const children = (bookmark.children || []).map((child) =>
+    normalizeBookmarkFromBrowserBookmark(child, nestingLevel + 1),
+  );
 
   const folder: Folder = {
     idLocal: bookmark.id,
@@ -25,7 +28,7 @@ const normalizeBookmarkFromBrowserBookmark = (bookmark: browser.bookmarks.Bookma
     nestingLevel: nestingLevel,
     children: children,
     isRootFolder: bookmark.parentId === undefined,
-    type: "folder"
+    type: 'folder',
   };
 
   return folder;
@@ -35,12 +38,15 @@ const getFolderChildren = async (id: BookmarkLocalId): Promise<Bookmark[]> => {
   let bookmarks: Bookmark[];
 
   if (chrome !== undefined && chrome.bookmarks !== undefined) {
-    bookmarks = await new Promise((resolve) => chrome.bookmarks.getSubTree(id, (data) => {
-      resolve(data.map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0)));
-    }));
+    bookmarks = await new Promise((resolve) =>
+      chrome.bookmarks.getSubTree(id, (data) => {
+        resolve(data.map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0)));
+      }),
+    );
   } else {
-    bookmarks = (await browser.bookmarks.getSubTree(id))
-      .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0));
+    bookmarks = (await browser.bookmarks.getSubTree(id)).map((bookmark) =>
+      normalizeBookmarkFromBrowserBookmark(bookmark, 0),
+    );
   }
 
   const bookmark = bookmarks[0];
@@ -56,13 +62,15 @@ export const getTree = async (): Promise<Folder[]> => {
   let bookmarks: Bookmark[];
 
   if (chrome !== undefined && chrome.bookmarks !== undefined) {
-    bookmarks = await new Promise((resolve) => chrome.bookmarks.getTree((data) => {
-      resolve((data[0].children || [])
-        .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0)));
-    }));
+    bookmarks = await new Promise((resolve) =>
+      chrome.bookmarks.getTree((data) => {
+        resolve((data[0].children || []).map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0)));
+      }),
+    );
   } else {
-    bookmarks = ((await browser.bookmarks.getTree())[0].children || [])
-      .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0));
+    bookmarks = ((await browser.bookmarks.getTree())[0].children || []).map((bookmark) =>
+      normalizeBookmarkFromBrowserBookmark(bookmark, 0),
+    );
   }
 
   return bookmarks as Folder[];
@@ -73,31 +81,41 @@ export const openBookmarkManager = async (): Promise<void> => {
     throw Error('This browser does not have bookmark manager.');
   }
 
-  return new Promise((resolve) => chrome.tabs.create({
-    url: 'chrome://bookmarks',
-  }, () => resolve()));
+  return new Promise((resolve) =>
+    chrome.tabs.create(
+      {
+        url: 'chrome://bookmarks',
+      },
+      () => resolve(),
+    ),
+  );
 };
 
 export const search = async (query: string): Promise<Bookmark[]> => {
   let bookmarks: Bookmark[];
 
   if (chrome !== undefined && chrome.bookmarks !== undefined) {
-    bookmarks = await new Promise((resolve) => chrome.bookmarks.search(query, (data) => {
-      resolve(data.map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0)));
-    }));
+    bookmarks = await new Promise((resolve) =>
+      chrome.bookmarks.search(query, (data) => {
+        resolve(data.map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0)));
+      }),
+    );
   } else {
-    bookmarks = (await browser.bookmarks.search(query))
-      .map((bookmark) => normalizeBookmarkFromBrowserBookmark(bookmark, 0));
+    bookmarks = (await browser.bookmarks.search(query)).map((bookmark) =>
+      normalizeBookmarkFromBrowserBookmark(bookmark, 0),
+    );
   }
 
-  return Promise.all(bookmarks.map(async (bookmark) => {
-    if (bookmark.type === 'folder') {
-      return {
-        ...bookmark,
-        children: await getFolderChildren(bookmark.idLocal),
-      };
-    }
+  return Promise.all(
+    bookmarks.map(async (bookmark) => {
+      if (bookmark.type === 'folder') {
+        return {
+          ...bookmark,
+          children: await getFolderChildren(bookmark.idLocal),
+        };
+      }
 
-    return bookmark;
-  }));
+      return bookmark;
+    }),
+  );
 };

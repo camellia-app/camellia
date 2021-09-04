@@ -1,4 +1,4 @@
-import {useState, VoidFunctionComponent} from 'react';
+import { useState, VoidFunctionComponent } from 'react';
 import { Link } from '../../bookmarks/Bookmark';
 import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
@@ -33,7 +33,13 @@ export const BookmarkLink: VoidFunctionComponent<BookmarkProps> = (props) => {
   return (
     <li className={s.bookmarkItem}>
       <a className={s.bookmark} href={props.bookmark.url} onClick={handleClick} rel="noopener" target="_self">
-        <Chip handleFaviconLoadingError={handleFaviconLoadingError} icon={icon} label={props.bookmark.title} loading={isLoading} shape={ChipShape.Rounded} />
+        <Chip
+          handleFaviconLoadingError={handleFaviconLoadingError}
+          icon={icon}
+          label={props.bookmark.title}
+          loading={isLoading}
+          shape={ChipShape.Rounded}
+        />
       </a>
     </li>
   );

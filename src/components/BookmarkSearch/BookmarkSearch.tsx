@@ -1,6 +1,4 @@
-import {
-  ChangeEventHandler, Component, createRef, FormEventHandler, ReactElement,
-} from 'react';
+import { ChangeEventHandler, Component, createRef, FormEventHandler, ReactElement } from 'react';
 import { Bookmark } from '../../bookmarks/Bookmark';
 import { search } from '../../bookmarks/BookmarkManager';
 import s from './BookmarkSearch.module.css';
@@ -75,8 +73,16 @@ export class BookmarkSearch extends Component<BookmarkSearchProps> {
   render(): ReactElement {
     return (
       <form className={s.bookmarkSearch} onReset={this.resetHandler} onSubmit={this.submitHandler}>
-        <input ref={this.searchField} className={s.bookmarkSearchField} onChange={this.inputHandler} placeholder="Start typing to search bookmarks..." type="search" />
-        <button className={s.bookmarkSearchCloseButton} title="Close search" type="reset">Close search</button>
+        <input
+          ref={this.searchField}
+          className={s.bookmarkSearchField}
+          onChange={this.inputHandler}
+          placeholder="Start typing to search bookmarks..."
+          type="search"
+        />
+        <button className={s.bookmarkSearchCloseButton} title="Close search" type="reset">
+          Close search
+        </button>
       </form>
     );
   }

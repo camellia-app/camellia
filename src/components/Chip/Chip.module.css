@@ -1,4 +1,4 @@
-@import "../variables.css";
+@import '../variables.css';
 
 .chip {
   all: unset;
@@ -15,14 +15,13 @@
 
 .chip.loading {
   animation: backgroundStripAnimation 1s linear infinite reverse;
-  background-image:
-    repeating-linear-gradient(
-      135deg,
-      var(--chip-loading-strip-color-1) 25%,
-      var(--chip-loading-strip-color-1) 50%,
-      var(--chip-loading-strip-color-2) 50%,
-      var(--chip-loading-strip-color-2) 75%
-    );
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--chip-loading-strip-color-1) 25%,
+    var(--chip-loading-strip-color-1) 50%,
+    var(--chip-loading-strip-color-2) 50%,
+    var(--chip-loading-strip-color-2) 75%
+  );
   background-size: var(--chip-loading-strip-size) var(--chip-loading-strip-size);
 }
 

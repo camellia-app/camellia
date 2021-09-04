@@ -12,13 +12,12 @@ interface BookmarkCommon {
 
 export interface Link extends BookmarkCommon {
   favicon: Favicon;
-  type: 'link',
+  type: 'link';
   url: string;
 }
 
 export interface Folder extends BookmarkCommon {
   children: Bookmark[];
-  isRootFolder: boolean,
-  type: 'folder'
+  isRootFolder: boolean;
+  type: 'folder';
 }
-

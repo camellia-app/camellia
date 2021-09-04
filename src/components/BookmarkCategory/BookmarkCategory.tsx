@@ -1,7 +1,7 @@
 import { Bookmark } from '../../bookmarks/Bookmark';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
 import s from './BookmarkCategory.module.css';
-import {VoidFunctionComponent} from "react";
+import { VoidFunctionComponent } from 'react';
 
 interface BookmarkCategoryProps {
   bookmarks: Bookmark[];

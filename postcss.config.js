@@ -1,5 +1,3 @@
 module.exports = {
-  plugins: [
-    require('postcss-camel-case')
-  ]
-}
+  plugins: [require('postcss-camel-case')],
+};

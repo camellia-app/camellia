@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import {Component, createRef, MouseEventHandler, ReactElement} from 'react';
+import { Component, createRef, MouseEventHandler, ReactElement } from 'react';
 import { Folder } from '../../bookmarks/Bookmark';
 import bookmarkClasses from '../Bookmark/Bookmark.module.css';
 import { ClickPosition } from '../Bookmark/BookmarkFolder';
@@ -43,7 +43,8 @@ const calculatePopupPlacement = (
   let adjustedHeight = null;
 
   const isClickedInTopOfPage = clickWithinViewportY < viewportHeight / 2;
-  const willPopupFitIfPlacedUnderCursor = clickWithinViewportY + unmodifiedPopupHeight + SCREEN_EDGE_SAFE_PADDING < viewportHeight;
+  const willPopupFitIfPlacedUnderCursor =
+    clickWithinViewportY + unmodifiedPopupHeight + SCREEN_EDGE_SAFE_PADDING < viewportHeight;
   const willPopupFitIfPlacedAboveCursor = clickWithinViewportY - unmodifiedPopupHeight - SCREEN_EDGE_SAFE_PADDING > 0;
 
   if (isClickedInTopOfPage && !willPopupFitIfPlacedUnderCursor) {
@@ -143,7 +144,9 @@ export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
         }}
       >
         <div role="presentation" className={s.folderPopupContent} onClick={this.handlePopupBodyClick}>
-          <h2 className={s.folderPopupTitle} id={headerId}>{this.props.folder.title}</h2>
+          <h2 className={s.folderPopupTitle} id={headerId}>
+            {this.props.folder.title}
+          </h2>
 
           <div className={s.bookmarkListContainer}>
             <BookmarkList bookmarks={this.props.folder.children} />

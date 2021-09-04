@@ -1,4 +1,4 @@
-import {MouseEventHandler, VoidFunctionComponent} from 'react';
+import { MouseEventHandler, VoidFunctionComponent } from 'react';
 import { openBookmarkManager } from '../../../bookmarks/BookmarkManager';
 import bookmarkStyles from '../../Bookmark/Bookmark.module.css';
 import { Chip, ChipShape } from '../../Chip/Chip';

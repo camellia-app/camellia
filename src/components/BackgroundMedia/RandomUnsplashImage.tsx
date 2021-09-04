@@ -1,5 +1,5 @@
 import { BackgroundImage } from './BackgroundImage';
-import {VoidFunctionComponent} from "react";
+import { VoidFunctionComponent } from 'react';
 
 export const RandomUnsplashImage: VoidFunctionComponent = () => {
   const pixelRatio = window.devicePixelRatio;
@@ -13,6 +13,9 @@ export const RandomUnsplashImage: VoidFunctionComponent = () => {
   };
 
   return (
-    <BackgroundImage dimensions={dimensions} url={`https://source.unsplash.com/collection/${process.env.UNSPLASH_COLLECTION_ID}/${realWidth}x${realHeight}/daily`} />
+    <BackgroundImage
+      dimensions={dimensions}
+      url={`https://source.unsplash.com/collection/${process.env.UNSPLASH_COLLECTION_ID}/${realWidth}x${realHeight}/daily`}
+    />
   );
 };

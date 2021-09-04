@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import {createContext, ReactNode, useState, VoidFunctionComponent} from 'react';
+import { createContext, ReactNode, useState, VoidFunctionComponent } from 'react';
 import s from './BackgroundMedia.module.css';
 
 interface BackgroundMediaProps {
@@ -22,9 +22,7 @@ export const BackgroundMedia: VoidFunctionComponent<BackgroundMediaProps> = (pro
   const [isVisible, setVisibility] = useState(false);
   const [backgroundMediaHasError, loadFallbackMedia] = useState(false);
 
-  const backgroundMedia = backgroundMediaHasError === false
-    ? props.children
-    : <div />;
+  const backgroundMedia = backgroundMediaHasError === false ? props.children : <div />;
 
   const makeVisible = () => {
     setVisibility(true);
@@ -42,11 +40,12 @@ export const BackgroundMedia: VoidFunctionComponent<BackgroundMediaProps> = (pro
 
   return (
     <BackgroundMediaVisibility.Provider value={context}>
-      <div className={cn(s.backgroundMediaContainer, {
-        [s.backgroundMediaContainerVisible]: isVisible,
-      })}
+      <div
+        className={cn(s.backgroundMediaContainer, {
+          [s.backgroundMediaContainerVisible]: isVisible,
+        })}
       >
-        { backgroundMedia }
+        {backgroundMedia}
       </div>
     </BackgroundMediaVisibility.Provider>
   );

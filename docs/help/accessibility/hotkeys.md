@@ -7,7 +7,7 @@ Camellia supports shortcuts for better application usability and to be more acce
 ### Bookmark browser
 
 | Shortcut                         | Action                            |
-|----------------------------------|-----------------------------------|
+| -------------------------------- | --------------------------------- |
 | `Tab ⇥`                          | Select next item                  |
 | `Tab ⇥` + `Shift ⇧`              | Select previous item              |
 | `Return ↩` on folder             | Open selected folder              |
@@ -17,7 +17,7 @@ Camellia supports shortcuts for better application usability and to be more acce
 ### Search
 
 | Shortcut          | Action                                         |
-|-------------------|------------------------------------------------|
+| ----------------- | ---------------------------------------------- |
 | `Command ⌘` + `F` | Open search                                    |
 | `Command ⌘` + `G` | Open search                                    |
 | any character key | Open search and fill it with pressed character |
@@ -31,7 +31,7 @@ All "Bookmark browser" shortcuts are also available if you press `Tab ⇥` to ch
 ### Folder popups
 
 | Shortcut | Action       |
-|----------|--------------|
+| -------- | ------------ |
 | `Esc ⎋`  | Cancel popup |
 
 All "Bookmark browser" shortcuts are also available in folder popups.

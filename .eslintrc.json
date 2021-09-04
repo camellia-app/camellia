@@ -18,7 +18,8 @@
     "react-hooks",
     "typescript-sort-keys",
     "sort-keys-fix",
-    "unused-imports"
+    "unused-imports",
+    "prettier"
   ],
   "extends": [
     "eslint:recommended",

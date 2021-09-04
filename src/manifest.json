@@ -5,10 +5,7 @@
   "short_name": "Camellia",
   "minimum_chrome_version": "80",
 
-  "permissions": [
-    "bookmarks",
-    "storage"
-  ],
+  "permissions": ["bookmarks", "storage"],
 
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'none';"
@@ -18,7 +15,7 @@
     "128": "logo.png"
   },
 
-  "chrome_url_overrides" : {
+  "chrome_url_overrides": {
     "newtab": "/newtab.html"
   },
 

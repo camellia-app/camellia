@@ -1,9 +1,7 @@
 import cn from 'classnames';
-import {Component, createContext, ReactElement} from 'react';
+import { Component, createContext, ReactElement } from 'react';
 import { createPortal } from 'react-dom';
-import {
-  Bookmark, Folder,
-} from '../../bookmarks/Bookmark';
+import { Bookmark, Folder } from '../../bookmarks/Bookmark';
 import bookmarkClasses from '../Bookmark/Bookmark.module.css';
 import { ClickPosition } from '../Bookmark/BookmarkFolder';
 import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
@@ -140,16 +138,18 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
     this.showSearchBar();
   };
 
-  private isPopupWithSameNestingLevelOpened = (folder: Folder) => this.state.openedPopups[folder.nestingLevel] !== undefined;
+  private isPopupWithSameNestingLevelOpened = (folder: Folder) =>
+    this.state.openedPopups[folder.nestingLevel] !== undefined;
 
-  private isPopupWithSameIdOpened = (folder: Folder) => this.state.openedPopups.findIndex((popup: Popup) => {
-    // TODO: it seems like hack
-    if (popup === undefined) {
-      return false;
-    }
+  private isPopupWithSameIdOpened = (folder: Folder) =>
+    this.state.openedPopups.findIndex((popup: Popup) => {
+      // TODO: it seems like hack
+      if (popup === undefined) {
+        return false;
+      }
 
-    return popup.folder.idLocal === folder.idLocal;
-  }) !== -1;
+      return popup.folder.idLocal === folder.idLocal;
+    }) !== -1;
 
   private togglePopup = (folder: Folder, clickPosition: ClickPosition) => {
     this.setState((state) => {
@@ -204,9 +204,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
     if (this.state.categories.length === 0) {
       return (
         <main className={mainClasses}>
-          <p className={s.noBookmarksMessage}>
-            Add your first bookmarks to get started with Camellia
-          </p>
+          <p className={s.noBookmarksMessage}>Add your first bookmarks to get started with Camellia</p>
         </main>
       );
     }
@@ -218,19 +216,30 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
       togglePopup: this.togglePopup,
     };
 
-    const popupPortals = this.state.openedPopups.map((popup) => createPortal(
-      <FolderPopup key={popup.folder.idLocal} clickPosition={popup.clickPosition} closeAllNextPopups={this.closeAllNextPopups} folder={popup.folder} />,
-      document.body,
-    ));
+    const popupPortals = this.state.openedPopups.map((popup) =>
+      createPortal(
+        <FolderPopup
+          key={popup.folder.idLocal}
+          clickPosition={popup.clickPosition}
+          closeAllNextPopups={this.closeAllNextPopups}
+          folder={popup.folder}
+        />,
+        document.body,
+      ),
+    );
 
     if (this.state.showSearchBar) {
       return (
         <main className={mainClasses}>
           <Popups.Provider value={context}>
-            <BookmarkSearch hideSearchBar={this.hideSearchBar} searchResults={this.state.searchResults} updateSearchResults={this.updateSearchResults} />
+            <BookmarkSearch
+              hideSearchBar={this.hideSearchBar}
+              searchResults={this.state.searchResults}
+              updateSearchResults={this.updateSearchResults}
+            />
             <BookmarkCategory bookmarks={this.state.searchResults} categoryTitle="Search results" />
 
-            { popupPortals }
+            {popupPortals}
           </Popups.Provider>
         </main>
       );
@@ -243,7 +252,7 @@ export class BookmarkBrowser extends Component<BookmarkBrowserProps, BookmarkBro
             <BookmarkCategory key={item.idLocal} bookmarks={item.children} categoryTitle={item.title} />
           ))}
 
-          { popupPortals }
+          {popupPortals}
         </Popups.Provider>
       </main>
     );

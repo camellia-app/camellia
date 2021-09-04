@@ -47,7 +47,7 @@ const commonConfig = {
               importLoaders: 1,
             },
           },
-          "postcss-loader"
+          'postcss-loader',
         ],
       },
       {
@@ -130,10 +130,12 @@ const commonConfig = {
 switch (process.env.APP_ENV) {
   case 'stable':
   case 'canary':
-    commonConfig.plugins.push(new SourceMapDevToolPlugin({
-      append: false,
-      filename: '[file].map',
-    }));
+    commonConfig.plugins.push(
+      new SourceMapDevToolPlugin({
+        append: false,
+        filename: '[file].map',
+      }),
+    );
 
     break;
 

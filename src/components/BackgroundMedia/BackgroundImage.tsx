@@ -1,4 +1,4 @@
-import {useContext, VoidFunctionComponent} from 'react';
+import { useContext, VoidFunctionComponent } from 'react';
 import { BackgroundMediaVisibility } from './BackgroundMedia';
 import s from './BackgroundMedia.module.css';
 
@@ -29,5 +29,19 @@ export const BackgroundImage: VoidFunctionComponent<BackgroundImageProps> = (pro
     }
   };
 
-  return <img alt="" className={s.backgroundMedia} crossOrigin="anonymous" decoding="async" height={props.dimensions?.height} importance="low" onError={handleImageError} onLoad={handleImageLoad} referrerPolicy="no-referrer" src={props.url} width={props.dimensions?.width} />;
+  return (
+    <img
+      alt=""
+      className={s.backgroundMedia}
+      crossOrigin="anonymous"
+      decoding="async"
+      height={props.dimensions?.height}
+      importance="low"
+      onError={handleImageError}
+      onLoad={handleImageLoad}
+      referrerPolicy="no-referrer"
+      src={props.url}
+      width={props.dimensions?.width}
+    />
+  );
 };

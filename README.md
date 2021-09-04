@@ -36,6 +36,6 @@ Camellia will be uploaded to Chrome Store and will be available on all browsers 
 
 Here's how you can help:
 
-* [Draw a cool logo for Camellia](https://github.com/camellia-app/camellia/issues/34)
-* Provide some code review and suggest any improvements
-* Tell your friends about Camellia 😏
+- [Draw a cool logo for Camellia](https://github.com/camellia-app/camellia/issues/34)
+- Provide some code review and suggest any improvements
+- Tell your friends about Camellia 😏
