@@ -1,0 +1,58 @@
+name: Code quality
+
+on: push
+
+jobs:
+  stylelint:
+    name: stylelint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2.3.4
+
+      - name: Cache dependencies
+        uses: actions/cache@v2.1.6
+        with:
+          path: .npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2.4.0
+        with:
+          node-version: '14.x'
+
+      - name: Install npm dependencies
+        run: npm ci --prefer-offline --cache=.npm
+
+      - name: Lint with stylelint
+        run: npx stylelint src/**/*.css
+
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2.3.4
+
+      - name: Cache dependencies
+        uses: actions/cache@v2.1.6
+        with:
+          path: .npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2.4.0
+        with:
+          node-version: '14.x'
+
+      - name: Install npm dependencies
+        run: npm ci --prefer-offline --cache=.npm
+
+      - name: Lint with ESLint
+        run: npx eslint .
