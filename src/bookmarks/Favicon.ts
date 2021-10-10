@@ -34,6 +34,6 @@ export class Favicon {
   }
 
   private static formatLinkByDPI(dpi: number, url: string): string {
-    return `https://www.google.com/s2/favicons?domain_url=${url}`;
+    return `https://favicons.camellia.app/?domain=${new URL(url).hostname}`;
   }
 }
