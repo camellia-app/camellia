@@ -24,7 +24,7 @@
 .bookmark-search__field::-webkit-search-cancel-button,
 .bookmark-search__field::-webkit-search-results-button,
 .bookmark-search__field::-webkit-search-results-decoration {
-  all: unset;
+  display: none !important;
 }
 
 .bookmark-search__field::placeholder {

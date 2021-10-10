@@ -7,6 +7,7 @@ export type Bookmark = Link | Folder;
 interface BookmarkCommon {
   idLocal: BookmarkLocalId;
   nestingLevel: number;
+  parentIdLocal?: BookmarkLocalId;
   title: string;
 }
 
@@ -20,4 +21,8 @@ export interface Folder extends BookmarkCommon {
   children: Bookmark[];
   isRootFolder: boolean;
   type: 'folder';
+}
+
+export function isFolder(bookmark: Bookmark): bookmark is Folder {
+  return bookmark.type === 'folder';
 }
