@@ -11,7 +11,7 @@
   "homepage": "https://camellia.app",
   "license": "GPL-3.0-or-later",
   "engines": {
-    "node": ">=12"
+    "node": ">=16"
   },
   "scripts": {
     "start": "APP_ENV=local webpack --watch",
