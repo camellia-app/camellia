@@ -55,7 +55,7 @@ jobs:
         run: npm ci --prefer-offline --cache=.npm
 
       - name: Lint with ESLint
-        run: npx eslint .
+        run: npx eslint . --max-warnings 0
 
   prettier:
     name: Prettier
