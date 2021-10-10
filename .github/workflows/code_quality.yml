@@ -81,5 +81,5 @@ jobs:
       - name: Install npm dependencies
         run: npm ci --prefer-offline --cache=.npm
 
-      - name: Lint with ESLint
+      - name: Lint with Prettier
         run: npx prettier --check .
