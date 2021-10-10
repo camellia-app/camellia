@@ -1,17 +1,15 @@
+import { createRef, MouseEventHandler, useEffect, useState, VoidFunctionComponent } from 'react';
+import s from './FolderPopup.module.css';
 import cn from 'classnames';
-import { Component, createRef, MouseEventHandler, ReactElement } from 'react';
+import { BookmarkList } from '../BookmarkList/BookmarkList';
+import { ClickPosition } from '../Bookmark/BookmarkFolder';
 import { Folder } from '../../bookmarks/Bookmark';
 import bookmarkClasses from '../Bookmark/Bookmark.module.css';
-import { ClickPosition } from '../Bookmark/BookmarkFolder';
-import { BookmarkList } from '../BookmarkList/BookmarkList';
-import s from './FolderPopup.module.css';
+import { useDispatch } from 'react-redux';
+import { closeAllNextPopups, closePopup } from '../../store/actionCreators/folderPopup';
 
-const CURSOR_PADDING = 3;
-const SCREEN_EDGE_SAFE_PADDING = 16;
-
-interface FolderPopupProps {
+export interface FolderPopupProps {
   clickPosition: ClickPosition;
-  closeAllNextPopups: (folder: Folder) => void;
   folder: Folder;
 }
 
@@ -25,6 +23,9 @@ interface FolderPopupState {
   isVisible: boolean;
   placement: PopupPlacement;
 }
+
+const CURSOR_PADDING = 3;
+const SCREEN_EDGE_SAFE_PADDING = 16;
 
 const calculatePopupPlacement = (
   clickX: number,
@@ -71,20 +72,21 @@ const calculatePopupPlacement = (
   };
 };
 
-export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
-  popupElement = createRef<HTMLDialogElement>();
-
-  state: FolderPopupState = {
+export const FolderPopup: VoidFunctionComponent<FolderPopupProps> = (props) => {
+  const [popupState, setPopupStage] = useState<FolderPopupState>({
     isVisible: false,
     placement: {
       height: null,
       x: 0,
       y: 0,
     },
-  };
+  });
 
-  componentDidMount(): void {
-    const element = this.popupElement.current;
+  const popupElement = createRef<HTMLDialogElement>();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const element = popupElement.current;
 
     if (element === null) {
       return;
@@ -93,8 +95,8 @@ export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
     const rect = element.getBoundingClientRect();
 
     const calculatedPlacement = calculatePopupPlacement(
-      this.props.clickPosition.x,
-      this.props.clickPosition.y,
+      props.clickPosition.x,
+      props.clickPosition.y,
       rect.width,
       rect.height,
       document.documentElement.clientWidth,
@@ -102,15 +104,15 @@ export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
       document.documentElement.scrollTop,
     );
 
-    if (this.state.isVisible === false) {
-      this.setState({
+    if (popupState.isVisible === false) {
+      setPopupStage({
         isVisible: true,
         placement: calculatedPlacement,
       });
     }
-  }
+  }, [popupElement, props.clickPosition.x, props.clickPosition.y, popupState.isVisible]);
 
-  handlePopupBodyClick: MouseEventHandler<HTMLElement> = (event) => {
+  const handlePopupBodyClick: MouseEventHandler<HTMLElement> = (event) => {
     if (!(event.target instanceof Element)) {
       return;
     }
@@ -121,38 +123,48 @@ export class FolderPopup extends Component<FolderPopupProps, FolderPopupState> {
       return;
     }
 
-    this.props.closeAllNextPopups(this.props.folder);
+    dispatch(closeAllNextPopups(props.folder));
   };
 
-  render(): ReactElement {
-    const height = this.state.placement.height === null ? 'auto' : `${this.state.placement.height}px`;
+  const handleCloseButtonClick: MouseEventHandler<HTMLElement> = (event) => {
+    if (!(event.target instanceof Element)) {
+      return;
+    }
 
-    const headerId = `folder-popup-${this.props.folder.idLocal}-header`;
+    dispatch(closePopup(props.folder));
+  };
 
-    return (
-      <dialog
-        ref={this.popupElement}
-        aria-labelledby={headerId}
-        className={cn(s.folderPopup, {
-          [s.loading]: !this.state.isVisible,
-        })}
-        open={true}
-        style={{
-          ['--folder-position-x' as string]: `${this.state.placement.x}px`,
-          ['--folder-position-y' as string]: `${this.state.placement.y}px`,
-          ['--popup-height' as string]: height,
-        }}
-      >
-        <div role="presentation" className={s.folderPopupContent} onClick={this.handlePopupBodyClick}>
+  const headerId = `folder-popup-${props.folder.idLocal}-header`;
+
+  return (
+    <dialog
+      ref={popupElement}
+      aria-labelledby={headerId}
+      className={cn(s.folderPopup, {
+        [s.loading]: !popupState.isVisible,
+      })}
+      open={true}
+      style={{
+        ['--folder-position-x' as string]: `${popupState.placement.x}px`,
+        ['--folder-position-y' as string]: `${popupState.placement.y}px`,
+        ['--popup-height' as string]:
+          popupState.placement.height === null ? 'auto' : `${popupState.placement.height}px`,
+      }}
+    >
+      <div role="presentation" className={s.folderPopupContent} onClick={handlePopupBodyClick}>
+        <header className={s.folderPopupHeader}>
           <h2 className={s.folderPopupTitle} id={headerId}>
-            {this.props.folder.title}
+            {props.folder.title}
           </h2>
+          <button className={s.folderPopupCloseButton} title="Close folder [Escape]" onClick={handleCloseButtonClick}>
+            Close folder [Escape]
+          </button>
+        </header>
 
-          <div className={s.bookmarkListContainer}>
-            <BookmarkList bookmarks={this.props.folder.children} />
-          </div>
+        <div className={s.bookmarkListContainer}>
+          <BookmarkList bookmarks={props.folder.children} />
         </div>
-      </dialog>
-    );
-  }
-}
+      </div>
+    </dialog>
+  );
+};

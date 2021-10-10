@@ -5,7 +5,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { SourceMapDevToolPlugin } = require('webpack');
-const LiveReloadPlugin = require('webpack-livereload-plugin');
 const package = require('./package.json');
 
 if (process.env.APP_ENV === undefined) {
@@ -52,10 +51,8 @@ const commonConfig = {
       },
       {
         test: /\.svg(\?.*)?$/, // match img.svg and img.svg?param=value
-        use: [
-          'svg-url-loader', // or file-loader or svg-url-loader
-          'svg-transform-loader',
-        ],
+        type: 'asset/inline',
+        use: ['svg-transform-loader'],
       },
       {
         exclude: /node_modules/,
@@ -92,12 +89,6 @@ const commonConfig = {
 
                 break;
 
-              case 'canary':
-                manifest.name = `${manifest.name} Canary`;
-                manifest.version_name = `${manifest.version_name} (canary)`;
-
-                break;
-
               default:
                 break;
             }
@@ -129,7 +120,6 @@ const commonConfig = {
 
 switch (process.env.APP_ENV) {
   case 'stable':
-  case 'canary':
     commonConfig.plugins.push(
       new SourceMapDevToolPlugin({
         append: false,
@@ -148,8 +138,6 @@ switch (process.env.APP_ENV) {
       ignored: /node_modules/,
       poll: 1000,
     };
-
-    commonConfig.plugins.push(new LiveReloadPlugin());
 
     break;
 

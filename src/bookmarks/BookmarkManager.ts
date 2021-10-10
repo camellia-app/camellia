@@ -13,6 +13,7 @@ const normalizeBookmarkFromBrowserBookmark = (
       url: bookmark.url,
       type: 'link',
       favicon: new Favicon(bookmark.url),
+      parentIdLocal: bookmark.parentId,
     };
 
     return link;
@@ -29,6 +30,7 @@ const normalizeBookmarkFromBrowserBookmark = (
     children: children,
     isRootFolder: bookmark.parentId === undefined,
     type: 'folder',
+    parentIdLocal: bookmark.parentId,
   };
 
   return folder;
