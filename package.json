@@ -21,6 +21,7 @@
     "@sentry/react": "6.13.3",
     "@sentry/tracing": "6.13.3",
     "@sentry/webpack-plugin": "1.17.3",
+    "@teamsupercell/typings-for-css-modules-loader": "2.5.1",
     "@types/chrome": "0.0.159",
     "@types/classnames": "2.3.1",
     "@types/firefox-webext-browser": "82.0.1",
