@@ -1,4 +1,4 @@
-import { Bookmark } from '../../bookmarks/Bookmark';
+import { Bookmark } from '../../bookmarkManager/bookmark';
 import { BookmarkFolder } from '../Bookmark/BookmarkFolder';
 import { BookmarkLink } from '../Bookmark/BookmarkLink';
 import s from './BookmarkList.module.css';

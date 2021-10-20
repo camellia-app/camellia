@@ -1,5 +1,5 @@
-import { Bookmark } from '../../bookmarks/Bookmark';
 import { Reducer } from 'redux';
+import { Bookmark } from '../../bookmarkManager/bookmark';
 
 export enum BookmarkActionTypes {
   FETCH_BOOKMARKS = 'FETCH_BOOKMARKS',

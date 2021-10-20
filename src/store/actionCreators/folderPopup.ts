@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { FolderPopupAction, FolderPopupActionTypes } from '../reducers/folderPopupReducer';
-import { Folder } from '../../bookmarks/Bookmark';
 import { FolderPopupProps } from '../../components/FolderPopup/FolderPopup';
+import { Folder } from '../../bookmarkManager/bookmark';
 
 export const closeAllPopups = () => {
   return async (dispatch: Dispatch<FolderPopupAction>): Promise<void> => {

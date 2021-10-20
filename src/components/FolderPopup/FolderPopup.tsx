@@ -3,7 +3,7 @@ import s from './FolderPopup.module.css';
 import cn from 'classnames';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
 import { ClickPosition } from '../Bookmark/BookmarkFolder';
-import { Folder } from '../../bookmarks/Bookmark';
+import { Folder } from '../../bookmarkManager/bookmark';
 import bookmarkClasses from '../Bookmark/Bookmark.module.css';
 import { useDispatch } from 'react-redux';
 import { closeAllNextPopups, closePopup } from '../../store/actionCreators/folderPopup';

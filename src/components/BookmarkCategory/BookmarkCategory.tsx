@@ -1,4 +1,4 @@
-import { Bookmark } from '../../bookmarks/Bookmark';
+import { Bookmark } from '../../bookmarkManager/bookmark';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
 import s from './BookmarkCategory.module.css';
 import { VoidFunctionComponent } from 'react';

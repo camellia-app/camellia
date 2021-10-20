@@ -1,9 +1,9 @@
-import { Bookmark, BookmarkLocalId, BookmarkManager, isFolder } from './common';
-import { Folder, Link } from '../Bookmark';
-import { Favicon } from '../Favicon';
+import { Favicon } from './Favicon';
+import { Bookmark, BookmarkLocalId, Folder, isFolder, Link } from './bookmark';
+import { BookmarkManager } from './bookmarkManager';
 
 const convertBookmarkTreeNodeToBookmark = (
-  bookmark: browser.bookmarks.BookmarkTreeNode,
+  bookmark: chrome.bookmarks.BookmarkTreeNode,
   nestingLevel: number,
 ): Bookmark => {
   if (bookmark.url !== undefined) {
@@ -35,13 +35,13 @@ const convertBookmarkTreeNodeToBookmark = (
   return folder;
 };
 
-export const webextBookmarkManager: BookmarkManager = {
+export const chromiumBookmarkManager: BookmarkManager = {
   getAllBookmarks: async (): Promise<Folder[]> => {
-    const bookmarkTreeNodes = await browser.bookmarks.getTree();
+    const bookmarkTreeNodes = await chrome.bookmarks.getTree();
     const rootBookmarkTreeNodes = bookmarkTreeNodes[0];
 
     if (rootBookmarkTreeNodes === undefined) {
-      console.warn('browser.bookmarks.getTree() returned empty array for some reason');
+      console.warn('chrome.bookmarks.getTree() returned empty array for some reason');
 
       return [];
     }
@@ -51,12 +51,12 @@ export const webextBookmarkManager: BookmarkManager = {
       .filter(isFolder);
   },
   searchBookmarks: async (searchQuery: string): Promise<Bookmark[]> => {
-    const bookmarkTreeNodes = await browser.bookmarks.search(searchQuery);
+    const bookmarkTreeNodes = await chrome.bookmarks.search(searchQuery);
 
     return bookmarkTreeNodes.map((bookmarkTreeNode) => convertBookmarkTreeNodeToBookmark(bookmarkTreeNode, 0));
   },
   getFolderChildren: async (folderId: BookmarkLocalId): Promise<Bookmark[]> => {
-    const bookmarkTreeNodes = await browser.bookmarks.getSubTree(folderId);
+    const bookmarkTreeNodes = await chrome.bookmarks.getSubTree(folderId);
 
     return bookmarkTreeNodes.map((bookmarkTreeNode) => convertBookmarkTreeNodeToBookmark(bookmarkTreeNode, 0));
   },

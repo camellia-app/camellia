@@ -1,9 +1,9 @@
 import { MouseEventHandler, VoidFunctionComponent } from 'react';
-import { Folder } from '../../bookmarks/Bookmark';
 import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
 import { useDispatch } from 'react-redux';
 import { togglePopup } from '../../store/actionCreators/folderPopup';
+import { Folder } from '../../bookmarkManager/bookmark';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconFolder = require('mdi/file/svg/production/ic_folder_48px.svg?fill=%23eee');

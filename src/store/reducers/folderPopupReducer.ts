@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 import { FolderPopupProps } from '../../components/FolderPopup/FolderPopup';
-import { Folder } from '../../bookmarks/Bookmark';
+import { Folder } from '../../bookmarkManager/bookmark';
 
 export enum FolderPopupActionTypes {
   CLOSE_ALL_NEXT_POPUPS = 'CLOSE_ALL_NEXT_POPUPS',

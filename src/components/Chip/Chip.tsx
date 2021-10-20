@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { ReactEventHandler, VoidFunctionComponent } from 'react';
-import { Favicon } from '../../bookmarks/Favicon';
+import { Favicon } from '../../bookmarkManager/Favicon';
 import s from './Chip.module.css';
 
 export enum ChipShape {

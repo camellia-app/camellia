@@ -4,7 +4,7 @@ import s from './BookmarkBrowser.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/reducers';
 import { BookmarkState } from '../../store/reducers/bookmarkReducer';
-import { isFolder } from '../../bookmarks/Bookmark';
+import { isFolder } from '../../bookmarkManager/bookmark';
 import { fetchBookmarks } from '../../store/actionCreators/bookmark';
 import { BookmarkSearchState } from '../../store/reducers/bookmarkSearchReducer';
 

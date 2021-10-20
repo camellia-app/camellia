@@ -1,6 +1,6 @@
 import { BookmarkAction, BookmarkActionTypes } from '../reducers/bookmarkReducer';
 import { Dispatch } from 'redux';
-import { getBookmarkManager } from '../../bookmarks/bookmarkManager/common';
+import { getBookmarkManager } from '../../bookmarkManager/bookmarkManager';
 
 export const fetchBookmarks = () => {
   return async (dispatch: Dispatch<BookmarkAction>): Promise<void> => {
