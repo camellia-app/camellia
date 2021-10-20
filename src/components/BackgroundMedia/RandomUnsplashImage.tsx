@@ -15,7 +15,7 @@ export const RandomUnsplashImage: VoidFunctionComponent = () => {
   return (
     <BackgroundImage
       dimensions={dimensions}
-      url={`https://source.unsplash.com/collection/${process.env.UNSPLASH_COLLECTION_ID}/${realWidth}x${realHeight}/daily`}
+      url={`https://source.unsplash.com/collection/${process.env['UNSPLASH_COLLECTION_ID']}/${realWidth}x${realHeight}/daily`}
     />
   );
 };

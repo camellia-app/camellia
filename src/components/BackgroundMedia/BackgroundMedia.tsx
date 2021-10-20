@@ -8,8 +8,8 @@ interface BackgroundMediaProps {
 
 interface BackgroundMediaVisibilityContext {
   isVisible: boolean;
-  loadDefaultBackgroundMedia?: () => void;
-  makeVisible?: () => void;
+  loadDefaultBackgroundMedia: undefined | (() => void);
+  makeVisible: undefined | (() => void);
 }
 
 export const BackgroundMediaVisibility = createContext<BackgroundMediaVisibilityContext>({

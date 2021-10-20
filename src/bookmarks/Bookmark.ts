@@ -7,7 +7,7 @@ export type Bookmark = Link | Folder;
 interface BookmarkCommon {
   idLocal: BookmarkLocalId;
   nestingLevel: number;
-  parentIdLocal?: BookmarkLocalId;
+  parentIdLocal: BookmarkLocalId | undefined;
   title: string;
 }
 

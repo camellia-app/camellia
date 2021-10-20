@@ -5,8 +5,6 @@ interface FaviconByDpi {
 }
 
 export class Favicon {
-  private static SIZE = 16;
-
   private static SUPPORTED_DPI = [1, 1.5, 2, 2.5, 3];
 
   private readonly favicons: FaviconByDpi[];
@@ -33,7 +31,7 @@ export class Favicon {
     return this.defaultFavicon;
   }
 
-  private static formatLinkByDPI(dpi: number, url: string): string {
+  private static formatLinkByDPI(_: number, url: string): string {
     return `https://favicons.camellia.app/?domain=${new URL(url).hostname}`;
   }
 }

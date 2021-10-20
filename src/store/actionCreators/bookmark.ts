@@ -31,6 +31,7 @@ export const searchBookmarks = (query: string) => {
           nestingLevel: 0,
           isRootFolder: true,
           idLocal: '-1',
+          parentIdLocal: undefined,
         },
       ],
     });

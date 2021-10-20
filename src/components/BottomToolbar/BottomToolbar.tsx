@@ -5,7 +5,7 @@ import { VoidFunctionComponent } from 'react';
 export const BottomToolbar: VoidFunctionComponent = () => {
   const toolbarItems = [];
 
-  if (process.env.TARGET_PLATFORM === 'chromium') {
+  if (process.env['TARGET_PLATFORM'] === 'chromium') {
     toolbarItems.push(<BookmarkManager />);
   }
 
