@@ -1,6 +1,6 @@
 import { BookmarkAction, BookmarkActionTypes } from '../reducers/bookmarkReducer';
 import { Dispatch } from 'redux';
-import { getTree, search } from '../../bookmarks/BookmarkManager';
+import { getBookmarkManager } from '../../bookmarks/bookmarkManager/common';
 
 export const fetchBookmarks = () => {
   return async (dispatch: Dispatch<BookmarkAction>): Promise<void> => {
@@ -8,7 +8,7 @@ export const fetchBookmarks = () => {
       type: BookmarkActionTypes.FETCH_BOOKMARKS,
     });
 
-    const bookmarksTree = await getTree();
+    const bookmarksTree = await getBookmarkManager().getAllBookmarks();
 
     dispatch({
       type: BookmarkActionTypes.FETCH_BOOKMARKS_SUCCESS,
@@ -19,7 +19,7 @@ export const fetchBookmarks = () => {
 
 export const searchBookmarks = (query: string) => {
   return async (dispatch: Dispatch<BookmarkAction>): Promise<void> => {
-    const bookmarksTree = await search(query);
+    const bookmarksTree = await getBookmarkManager().searchBookmarks(query);
 
     dispatch({
       type: BookmarkActionTypes.FETCH_BOOKMARKS_SUCCESS,
