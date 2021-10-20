@@ -76,11 +76,11 @@ export const BookmarkSearch: VoidFunctionComponent = () => {
   return (
     <form className={s.bookmarkSearch} onReset={formResetHandler} onSubmit={formSubmitHandler}>
       <input
+        autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
         className={s.bookmarkSearchField}
         onChange={fieldInputHandler}
         placeholder="Start typing to search bookmarks..."
         type="search"
-        autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
       />
       <button className={s.bookmarkSearchCloseButton} title="Close search" type="reset">
         Close search

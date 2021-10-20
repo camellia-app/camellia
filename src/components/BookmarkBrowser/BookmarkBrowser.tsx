@@ -28,7 +28,7 @@ export const BookmarkBrowser: VoidFunctionComponent = () => {
   return (
     <>
       {bookmarkState.bookmarks.filter(isFolder).map((item) => (
-        <BookmarkCategory key={item.idLocal} bookmarks={item.children} categoryTitle={item.title} />
+        <BookmarkCategory bookmarks={item.children} categoryTitle={item.title} key={item.idLocal} />
       ))}
     </>
   );

@@ -138,12 +138,12 @@ export const FolderPopup: VoidFunctionComponent<FolderPopupProps> = (props) => {
 
   return (
     <dialog
-      ref={popupElement}
       aria-labelledby={headerId}
       className={cn(s.folderPopup, {
         [s.loading]: !popupState.isVisible,
       })}
       open={true}
+      ref={popupElement}
       style={{
         ['--folder-position-x' as string]: `${popupState.placement.x}px`,
         ['--folder-position-y' as string]: `${popupState.placement.y}px`,
@@ -151,12 +151,12 @@ export const FolderPopup: VoidFunctionComponent<FolderPopupProps> = (props) => {
           popupState.placement.height === null ? 'auto' : `${popupState.placement.height}px`,
       }}
     >
-      <div role="presentation" className={s.folderPopupContent} onClick={handlePopupBodyClick}>
+      <div className={s.folderPopupContent} onClick={handlePopupBodyClick} role="presentation">
         <header className={s.folderPopupHeader}>
           <h2 className={s.folderPopupTitle} id={headerId}>
             {props.folder.title}
           </h2>
-          <button className={s.folderPopupCloseButton} title="Close folder [Escape]" onClick={handleCloseButtonClick}>
+          <button className={s.folderPopupCloseButton} onClick={handleCloseButtonClick} title="Close folder [Escape]">
             Close folder [Escape]
           </button>
         </header>

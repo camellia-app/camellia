@@ -59,9 +59,9 @@ export const FolderPopupManager: VoidFunctionComponent = () => {
     <>
       {folderPopupsState.popupsStack.map((folderPopupsProps) => (
         <FolderPopup
-          key={folderPopupsProps.folder.idLocal}
           clickPosition={folderPopupsProps.clickPosition}
           folder={folderPopupsProps.folder}
+          key={folderPopupsProps.folder.idLocal}
         />
       ))}
     </>

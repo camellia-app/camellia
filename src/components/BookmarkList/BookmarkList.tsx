@@ -12,11 +12,11 @@ export const BookmarkList: VoidFunctionComponent<BookmarkListProps> = (props) =>
   <ul className={s.bookmarkList}>
     {props.bookmarks.map((item) => {
       if (item.type === 'link') {
-        return <BookmarkLink key={item.idLocal} bookmark={item} />;
+        return <BookmarkLink bookmark={item} key={item.idLocal} />;
       }
 
       if (item.type === 'folder') {
-        return <BookmarkFolder key={item.idLocal} bookmark={item} />;
+        return <BookmarkFolder bookmark={item} key={item.idLocal} />;
       }
 
       throw Error('unknown bookmark type');

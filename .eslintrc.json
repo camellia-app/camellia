@@ -32,8 +32,18 @@
     "plugin:typescript-sort-keys/recommended"
   ],
   "rules": {
-    "react/react-in-jsx-scope": "off",
+    "react/function-component-definition": [
+      "warn",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "react/jsx-props-no-spreading": "warn",
+    "react/jsx-sort-props": "warn",
+    "react/no-access-state-in-setstate": "error",
     "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
     "react-redux/useSelector-prefer-selectors": "off",
     "unused-imports/no-unused-imports": "warn",
     "unused-imports/no-unused-vars": "warn"
