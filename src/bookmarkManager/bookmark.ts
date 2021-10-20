@@ -1,5 +1,3 @@
-import { Favicon } from './Favicon';
-
 export type BookmarkLocalId = string;
 
 export type Bookmark = Link | Folder;
@@ -12,7 +10,6 @@ interface BookmarkCommon {
 }
 
 export interface Link extends BookmarkCommon {
-  favicon: Favicon;
   type: 'link';
   url: string;
 }

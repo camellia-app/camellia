@@ -1,4 +1,3 @@
-import { Favicon } from './Favicon';
 import { Bookmark, BookmarkLocalId, Folder, isFolder, Link } from './bookmark';
 import { BookmarkManager } from './bookmarkManager';
 
@@ -13,7 +12,6 @@ const convertBookmarkTreeNodeToBookmark = (
       nestingLevel: nestingLevel,
       url: bookmark.url,
       type: 'link',
-      favicon: new Favicon(bookmark.url),
       parentIdLocal: bookmark.parentId,
     };
 

@@ -2,6 +2,7 @@ import { useState, VoidFunctionComponent } from 'react';
 import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
 import { Link } from '../../bookmarkManager/bookmark';
+import { getFaviconProcessor } from '../../faviconProcessor/faviconProcessor';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconPublic = require('mdi/social/svg/production/ic_public_48px.svg?fill=%23eee');
@@ -11,7 +12,7 @@ interface BookmarkProps {
 }
 
 export const BookmarkLink: VoidFunctionComponent<BookmarkProps> = (props) => {
-  const [icon, setIcon] = useState(props.bookmark.favicon);
+  const [icon, setIcon] = useState(getFaviconProcessor().generateUrl(props.bookmark.url));
   const [isLoading, setLoading] = useState(false);
 
   const handleFaviconLoadingError = () => {
