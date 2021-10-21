@@ -19,8 +19,8 @@ export const BackgroundMediaVisibility = createContext<BackgroundMediaVisibility
 });
 
 export const BackgroundMedia: VoidFunctionComponent<BackgroundMediaProps> = (props) => {
-  const [isVisible, setVisibility] = useState(false);
-  const [backgroundMediaHasError, loadFallbackMedia] = useState(false);
+  const [isVisible, setVisibility] = useState<boolean>(false);
+  const [backgroundMediaHasError, loadFallbackMedia] = useState<boolean>(false);
 
   const backgroundMedia = backgroundMediaHasError === false ? props.children : <div />;
 
