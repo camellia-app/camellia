@@ -12,11 +12,6 @@ interface BookmarkFolderProps {
   bookmark: Folder;
 }
 
-export interface ClickPosition {
-  x: number;
-  y: number;
-}
-
 export const BookmarkFolder: VoidFunctionComponent<BookmarkFolderProps> = (props) => {
   const dispatch = useDispatch();
 

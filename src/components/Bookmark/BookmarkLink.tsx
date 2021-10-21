@@ -2,8 +2,8 @@ import { useState, VoidFunctionComponent } from 'react';
 import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
 import { Link } from '../../bookmarkManager/bookmark';
-import { getFaviconProcessor } from '../../faviconProcessor/faviconProcessor';
 import { Favicon } from '../../faviconProcessor/favicon';
+import { getFaviconProcessor } from '../../faviconProcessor';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconPublic = require('mdi/social/svg/production/ic_public_48px.svg?fill=%23eee');

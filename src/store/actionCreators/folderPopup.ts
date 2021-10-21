@@ -1,6 +1,5 @@
 import { Dispatch } from 'redux';
-import { FolderPopupAction, FolderPopupActionTypes } from '../reducers/folderPopupReducer';
-import { FolderPopupProps } from '../../components/FolderPopup/FolderPopup';
+import { FolderPopupAction, FolderPopupActionTypes, OpenedFolderPopup } from '../reducers/folderPopupReducer';
 import { Folder } from '../../bookmarkManager/bookmark';
 
 export const closeAllPopups = () => {
@@ -37,7 +36,7 @@ export const closePopup = (folder: Folder) => {
   };
 };
 
-export const togglePopup = (popupProps: FolderPopupProps) => {
+export const togglePopup = (popupProps: OpenedFolderPopup) => {
   return async (dispatch: Dispatch<FolderPopupAction>): Promise<void> => {
     dispatch({
       type: FolderPopupActionTypes.TOGGLE_POPUP,
