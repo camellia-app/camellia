@@ -45,13 +45,7 @@
 
 .chip:hover {
   background-color: var(--bookmark-background-color-hover);
-}
-
-/* We do such animation for high DPI displays only because it looks blurry and ugly with small DPI */
-@media only screen and (min-resolution: 192dpi) {
-  .chip:hover {
-    transform: translateZ(0) scale(1.048);
-  }
+  transform: translateY(-1px);
 }
 
 :focus .chip {
