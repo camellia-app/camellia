@@ -1,5 +1,4 @@
 import { Reducer } from 'redux';
-import { FolderPopupProps } from '../../components/FolderPopup/FolderPopup';
 import { Folder } from '../../bookmarkManager/bookmark';
 
 export enum FolderPopupActionTypes {
@@ -10,13 +9,23 @@ export enum FolderPopupActionTypes {
   TOGGLE_POPUP = 'TOGGLE_POPUP',
 }
 
+export interface OpenedFolderPopup {
+  clickPosition: ClickPosition;
+  folder: Folder;
+}
+
+export interface ClickPosition {
+  x: number;
+  y: number;
+}
+
 export interface FolderPopupState {
-  popupsStack: FolderPopupProps[];
+  popupsStack: OpenedFolderPopup[];
 }
 
 export type FolderPopupAction =
   | {
-      payload: FolderPopupProps;
+      payload: OpenedFolderPopup;
       type: FolderPopupActionTypes.TOGGLE_POPUP;
     }
   | {
