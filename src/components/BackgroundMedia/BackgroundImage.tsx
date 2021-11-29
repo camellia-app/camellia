@@ -1,21 +1,22 @@
-import { useContext, VoidFunctionComponent } from 'react';
+import type { VoidFunctionComponent } from 'react';
+import { useContext } from 'react';
 import { BackgroundMediaVisibility } from './BackgroundMedia';
 import s from './BackgroundMedia.module.css';
 
-interface ImageDimensions {
+type ImageDimensions = {
   height: number;
   width: number;
-}
+};
 
-interface BackgroundImageProps {
+type BackgroundImageProps = {
   dimensions?: ImageDimensions;
   url: string;
-}
+};
 
 export const BackgroundImage: VoidFunctionComponent<BackgroundImageProps> = (props) => {
   const context = useContext(BackgroundMediaVisibility);
 
-  const handleImageError = () => {
+  const handleImageError = (): void => {
     console.warn('Failed to load background image, falling back to default background media');
 
     if (context.loadDefaultBackgroundMedia !== undefined) {
@@ -23,7 +24,7 @@ export const BackgroundImage: VoidFunctionComponent<BackgroundImageProps> = (pro
     }
   };
 
-  const handleImageLoad = () => {
+  const handleImageLoad = (): void => {
     if (context.makeVisible !== undefined) {
       context.makeVisible();
     }

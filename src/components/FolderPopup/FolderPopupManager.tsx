@@ -1,8 +1,9 @@
-import { useEffect, VoidFunctionComponent } from 'react';
+import type { VoidFunctionComponent } from 'react';
+import { useEffect } from 'react';
 import { FolderPopup } from './FolderPopup';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/reducers';
-import { FolderPopupState } from '../../store/reducers/folderPopupReducer';
+import type { RootState } from '../../store/reducers';
+import type { FolderPopupState } from '../../store/reducers/folderPopupReducer';
 import bookmarkClasses from '../Bookmark/Bookmark.module.css';
 import folderPopupClasses from './FolderPopup.module.css';
 import { closeAllPopups, closeLastPopup } from '../../store/actionCreators/folderPopup';
@@ -13,7 +14,7 @@ export const FolderPopupManager: VoidFunctionComponent = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const handleBodyClick = (event: MouseEvent) => {
+    const handleBodyClick = (event: MouseEvent): void => {
       if (!(event.target instanceof Element)) {
         return;
       }
@@ -32,13 +33,13 @@ export const FolderPopupManager: VoidFunctionComponent = () => {
       dispatch(closeAllPopups());
     };
 
-    const popupEscapeKeyPressHandler = (event: KeyboardEvent) => {
+    const popupEscapeKeyPressHandler = (event: KeyboardEvent): void => {
       if (event.key === 'Escape' && folderPopupsState.popupsStack.length > 0) {
         dispatch(closeLastPopup());
       }
     };
 
-    const screenResizeHandler = () => {
+    const screenResizeHandler = (): void => {
       if (folderPopupsState.popupsStack.length > 0) {
         dispatch(closeAllPopups());
       }
@@ -48,7 +49,7 @@ export const FolderPopupManager: VoidFunctionComponent = () => {
     document.addEventListener('keydown', popupEscapeKeyPressHandler);
     window.addEventListener('resize', screenResizeHandler);
 
-    return () => {
+    return (): void => {
       document.removeEventListener('click', handleBodyClick);
       document.removeEventListener('keydown', popupEscapeKeyPressHandler);
       window.removeEventListener('resize', screenResizeHandler);

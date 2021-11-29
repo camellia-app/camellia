@@ -1,26 +1,27 @@
-import { useState, VoidFunctionComponent } from 'react';
+import type { VoidFunctionComponent } from 'react';
+import { useState } from 'react';
 import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
-import { Link } from '../../bookmarkManager/bookmark';
-import { Favicon } from '../../faviconProcessor/favicon';
+import type { Link } from '../../bookmarkManager/bookmark';
+import type { Favicon } from '../../faviconProcessor/favicon';
 import { getFaviconProcessor } from '../../faviconProcessor';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconPublic = require('mdi/social/svg/production/ic_public_48px.svg?fill=%23eee');
 
-interface BookmarkProps {
+type BookmarkProps = {
   bookmark: Link;
-}
+};
 
 export const BookmarkLink: VoidFunctionComponent<BookmarkProps> = (props) => {
-  const [icon, setIcon] = useState<string | Favicon>(getFaviconProcessor().generateUrl(props.bookmark.url));
+  const [icon, setIcon] = useState<Favicon | string>(getFaviconProcessor().generateUrl(props.bookmark.url));
   const [isLoading, setLoading] = useState<boolean>(false);
 
-  const handleFaviconLoadingError = () => {
+  const handleFaviconLoadingError = (): void => {
     setIcon(iconPublic);
   };
 
-  const handleClick = async () => {
+  const handleClick = async (): Promise<void> => {
     setLoading(true);
 
     if (isLoading) {

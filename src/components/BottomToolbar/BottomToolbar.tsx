@@ -1,6 +1,6 @@
 import s from './BottomToolbar.module.css';
 import { BookmarkManager } from './ToolbarItem/BookmarkManager';
-import { VoidFunctionComponent } from 'react';
+import type { VoidFunctionComponent } from 'react';
 
 export const BottomToolbar: VoidFunctionComponent = () => {
   const toolbarItems = [];

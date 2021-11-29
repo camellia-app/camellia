@@ -1,5 +1,6 @@
-import { BookmarkAction, BookmarkActionTypes } from '../reducers/bookmarkReducer';
-import { Dispatch } from 'redux';
+import type { BookmarkAction } from '../reducers/bookmarkReducer';
+import { BookmarkActionTypes } from '../reducers/bookmarkReducer';
+import type { Dispatch } from 'redux';
 import { getBookmarkManager } from '../../bookmarkManager';
 
 export const fetchBookmarks = () => {

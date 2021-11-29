@@ -1,21 +1,22 @@
 import cn from 'classnames';
-import { ReactEventHandler, VoidFunctionComponent } from 'react';
+import type { ReactEventHandler, VoidFunctionComponent } from 'react';
 import s from './Chip.module.css';
-import { Favicon } from '../../faviconProcessor/favicon';
+import type { Favicon } from '../../faviconProcessor/favicon';
+import type * as CSS from 'csstype';
 
 export enum ChipShape {
   Rounded,
   Squared,
 }
 
-interface ChipProps {
+type ChipProps = {
   handleFaviconLoadingError?: () => void;
-  icon: string | Favicon;
+  icon: Favicon | string;
   label: string;
   loading: boolean;
   shape: ChipShape;
   tooltip?: string;
-}
+};
 
 export const Chip: VoidFunctionComponent<ChipProps> = (props) => {
   const handleImageError: ReactEventHandler<HTMLImageElement> = (event) => {
@@ -30,14 +31,13 @@ export const Chip: VoidFunctionComponent<ChipProps> = (props) => {
     }
   };
 
+  const styles: CSS.ChipProperties = {
+    ['--inline-icon']: `url("${props.icon}")`,
+  };
+
   const iconElement =
     typeof props.icon === 'string' ? (
-      <span
-        className={cn(s.chipIcon, s.chipIconInline)}
-        style={{
-          ['--inline-icon' as string]: `url("${props.icon}")`,
-        }}
-      />
+      <span className={cn(s.chipIcon, s.chipIconInline)} style={styles} />
     ) : (
       <img
         alt="Favicon"
@@ -49,7 +49,7 @@ export const Chip: VoidFunctionComponent<ChipProps> = (props) => {
       />
     );
 
-  const tooltip = props.tooltip || props.label;
+  const tooltip = props.tooltip !== undefined ? props.tooltip : props.label;
 
   return (
     <div

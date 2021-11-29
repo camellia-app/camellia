@@ -1,14 +1,14 @@
-import { Reducer } from 'redux';
+import type { Reducer } from 'redux';
 
 export enum BookmarkSearchActionTypes {
   CLOSE_SEARCH = 'CLOSE_SEARCH',
   OPEN_SEARCH = 'OPEN_SEARCH',
 }
 
-export interface BookmarkSearchState {
+export type BookmarkSearchState = {
   initialSearchQuery: string;
   show: boolean;
-}
+};
 
 export type BookmarkSearchAction =
   | {

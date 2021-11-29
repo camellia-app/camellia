@@ -1,5 +1,5 @@
-import { Favicon } from './favicon';
+import type { Favicon } from './favicon';
 
-export interface FaviconProcessor {
+export type FaviconProcessor = {
   generateUrl: (url: string) => Favicon;
-}
+};

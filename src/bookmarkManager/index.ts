@@ -1,6 +1,6 @@
 import { chromiumBookmarkManager } from './chromiumBookmarkManager';
 import { webextBookmarkManager } from './webextBookmarkManager';
-import { BookmarkManager } from './bookmarkManager';
+import type { BookmarkManager } from './bookmarkManager';
 
 export const getBookmarkManager = (): BookmarkManager => {
   switch (process.env['TARGET_PLATFORM']) {

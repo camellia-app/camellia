@@ -2,7 +2,7 @@ import { render } from 'react-dom';
 import { BackgroundMedia } from './components/BackgroundMedia/BackgroundMedia';
 import { RandomUnsplashImage } from './components/BackgroundMedia/RandomUnsplashImage';
 import { BottomToolbar } from './components/BottomToolbar/BottomToolbar';
-import { VoidFunctionComponent } from 'react';
+import type { VoidFunctionComponent } from 'react';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { BookmarkWorkspace } from './components/BookmarkWorkspace/BookmarkWorkspace';

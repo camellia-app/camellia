@@ -1,7 +1,7 @@
-import { VoidFunctionComponent } from 'react';
+import type { VoidFunctionComponent } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/reducers';
-import { BookmarkState } from '../../store/reducers/bookmarkReducer';
+import type { RootState } from '../../store/reducers';
+import type { BookmarkState } from '../../store/reducers/bookmarkReducer';
 import cn from 'classnames';
 import s from './BookmarkWorkspace.module.css';
 import { BookmarkSearch } from '../BookmarkSearch/BookmarkSearch';

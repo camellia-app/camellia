@@ -1,8 +1,8 @@
-interface FaviconVariant {
+type FaviconVariant = {
   dpi: number;
   url: string;
-}
+};
 
-export interface Favicon {
-  variants: FaviconVariant[];
-}
+export type Favicon = {
+  variants: Array<FaviconVariant>;
+};

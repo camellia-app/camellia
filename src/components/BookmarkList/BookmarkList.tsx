@@ -1,12 +1,12 @@
-import { Bookmark } from '../../bookmarkManager/bookmark';
+import type { Bookmark } from '../../bookmarkManager/bookmark';
 import { BookmarkFolder } from '../Bookmark/BookmarkFolder';
 import { BookmarkLink } from '../Bookmark/BookmarkLink';
 import s from './BookmarkList.module.css';
-import { VoidFunctionComponent } from 'react';
+import type { VoidFunctionComponent } from 'react';
 
-interface BookmarkListProps {
-  bookmarks: Bookmark[];
-}
+type BookmarkListProps = {
+  bookmarks: Array<Bookmark>;
+};
 
 export const BookmarkList: VoidFunctionComponent<BookmarkListProps> = (props) => (
   <ul className={s.bookmarkList}>

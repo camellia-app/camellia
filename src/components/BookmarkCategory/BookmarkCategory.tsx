@@ -1,12 +1,12 @@
-import { Bookmark } from '../../bookmarkManager/bookmark';
+import type { Bookmark } from '../../bookmarkManager/bookmark';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
 import s from './BookmarkCategory.module.css';
-import { VoidFunctionComponent } from 'react';
+import type { VoidFunctionComponent } from 'react';
 
-interface BookmarkCategoryProps {
-  bookmarks: Bookmark[];
+type BookmarkCategoryProps = {
+  bookmarks: Array<Bookmark>;
   categoryTitle: string;
-}
+};
 
 export const BookmarkCategory: VoidFunctionComponent<BookmarkCategoryProps> = (props) => (
   <section className={s.bookmarkCategory}>

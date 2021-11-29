@@ -1,5 +1,5 @@
-import { Reducer } from 'redux';
-import { Folder } from '../../bookmarkManager/bookmark';
+import type { Reducer } from 'redux';
+import type { Folder } from '../../bookmarkManager/bookmark';
 
 export enum FolderPopupActionTypes {
   CLOSE_ALL_NEXT_POPUPS = 'CLOSE_ALL_NEXT_POPUPS',
@@ -9,28 +9,21 @@ export enum FolderPopupActionTypes {
   TOGGLE_POPUP = 'TOGGLE_POPUP',
 }
 
-export interface OpenedFolderPopup {
+export type OpenedFolderPopup = {
   clickPosition: ClickPosition;
   folder: Folder;
-}
+};
 
-export interface ClickPosition {
+export type ClickPosition = {
   x: number;
   y: number;
-}
+};
 
-export interface FolderPopupState {
-  popupsStack: OpenedFolderPopup[];
-}
+export type FolderPopupState = {
+  popupsStack: Array<OpenedFolderPopup>;
+};
 
 export type FolderPopupAction =
-  | {
-      payload: OpenedFolderPopup;
-      type: FolderPopupActionTypes.TOGGLE_POPUP;
-    }
-  | {
-      type: FolderPopupActionTypes.CLOSE_ALL_POPUPS;
-    }
   | {
       payload: Folder;
       type: FolderPopupActionTypes.CLOSE_ALL_NEXT_POPUPS;
@@ -38,6 +31,13 @@ export type FolderPopupAction =
   | {
       payload: Folder;
       type: FolderPopupActionTypes.CLOSE_POPUP;
+    }
+  | {
+      payload: OpenedFolderPopup;
+      type: FolderPopupActionTypes.TOGGLE_POPUP;
+    }
+  | {
+      type: FolderPopupActionTypes.CLOSE_ALL_POPUPS;
     }
   | {
       type: FolderPopupActionTypes.CLOSE_LAST_POPUP;

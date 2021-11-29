@@ -1,5 +1,6 @@
-import { Dispatch } from 'redux';
-import { BookmarkSearchAction, BookmarkSearchActionTypes } from '../reducers/bookmarkSearchReducer';
+import type { Dispatch } from 'redux';
+import type { BookmarkSearchAction } from '../reducers/bookmarkSearchReducer';
+import { BookmarkSearchActionTypes } from '../reducers/bookmarkSearchReducer';
 
 export const openSearch = (initialQuery: string) => {
   return async (dispatch: Dispatch<BookmarkSearchAction>): Promise<void> => {
