@@ -5,7 +5,7 @@
 
   all: unset;
   backdrop-filter: blur(2px);
-  background: rgba(33, 33, 33, 0.75);
+  background-color: rgba(33, 33, 33, 0.75);
   border-radius: 8px;
   box-sizing: border-box;
   color: var(--bookmark-text-color);
