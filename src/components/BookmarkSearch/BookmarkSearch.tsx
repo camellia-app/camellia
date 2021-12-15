@@ -1,10 +1,11 @@
-import { ChangeEventHandler, FormEventHandler, useEffect, VoidFunctionComponent } from 'react';
+import type { ChangeEventHandler, FormEventHandler, VoidFunctionComponent } from 'react';
+import { useEffect } from 'react';
 import s from './BookmarkSearch.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBookmarks, searchBookmarks } from '../../store/actionCreators/bookmark';
-import { RootState } from '../../store/reducers';
+import type { RootState } from '../../store/reducers';
 import { closeSearch, openSearch } from '../../store/actionCreators/bookmarkSearch';
-import { BookmarkSearchState } from '../../store/reducers/bookmarkSearchReducer';
+import type { BookmarkSearchState } from '../../store/reducers/bookmarkSearchReducer';
 
 export const BookmarkSearch: VoidFunctionComponent = () => {
   const bookmarkSearchState = useSelector<RootState, BookmarkSearchState>((state) => state.bookmarkSearch);
@@ -12,7 +13,7 @@ export const BookmarkSearch: VoidFunctionComponent = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const characterKeyPressHandler = (event: KeyboardEvent) => {
+    const characterKeyPressHandler = (event: KeyboardEvent): void => {
       if (bookmarkSearchState.show) {
         return;
       }
@@ -28,7 +29,7 @@ export const BookmarkSearch: VoidFunctionComponent = () => {
       dispatch(openSearch(event.key));
     };
 
-    const searchHotKeyPressHandler = (event: KeyboardEvent) => {
+    const searchHotKeyPressHandler = (event: KeyboardEvent): void => {
       const isCtrlPressed = event.ctrlKey || event.metaKey;
 
       if ((isCtrlPressed && event.key === 'f') || (isCtrlPressed && event.key === 'g')) {
@@ -38,7 +39,7 @@ export const BookmarkSearch: VoidFunctionComponent = () => {
       }
     };
 
-    const escapePressHandler = (event: KeyboardEvent) => {
+    const escapePressHandler = (event: KeyboardEvent): void => {
       if (event.key === 'Escape' && bookmarkSearchState.show) {
         dispatch(fetchBookmarks());
         dispatch(closeSearch());
@@ -49,7 +50,7 @@ export const BookmarkSearch: VoidFunctionComponent = () => {
     document.addEventListener('keydown', searchHotKeyPressHandler);
     document.addEventListener('keydown', escapePressHandler);
 
-    return () => {
+    return (): void => {
       document.removeEventListener('keydown', characterKeyPressHandler);
       document.removeEventListener('keydown', searchHotKeyPressHandler);
       document.removeEventListener('keydown', escapePressHandler);

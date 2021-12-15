@@ -1,12 +1,13 @@
-import { useEffect, VoidFunctionComponent } from 'react';
+import type { VoidFunctionComponent } from 'react';
+import { useEffect } from 'react';
 import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
 import s from './BookmarkBrowser.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/reducers';
-import { BookmarkState } from '../../store/reducers/bookmarkReducer';
+import type { RootState } from '../../store/reducers';
+import type { BookmarkState } from '../../store/reducers/bookmarkReducer';
 import { isFolder } from '../../bookmarkManager/bookmark';
 import { fetchBookmarks } from '../../store/actionCreators/bookmark';
-import { BookmarkSearchState } from '../../store/reducers/bookmarkSearchReducer';
+import type { BookmarkSearchState } from '../../store/reducers/bookmarkSearchReducer';
 
 export const BookmarkBrowser: VoidFunctionComponent = () => {
   const bookmarkState = useSelector<RootState, BookmarkState>((state) => state.bookmark);

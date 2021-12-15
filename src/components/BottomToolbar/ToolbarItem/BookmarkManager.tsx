@@ -1,4 +1,4 @@
-import { MouseEventHandler, VoidFunctionComponent } from 'react';
+import type { MouseEventHandler, VoidFunctionComponent } from 'react';
 import bookmarkStyles from '../../Bookmark/Bookmark.module.css';
 import { Chip, ChipShape } from '../../Chip/Chip';
 

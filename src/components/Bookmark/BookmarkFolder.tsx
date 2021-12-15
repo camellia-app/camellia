@@ -1,16 +1,16 @@
-import { MouseEventHandler, VoidFunctionComponent } from 'react';
+import type { MouseEventHandler, VoidFunctionComponent } from 'react';
 import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
 import { useDispatch } from 'react-redux';
 import { togglePopup } from '../../store/actionCreators/folderPopup';
-import { Folder } from '../../bookmarkManager/bookmark';
+import type { Folder } from '../../bookmarkManager/bookmark';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconFolder = require('mdi/file/svg/production/ic_folder_48px.svg?fill=%23eee');
 
-interface BookmarkFolderProps {
+type BookmarkFolderProps = {
   bookmark: Folder;
-}
+};
 
 export const BookmarkFolder: VoidFunctionComponent<BookmarkFolderProps> = (props) => {
   const dispatch = useDispatch();

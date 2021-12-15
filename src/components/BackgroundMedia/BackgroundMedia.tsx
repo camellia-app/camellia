@@ -1,16 +1,17 @@
 import cn from 'classnames';
-import { createContext, ReactNode, useState, VoidFunctionComponent } from 'react';
+import type { ReactNode, VoidFunctionComponent } from 'react';
+import { createContext, useState } from 'react';
 import s from './BackgroundMedia.module.css';
 
-interface BackgroundMediaProps {
+type BackgroundMediaProps = {
   children: ReactNode;
-}
+};
 
-interface BackgroundMediaVisibilityContext {
+type BackgroundMediaVisibilityContext = {
   isVisible: boolean;
-  loadDefaultBackgroundMedia: undefined | (() => void);
-  makeVisible: undefined | (() => void);
-}
+  loadDefaultBackgroundMedia: (() => void) | undefined;
+  makeVisible: (() => void) | undefined;
+};
 
 export const BackgroundMediaVisibility = createContext<BackgroundMediaVisibilityContext>({
   isVisible: false,
@@ -22,13 +23,13 @@ export const BackgroundMedia: VoidFunctionComponent<BackgroundMediaProps> = (pro
   const [isVisible, setVisibility] = useState<boolean>(false);
   const [backgroundMediaHasError, loadFallbackMedia] = useState<boolean>(false);
 
-  const backgroundMedia = backgroundMediaHasError === false ? props.children : <div />;
+  const backgroundMedia = !backgroundMediaHasError ? props.children : <div />;
 
-  const makeVisible = () => {
+  const makeVisible = (): void => {
     setVisibility(true);
   };
 
-  const loadDefaultBackgroundMedia = () => {
+  const loadDefaultBackgroundMedia = (): void => {
     loadFallbackMedia(true);
   };
 

@@ -1,5 +1,5 @@
 import { BackgroundImage } from './BackgroundImage';
-import { VoidFunctionComponent } from 'react';
+import type { VoidFunctionComponent } from 'react';
 
 export const RandomUnsplashImage: VoidFunctionComponent = () => {
   const pixelRatio = window.devicePixelRatio;

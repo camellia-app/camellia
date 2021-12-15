@@ -1,23 +1,23 @@
-import { Reducer } from 'redux';
-import { Bookmark } from '../../bookmarkManager/bookmark';
+import type { Reducer } from 'redux';
+import type { Bookmark } from '../../bookmarkManager/bookmark';
 
 export enum BookmarkActionTypes {
   FETCH_BOOKMARKS = 'FETCH_BOOKMARKS',
   FETCH_BOOKMARKS_SUCCESS = 'FETCH_BOOKMARKS_SUCCESS',
 }
 
-export interface BookmarkState {
-  bookmarks: Bookmark[];
+export type BookmarkState = {
+  bookmarks: Array<Bookmark>;
   loaded: boolean;
-}
+};
 
 export type BookmarkAction =
   | {
-      type: BookmarkActionTypes.FETCH_BOOKMARKS;
+      payload: Array<Bookmark>;
+      type: BookmarkActionTypes.FETCH_BOOKMARKS_SUCCESS;
     }
   | {
-      payload: Bookmark[];
-      type: BookmarkActionTypes.FETCH_BOOKMARKS_SUCCESS;
+      type: BookmarkActionTypes.FETCH_BOOKMARKS;
     };
 
 const initialState: BookmarkState = {

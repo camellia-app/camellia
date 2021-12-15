@@ -1,5 +1,6 @@
-import { Bookmark, BookmarkLocalId, Folder, isFolder, Link } from './bookmark';
-import { BookmarkManager } from './bookmarkManager';
+import type { Bookmark, BookmarkLocalId, Folder, Link } from './bookmark';
+import { isFolder } from './bookmark';
+import type { BookmarkManager } from './bookmarkManager';
 
 const convertBookmarkTreeNodeToBookmark = (
   bookmark: browser.bookmarks.BookmarkTreeNode,
@@ -18,7 +19,9 @@ const convertBookmarkTreeNodeToBookmark = (
     return link;
   }
 
-  const children = (bookmark.children || []).map((child) => convertBookmarkTreeNodeToBookmark(child, nestingLevel + 1));
+  const children = (bookmark.children !== undefined ? bookmark.children : []).map((child) =>
+    convertBookmarkTreeNodeToBookmark(child, nestingLevel + 1),
+  );
 
   const folder: Folder = {
     idLocal: bookmark.id,
@@ -34,7 +37,7 @@ const convertBookmarkTreeNodeToBookmark = (
 };
 
 export const webextBookmarkManager: BookmarkManager = {
-  getAllBookmarks: async (): Promise<Folder[]> => {
+  getAllBookmarks: async (): Promise<Array<Folder>> => {
     const bookmarkTreeNodes = await browser.bookmarks.getTree();
     const rootBookmarkTreeNodes = bookmarkTreeNodes[0];
 
@@ -44,16 +47,16 @@ export const webextBookmarkManager: BookmarkManager = {
       return [];
     }
 
-    return (rootBookmarkTreeNodes.children || [])
+    return (rootBookmarkTreeNodes.children !== undefined ? rootBookmarkTreeNodes.children : [])
       .map((bookmarkTreeNode) => convertBookmarkTreeNodeToBookmark(bookmarkTreeNode, 0))
       .filter(isFolder);
   },
-  searchBookmarks: async (searchQuery: string): Promise<Bookmark[]> => {
+  searchBookmarks: async (searchQuery: string): Promise<Array<Bookmark>> => {
     const bookmarkTreeNodes = await browser.bookmarks.search(searchQuery);
 
     return bookmarkTreeNodes.map((bookmarkTreeNode) => convertBookmarkTreeNodeToBookmark(bookmarkTreeNode, 0));
   },
-  getFolderChildren: async (folderId: BookmarkLocalId): Promise<Bookmark[]> => {
+  getFolderChildren: async (folderId: BookmarkLocalId): Promise<Array<Bookmark>> => {
     const bookmarkTreeNodes = await browser.bookmarks.getSubTree(folderId);
 
     return bookmarkTreeNodes.map((bookmarkTreeNode) => convertBookmarkTreeNodeToBookmark(bookmarkTreeNode, 0));

@@ -34,6 +34,24 @@
     "plugin:import/typescript"
   ],
   "rules": {
+    "@typescript-eslint/array-type": [
+      "warn",
+      {
+        "default": "generic"
+      }
+    ],
+    "@typescript-eslint/consistent-indexed-object-style": ["error", "index-signature"],
+    "@typescript-eslint/consistent-type-assertions": [
+      "error",
+      {
+        "assertionStyle": "never"
+      }
+    ],
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "@typescript-eslint/consistent-type-imports": ["warn", { "prefer": "type-imports" }],
+    "@typescript-eslint/member-ordering": ["warn"],
+    "@typescript-eslint/method-signature-style": ["warn"],
+    "@typescript-eslint/sort-type-union-intersection-members": ["warn"],
     "import/no-cycle": "error",
     "react/function-component-definition": [
       "warn",
@@ -50,5 +68,30 @@
     "react-redux/useSelector-prefer-selectors": "off",
     "unused-imports/no-unused-imports": "warn",
     "unused-imports/no-unused-vars": "warn"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": ["./tsconfig.json"]
+      },
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": ["warn"],
+        "@typescript-eslint/no-unnecessary-boolean-literal-compare": ["warn"],
+        "@typescript-eslint/strict-boolean-expressions": [
+          "error",
+          {
+            "allowString": false,
+            "allowNumber": false,
+            "allowNullableObject": false,
+            "allowNullableBoolean": false,
+            "allowNullableString": false,
+            "allowNullableNumber": false,
+            "allowAny": false
+          }
+        ],
+        "@typescript-eslint/switch-exhaustiveness-check": ["error"]
+      }
+    }
+  ]
 }

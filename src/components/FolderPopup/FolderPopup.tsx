@@ -1,32 +1,34 @@
-import { createRef, MouseEventHandler, useEffect, useState, VoidFunctionComponent } from 'react';
+import type { MouseEventHandler, VoidFunctionComponent } from 'react';
+import { createRef, useEffect, useState } from 'react';
 import s from './FolderPopup.module.css';
 import cn from 'classnames';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
-import { Folder } from '../../bookmarkManager/bookmark';
+import type { Folder } from '../../bookmarkManager/bookmark';
 import bookmarkClasses from '../Bookmark/Bookmark.module.css';
 import { useDispatch } from 'react-redux';
 import { closeAllNextPopups, closePopup } from '../../store/actionCreators/folderPopup';
+import type * as CSS from 'csstype';
 
-export interface FolderPopupProps {
+export type FolderPopupProps = {
   clickPosition: ClickPosition;
   folder: Folder;
-}
+};
 
-export interface ClickPosition {
+export type ClickPosition = {
   x: number;
   y: number;
-}
+};
 
-interface PopupPlacement {
+type PopupPlacement = {
   height: number | null;
   x: number;
   y: number;
-}
+};
 
-interface FolderPopupState {
+type FolderPopupState = {
   isVisible: boolean;
   placement: PopupPlacement;
-}
+};
 
 const CURSOR_PADDING = 3;
 const SCREEN_EDGE_SAFE_PADDING = 16;
@@ -108,7 +110,7 @@ export const FolderPopup: VoidFunctionComponent<FolderPopupProps> = (props) => {
       document.documentElement.scrollTop,
     );
 
-    if (popupState.isVisible === false) {
+    if (!popupState.isVisible) {
       setPopupStage({
         isVisible: true,
         placement: calculatedPlacement,
@@ -140,6 +142,12 @@ export const FolderPopup: VoidFunctionComponent<FolderPopupProps> = (props) => {
 
   const headerId = `folder-popup-${props.folder.idLocal}-header`;
 
+  const styles: CSS.PopupProperties = {
+    '--folder-position-x': `${popupState.placement.x}px`,
+    '--folder-position-y': `${popupState.placement.y}px`,
+    '--popup-height': popupState.placement.height === null ? 'auto' : `${popupState.placement.height}px`,
+  };
+
   return (
     <dialog
       aria-labelledby={headerId}
@@ -148,12 +156,7 @@ export const FolderPopup: VoidFunctionComponent<FolderPopupProps> = (props) => {
       })}
       open={true}
       ref={popupElement}
-      style={{
-        ['--folder-position-x' as string]: `${popupState.placement.x}px`,
-        ['--folder-position-y' as string]: `${popupState.placement.y}px`,
-        ['--popup-height' as string]:
-          popupState.placement.height === null ? 'auto' : `${popupState.placement.height}px`,
-      }}
+      style={styles}
     >
       <div className={s.folderPopupContent} onClick={handlePopupBodyClick} role="presentation">
         <header className={s.folderPopupHeader}>

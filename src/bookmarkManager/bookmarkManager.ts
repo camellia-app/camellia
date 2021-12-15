@@ -1,7 +1,7 @@
-import { Bookmark, BookmarkLocalId, Folder } from './bookmark';
+import type { Bookmark, BookmarkLocalId, Folder } from './bookmark';
 
-export interface BookmarkManager {
-  getAllBookmarks: () => Promise<Folder[]>;
-  getFolderChildren: (folderId: BookmarkLocalId) => Promise<Bookmark[]>;
-  searchBookmarks: (searchQuery: string) => Promise<Bookmark[]>;
-}
+export type BookmarkManager = {
+  getAllBookmarks: () => Promise<Array<Folder>>;
+  getFolderChildren: (folderId: BookmarkLocalId) => Promise<Array<Bookmark>>;
+  searchBookmarks: (searchQuery: string) => Promise<Array<Bookmark>>;
+};
