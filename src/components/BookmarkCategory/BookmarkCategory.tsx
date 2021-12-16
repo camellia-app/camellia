@@ -12,6 +12,6 @@ export const BookmarkCategory: VoidFunctionComponent<BookmarkCategoryProps> = (p
   <section className={s.bookmarkCategory}>
     <h2 className={s.bookmarkCategoryTitle}>{props.categoryTitle}</h2>
 
-    <BookmarkList bookmarks={props.bookmarks} />
+    <BookmarkList bookmarks={props.bookmarks} focusFirstBookmark={false} />
   </section>
 );

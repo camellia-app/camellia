@@ -1,5 +1,5 @@
 import type { VoidFunctionComponent } from 'react';
-import { useState } from 'react';
+import { createRef, useEffect, useState } from 'react';
 import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
 import type { Link } from '../../bookmarkManager/bookmark';
@@ -11,6 +11,7 @@ const iconPublic = require('mdi/social/svg/production/ic_public_48px.svg?fill=%2
 
 type BookmarkProps = {
   bookmark: Link;
+  focus: boolean;
 };
 
 export const BookmarkLink: VoidFunctionComponent<BookmarkProps> = (props) => {
@@ -33,9 +34,24 @@ export const BookmarkLink: VoidFunctionComponent<BookmarkProps> = (props) => {
     }, 15000);
   };
 
+  const linkElementRef = createRef<HTMLAnchorElement>();
+
+  useEffect(() => {
+    if (props.focus) {
+      linkElementRef.current?.focus();
+    }
+  });
+
   return (
     <li className={s.bookmarkItem}>
-      <a className={s.bookmark} href={props.bookmark.url} onClick={handleClick} rel="noopener" target="_self">
+      <a
+        className={s.bookmark}
+        href={props.bookmark.url}
+        onClick={handleClick}
+        ref={linkElementRef}
+        rel="noopener"
+        target="_self"
+      >
         <Chip
           handleFaviconLoadingError={handleFaviconLoadingError}
           icon={icon}

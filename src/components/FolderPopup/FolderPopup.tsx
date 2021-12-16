@@ -169,7 +169,7 @@ export const FolderPopup: VoidFunctionComponent<FolderPopupProps> = (props) => {
         </header>
 
         <div className={s.bookmarkListContainer}>
-          <BookmarkList bookmarks={props.folder.children} />
+          <BookmarkList bookmarks={props.folder.children} focusFirstBookmark={true} />
         </div>
       </div>
     </dialog>
