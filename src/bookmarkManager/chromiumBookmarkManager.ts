@@ -59,6 +59,12 @@ export const chromiumBookmarkManager: BookmarkManager = {
   getFolderChildren: async (folderId: BookmarkLocalId): Promise<Array<Bookmark>> => {
     const bookmarkTreeNodes = await chrome.bookmarks.getSubTree(folderId);
 
-    return bookmarkTreeNodes.map((bookmarkTreeNode) => convertBookmarkTreeNodeToBookmark(bookmarkTreeNode, 0));
+    if (bookmarkTreeNodes[0] === undefined) {
+      throw new Error('Folder not found by given ID');
+    }
+
+    return (bookmarkTreeNodes[0].children ?? []).map((bookmarkTreeNode) =>
+      convertBookmarkTreeNodeToBookmark(bookmarkTreeNode, 0),
+    );
   },
 };
