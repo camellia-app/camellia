@@ -1,15 +1,15 @@
 import type { VoidFunctionComponent } from 'react';
 import { useEffect } from 'react';
-import { FolderPopup } from './FolderPopup';
+import { Popup } from './Popup';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../../store/reducers';
-import type { FolderPopupState } from '../../store/reducers/folderPopupReducer';
+import type { PopupState } from '../../store/reducers/popupReducer';
 import bookmarkClasses from '../Bookmark/Bookmark.module.css';
-import folderPopupClasses from './FolderPopup.module.css';
-import { closeAllPopups, closeLastPopup } from '../../store/actionCreators/folderPopup';
+import popupClasses from './Popup.module.css';
+import { closeAllPopups, closeLastPopup } from '../../store/actionCreators/popup';
 
-export const FolderPopupManager: VoidFunctionComponent = () => {
-  const folderPopupsState = useSelector<RootState, FolderPopupState>((state) => state.folderPopup);
+export const PopupManager: VoidFunctionComponent = () => {
+  const popupsState = useSelector<RootState, PopupState>((state) => state.popup);
 
   const dispatch = useDispatch();
 
@@ -19,14 +19,14 @@ export const FolderPopupManager: VoidFunctionComponent = () => {
         return;
       }
 
-      if (folderPopupsState.popupsStack.length === 0) {
+      if (popupsState.popupsStack.length === 0) {
         return;
       }
 
       const isClickedOnBookmarkItem = event.target.closest(`.${bookmarkClasses.bookmarkItem}`) !== null;
-      const isClickedOnFolderPopup = event.target.closest(`.${folderPopupClasses.folderPopup}`) !== null;
+      const isClickedOnPopup = event.target.closest(`.${popupClasses.popup}`) !== null;
 
-      if (isClickedOnBookmarkItem || isClickedOnFolderPopup) {
+      if (isClickedOnBookmarkItem || isClickedOnPopup) {
         return;
       }
 
@@ -34,13 +34,13 @@ export const FolderPopupManager: VoidFunctionComponent = () => {
     };
 
     const popupEscapeKeyPressHandler = (event: KeyboardEvent): void => {
-      if (event.key === 'Escape' && folderPopupsState.popupsStack.length > 0) {
+      if (event.key === 'Escape' && popupsState.popupsStack.length > 0) {
         dispatch(closeLastPopup());
       }
     };
 
     const screenResizeHandler = (): void => {
-      if (folderPopupsState.popupsStack.length > 0) {
+      if (popupsState.popupsStack.length > 0) {
         dispatch(closeAllPopups());
       }
     };
@@ -54,15 +54,18 @@ export const FolderPopupManager: VoidFunctionComponent = () => {
       document.removeEventListener('keydown', popupEscapeKeyPressHandler);
       window.removeEventListener('resize', screenResizeHandler);
     };
-  }, [dispatch, folderPopupsState.popupsStack]);
+  }, [dispatch, popupsState.popupsStack]);
 
   return (
     <>
-      {folderPopupsState.popupsStack.map((folderPopupsProps) => (
-        <FolderPopup
-          clickPosition={folderPopupsProps.clickPosition}
-          folder={folderPopupsProps.folder}
-          key={folderPopupsProps.folder.idLocal}
+      {popupsState.popupsStack.map((popupProps) => (
+        <Popup
+          bookmarks={popupProps.bookmarks}
+          clickPosition={popupProps.clickPosition}
+          id={popupProps.id}
+          key={popupProps.id}
+          nestingLevel={popupProps.nestingLevel}
+          title={popupProps.title}
         />
       ))}
     </>

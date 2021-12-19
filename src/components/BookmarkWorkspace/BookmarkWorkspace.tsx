@@ -6,7 +6,7 @@ import cn from 'classnames';
 import s from './BookmarkWorkspace.module.css';
 import { BookmarkSearch } from '../BookmarkSearch/BookmarkSearch';
 import { BookmarkBrowser } from '../BookmarkBrowser/BookmarkBrowser';
-import { FolderPopupManager } from '../FolderPopup/FolderPopupManager';
+import { PopupManager } from '../Popup/PopupManager';
 
 export const BookmarkWorkspace: VoidFunctionComponent = () => {
   const bookmarkState = useSelector<RootState, BookmarkState>((state) => state.bookmark);
@@ -20,7 +20,7 @@ export const BookmarkWorkspace: VoidFunctionComponent = () => {
     <main className={mainClasses}>
       <BookmarkSearch />
       <BookmarkBrowser />
-      <FolderPopupManager />
+      <PopupManager />
     </main>
   );
 };

@@ -1,12 +1,12 @@
 import { bookmarkReducer } from './bookmarkReducer';
 import { combineReducers } from 'redux';
 import { bookmarkSearchReducer } from './bookmarkSearchReducer';
-import { folderPopupReducer } from './folderPopupReducer';
+import { popupReducer } from './popupReducer';
 
 export const rootReducer = combineReducers({
   bookmark: bookmarkReducer,
   bookmarkSearch: bookmarkSearchReducer,
-  folderPopup: folderPopupReducer,
+  popup: popupReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

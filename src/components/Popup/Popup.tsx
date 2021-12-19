@@ -1,17 +1,21 @@
 import type { MouseEventHandler, VoidFunctionComponent } from 'react';
 import { createRef, useEffect, useState } from 'react';
-import s from './FolderPopup.module.css';
+import s from './Popup.module.css';
 import cn from 'classnames';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
-import type { Folder } from '../../bookmarkManager/bookmark';
-import bookmarkClasses from '../Bookmark/Bookmark.module.css';
+import type { Bookmark } from '../../bookmarkManager/bookmark';
 import { useDispatch } from 'react-redux';
-import { closeAllNextPopups, closePopup } from '../../store/actionCreators/folderPopup';
+import { closePopup } from '../../store/actionCreators/popup';
 import type * as CSS from 'csstype';
+import type { PopupId } from '../../store/reducers/popupReducer';
+import { PopupNestingLevelContext } from './PopupNestingLevelContext';
 
-export type FolderPopupProps = {
+type PopupProps = {
+  bookmarks: Array<Bookmark>;
   clickPosition: ClickPosition;
-  folder: Folder;
+  id: PopupId;
+  nestingLevel: number;
+  title: string;
 };
 
 export type ClickPosition = {
@@ -25,7 +29,7 @@ type PopupPlacement = {
   y: number;
 };
 
-type FolderPopupState = {
+type PopupState = {
   isVisible: boolean;
   placement: PopupPlacement;
 };
@@ -78,8 +82,8 @@ const calculatePopupPlacement = (
   };
 };
 
-export const FolderPopup: VoidFunctionComponent<FolderPopupProps> = (props) => {
-  const [popupState, setPopupStage] = useState<FolderPopupState>({
+export const Popup: VoidFunctionComponent<PopupProps> = (props) => {
+  const [popupState, setPopupStage] = useState<PopupState>({
     isVisible: false,
     placement: {
       height: null,
@@ -118,58 +122,46 @@ export const FolderPopup: VoidFunctionComponent<FolderPopupProps> = (props) => {
     }
   }, [popupElement, props.clickPosition.x, props.clickPosition.y, popupState.isVisible]);
 
-  const handlePopupBodyClick: MouseEventHandler<HTMLElement> = (event) => {
-    if (!(event.target instanceof Element)) {
-      return;
-    }
-
-    const isClickedOnBookmarkItem = event.target.closest(`.${bookmarkClasses.bookmarkItem}`) !== null;
-
-    if (isClickedOnBookmarkItem) {
-      return;
-    }
-
-    dispatch(closeAllNextPopups(props.folder));
-  };
-
   const handleCloseButtonClick: MouseEventHandler<HTMLElement> = (event) => {
     if (!(event.target instanceof Element)) {
       return;
     }
 
-    dispatch(closePopup(props.folder));
+    dispatch(closePopup(props.id));
   };
 
-  const headerId = `folder-popup-${props.folder.idLocal}-header`;
+  const headerId = `popup-header-${props.id}`;
 
   const styles: CSS.PopupProperties = {
-    '--folder-position-x': `${popupState.placement.x}px`,
-    '--folder-position-y': `${popupState.placement.y}px`,
+    '--popup-position-x': `${popupState.placement.x}px`,
+    '--popup-position-y': `${popupState.placement.y}px`,
     '--popup-height': popupState.placement.height === null ? 'auto' : `${popupState.placement.height}px`,
   };
 
   return (
     <dialog
       aria-labelledby={headerId}
-      className={cn(s.folderPopup, {
+      className={cn(s.popup, {
         [s.loading]: !popupState.isVisible,
       })}
       open={true}
       ref={popupElement}
       style={styles}
     >
-      <div className={s.folderPopupContent} onClick={handlePopupBodyClick} role="presentation">
-        <header className={s.folderPopupHeader}>
-          <h2 className={s.folderPopupTitle} id={headerId}>
-            {props.folder.title}
+      <div className={s.popupContent} role="presentation">
+        <header className={s.popupHeader}>
+          <h2 className={s.popupTitle} id={headerId}>
+            {props.title}
           </h2>
-          <button className={s.folderPopupCloseButton} onClick={handleCloseButtonClick} title="Close folder [Escape]">
-            Close folder [Escape]
+          <button className={s.popupCloseButton} onClick={handleCloseButtonClick} title="Close popup [Escape]">
+            Close popup [Escape]
           </button>
         </header>
 
         <div className={s.bookmarkListContainer}>
-          <BookmarkList bookmarks={props.folder.children} focusFirstBookmark={true} />
+          <PopupNestingLevelContext.Provider value={props.nestingLevel + 1}>
+            <BookmarkList bookmarks={props.bookmarks} focusFirstBookmark={true} />
+          </PopupNestingLevelContext.Provider>
         </div>
       </div>
     </dialog>

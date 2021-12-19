@@ -1,8 +1,8 @@
 declare module 'csstype' {
   type PopupProperties = {
-    '--folder-position-x': string;
-    '--folder-position-y': string;
     '--popup-height': string;
+    '--popup-position-x': string;
+    '--popup-position-y': string;
   };
 
   type ChipProperties = {

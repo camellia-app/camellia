@@ -2,9 +2,11 @@ import type { MouseEventHandler, VoidFunctionComponent } from 'react';
 import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
 import { useDispatch } from 'react-redux';
-import { togglePopup } from '../../store/actionCreators/folderPopup';
+import { togglePopup } from '../../store/actionCreators/popup';
 import type { Folder } from '../../bookmarkManager/bookmark';
-import { createRef, useEffect } from 'react';
+import { createRef, useContext, useEffect } from 'react';
+import { getBookmarkManager } from '../../bookmarkManager';
+import { PopupNestingLevelContext } from '../Popup/PopupNestingLevelContext';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconFolder = require('mdi/file/svg/production/ic_folder_48px.svg?fill=%23eee');
@@ -16,17 +18,23 @@ type BookmarkFolderProps = {
 
 export const BookmarkFolder: VoidFunctionComponent<BookmarkFolderProps> = (props) => {
   const dispatch = useDispatch();
+  const nestingLevelContext = useContext(PopupNestingLevelContext);
 
-  const handleFolderClick: MouseEventHandler<HTMLElement> = (event) => {
+  const handleFolderClick: MouseEventHandler<HTMLElement> = async (event) => {
     const clickPosition = {
       x: event.pageX,
       y: event.pageY,
     };
 
+    const bookmarkManager = getBookmarkManager();
+
     dispatch(
       togglePopup({
-        folder: props.bookmark,
         clickPosition: clickPosition,
+        id: `bookmark-folder-${props.bookmark.idLocal}`,
+        title: props.bookmark.title,
+        bookmarks: await bookmarkManager.getFolderChildren(props.bookmark.idLocal),
+        nestingLevel: nestingLevelContext,
       }),
     );
   };
