@@ -5,7 +5,6 @@ declare namespace ChipModuleCssNamespace {
     backgroundStripAnimation: string;
     chip: string;
     chipIcon: string;
-    chipIconInline: string;
     chipLabel: string;
     chipRounded: string;
     chipSquared: string;

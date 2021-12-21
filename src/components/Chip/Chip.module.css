@@ -75,9 +75,3 @@
   pointer-events: none;
   width: 16px;
 }
-
-.chip-icon--inline {
-  background-image: var(--inline-icon);
-  background-repeat: no-repeat;
-  background-size: 16px;
-}

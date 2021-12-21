@@ -6,6 +6,10 @@ export const camelliaProxyFaviconProcessor: FaviconProcessor = {
     const parsedUrl = new URL(url);
 
     return {
+      default: {
+        url: `https://favicons.camellia.app/?domain=${encodeURIComponent(parsedUrl.hostname)}`,
+        dpi: 1,
+      },
       variants: [
         {
           url: `https://favicons.camellia.app/?domain=${encodeURIComponent(parsedUrl.hostname)}`,

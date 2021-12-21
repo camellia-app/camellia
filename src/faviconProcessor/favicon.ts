@@ -4,5 +4,6 @@ type FaviconVariant = {
 };
 
 export type Favicon = {
+  default: FaviconVariant;
   variants: Array<FaviconVariant>;
 };

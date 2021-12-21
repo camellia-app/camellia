@@ -2,7 +2,7 @@ import cn from 'classnames';
 import type { ReactEventHandler, VoidFunctionComponent } from 'react';
 import s from './Chip.module.css';
 import type { Favicon } from '../../faviconProcessor/favicon';
-import type * as CSS from 'csstype';
+import { useState } from 'react';
 
 export enum ChipShape {
   Rounded,
@@ -10,44 +10,36 @@ export enum ChipShape {
 }
 
 type ChipProps = {
-  handleFaviconLoadingError?: () => void;
-  icon: Favicon | string;
   label: string;
   loading: boolean;
   shape: ChipShape;
   tooltip?: string;
-};
+} & (
+  | {
+      fallbackInlineIcon: string;
+      favicon: Favicon;
+    }
+  | {
+      inlineIcon: string;
+    }
+);
 
 export const Chip: VoidFunctionComponent<ChipProps> = (props) => {
+  const initialIcon = 'inlineIcon' in props ? props.inlineIcon : props.favicon.default.url;
+
+  const [icon, setIcon] = useState<string>(initialIcon);
+
   const handleImageError: ReactEventHandler<HTMLImageElement> = (event) => {
     if (!(event.target instanceof HTMLImageElement)) {
       return;
     }
 
-    console.warn('Could not load faviconProcessor %s, loading fallback icon instead', event.target.src);
+    if ('fallbackInlineIcon' in props && icon !== props.fallbackInlineIcon) {
+      console.warn('Could not load favicon %s, loading fallback icon instead', event.target.src);
 
-    if (props.handleFaviconLoadingError !== undefined) {
-      props.handleFaviconLoadingError();
+      setIcon(props.fallbackInlineIcon);
     }
   };
-
-  const styles: CSS.ChipProperties = {
-    ['--inline-icon']: `url("${props.icon}")`,
-  };
-
-  const iconElement =
-    typeof props.icon === 'string' ? (
-      <span className={cn(s.chipIcon, s.chipIconInline)} style={styles} />
-    ) : (
-      <img
-        alt="Favicon"
-        className={s.chipIcon}
-        height="16"
-        onError={handleImageError}
-        src={props.icon.variants[0]?.url}
-        width="16"
-      />
-    );
 
   const tooltip = props.tooltip !== undefined ? props.tooltip : props.label;
 
@@ -60,7 +52,7 @@ export const Chip: VoidFunctionComponent<ChipProps> = (props) => {
       })}
       title={tooltip}
     >
-      {iconElement}
+      <img alt="Favicon" className={s.chipIcon} height="16" onError={handleImageError} src={icon} width="16" />
 
       <span className={s.chipLabel}>{props.label}</span>
     </div>

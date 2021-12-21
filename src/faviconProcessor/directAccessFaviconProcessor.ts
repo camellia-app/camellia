@@ -6,6 +6,10 @@ export const directAccessFaviconProcessor: FaviconProcessor = {
     const parsedUrl = new URL(url);
 
     return {
+      default: {
+        url: `${parsedUrl.origin}/favicon.ico`,
+        dpi: 1,
+      },
       variants: [
         {
           url: `${parsedUrl.origin}/favicon.ico`,

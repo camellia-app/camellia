@@ -39,8 +39,6 @@ export const BookmarkFolder: VoidFunctionComponent<BookmarkFolderProps> = (props
     );
   };
 
-  const icon = iconFolder;
-
   const buttonElementRef = createRef<HTMLButtonElement>();
 
   useEffect(() => {
@@ -52,7 +50,7 @@ export const BookmarkFolder: VoidFunctionComponent<BookmarkFolderProps> = (props
   return (
     <li className={s.bookmarkItem}>
       <button className={s.bookmark} onClick={handleFolderClick} ref={buttonElementRef} type="button">
-        <Chip icon={icon} label={props.bookmark.title} loading={false} shape={ChipShape.Rounded} />
+        <Chip inlineIcon={iconFolder} label={props.bookmark.title} loading={false} shape={ChipShape.Rounded} />
       </button>
     </li>
   );

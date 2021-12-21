@@ -3,7 +3,6 @@ import { createRef, useEffect, useState } from 'react';
 import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
 import type { Link } from '../../bookmarkManager/bookmark';
-import type { Favicon } from '../../faviconProcessor/favicon';
 import { getFaviconProcessor } from '../../faviconProcessor';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -15,12 +14,7 @@ type BookmarkProps = {
 };
 
 export const BookmarkLink: VoidFunctionComponent<BookmarkProps> = (props) => {
-  const [icon, setIcon] = useState<Favicon | string>(getFaviconProcessor().generateUrl(props.bookmark.url));
   const [isLoading, setLoading] = useState<boolean>(false);
-
-  const handleFaviconLoadingError = (): void => {
-    setIcon(iconPublic);
-  };
 
   const handleClick = async (): Promise<void> => {
     setLoading(true);
@@ -53,8 +47,8 @@ export const BookmarkLink: VoidFunctionComponent<BookmarkProps> = (props) => {
         target="_self"
       >
         <Chip
-          handleFaviconLoadingError={handleFaviconLoadingError}
-          icon={icon}
+          fallbackInlineIcon={iconPublic}
+          favicon={getFaviconProcessor().generateUrl(props.bookmark.url)}
           label={props.bookmark.title}
           loading={isLoading}
           shape={ChipShape.Rounded}
