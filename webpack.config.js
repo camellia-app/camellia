@@ -50,8 +50,10 @@ const commonConfig = {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
               importLoaders: 1,
+              modules: {
+                exportLocalsConvention: 'camelCaseOnly',
+              },
             },
           },
           'postcss-loader',

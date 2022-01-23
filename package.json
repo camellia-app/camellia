@@ -36,7 +36,6 @@
     "html-webpack-plugin": "5.3.2",
     "material-design-icons": "3.0.1",
     "postcss": "8.3.9",
-    "postcss-camel-case": "1.0.1",
     "postcss-loader": "6.1.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
