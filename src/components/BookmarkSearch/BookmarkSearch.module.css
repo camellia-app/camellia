@@ -36,7 +36,7 @@
   background-color: var(--bookmark-background-color-hover);
 }
 
-.bookmark-search__field:focus {
+.bookmark-search__field:focus-visible {
   background-color: var(--bookmark-background-color-hover);
 }
 
@@ -58,7 +58,7 @@
   width: var(--search-bar-height);
 }
 
-.bookmark-search__close-button:focus {
+.bookmark-search__close-button:focus-visible {
   background-size: 28px;
   box-shadow: inset 0 0 0 var(--outline-width) var(--outline-color);
 }

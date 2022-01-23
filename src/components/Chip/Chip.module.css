@@ -48,7 +48,7 @@
   transform: translateY(-1px);
 }
 
-:focus .chip {
+:focus-visible .chip {
   box-shadow: inset 0 0 0 var(--outline-width) var(--outline-color);
 }
 
