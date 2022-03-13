@@ -12,3 +12,10 @@
   top: 50%;
   width: 100%;
 }
+
+.bookmark-browser {}
+
+.bookmark-browser--centered {
+  max-width: 950px;
+  width: 100%;
+}

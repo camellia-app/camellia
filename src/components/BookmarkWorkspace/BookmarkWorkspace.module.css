@@ -1,9 +1,13 @@
 .bookmarkWorkspace {
   all: unset;
-  display: block;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   opacity: 1;
   transition: opacity 1s;
   user-select: none;
+  width: 100%;
 }
 
 .bookmarkWorkspace.loading {

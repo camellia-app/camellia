@@ -18,3 +18,7 @@
   --search-bar-height: 64px;
   --search-placeholder-color: rgba(238, 238, 238, 0.6);
 }
+
+* {
+  box-sizing: border-box;
+}

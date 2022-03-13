@@ -8,6 +8,7 @@ import type { BookmarkState } from '../../store/reducers/bookmarkReducer';
 import { isFolder } from '../../bookmarkManager/bookmark';
 import { fetchBookmarks } from '../../store/actionCreators/bookmark';
 import type { BookmarkSearchState } from '../../store/reducers/bookmarkSearchReducer';
+import cn from 'classnames';
 
 export const BookmarkBrowser: VoidFunctionComponent = () => {
   const bookmarkState = useSelector<RootState, BookmarkState>((state) => state.bookmark);
@@ -27,10 +28,14 @@ export const BookmarkBrowser: VoidFunctionComponent = () => {
   }
 
   return (
-    <>
+    <div
+      className={cn(s.bookmarkBrowser, {
+        [s.bookmarkBrowserCentered]: true,
+      })}
+    >
       {bookmarkState.bookmarks.filter(isFolder).map((item) => (
         <BookmarkCategory bookmarks={item.children} categoryTitle={item.title} key={item.idLocal} />
       ))}
-    </>
+    </div>
   );
 };

@@ -2,6 +2,8 @@
 // Do not modify this file directly!
 declare namespace BookmarkBrowserModuleCssNamespace {
   export interface IBookmarkBrowserModuleCss {
+    bookmarkBrowser: string;
+    bookmarkBrowserCentered: string;
     noBookmarksMessage: string;
   }
 }
