@@ -38,6 +38,6 @@ jobs:
       - name: Run Webpack
         run: npx webpack --watch
         env:
-          APP_ENV: local
+          APP_ENV: stable
           BUILD_NUMBER: 0
           TARGET_PLATFORM: ${{ matrix.targetPlatform }}
