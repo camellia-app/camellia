@@ -1,0 +1,13 @@
+.background-preview {
+  --screen-width: 1920;
+  --screen-height: 1080;
+
+  all: unset;
+  aspect-ratio: var(--screen-width) / var(--screen-height);
+  background-color: hsla(0, 0%, 40%, 0.75);
+  border: 2px solid var(--bookmark-text-color);
+  border-radius: 8px;
+  display: block;
+  max-height: 70vh;
+  overflow: hidden;
+}

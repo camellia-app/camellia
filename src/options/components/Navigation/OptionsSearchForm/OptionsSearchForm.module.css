@@ -1,0 +1,22 @@
+.options-search-form {
+  all: unset;
+  display: block;
+}
+
+.options-search-form__field-group {
+  all: unset;
+  display: block;
+}
+
+.options-search-form__category-list {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.options-search-form__category-list-item {
+  all: unset;
+  display: block;
+}

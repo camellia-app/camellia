@@ -1,0 +1,6 @@
+.labeled-action-button {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

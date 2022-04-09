@@ -30,6 +30,8 @@ const commonConfig = {
   devtool: false,
   entry: {
     newtab: './Newtab.tsx',
+    options: './options/Options.tsx',
+    background: './backgroundScript/background.ts',
   },
   mode: 'production',
   module: {
@@ -50,10 +52,16 @@ const commonConfig = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
               modules: {
+                mode: 'local',
+                auto: true,
+                exportGlobals: true,
+                localIdentName: '[local]--[hash:base64:5]',
+                namedExport: false,
                 exportLocalsConvention: 'camelCaseOnly',
+                exportOnlyLocals: false,
               },
+              importLoaders: 1,
             },
           },
           'postcss-loader',
@@ -90,12 +98,13 @@ const commonConfig = {
             manifest.homepage_url = package.homepage;
             manifest.version = `${package.version}.${process.env.BUILD_NUMBER}`;
             manifest.version_name = `${package.version} build ${process.env.BUILD_NUMBER}`;
+            manifest.background.service_worker = `/background-${process.env.TARGET_PLATFORM}.js`;
 
             switch (process.env.APP_ENV) {
               case 'local':
                 manifest.name = `${manifest.name} (dev)`;
                 manifest.version_name = `${manifest.version_name} (dev)`;
-                manifest.content_security_policy.extension_pages = `${manifest.content_security_policy.extension_pages} script-src-elem 'self' http://localhost:35729;`;
+                manifest.content_security_policy.extension_pages = `${manifest.content_security_policy.extension_pages};`;
 
                 break;
 
@@ -118,10 +127,20 @@ const commonConfig = {
         env: process.env.APP_ENV,
       },
     }),
+    new HtmlWebpackPlugin({
+      chunks: ['options'],
+      filename: 'options.html',
+      inject: 'body',
+      template: './options/options.ejs',
+      templateParameters: {
+        env: process.env.APP_ENV,
+      },
+    }),
   ],
   resolve: {
     alias: {
       mdi: 'material-design-icons',
+      mdiNew: '@material-design-icons/svg',
     },
     extensions: ['.ts', '.tsx', '.js', 'jsx'],
   },
