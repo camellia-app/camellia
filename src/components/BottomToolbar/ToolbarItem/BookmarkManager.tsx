@@ -3,7 +3,7 @@ import bookmarkStyles from '../../Bookmark/Bookmark.module.css';
 import { Chip, ChipShape } from '../../Chip/Chip';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconStar = require('mdi/toggle/svg/production/ic_star_24px.svg?fill=%23eee');
+const iconStar = require('mdi/filled/star.svg?fill=%23eee');
 
 const handleClick: MouseEventHandler<HTMLElement> = (event): void => {
   event.preventDefault();

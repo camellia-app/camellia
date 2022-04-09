@@ -6,7 +6,7 @@ import type { Link } from '../../bookmarkManager/bookmark';
 import { getFaviconProcessor } from '../../faviconProcessor';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconPublic = require('mdi/social/svg/production/ic_public_48px.svg?fill=%23eee');
+const iconPublic = require('mdi/filled/public.svg?fill=%23eee');
 
 type BookmarkProps = {
   bookmark: Link;

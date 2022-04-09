@@ -51,7 +51,7 @@
 .popup-close-button {
   all: unset;
   background-color: transparent;
-  background-image: url('~mdi/navigation/svg/production/ic_cancel_48px.svg?fill=%23eee');
+  background-image: url('~mdi/filled/cancel.svg?fill=%23eee');
   background-position: center;
   background-repeat: no-repeat;
   background-size: 0.875rem;

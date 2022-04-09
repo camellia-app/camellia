@@ -139,8 +139,7 @@ const commonConfig = {
   ],
   resolve: {
     alias: {
-      mdi: 'material-design-icons',
-      mdiNew: '@material-design-icons/svg',
+      mdi: '@material-design-icons/svg',
     },
     extensions: ['.ts', '.tsx', '.js', 'jsx'],
   },

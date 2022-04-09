@@ -31,7 +31,7 @@
 
 .checkbox__control {
   all: unset;
-  background-image: url('mdiNew/filled/check_box_outline_blank.svg?fill=%23eee');
+  background-image: url('mdi/filled/check_box_outline_blank.svg?fill=%23eee');
   background-position: left 8px top 8px;
   background-repeat: no-repeat;
   background-size: 24px;
@@ -48,7 +48,7 @@
 }
 
 .checkbox__control--indeterminate {
-  background-image: url('mdiNew/filled/indeterminate_check_box.svg?fill=%23eee');
+  background-image: url('mdi/filled/indeterminate_check_box.svg?fill=%23eee');
 }
 
 input {
@@ -68,7 +68,7 @@ input:focus + .checkbox__control {
 }
 
 input:checked + .checkbox__control {
-  background-image: url('mdiNew/filled/check_box.svg?fill=%23eee');
+  background-image: url('mdi/filled/check_box.svg?fill=%23eee');
 }
 
 input:not(:disabled) + .checkbox__control:hover {

@@ -42,7 +42,7 @@
 
 .bookmark-search__close-button {
   all: unset;
-  background-image: url('~mdi/navigation/svg/production/ic_cancel_48px.svg?fill=%23eee');
+  background-image: url('~mdi/filled/cancel.svg?fill=%23eee');
   background-position: center;
   background-repeat: no-repeat;
   background-size: 24px;

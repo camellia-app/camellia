@@ -9,7 +9,7 @@ import { getBookmarkManager } from '../../bookmarkManager';
 import { PopupNestingLevelContext } from '../Popup/PopupNestingLevelContext';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconFolder = require('mdi/file/svg/production/ic_folder_48px.svg?fill=%23eee');
+const iconFolder = require('mdi/filled/folder.svg?fill=%23eee');
 
 type BookmarkFolderProps = {
   bookmark: Folder;
