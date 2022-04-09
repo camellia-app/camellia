@@ -1,53 +1,62 @@
 import cn from 'classnames';
-import type { ReactNode, VoidFunctionComponent } from 'react';
-import { createContext, useState } from 'react';
+import type { ReactElement, VoidFunctionComponent } from 'react';
+import { useEffect, useState } from 'react';
 import s from './BackgroundMedia.module.css';
+import { useOption } from '../../hooks/useOption';
+import { UnsplashImageFromCollection } from './providers/UnsplashImageFromCollection';
+import { BackgroundImageByUrl } from './providers/BackgroundImageByUrl';
+import { BackgroundProviderType } from '../../api/options/options';
 
-type BackgroundMediaProps = {
-  children: ReactNode;
-};
+export const BackgroundMedia: VoidFunctionComponent = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [backgroundProviderType] = useOption('background_provider_type');
+  const [backgroundImageLink] = useOption('background_image_link');
+  const [backgroundImageUnsplashCollectionId] = useOption('background_image_unsplash_collection_id');
 
-type BackgroundMediaVisibilityContext = {
-  isVisible: boolean;
-  loadDefaultBackgroundMedia: (() => void) | undefined;
-  makeVisible: (() => void) | undefined;
-};
+  useEffect(() => {
+    setIsLoading(true);
+  }, [backgroundProviderType]);
 
-export const BackgroundMediaVisibility = createContext<BackgroundMediaVisibilityContext>({
-  isVisible: false,
-  loadDefaultBackgroundMedia: undefined,
-  makeVisible: undefined,
-});
+  console.info('Rerender <BackgroundMedia>');
 
-export const BackgroundMedia: VoidFunctionComponent<BackgroundMediaProps> = (props) => {
-  const [isVisible, setVisibility] = useState<boolean>(false);
-  const [backgroundMediaHasError, loadFallbackMedia] = useState<boolean>(false);
+  let background: ReactElement | undefined = undefined;
 
-  const backgroundMedia = !backgroundMediaHasError ? props.children : <div />;
-
-  const makeVisible = (): void => {
-    setVisibility(true);
+  const handleSuccessfulLoading = (): void => {
+    setIsLoading(false);
   };
 
-  const loadDefaultBackgroundMedia = (): void => {
-    loadFallbackMedia(true);
-  };
+  switch (backgroundProviderType) {
+    case BackgroundProviderType.Link:
+      if (backgroundImageLink !== undefined) {
+        background = <BackgroundImageByUrl onLoad={handleSuccessfulLoading} url={backgroundImageLink} />;
+      }
 
-  const context = {
-    isVisible,
-    loadDefaultBackgroundMedia,
-    makeVisible,
-  };
+      break;
+    case BackgroundProviderType.UnsplashCollection:
+      if (backgroundImageUnsplashCollectionId !== undefined) {
+        const collectionId = backgroundImageUnsplashCollectionId.replace(
+          /^https:\/\/unsplash\.com\/collections\/([0-9]+)/,
+          '$1',
+        );
+
+        background = <UnsplashImageFromCollection collectionId={collectionId} onLoad={handleSuccessfulLoading} />;
+      }
+
+      break;
+
+    case undefined:
+      console.info('Loading background image...');
+
+      break;
+  }
 
   return (
-    <BackgroundMediaVisibility.Provider value={context}>
-      <div
-        className={cn(s.backgroundMediaContainer, {
-          [s.backgroundMediaContainerVisible]: isVisible,
-        })}
-      >
-        {backgroundMedia}
-      </div>
-    </BackgroundMediaVisibility.Provider>
+    <div
+      className={cn(s.backgroundMedia, {
+        [s.backgroundMediaLoading]: isLoading,
+      })}
+    >
+      {background}
+    </div>
   );
 };
