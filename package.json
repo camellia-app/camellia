@@ -68,7 +68,7 @@
     "eslint-plugin-sort-keys-fix": "1.1.2",
     "eslint-plugin-typescript-sort-keys": "2.1.0",
     "eslint-plugin-unused-imports": "2.0.0",
-    "prettier": "2.4.1",
+    "prettier": "2.6.2",
     "react-devtools": "4.24.4",
     "stylelint": "13.13.1",
     "stylelint-config-recommended": "5.0.0",
