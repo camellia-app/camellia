@@ -12,7 +12,7 @@ export const BookmarkInlineList: VoidFunctionComponent<{
       if (item.type === 'link') {
         return (
           <li className={s.bookmarkInlineListItem}>
-            <BookmarkLink bookmark={item} key={item.idLocal} />
+            <BookmarkLink bookmark={item} focus={false} key={item.idLocal} />
           </li>
         );
       }
@@ -20,7 +20,7 @@ export const BookmarkInlineList: VoidFunctionComponent<{
       if (item.type === 'folder') {
         return (
           <li className={s.bookmarkInlineListItem}>
-            <BookmarkFolder bookmark={item} key={item.idLocal} />
+            <BookmarkFolder bookmark={item} focus={false} key={item.idLocal} />
           </li>
         );
       }
