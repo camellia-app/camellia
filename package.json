@@ -15,7 +15,9 @@
   },
   "scripts": {
     "start": "APP_ENV=local webpack --watch",
-    "fix-cs": "npx stylelint \"**/*.css\" --fix && npx eslint . --ext .js,.jsx,.ts,.tsx --fix"
+    "fix-prettier": "npx prettier --write .",
+    "fix-eslint": "npx eslint --fix .",
+    "fix-stylelint": "npx stylelint --fix \"**/*.css\""
   },
   "dependencies": {
     "@material-design-icons/svg": "0.10.8",
