@@ -1,7 +1,5 @@
 import type { VoidFunctionComponent } from 'react';
-import { useContext } from 'react';
-import { BackgroundMediaVisibility } from './BackgroundMedia';
-import s from './BackgroundMedia.module.css';
+import s from './BackgroundImageByUrl.module.css';
 
 type ImageDimensions = {
   height: number;
@@ -10,30 +8,23 @@ type ImageDimensions = {
 
 type BackgroundImageProps = {
   dimensions?: ImageDimensions;
+  onLoad: () => void;
   url: string;
 };
 
-export const BackgroundImage: VoidFunctionComponent<BackgroundImageProps> = (props) => {
-  const context = useContext(BackgroundMediaVisibility);
-
+export const BackgroundImageByUrl: VoidFunctionComponent<BackgroundImageProps> = (props) => {
   const handleImageError = (): void => {
     console.warn('Failed to load background image, falling back to default background media');
-
-    if (context.loadDefaultBackgroundMedia !== undefined) {
-      context.loadDefaultBackgroundMedia();
-    }
   };
 
   const handleImageLoad = (): void => {
-    if (context.makeVisible !== undefined) {
-      context.makeVisible();
-    }
+    props.onLoad();
   };
 
   return (
     <img
       alt=""
-      className={s.backgroundMedia}
+      className={s.backgroundImageByUrl}
       crossOrigin="anonymous"
       decoding="async"
       height={props.dimensions?.height}

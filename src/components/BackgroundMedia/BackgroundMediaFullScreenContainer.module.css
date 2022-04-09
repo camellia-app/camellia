@@ -1,0 +1,10 @@
+.background-media-full-screen-container {
+  all: unset;
+  display: block;
+  height: 100%;
+  opacity: 0.75;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}

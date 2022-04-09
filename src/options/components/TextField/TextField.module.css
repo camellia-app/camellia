@@ -1,0 +1,68 @@
+.text-field {
+  all: unset;
+  background-color: hsla(0, 0%, 40%, 0.75);
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: block;
+  max-width: fit-content;
+}
+
+@keyframes backgroundStripAnimation {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: calc(var(--chip-loading-strip-size) * -1) 0;
+  }
+}
+
+.text-field--loading {
+  animation: backgroundStripAnimation 1s linear infinite reverse;
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--chip-loading-strip-color-1) 25%,
+    var(--chip-loading-strip-color-1) 50%,
+    var(--chip-loading-strip-color-2) 50%,
+    var(--chip-loading-strip-color-2) 75%
+  );
+  background-size: var(--chip-loading-strip-size) var(--chip-loading-strip-size);
+}
+
+.text-field__control {
+  all: unset;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: text;
+  display: block;
+  font-size: 13px;
+  line-height: 40px;
+  padding-left: 8px;
+  padding-right: 8px;
+  transition: 0.5s background-color;
+  user-select: none;
+  width: 20rem;
+}
+
+.text-field__control::placeholder {
+  all: unset;
+  opacity: 0.5;
+}
+
+.text-field__control:focus::placeholder {
+  opacity: 0;
+}
+
+.text-field__control:invalid {
+  text-decoration-color: hsla(0, 100%, 50%, 0.9);
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+}
+
+.text-field__control:focus {
+  box-shadow: 0 0 0 var(--outline-width) var(--outline-color);
+}
+
+.text-field__control:not(:disabled):hover {
+  background-color: hsla(0, 0%, 0%, 0.25);
+}

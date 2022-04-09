@@ -8,4 +8,13 @@ declare module 'csstype' {
   type ChipProperties = {
     '--inline-icon': string;
   };
+
+  type OptionsNavigationLinkProperties = {
+    '--inline-icon': string;
+  };
+
+  type BackgroundPreviewProperties = {
+    '--screen-height': string;
+    '--screen-width': string;
+  };
 }

@@ -3,18 +3,18 @@ name: Git
 on: pull_request
 
 jobs:
-  conventional_commits:
+  commitlint:
     name: Conventional Commits
+    if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
-    if: ${{ github.actor != 'dependabot[bot]' }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Run commitlint
-        uses: wagoid/commitlint-github-action@v4.1.5
+        uses: wagoid/commitlint-github-action@v4.1.10
         with:
           configFile: .commitlintrc.json

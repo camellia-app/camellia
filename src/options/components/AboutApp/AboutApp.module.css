@@ -1,0 +1,12 @@
+.about-app {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.about-app__name {
+  all: unset;
+  display: block;
+  font-size: var(--text-size-header);
+}

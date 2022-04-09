@@ -1,0 +1,14 @@
+@import '../variables.css';
+
+.bookmark-inline-list {
+  all: unset;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.bookmark-inline-list__item {
+  all: unset;
+  display: block;
+}

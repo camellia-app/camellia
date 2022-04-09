@@ -1,0 +1,12 @@
+.paragraph {
+  all: unset;
+  display: block;
+  font-size: var(--text-size-regular);
+}
+
+.paragraph a {
+  all: unset;
+  cursor: pointer;
+  display: inline;
+  text-decoration: underline;
+}

@@ -1,0 +1,61 @@
+.options-category {
+  all: unset;
+  display: block;
+}
+
+.options-category input {
+  height: 0;
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
+.options-category__button {
+  all: unset;
+  align-items: flex-start;
+  border-radius: 4px;
+  color: var(--bookmark-text-color);
+  cursor: pointer;
+  display: flex;
+  max-width: 100%;
+  text-shadow: rgba(33, 33, 33, 1) 0 0 3px;
+  touch-action: manipulation;
+  transition: background-color 0.2s, transform 0.2s;
+  width: 100%;
+}
+
+.options-category__button:hover {
+  background-color: var(--bookmark-background-color-hover);
+  transform: translateY(-1px);
+}
+
+.options-category input:checked + .options-category__button {
+  background-color: var(--bookmark-background-color);
+}
+
+.options-category__label {
+  all: unset;
+  display: block;
+  font-family: var(--font-family-sans-serif);
+  font-size: 13px;
+  line-height: 40px;
+  overflow: hidden;
+  padding-right: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.options-category__icon {
+  all: unset;
+  background-image: var(--inline-icon);
+  background-repeat: no-repeat;
+  background-size: 24px;
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: 0;
+  height: 24px;
+  margin: 8px;
+  pointer-events: none;
+  width: 24px;
+}

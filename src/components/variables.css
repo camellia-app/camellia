@@ -17,4 +17,7 @@
   --popup-title-height: 40px;
   --search-bar-height: 64px;
   --search-placeholder-color: rgba(238, 238, 238, 0.6);
+  --text-size-regular: 13px;
+  --text-size-header: 16px;
+  --text-line-height: 1.5;
 }

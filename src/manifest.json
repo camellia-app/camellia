@@ -8,7 +8,7 @@
   "permissions": ["bookmarks", "storage"],
 
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'none';"
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src ws://localhost:8097"
   },
 
   "icons": {
@@ -19,7 +19,7 @@
     "newtab": "/newtab.html"
   },
 
-  "background": {
-    "service_workers": []
-  }
+  "options_page": "options.html",
+
+  "background": {}
 }

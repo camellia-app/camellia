@@ -1,0 +1,46 @@
+@import '../components/variables.css';
+
+:root {
+  --options-text-color: var(--bookmark-text-color);
+  --options-secondary-text-color: rgb(118, 131, 144);
+}
+
+body {
+  all: unset;
+  background-color: #000;
+  color: var(--options-text-color);
+  display: block;
+}
+
+.options-wrapper {
+  background-color: hsla(0, 0%, 15%, 0.9);
+  min-height: 100vh;
+}
+
+.options {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 256px 1fr;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+  min-height: 100%;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+
+.options__sidebar {
+  all: unset;
+  box-sizing: border-box;
+}
+
+.options__content {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family-sans-serif);
+  gap: 3rem;
+  line-height: var(--text-line-height);
+  padding: 1rem;
+}
