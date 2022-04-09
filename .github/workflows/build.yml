@@ -1,0 +1,43 @@
+name: Build
+
+on: pull_request
+
+jobs:
+  build:
+    name: Webpack (${{ matrix.targetPlatform }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        targetPlatform: [chromium, webext]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+
+      - name: Get npm cache directory
+        id: npm-cache
+        run: echo "::set-output name=dir::$(npm config get cache)"
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v3.0.1
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install npm dependencies
+        run: npm ci --prefer-offline
+
+      - name: Run Webpack
+        run: npx webpack --watch
+        env:
+          APP_ENV: local
+          BUILD_NUMBER: 0
+          TARGET_PLATFORM: ${{ matrix.targetPlatform }}
