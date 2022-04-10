@@ -24,13 +24,30 @@ If you intend to change something within Camellia or implement new feature, we r
 
 If you're only fixing a bug, it's fine to submit a pull request right away but we still recommend to file an issue detailing what you're fixing. This is helpful in case we don't accept that specific fix but want to keep track of the issue.
 
+## Updating dependencies
+
+We use [Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/configuring-dependabot-security-updates) to manage automatic updates for all our dependencies. There is no need to open such pull requests on your own.
+
 ## Branch Organization
 
 Submit all changes directly to the `main` branch. We don't use separate branches for development or for upcoming releases. We do our best to keep `main` in good shape, with all tests and quality checks passing.
 
-## Updating dependencies
+## Commit Naming Convention
 
-We use [Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/configuring-dependabot-security-updates) to manage automatic updates for all our dependencies. There is no need to open such pull requests on your own.
+We follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) to make sure our commit history is clean and easy to read.
+
+We use commit type system similar to Angular convention:
+
+- **build**: Changes that affect the build system or external dependencies (example scopes: webpack, npm);
+- **ci**: Changes to our CI configuration files and scripts (example scopes: GitHub Actions);
+- **docs**: Documentation only changes;
+- **feat**: A new feature;
+- **fix**: A bug fix;
+- **perf**: A code change that improves performance;
+- **refactor**: A code change that neither fixes a bug nor adds a feature;
+- **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc);
+- **test**: Adding missing tests or correcting existing tests;
+- **chore**: Anything that doesn't fit well to any type described above.
 
 ## Your First Pull Request
 
