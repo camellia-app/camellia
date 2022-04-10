@@ -12,11 +12,7 @@ Please make sure you provide as much information about the issue as you can. If 
 
 ### Security Bugs
 
-Please, do not expose public security issues, report them directly to core maintainers instead:
-
-- Petr Flaks: petr@flaks.dev
-
-We will do our best to fix them as fast as possible.
+Check out our [security policy](./SECURITY.md).
 
 ## How to Get in Touch
 
