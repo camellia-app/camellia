@@ -1,19 +1,18 @@
+import { AppPlatform, getPlatform } from '../api/appEnvironment';
+
 export type UpdatedCallback = (previousVersion: string) => void;
 
 export const onAppUpdated = (callback: UpdatedCallback): void => {
-  switch (process.env['TARGET_PLATFORM']) {
-    case 'chromium':
+  switch (getPlatform()) {
+    case AppPlatform.Chromium:
       onChromiumAppUpdated(callback);
 
       break;
 
-    case 'webext':
+    case AppPlatform.Webext:
       onWebextAppUpdated(callback);
 
       break;
-
-    default:
-      throw new Error(`Unknown platform: ${process.env['TARGET_PLATFORM']}`);
   }
 };
 

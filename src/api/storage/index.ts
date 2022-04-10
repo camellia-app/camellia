@@ -1,18 +1,16 @@
 import type { Storage } from './common';
+import { StorageType } from './common';
 import { getChromiumStorageManager } from './platform/chromium';
 import { getWebextStorageManager } from './platform/webext';
-import { StorageType } from './common';
+import { AppPlatform, getPlatform } from '../appEnvironment';
 
 const getStorage = (type: StorageType): Storage => {
-  switch (process.env['TARGET_PLATFORM']) {
-    case 'chromium':
+  switch (getPlatform()) {
+    case AppPlatform.Chromium:
       return getChromiumStorageManager(type);
 
-    case 'webext':
+    case AppPlatform.Webext:
       return getWebextStorageManager(type);
-
-    default:
-      throw new Error(`Unknown platform: ${process.env['TARGET_PLATFORM']}`);
   }
 };
 

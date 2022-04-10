@@ -1,16 +1,14 @@
 import { chromiumBookmarkManager } from './chromiumBookmarkManager';
 import { webextBookmarkManager } from './webextBookmarkManager';
 import type { BookmarkManager } from './bookmarkManager';
+import { AppPlatform, getPlatform } from '../api/appEnvironment';
 
 export const getBookmarkManager = (): BookmarkManager => {
-  switch (process.env['TARGET_PLATFORM']) {
-    case 'chromium':
+  switch (getPlatform()) {
+    case AppPlatform.Chromium:
       return chromiumBookmarkManager;
 
-    case 'webext':
+    case AppPlatform.Webext:
       return webextBookmarkManager;
-
-    default:
-      throw new Error(`Unknown platform: ${process.env['TARGET_PLATFORM']}`);
   }
 };
