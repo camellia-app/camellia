@@ -1,8 +1,8 @@
 import s from './BottomToolbar.module.css';
 import { BookmarkManager } from './ToolbarItem/BookmarkManager';
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 
-export const BottomToolbar: VoidFunctionComponent = () => {
+export const BottomToolbar: VFC = () => {
   const toolbarItems = [];
 
   if (process.env['TARGET_PLATFORM'] === 'chromium') {

@@ -1,9 +1,9 @@
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 import type CSS from 'csstype';
 import s from './BackgroundPreview.module.css';
 import { BackgroundMedia } from '../../../components/BackgroundMedia/BackgroundMedia';
 
-export const BackgroundPreview: VoidFunctionComponent = () => {
+export const BackgroundPreview: VFC = () => {
   const screenWidth = window.screen.width;
   const screenHeight = window.screen.height;
 

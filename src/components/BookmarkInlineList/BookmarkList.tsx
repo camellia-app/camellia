@@ -2,9 +2,9 @@ import type { Bookmark } from '../../bookmarkManager/bookmark';
 import { BookmarkFolder } from '../Bookmark/BookmarkFolder';
 import { BookmarkLink } from '../Bookmark/BookmarkLink';
 import s from './BookmarkInlineList.module.css';
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 
-export const BookmarkInlineList: VoidFunctionComponent<{
+export const BookmarkInlineList: VFC<{
   bookmarks: Array<Bookmark>;
 }> = (props) => (
   <ul className={s.bookmarkInlineList}>

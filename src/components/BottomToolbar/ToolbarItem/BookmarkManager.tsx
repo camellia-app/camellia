@@ -1,4 +1,4 @@
-import type { MouseEventHandler, VoidFunctionComponent } from 'react';
+import type { MouseEventHandler, VFC } from 'react';
 import bookmarkStyles from '../../Bookmark/Bookmark.module.css';
 import { Chip, ChipShape } from '../../Chip/Chip';
 
@@ -9,7 +9,7 @@ const handleClick: MouseEventHandler<HTMLElement> = (event): void => {
   event.preventDefault();
 };
 
-export const BookmarkManager: VoidFunctionComponent = () => {
+export const BookmarkManager: VFC = () => {
   const label = 'Bookmark manager';
   const tooltip = `${label} (Ctrl+Shift+O)`;
   const url = 'chrome://bookmarks';

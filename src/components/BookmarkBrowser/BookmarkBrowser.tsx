@@ -1,4 +1,4 @@
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 import { useEffect } from 'react';
 import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
 import s from './BookmarkBrowser.module.css';
@@ -9,7 +9,7 @@ import { isFolder } from '../../bookmarkManager/bookmark';
 import { fetchBookmarks } from '../../store/actionCreators/bookmark';
 import type { BookmarkSearchState } from '../../store/reducers/bookmarkSearchReducer';
 
-export const BookmarkBrowser: VoidFunctionComponent = () => {
+export const BookmarkBrowser: VFC = () => {
   const bookmarkState = useSelector<RootState, BookmarkState>((state) => state.bookmark);
   const bookmarkSearchState = useSelector<RootState, BookmarkSearchState>((state) => state.bookmarkSearch);
   const dispatch = useDispatch();

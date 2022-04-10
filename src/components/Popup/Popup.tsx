@@ -1,4 +1,4 @@
-import type { MouseEventHandler, VoidFunctionComponent } from 'react';
+import type { MouseEventHandler, VFC } from 'react';
 import { createRef, useEffect, useState } from 'react';
 import s from './Popup.module.css';
 import cn from 'classnames';
@@ -82,7 +82,7 @@ const calculatePopupPlacement = (
   };
 };
 
-export const Popup: VoidFunctionComponent<PopupProps> = (props) => {
+export const Popup: VFC<PopupProps> = (props) => {
   const [popupState, setPopupStage] = useState<PopupState>({
     isVisible: false,
     placement: {

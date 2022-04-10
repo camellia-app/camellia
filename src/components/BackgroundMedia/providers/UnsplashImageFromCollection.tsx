@@ -1,7 +1,7 @@
 import { BackgroundImageByUrl } from './BackgroundImageByUrl';
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 
-export const UnsplashImageFromCollection: VoidFunctionComponent<{
+export const UnsplashImageFromCollection: VFC<{
   collectionId: string;
   onLoad: () => void;
 }> = (props) => {

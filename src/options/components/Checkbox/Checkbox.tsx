@@ -1,5 +1,5 @@
 import s from './Checkbox.module.css';
-import type { ChangeEventHandler, VoidFunctionComponent } from 'react';
+import type { ChangeEventHandler, VFC } from 'react';
 import cn from 'classnames';
 
 type CheckboxProps = {
@@ -10,7 +10,7 @@ type CheckboxProps = {
   value: boolean | undefined;
 };
 
-export const Checkbox: VoidFunctionComponent<CheckboxProps> = (props) => {
+export const Checkbox: VFC<CheckboxProps> = (props) => {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     if (props.changeHandler !== undefined) {
       props.changeHandler(event.target.checked);

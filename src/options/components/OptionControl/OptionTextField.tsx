@@ -1,4 +1,4 @@
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 import { useOption } from '../../../hooks/useOption';
 import { useEffect, useState } from 'react';
 import { LabeledTextField } from '../TextField/LabeledTextField';
@@ -16,7 +16,7 @@ type OptionTextFieldProps = {
   validate?: ((value: string) => string | undefined) | undefined;
 };
 
-export const OptionTextField: VoidFunctionComponent<OptionTextFieldProps> = (props) => {
+export const OptionTextField: VFC<OptionTextFieldProps> = (props) => {
   const [optionValue, setOptionValue] = useOption(props.optionKey);
   const [isLoading, setIsLoading] = useState<boolean>(optionValue === undefined);
 

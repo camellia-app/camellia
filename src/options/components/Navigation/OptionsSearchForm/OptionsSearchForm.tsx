@@ -1,5 +1,5 @@
 import s from './OptionsSearchForm.module.css';
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 import { OptionsCategory } from '../OptionsCategory/OptionsCategory';
 import { allCategories } from '../OptionsCategory/OptionsCategories';
 import { Icon } from '../../../../icons';
@@ -10,7 +10,7 @@ type Props = {
   onCategoryReset: () => void;
 };
 
-export const OptionsSearchForm: VoidFunctionComponent<Props> = (props) => {
+export const OptionsSearchForm: VFC<Props> = (props) => {
   return (
     <form className={s.optionsSearchForm} onSubmit={(event): void => event.preventDefault()}>
       <fieldset className={s.optionsSearchFormFieldGroup}>

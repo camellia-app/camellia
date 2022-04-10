@@ -1,5 +1,5 @@
 import s from './LabeledTextField.module.css';
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 import { TextField } from './TextField';
 import { Paragraph } from '../Paragraph/Paragraph';
 
@@ -17,7 +17,7 @@ type LabeledTextFieldProps = {
   value: string | undefined;
 };
 
-export const LabeledTextField: VoidFunctionComponent<LabeledTextFieldProps> = (props) => {
+export const LabeledTextField: VFC<LabeledTextFieldProps> = (props) => {
   return (
     <div className={s.labeledTextField}>
       <label className={s.labeledTextFieldLabelAndControlWrapper}>

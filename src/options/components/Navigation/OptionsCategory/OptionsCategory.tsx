@@ -1,5 +1,5 @@
 import s from './OptionsCategory.module.css';
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 import type CSS from 'csstype';
 import type { Icon } from '../../../../icons';
 
@@ -11,7 +11,7 @@ type OptionsCategoryProps = {
   onClick: (id: string) => void;
 };
 
-export const OptionsCategory: VoidFunctionComponent<OptionsCategoryProps> = (props) => {
+export const OptionsCategory: VFC<OptionsCategoryProps> = (props) => {
   const styles: CSS.OptionsNavigationLinkProperties = {
     ['--inline-icon']: `url("${props.icon}")`,
   };

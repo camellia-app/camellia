@@ -1,4 +1,4 @@
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../store/reducers';
 import type { BookmarkState } from '../../store/reducers/bookmarkReducer';
@@ -8,7 +8,7 @@ import { BookmarkSearch } from '../BookmarkSearch/BookmarkSearch';
 import { BookmarkBrowser } from '../BookmarkBrowser/BookmarkBrowser';
 import { PopupManager } from '../Popup/PopupManager';
 
-export const BookmarkWorkspace: VoidFunctionComponent = () => {
+export const BookmarkWorkspace: VFC = () => {
   const bookmarkState = useSelector<RootState, BookmarkState>((state) => state.bookmark);
 
   const mainClasses = cn(s.bookmarkWorkspace, {

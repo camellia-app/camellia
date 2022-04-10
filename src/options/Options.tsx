@@ -1,5 +1,5 @@
 import 'react-devtools';
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 import { useState, StrictMode } from 'react';
 import s from './Options.module.css';
 import { OptionsSearchForm } from './components/Navigation/OptionsSearchForm/OptionsSearchForm';
@@ -20,7 +20,7 @@ import { ShowBookmarkManagerButton } from './components/OptionControl/OptionEntr
 import { ContentLayout } from './components/OptionControl/OptionEntry/ContentLayout';
 import { UnsplashPhotographerAttribution } from './components/OptionControl/OptionEntry/UnsplashPhotographerAttribution';
 
-export const Options: VoidFunctionComponent = () => {
+export const Options: VFC = () => {
   const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);
 
   return (

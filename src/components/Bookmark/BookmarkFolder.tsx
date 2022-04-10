@@ -1,4 +1,4 @@
-import type { MouseEventHandler, VoidFunctionComponent } from 'react';
+import type { MouseEventHandler, VFC } from 'react';
 import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
 import { useDispatch } from 'react-redux';
@@ -16,7 +16,7 @@ type BookmarkFolderProps = {
   focus: boolean;
 };
 
-export const BookmarkFolder: VoidFunctionComponent<BookmarkFolderProps> = (props) => {
+export const BookmarkFolder: VFC<BookmarkFolderProps> = (props) => {
   const dispatch = useDispatch();
   const nestingLevelContext = useContext(PopupNestingLevelContext);
 

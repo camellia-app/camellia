@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import type { ReactElement, VoidFunctionComponent } from 'react';
+import type { ReactElement, VFC } from 'react';
 import { useEffect, useState } from 'react';
 import s from './BackgroundMedia.module.css';
 import { useOption } from '../../hooks/useOption';
@@ -7,7 +7,7 @@ import { UnsplashImageFromCollection } from './providers/UnsplashImageFromCollec
 import { BackgroundImageByUrl } from './providers/BackgroundImageByUrl';
 import { BackgroundProviderType } from '../../api/options/options';
 
-export const BackgroundMedia: VoidFunctionComponent = () => {
+export const BackgroundMedia: VFC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [backgroundProviderType] = useOption('background_provider_type');
   const [backgroundImageLink] = useOption('background_image_link');

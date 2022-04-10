@@ -1,5 +1,5 @@
 import s from './LabeledCheckbox.module.css';
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 import { Checkbox } from './Checkbox';
 import { Paragraph } from '../Paragraph/Paragraph';
 
@@ -12,7 +12,7 @@ type LabeledCheckboxProps = {
   value: boolean | undefined;
 };
 
-export const LabeledCheckbox: VoidFunctionComponent<LabeledCheckboxProps> = (props) => {
+export const LabeledCheckbox: VFC<LabeledCheckboxProps> = (props) => {
   return (
     <div className={s.labeledCheckbox}>
       <Checkbox

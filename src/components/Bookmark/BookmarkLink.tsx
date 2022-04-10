@@ -1,4 +1,4 @@
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 import { createRef, useEffect, useState } from 'react';
 import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
@@ -13,7 +13,7 @@ type BookmarkProps = {
   focus: boolean;
 };
 
-export const BookmarkLink: VoidFunctionComponent<BookmarkProps> = (props) => {
+export const BookmarkLink: VFC<BookmarkProps> = (props) => {
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const handleClick = async (): Promise<void> => {

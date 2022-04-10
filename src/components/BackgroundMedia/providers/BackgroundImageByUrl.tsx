@@ -1,4 +1,4 @@
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 import s from './BackgroundImageByUrl.module.css';
 
 type ImageDimensions = {
@@ -12,7 +12,7 @@ type BackgroundImageProps = {
   url: string;
 };
 
-export const BackgroundImageByUrl: VoidFunctionComponent<BackgroundImageProps> = (props) => {
+export const BackgroundImageByUrl: VFC<BackgroundImageProps> = (props) => {
   const handleImageError = (): void => {
     console.warn('Failed to load background image, falling back to default background media');
   };

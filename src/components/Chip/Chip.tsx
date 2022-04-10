@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import type { ReactEventHandler, VoidFunctionComponent } from 'react';
+import type { ReactEventHandler, VFC } from 'react';
 import s from './Chip.module.css';
 import type { Favicon } from '../../faviconProcessor/favicon';
 import { useState } from 'react';
@@ -24,7 +24,7 @@ type ChipProps = {
     }
 );
 
-export const Chip: VoidFunctionComponent<ChipProps> = (props) => {
+export const Chip: VFC<ChipProps> = (props) => {
   const initialIcon = 'inlineIcon' in props ? props.inlineIcon : props.favicon.default.url;
 
   const [icon, setIcon] = useState<string>(initialIcon);

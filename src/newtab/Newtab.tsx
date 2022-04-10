@@ -1,6 +1,6 @@
 import { BackgroundMedia } from '../components/BackgroundMedia/BackgroundMedia';
 import { BottomToolbar } from '../components/BottomToolbar/BottomToolbar';
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 import { Provider } from 'react-redux';
 import { store } from '../store';
 import { BookmarkWorkspace } from '../components/BookmarkWorkspace/BookmarkWorkspace';
@@ -9,7 +9,7 @@ import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
 import s from './Newtab.module.css';
 
-export const Newtab: VoidFunctionComponent = () => {
+export const Newtab: VFC = () => {
   return (
     <StrictMode>
       <div className={s.newtabWrapper}>

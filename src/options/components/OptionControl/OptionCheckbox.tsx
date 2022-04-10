@@ -1,4 +1,4 @@
-import type { VoidFunctionComponent } from 'react';
+import type { VFC } from 'react';
 import { useOption } from '../../../hooks/useOption';
 import { useEffect, useState } from 'react';
 import { LabeledCheckbox } from '../Checkbox/LabeledCheckbox';
@@ -10,7 +10,7 @@ type OptionCheckboxProps = {
   optionKey: BooleanOptionKey;
 };
 
-export const OptionCheckbox: VoidFunctionComponent<OptionCheckboxProps> = (props) => {
+export const OptionCheckbox: VFC<OptionCheckboxProps> = (props) => {
   const [optionValue, setOptionValue] = useOption(props.optionKey);
   const [isLoading, setIsLoading] = useState<boolean>(optionValue === undefined);
 

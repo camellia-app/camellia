@@ -1,4 +1,4 @@
-import type { ChangeEventHandler, FormEventHandler, VoidFunctionComponent } from 'react';
+import type { ChangeEventHandler, FormEventHandler, VFC } from 'react';
 import { useEffect } from 'react';
 import s from './BookmarkSearch.module.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +7,7 @@ import type { RootState } from '../../store/reducers';
 import { closeSearch, openSearch } from '../../store/actionCreators/bookmarkSearch';
 import type { BookmarkSearchState } from '../../store/reducers/bookmarkSearchReducer';
 
-export const BookmarkSearch: VoidFunctionComponent = () => {
+export const BookmarkSearch: VFC = () => {
   const bookmarkSearchState = useSelector<RootState, BookmarkSearchState>((state) => state.bookmarkSearch);
 
   const dispatch = useDispatch();

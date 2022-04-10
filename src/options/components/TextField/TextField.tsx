@@ -1,5 +1,5 @@
 import s from './TextField.module.css';
-import type { ChangeEventHandler, VoidFunctionComponent } from 'react';
+import type { ChangeEventHandler, VFC } from 'react';
 import { useRef } from 'react';
 import cn from 'classnames';
 
@@ -15,7 +15,7 @@ type TextFieldProps = {
   value: string | undefined;
 };
 
-export const TextField: VoidFunctionComponent<TextFieldProps> = (props) => {
+export const TextField: VFC<TextFieldProps> = (props) => {
   const inputElementRef = useRef<HTMLInputElement>(null);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
