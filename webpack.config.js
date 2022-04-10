@@ -29,7 +29,7 @@ const commonConfig = {
   context: path.join(__dirname, 'src'),
   devtool: false,
   entry: {
-    newtab: './Newtab.tsx',
+    newtab: './newtab/Newtab.tsx',
     options: './options/Options.tsx',
     background: './backgroundScript/background.ts',
   },
@@ -122,7 +122,7 @@ const commonConfig = {
       chunks: ['newtab'],
       filename: 'newtab.html',
       inject: 'body',
-      template: './newtab.ejs',
+      template: './newtab/newtab.ejs',
       templateParameters: {
         env: process.env.APP_ENV,
       },

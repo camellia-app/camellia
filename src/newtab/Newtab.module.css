@@ -1,0 +1,21 @@
+@import '../components/variables.css';
+
+:root {
+  height: 100%;
+}
+
+body {
+  all: unset;
+  background-color: #000;
+  display: block;
+  height: 100%;
+  overscroll-behavior-x: none;
+}
+
+.newtab-wrapper {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
