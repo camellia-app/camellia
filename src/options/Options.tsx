@@ -1,6 +1,6 @@
 import 'react-devtools';
 import type { VoidFunctionComponent } from 'react';
-import React, { useState } from 'react';
+import { useState, StrictMode } from 'react';
 import s from './Options.module.css';
 import { OptionsSearchForm } from './components/Navigation/OptionsSearchForm/OptionsSearchForm';
 import { categoriesMap } from './components/Navigation/OptionsCategory/OptionsCategories';
@@ -24,7 +24,7 @@ export const Options: VoidFunctionComponent = () => {
   const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);
 
   return (
-    <React.StrictMode>
+    <StrictMode>
       <div className={s.optionsWrapper}>
         <div className={s.options}>
           <aside className={s.optionsSidebar}>
@@ -128,7 +128,7 @@ export const Options: VoidFunctionComponent = () => {
           <BackgroundMedia />
         </BackgroundMediaFullScreenContainer>
       </div>
-    </React.StrictMode>
+    </StrictMode>
   );
 };
 
