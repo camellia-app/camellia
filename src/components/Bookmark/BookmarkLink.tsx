@@ -8,12 +8,10 @@ import { getFaviconProcessor } from '../../faviconProcessor';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconPublic = require('mdi/filled/public.svg?fill=%23eee');
 
-type BookmarkProps = {
+export const BookmarkLink: VFC<{
   bookmark: Link;
   focus: boolean;
-};
-
-export const BookmarkLink: VFC<BookmarkProps> = (props) => {
+}> = (props) => {
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const handleClick = async (): Promise<void> => {

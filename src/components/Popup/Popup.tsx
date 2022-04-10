@@ -10,14 +10,6 @@ import type * as CSS from 'csstype';
 import type { PopupId } from '../../store/reducers/popupReducer';
 import { PopupNestingLevelContext } from './PopupNestingLevelContext';
 
-type PopupProps = {
-  bookmarks: Array<Bookmark>;
-  clickPosition: ClickPosition;
-  id: PopupId;
-  nestingLevel: number;
-  title: string;
-};
-
 export type ClickPosition = {
   x: number;
   y: number;
@@ -82,7 +74,13 @@ const calculatePopupPlacement = (
   };
 };
 
-export const Popup: VFC<PopupProps> = (props) => {
+export const Popup: VFC<{
+  bookmarks: Array<Bookmark>;
+  clickPosition: ClickPosition;
+  id: PopupId;
+  nestingLevel: number;
+  title: string;
+}> = (props) => {
   const [popupState, setPopupStage] = useState<PopupState>({
     isVisible: false,
     placement: {

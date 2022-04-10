@@ -3,12 +3,10 @@ import { BookmarkList } from '../BookmarkList/BookmarkList';
 import s from './BookmarkCategory.module.css';
 import type { VFC } from 'react';
 
-type BookmarkCategoryProps = {
+export const BookmarkCategory: VFC<{
   bookmarks: Array<Bookmark>;
   categoryTitle: string;
-};
-
-export const BookmarkCategory: VFC<BookmarkCategoryProps> = (props) => (
+}> = (props) => (
   <section className={s.bookmarkCategory}>
     <h2 className={s.bookmarkCategoryTitle}>{props.categoryTitle}</h2>
 

@@ -5,7 +5,7 @@ import { LabeledTextField } from '../TextField/LabeledTextField';
 import debounce from 'lodash.debounce';
 import type { StringOptionKey } from '../../../api/options/options';
 
-type OptionTextFieldProps = {
+export const OptionTextField: VFC<{
   description: string;
   label: string;
   optionKey: StringOptionKey;
@@ -14,9 +14,7 @@ type OptionTextFieldProps = {
   spellCheck: boolean;
   type: 'number' | 'url';
   validate?: ((value: string) => string | undefined) | undefined;
-};
-
-export const OptionTextField: VFC<OptionTextFieldProps> = (props) => {
+}> = (props) => {
   const [optionValue, setOptionValue] = useOption(props.optionKey);
   const [isLoading, setIsLoading] = useState<boolean>(optionValue === undefined);
 

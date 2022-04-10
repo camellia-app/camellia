@@ -11,12 +11,10 @@ import { PopupNestingLevelContext } from '../Popup/PopupNestingLevelContext';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconFolder = require('mdi/filled/folder.svg?fill=%23eee');
 
-type BookmarkFolderProps = {
+export const BookmarkFolder: VFC<{
   bookmark: Folder;
   focus: boolean;
-};
-
-export const BookmarkFolder: VFC<BookmarkFolderProps> = (props) => {
+}> = (props) => {
   const dispatch = useDispatch();
   const nestingLevelContext = useContext(PopupNestingLevelContext);
 

@@ -4,13 +4,11 @@ import { useEffect, useState } from 'react';
 import { LabeledCheckbox } from '../Checkbox/LabeledCheckbox';
 import type { BooleanOptionKey } from '../../../api/options/options';
 
-type OptionCheckboxProps = {
+export const OptionCheckbox: VFC<{
   description: string;
   label: string;
   optionKey: BooleanOptionKey;
-};
-
-export const OptionCheckbox: VFC<OptionCheckboxProps> = (props) => {
+}> = (props) => {
   const [optionValue, setOptionValue] = useOption(props.optionKey);
   const [isLoading, setIsLoading] = useState<boolean>(optionValue === undefined);
 

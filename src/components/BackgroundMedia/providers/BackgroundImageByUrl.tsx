@@ -6,13 +6,11 @@ type ImageDimensions = {
   width: number;
 };
 
-type BackgroundImageProps = {
+export const BackgroundImageByUrl: VFC<{
   dimensions?: ImageDimensions;
   onLoad: () => void;
   url: string;
-};
-
-export const BackgroundImageByUrl: VFC<BackgroundImageProps> = (props) => {
+}> = (props) => {
   const handleImageError = (): void => {
     console.warn('Failed to load background image, falling back to default background media');
   };

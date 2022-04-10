@@ -9,22 +9,22 @@ export enum ChipShape {
   Squared,
 }
 
-type ChipProps = {
-  label: string;
-  loading: boolean;
-  shape: ChipShape;
-  tooltip?: string;
-} & (
-  | {
-      fallbackInlineIcon: string;
-      favicon: Favicon;
-    }
-  | {
-      inlineIcon: string;
-    }
-);
-
-export const Chip: VFC<ChipProps> = (props) => {
+export const Chip: VFC<
+  {
+    label: string;
+    loading: boolean;
+    shape: ChipShape;
+    tooltip?: string;
+  } & (
+    | {
+        fallbackInlineIcon: string;
+        favicon: Favicon;
+      }
+    | {
+        inlineIcon: string;
+      }
+  )
+> = (props) => {
   const initialIcon = 'inlineIcon' in props ? props.inlineIcon : props.favicon.default.url;
 
   const [icon, setIcon] = useState<string>(initialIcon);

@@ -3,7 +3,7 @@ import type { VFC } from 'react';
 import { TextField } from './TextField';
 import { Paragraph } from '../Paragraph/Paragraph';
 
-type LabeledTextFieldProps = {
+export const LabeledTextField: VFC<{
   changeHandler?: ((newValue: string) => void) | undefined;
   description: string;
   disabled: boolean;
@@ -15,9 +15,7 @@ type LabeledTextFieldProps = {
   type: 'number' | 'url';
   validate?: ((newValue: string) => string | undefined) | undefined;
   value: string | undefined;
-};
-
-export const LabeledTextField: VFC<LabeledTextFieldProps> = (props) => {
+}> = (props) => {
   return (
     <div className={s.labeledTextField}>
       <label className={s.labeledTextFieldLabelAndControlWrapper}>

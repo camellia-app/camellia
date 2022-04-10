@@ -1,20 +1,18 @@
 import { useOption } from '../../../hooks/useOption';
-import type { ReactElement } from 'react';
+import type { VFC } from 'react';
 import { useEffect, useState } from 'react';
 import { LabeledDropdownSelect } from '../DropdownSelect/LabeledDropdownSelect';
 import type { SelectOption, SelectOptionGroup } from '../DropdownSelect/DropdownSelect';
 import type { EnumOptionKey, OptionsTypeMap } from '../../../api/options/options';
 
-type OptionDropdownSelectProps = {
+export const OptionDropdownSelect: VFC<{
   description: string;
   dropdownOptions: Array<
     SelectOption<OptionsTypeMap[EnumOptionKey]> | SelectOptionGroup<OptionsTypeMap[EnumOptionKey]>
   >;
   label: string;
   optionKey: EnumOptionKey;
-};
-
-export const OptionDropdownSelect = (props: OptionDropdownSelectProps): ReactElement => {
+}> = (props) => {
   const [optionValue, setOptionValue] = useOption(props.optionKey);
   const [isLoading, setIsLoading] = useState<boolean>(optionValue === undefined);
 

@@ -3,15 +3,13 @@ import type { VFC } from 'react';
 import type CSS from 'csstype';
 import type { Icon } from '../../../../icons';
 
-type OptionsCategoryProps = {
+export const OptionsCategory: VFC<{
   icon: Icon;
   id: string;
   isActive: boolean;
   label: string;
   onClick: (id: string) => void;
-};
-
-export const OptionsCategory: VFC<OptionsCategoryProps> = (props) => {
+}> = (props) => {
   const styles: CSS.OptionsNavigationLinkProperties = {
     ['--inline-icon']: `url("${props.icon}")`,
   };

@@ -3,16 +3,14 @@ import type { VFC } from 'react';
 import { Checkbox } from './Checkbox';
 import { Paragraph } from '../Paragraph/Paragraph';
 
-type LabeledCheckboxProps = {
+export const LabeledCheckbox: VFC<{
   changeHandler?: ((newValue: boolean) => void) | undefined;
   description: string;
   disabled: boolean;
   label: string;
   loading: boolean;
   value: boolean | undefined;
-};
-
-export const LabeledCheckbox: VFC<LabeledCheckboxProps> = (props) => {
+}> = (props) => {
   return (
     <div className={s.labeledCheckbox}>
       <Checkbox

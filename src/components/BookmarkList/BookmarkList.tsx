@@ -4,12 +4,10 @@ import { BookmarkLink } from '../Bookmark/BookmarkLink';
 import s from './BookmarkList.module.css';
 import type { VFC } from 'react';
 
-type BookmarkListProps = {
+export const BookmarkList: VFC<{
   bookmarks: Array<Bookmark>;
   focusFirstBookmark: boolean;
-};
-
-export const BookmarkList: VFC<BookmarkListProps> = (props) => (
+}> = (props) => (
   <ul className={s.bookmarkList}>
     {props.bookmarks.map((item, index) => {
       const enableAutoFocus = props.focusFirstBookmark && index === 0;

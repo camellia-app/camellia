@@ -3,7 +3,7 @@ import type { ChangeEventHandler, VFC } from 'react';
 import { useRef } from 'react';
 import cn from 'classnames';
 
-type TextFieldProps = {
+export const TextField: VFC<{
   changeHandler?: ((newValue: string) => void) | undefined;
   disabled: boolean;
   loading: boolean;
@@ -13,9 +13,7 @@ type TextFieldProps = {
   type: 'number' | 'url';
   validate?: ((newValue: string) => string | undefined) | undefined;
   value: string | undefined;
-};
-
-export const TextField: VFC<TextFieldProps> = (props) => {
+}> = (props) => {
   const inputElementRef = useRef<HTMLInputElement>(null);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
