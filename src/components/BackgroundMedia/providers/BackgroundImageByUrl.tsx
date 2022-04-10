@@ -28,7 +28,6 @@ export const BackgroundImageByUrl: VoidFunctionComponent<BackgroundImageProps> =
       crossOrigin="anonymous"
       decoding="async"
       height={props.dimensions?.height}
-      importance="low"
       onError={handleImageError}
       onLoad={handleImageLoad}
       referrerPolicy="no-referrer"
