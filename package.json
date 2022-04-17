@@ -14,7 +14,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "start": "APP_ENV=local webpack --watch",
+    "start": "webpack --watch",
     "fix-prettier": "npx prettier --write .",
     "fix-eslint": "npx eslint --fix .",
     "fix-stylelint": "npx stylelint --fix \"**/*.css\""

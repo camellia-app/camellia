@@ -7,10 +7,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { SourceMapDevToolPlugin } = require('webpack');
 const package = require('./package.json');
 
-if (process.env.APP_ENV === undefined) {
-  process.env.APP_ENV = 'local';
+if (process.env.NODE_ENV === undefined) {
+  process.env.NODE_ENV = 'development';
 
-  console.warn('Environment variable APP_ENV is not defined, using "local" as default value');
+  console.warn('Environment variable NODE_ENV is not defined, using "development" as default value');
 }
 
 if (process.env.BUILD_NUMBER === undefined) {
@@ -100,8 +100,8 @@ const commonConfig = {
             manifest.version_name = `${package.version} build ${process.env.BUILD_NUMBER}`;
             manifest.background.service_worker = `/background-${process.env.TARGET_PLATFORM}.js`;
 
-            switch (process.env.APP_ENV) {
-              case 'local':
+            switch (process.env.NODE_ENV) {
+              case 'development':
                 manifest.name = `${manifest.name} (dev)`;
                 manifest.version_name = `${manifest.version_name} (dev)`;
                 manifest.content_security_policy.extension_pages = `${manifest.content_security_policy.extension_pages};`;
@@ -112,7 +112,7 @@ const commonConfig = {
                 break;
             }
 
-            return JSON.stringify(manifest, null, process.env.APP_ENV === 'local' ? 2 : 0);
+            return JSON.stringify(manifest, null, process.env.NODE_ENV === 'development' ? 2 : 0);
           },
         },
         { from: './logo.png' },
@@ -124,7 +124,7 @@ const commonConfig = {
       inject: 'body',
       template: './newtab/newtab.ejs',
       templateParameters: {
-        env: process.env.APP_ENV,
+        env: process.env.NODE_ENV,
       },
     }),
     new HtmlWebpackPlugin({
@@ -133,7 +133,7 @@ const commonConfig = {
       inject: 'body',
       template: './options/options.ejs',
       templateParameters: {
-        env: process.env.APP_ENV,
+        env: process.env.NODE_ENV,
       },
     }),
   ],
@@ -146,8 +146,8 @@ const commonConfig = {
   target: 'web',
 };
 
-switch (process.env.APP_ENV) {
-  case 'stable':
+switch (process.env.NODE_ENV) {
+  case 'production':
     commonConfig.plugins.push(
       new SourceMapDevToolPlugin({
         append: false,
@@ -157,7 +157,7 @@ switch (process.env.APP_ENV) {
 
     break;
 
-  case 'local':
+  case 'development':
     commonConfig.devtool = 'inline-source-map';
     commonConfig.mode = 'development';
 

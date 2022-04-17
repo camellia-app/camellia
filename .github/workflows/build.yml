@@ -38,6 +38,6 @@ jobs:
       - name: Run Webpack
         run: npx webpack
         env:
-          APP_ENV: stable
+          NODE_ENV: production
           BUILD_NUMBER: 0
           TARGET_PLATFORM: ${{ matrix.targetPlatform }}

@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="webpack watch" type="NodeJSConfigurationType" application-parameters="--watch" path-to-js-file="node_modules/.bin/webpack" working-dir="$PROJECT_DIR$">
     <envs>
-      <env name="APP_ENV" value="local" />
+      <env name="NODE_ENV" value="development" />
     </envs>
     <method v="2" />
   </configuration>
