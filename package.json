@@ -1,6 +1,5 @@
 {
   "name": "camellia",
-  "version": "2.0.0",
   "description": "Bookmark management browser extension that replaces browser's default new tab page.",
   "private": true,
   "author": {

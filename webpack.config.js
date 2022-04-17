@@ -13,6 +13,12 @@ if (process.env.NODE_ENV === undefined) {
   console.warn('Environment variable NODE_ENV is not defined, using "development" as default value');
 }
 
+if (process.env.APP_VERSION === undefined) {
+  process.env.APP_VERSION = '2.0.0';
+
+  console.warn('Environment variable APP_VERSION is not defined, using "2.0.0" as default value');
+}
+
 if (process.env.BUILD_NUMBER === undefined) {
   process.env.BUILD_NUMBER = 0;
 
@@ -96,8 +102,8 @@ const commonConfig = {
 
             manifest.author = package.author.name;
             manifest.homepage_url = package.homepage;
-            manifest.version = `${package.version}.${process.env.BUILD_NUMBER}`;
-            manifest.version_name = `${package.version} build ${process.env.BUILD_NUMBER}`;
+            manifest.version = `${process.env.APP_VERSION}.${process.env.BUILD_NUMBER}`;
+            manifest.version_name = `${process.env.APP_VERSION} build ${process.env.BUILD_NUMBER}`;
             manifest.background.service_worker = `/background-${process.env.TARGET_PLATFORM}.js`;
 
             switch (process.env.NODE_ENV) {
