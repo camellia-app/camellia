@@ -11,3 +11,9 @@
   padding-right: 1rem;
   padding-top: var(--chip-hover-shift);
 }
+
+.bookmark-list__item {
+  all: unset;
+  display: block;
+  max-width: 100%;
+}

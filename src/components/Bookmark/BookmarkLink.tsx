@@ -35,23 +35,21 @@ export const BookmarkLink: VFC<{
   });
 
   return (
-    <li className={s.bookmarkItem}>
-      <a
-        className={s.bookmark}
-        href={props.bookmark.url}
-        onClick={handleClick}
-        ref={linkElementRef}
-        rel="noopener"
-        target="_self"
-      >
-        <Chip
-          fallbackInlineIcon={iconPublic}
-          favicon={getFaviconProcessor().generateUrl(props.bookmark.url)}
-          label={props.bookmark.title}
-          loading={isLoading}
-          shape={ChipShape.Rounded}
-        />
-      </a>
-    </li>
+    <a
+      className={s.bookmark}
+      href={props.bookmark.url}
+      onClick={handleClick}
+      ref={linkElementRef}
+      rel="noopener"
+      target="_self"
+    >
+      <Chip
+        fallbackInlineIcon={iconPublic}
+        favicon={getFaviconProcessor().generateUrl(props.bookmark.url)}
+        label={props.bookmark.title}
+        loading={isLoading}
+        shape={ChipShape.Rounded}
+      />
+    </a>
   );
 };

@@ -13,11 +13,19 @@ export const BookmarkList: VFC<{
       const enableAutoFocus = props.focusFirstBookmark && index === 0;
 
       if (item.type === 'link') {
-        return <BookmarkLink bookmark={item} focus={enableAutoFocus} key={item.idLocal} />;
+        return (
+          <li className={s.bookmarkListItem}>
+            <BookmarkLink bookmark={item} focus={enableAutoFocus} key={item.idLocal} />
+          </li>
+        );
       }
 
       if (item.type === 'folder') {
-        return <BookmarkFolder bookmark={item} focus={enableAutoFocus} key={item.idLocal} />;
+        return (
+          <li className={s.bookmarkListItem}>
+            <BookmarkFolder bookmark={item} focus={enableAutoFocus} key={item.idLocal} />
+          </li>
+        );
       }
 
       throw Error('unknown bookmark type');

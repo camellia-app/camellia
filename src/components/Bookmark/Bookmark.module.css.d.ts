@@ -3,7 +3,6 @@
 declare namespace BookmarkModuleCssNamespace {
   export interface IBookmarkModuleCss {
     bookmark: string;
-    bookmarkItem: string;
   }
 }
 

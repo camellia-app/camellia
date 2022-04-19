@@ -15,10 +15,8 @@ export const BookmarkManager: VFC = () => {
   const url = 'chrome://bookmarks';
 
   return (
-    <li className={bookmarkStyles.bookmarkItem}>
-      <a className={bookmarkStyles.bookmark} href={url} onClick={handleClick} rel="noopener" target="_self">
-        <Chip inlineIcon={iconStar} label={label} loading={false} shape={ChipShape.Squared} tooltip={tooltip} />
-      </a>
-    </li>
+    <a className={bookmarkStyles.bookmark} href={url} onClick={handleClick} rel="noopener" target="_self">
+      <Chip inlineIcon={iconStar} label={label} loading={false} shape={ChipShape.Squared} tooltip={tooltip} />
+    </a>
   );
 };

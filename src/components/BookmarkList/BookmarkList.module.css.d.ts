@@ -3,6 +3,7 @@
 declare namespace BookmarkListModuleCssNamespace {
   export interface IBookmarkListModuleCss {
     bookmarkList: string;
+    bookmarkListItem: string;
   }
 }
 

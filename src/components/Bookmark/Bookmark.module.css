@@ -1,11 +1,5 @@
 @import '../variables.css';
 
-.bookmark-item {
-  all: unset;
-  display: block;
-  max-width: 100%;
-}
-
 .bookmark {
   all: unset;
   display: block;

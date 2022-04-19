@@ -23,7 +23,7 @@ export const PopupManager: VFC = () => {
         return;
       }
 
-      const isClickedOnBookmarkItem = event.target.closest(`.${bookmarkClasses.bookmarkItem}`) !== null;
+      const isClickedOnBookmarkItem = event.target.closest(`.${bookmarkClasses.bookmark}`) !== null;
       const isClickedOnPopup = event.target.closest(`.${popupClasses.popup}`) !== null;
 
       if (isClickedOnBookmarkItem || isClickedOnPopup) {

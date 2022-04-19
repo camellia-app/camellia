@@ -46,10 +46,8 @@ export const BookmarkFolder: VFC<{
   });
 
   return (
-    <li className={s.bookmarkItem}>
-      <button className={s.bookmark} onClick={handleFolderClick} ref={buttonElementRef} type="button">
-        <Chip inlineIcon={iconFolder} label={props.bookmark.title} loading={false} shape={ChipShape.Rounded} />
-      </button>
-    </li>
+    <button className={s.bookmark} onClick={handleFolderClick} ref={buttonElementRef} type="button">
+      <Chip inlineIcon={iconFolder} label={props.bookmark.title} loading={false} shape={ChipShape.Rounded} />
+    </button>
   );
 };
