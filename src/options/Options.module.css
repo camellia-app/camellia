@@ -1,3 +1,4 @@
+@import '../reset.css';
 @import '../components/variables.css';
 
 :root {
@@ -6,10 +7,8 @@
 }
 
 body {
-  all: unset;
   background-color: #000;
   color: var(--options-text-color);
-  display: block;
 }
 
 .options-wrapper {
@@ -29,14 +28,7 @@ body {
   padding-top: 2rem;
 }
 
-.options__sidebar {
-  all: unset;
-  box-sizing: border-box;
-}
-
 .options__content {
-  all: unset;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   font-family: var(--font-family-sans-serif);

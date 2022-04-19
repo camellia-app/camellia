@@ -22,7 +22,7 @@ export const LabeledDropdownSelect = <TValue extends string>(
       <label className={s.labeledDropdownSelectLabelAndControlWrapper}>
         <span className={s.labeledDropdownSelectLabel}>{props.label}</span>
 
-        <div className={s.labeledDropdownSelectControl}>
+        <div>
           <DropdownSelect
             changeHandler={props.changeHandler}
             disabled={props.disabled}

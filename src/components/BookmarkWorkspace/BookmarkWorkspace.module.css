@@ -1,6 +1,4 @@
 .bookmarkWorkspace {
-  all: unset;
-  display: block;
   opacity: 1;
   transition: opacity 1s;
   user-select: none;

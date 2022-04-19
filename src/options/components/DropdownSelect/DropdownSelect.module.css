@@ -1,9 +1,6 @@
 .dropdown-select {
-  all: unset;
   background-color: hsla(0, 0%, 40%, 0.75);
   border-radius: 4px;
-  box-sizing: border-box;
-  display: block;
   max-width: fit-content;
 }
 
@@ -30,15 +27,12 @@
 }
 
 .dropdown-select__control {
-  all: unset;
   background-image: url('mdi/filled/arrow_drop_down.svg?fill=%23eee');
   background-position: right 8px top 8px;
   background-repeat: no-repeat;
   background-size: 24px;
   border-radius: 4px;
-  box-sizing: border-box;
   cursor: pointer;
-  display: block;
   font-size: var(--text-size-regular);
   line-height: 40px;
   padding-left: 8px;

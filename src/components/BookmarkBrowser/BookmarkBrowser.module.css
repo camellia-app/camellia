@@ -1,9 +1,7 @@
 @import '../variables.css';
 
 .no-bookmarks-message {
-  all: unset;
   color: var(--bookmark-text-color);
-  display: block;
   font-family: var(--font-family-sans-serif);
   font-size: var(--text-size-header);
   position: absolute;

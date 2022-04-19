@@ -5,9 +5,7 @@
 }
 
 .bookmark-category__title {
-  all: unset;
   color: var(--bookmark-category-title-text-color);
-  display: block;
   font-family: var(--font-family-sans-serif);
   font-size: var(--text-size-regular);
   margin-bottom: 1rem;

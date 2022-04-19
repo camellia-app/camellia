@@ -27,7 +27,7 @@ export const Options: VFC = () => {
     <StrictMode>
       <div className={s.optionsWrapper}>
         <div className={s.options}>
-          <aside className={s.optionsSidebar}>
+          <aside>
             <OptionsSearchForm
               activeCategory={activeCategory}
               onCategoryChange={(categoryId): void => setActiveCategory(categoryId)}

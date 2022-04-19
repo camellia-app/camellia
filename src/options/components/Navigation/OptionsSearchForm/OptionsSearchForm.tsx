@@ -10,10 +10,10 @@ export const OptionsSearchForm: VFC<{
   onCategoryReset: () => void;
 }> = (props) => {
   return (
-    <form className={s.optionsSearchForm} onSubmit={(event): void => event.preventDefault()}>
-      <fieldset className={s.optionsSearchFormFieldGroup}>
+    <form onSubmit={(event): void => event.preventDefault()}>
+      <fieldset>
         <ul className={s.optionsSearchFormCategoryList}>
-          <li className={s.optionsSearchFormCategoryListItem}>
+          <li>
             <OptionsCategory
               icon={Icon.ViewList}
               id="all"
@@ -24,7 +24,7 @@ export const OptionsSearchForm: VFC<{
           </li>
 
           {allCategories.map((category) => (
-            <li className={s.optionsSearchFormCategoryListItem} key={category.id}>
+            <li key={category.id}>
               <OptionsCategory
                 icon={category.icon}
                 id={category.id}

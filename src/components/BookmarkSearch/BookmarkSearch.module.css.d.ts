@@ -2,7 +2,6 @@
 // Do not modify this file directly!
 declare namespace BookmarkSearchModuleCssNamespace {
   export interface IBookmarkSearchModuleCss {
-    bookmarkSearch: string;
     bookmarkSearchCloseButton: string;
     bookmarkSearchField: string;
   }

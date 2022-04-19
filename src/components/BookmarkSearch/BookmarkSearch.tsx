@@ -75,7 +75,7 @@ export const BookmarkSearch: VFC = () => {
   }
 
   return (
-    <form className={s.bookmarkSearch} onReset={formResetHandler} onSubmit={formSubmitHandler}>
+    <form onReset={formResetHandler} onSubmit={formSubmitHandler}>
       <input
         autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
         className={s.bookmarkSearchField}

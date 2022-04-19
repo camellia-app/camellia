@@ -3,7 +3,6 @@
 declare namespace LabeledDropdownSelectModuleCssNamespace {
   export interface ILabeledDropdownSelectModuleCss {
     labeledDropdownSelect: string;
-    labeledDropdownSelectControl: string;
     labeledDropdownSelectLabel: string;
     labeledDropdownSelectLabelAndControlWrapper: string;
   }

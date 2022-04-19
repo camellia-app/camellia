@@ -2,10 +2,7 @@
 // Do not modify this file directly!
 declare namespace OptionsSearchFormModuleCssNamespace {
   export interface IOptionsSearchFormModuleCss {
-    optionsSearchForm: string;
     optionsSearchFormCategoryList: string;
-    optionsSearchFormCategoryListItem: string;
-    optionsSearchFormFieldGroup: string;
   }
 }
 

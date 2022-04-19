@@ -15,7 +15,7 @@ export const OptionsCategory: VFC<{
   };
 
   return (
-    <label className={s.optionsCategory}>
+    <label>
       <input
         checked={props.isActive}
         name="options-category"

@@ -1,7 +1,6 @@
 @import '../variables.css';
 
 .chip {
-  all: unset;
   align-items: flex-start;
   background-color: var(--bookmark-background-color);
   color: var(--bookmark-text-color);
@@ -53,8 +52,6 @@
 }
 
 .chip-label {
-  all: unset;
-  display: block;
   font-family: var(--font-family-sans-serif);
   font-size: var(--text-size-regular);
   line-height: 32px;
@@ -65,7 +62,6 @@
 }
 
 .chip-icon {
-  all: unset;
   display: inline-block;
   flex-grow: 0;
   flex-shrink: 0;

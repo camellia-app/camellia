@@ -21,7 +21,7 @@ export const LabeledTextField: VFC<{
       <label className={s.labeledTextFieldLabelAndControlWrapper}>
         <span className={s.labeledTextFieldLabel}>{props.label}</span>
 
-        <div className={s.labeledTextFieldControl}>
+        <div>
           <TextField
             changeHandler={props.changeHandler}
             disabled={props.disabled}

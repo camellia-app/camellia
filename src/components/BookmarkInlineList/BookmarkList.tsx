@@ -11,7 +11,7 @@ export const BookmarkInlineList: VFC<{
     {props.bookmarks.map((item) => {
       if (item.type === 'link') {
         return (
-          <li className={s.bookmarkInlineListItem}>
+          <li>
             <BookmarkLink bookmark={item} focus={false} key={item.idLocal} />
           </li>
         );
@@ -19,7 +19,7 @@ export const BookmarkInlineList: VFC<{
 
       if (item.type === 'folder') {
         return (
-          <li className={s.bookmarkInlineListItem}>
+          <li>
             <BookmarkFolder bookmark={item} focus={false} key={item.idLocal} />
           </li>
         );

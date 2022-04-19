@@ -1,8 +1,3 @@
-.options-category {
-  all: unset;
-  display: block;
-}
-
 .options-category input {
   height: 0;
   opacity: 0;
@@ -11,7 +6,6 @@
 }
 
 .options-category__button {
-  all: unset;
   align-items: flex-start;
   border-radius: 4px;
   color: var(--bookmark-text-color);
@@ -34,8 +28,6 @@
 }
 
 .options-category__label {
-  all: unset;
-  display: block;
   font-family: var(--font-family-sans-serif);
   font-size: var(--text-size-regular);
   line-height: 40px;
@@ -46,7 +38,6 @@
 }
 
 .options-category__icon {
-  all: unset;
   background-image: var(--inline-icon);
   background-repeat: no-repeat;
   background-size: 24px;

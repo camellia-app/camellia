@@ -4,7 +4,6 @@ declare namespace OptionsModuleCssNamespace {
   export interface IOptionsModuleCss {
     options: string;
     optionsContent: string;
-    optionsSidebar: string;
     optionsWrapper: string;
   }
 }

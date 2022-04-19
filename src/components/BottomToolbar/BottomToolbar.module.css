@@ -1,7 +1,6 @@
 @import '../variables.css';
 
 .bottom-toolbar {
-  all: unset;
   align-items: center;
   display: flex;
   height: 64px;
@@ -10,7 +9,6 @@
 }
 
 .bottom-toolbar__items {
-  all: unset;
   display: grid;
   grid-auto-columns: min-content;
   grid-auto-flow: column;

@@ -1,6 +1,4 @@
 .background-image-by-url {
-  all: unset;
-  display: block;
   height: 100%;
   object-fit: cover;
   pointer-events: none;

@@ -3,7 +3,6 @@
 declare namespace LabeledTextFieldModuleCssNamespace {
   export interface ILabeledTextFieldModuleCss {
     labeledTextField: string;
-    labeledTextFieldControl: string;
     labeledTextFieldLabel: string;
     labeledTextFieldLabelAndControlWrapper: string;
   }

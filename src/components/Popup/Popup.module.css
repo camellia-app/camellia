@@ -2,14 +2,10 @@
   --popup-position-x: 0;
   --popup-position-y: 0;
   --popup-height: auto;
-
-  all: unset;
   backdrop-filter: blur(2px);
   background-color: rgba(33, 33, 33, 0.75);
   border-radius: 8px;
-  box-sizing: border-box;
   color: var(--bookmark-text-color);
-  display: block;
   font-family: var(--font-family-sans-serif);
   height: var(--popup-height);
   left: var(--popup-position-x);
@@ -36,8 +32,6 @@
 }
 
 .popup-title {
-  all: unset;
-  display: block;
   font-size: var(--text-size-regular);
   line-height: var(--popup-title-height);
   overflow: hidden;
@@ -49,16 +43,13 @@
 }
 
 .popup-close-button {
-  all: unset;
   background-color: transparent;
   background-image: url('~mdi/filled/cancel.svg?fill=%23eee');
   background-position: center;
   background-repeat: no-repeat;
   background-size: var(--text-size-regular);
   border-radius: 8px;
-  box-sizing: border-box;
   cursor: pointer;
-  display: block;
   font-size: 0;
   height: var(--popup-title-height);
   transition: background-size 0.1s ease-in-out, background-color 0.1s ease-in-out;
