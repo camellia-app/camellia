@@ -38,7 +38,7 @@
 .popup-title {
   all: unset;
   display: block;
-  font-size: 0.875rem;
+  font-size: var(--text-size-regular);
   line-height: var(--popup-title-height);
   overflow: hidden;
   padding-left: calc(1rem + var(--popup-title-height));
@@ -54,7 +54,7 @@
   background-image: url('~mdi/filled/cancel.svg?fill=%23eee');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 0.875rem;
+  background-size: var(--text-size-regular);
   border-radius: 8px;
   box-sizing: border-box;
   cursor: pointer;
