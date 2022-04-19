@@ -1,35 +1,30 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const path = require('path');
+const fs = require('fs');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+const DotenvWebpackPlugin = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { SourceMapDevToolPlugin } = require('webpack');
 const package = require('./package.json');
+const dotenv = require('dotenv');
+const assert = require('assert');
 
-if (process.env.NODE_ENV === undefined) {
-  process.env.NODE_ENV = 'development';
+const dotenvPath = path.resolve(process.cwd(), '.env');
+const dotenvDistPath = path.resolve(process.cwd(), '.env.dist');
 
-  console.warn('Environment variable NODE_ENV is not defined, using "development" as default value');
+if (!fs.existsSync(dotenvPath)) {
+  console.info('File ".env" is missing, making a copy from ".env.dist"');
+
+  fs.copyFileSync(dotenvDistPath, dotenvPath);
 }
 
-if (process.env.APP_VERSION === undefined) {
-  process.env.APP_VERSION = '2.0.0';
+dotenv.config();
 
-  console.warn('Environment variable APP_VERSION is not defined, using "2.0.0" as default value');
-}
-
-if (process.env.BUILD_NUMBER === undefined) {
-  process.env.BUILD_NUMBER = 0;
-
-  console.warn('Environment variable BUILD_NUMBER is not defined, using "0" as default value');
-}
-
-if (process.env.TARGET_PLATFORM === undefined) {
-  process.env.TARGET_PLATFORM = 'chromium';
-
-  console.warn('Environment variable TARGET_PLATFORM is not defined, using "chromium" as default value');
-}
+assert(process.env.NODE_ENV, 'Environment variable NODE_ENV is not defined');
+assert(process.env.APP_VERSION, 'Environment variable APP_VERSION is not defined');
+assert(process.env.BUILD_NUMBER, 'Environment variable BUILD_NUMBER is not defined');
+assert(process.env.TARGET_PLATFORM, 'Environment variable TARGET_PLATFORM is not defined');
 
 const commonConfig = {
   context: path.join(__dirname, 'src'),
@@ -90,7 +85,7 @@ const commonConfig = {
     path: path.resolve(__dirname, 'dist', process.env.TARGET_PLATFORM),
   },
   plugins: [
-    new Dotenv({
+    new DotenvWebpackPlugin({
       systemvars: true,
     }),
     new CopyWebpackPlugin({
