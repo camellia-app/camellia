@@ -2,6 +2,7 @@
   "extends": "stylelint-config-recommended",
   "plugins": ["stylelint-order"],
   "rules": {
+    "declaration-empty-line-before": "never",
     "order/order": ["custom-properties", "declarations"],
     "order/properties-order": [
       ["all"],
