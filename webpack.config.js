@@ -86,8 +86,8 @@ const commonConfig = {
     ],
   },
   output: {
-    filename: `[name]-${process.env.TARGET_PLATFORM}.js`,
-    path: path.resolve(__dirname, 'dist'),
+    filename: `[name].js`,
+    path: path.resolve(__dirname, 'dist', process.env.TARGET_PLATFORM),
   },
   plugins: [
     new Dotenv({
@@ -104,7 +104,7 @@ const commonConfig = {
             manifest.homepage_url = package.homepage;
             manifest.version = `${process.env.APP_VERSION}.${process.env.BUILD_NUMBER}`;
             manifest.version_name = `${process.env.APP_VERSION} build ${process.env.BUILD_NUMBER}`;
-            manifest.background.service_worker = `/background-${process.env.TARGET_PLATFORM}.js`;
+            manifest.background.service_worker = `/background.js`;
 
             switch (process.env.NODE_ENV) {
               case 'development':
