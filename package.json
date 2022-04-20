@@ -1,7 +1,6 @@
 {
   "name": "camellia",
   "private": true,
-  "repository": "github:camellia-app/camellia",
   "scripts": {
     "build": "webpack",
     "start": "webpack --watch",
