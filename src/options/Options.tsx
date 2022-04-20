@@ -1,4 +1,3 @@
-import 'react-devtools';
 import type { VFC } from 'react';
 import { useState, StrictMode } from 'react';
 import s from './Options.module.css';
