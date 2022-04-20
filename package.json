@@ -7,7 +7,7 @@
     "start": "webpack --watch",
     "fix-prettier": "npx prettier --write .",
     "fix-eslint": "npx eslint --fix .",
-    "fix-stylelint": "npx stylelint --fix \"**/*.css\""
+    "fix-stylelint": "npx stylelint --fix \"src/**/*.css\""
   },
   "engines": {
     "node": ">=16"
