@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import type { ReactElement, VFC } from 'react';
 import { useEffect, useState } from 'react';
 import s from './BackgroundMedia.module.css';
@@ -6,6 +5,7 @@ import { useOption } from '../../hooks/useOption';
 import { UnsplashImageFromCollection } from './providers/UnsplashImageFromCollection';
 import { BackgroundImageByUrl } from './providers/BackgroundImageByUrl';
 import { BackgroundProviderType } from '../../api/options/options';
+import classNames from 'classnames';
 
 export const BackgroundMedia: VFC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -52,7 +52,7 @@ export const BackgroundMedia: VFC = () => {
 
   return (
     <div
-      className={cn(s.backgroundMedia, {
+      className={classNames(s.backgroundMedia, {
         [s.backgroundMediaLoading]: isLoading,
       })}
     >

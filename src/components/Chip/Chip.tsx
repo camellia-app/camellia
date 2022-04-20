@@ -1,8 +1,8 @@
-import cn from 'classnames';
 import type { ReactEventHandler, VFC } from 'react';
 import s from './Chip.module.css';
 import type { Favicon } from '../../faviconProcessor/favicon';
 import { useState } from 'react';
+import classNames from 'classnames';
 
 export enum ChipShape {
   Rounded,
@@ -45,7 +45,7 @@ export const Chip: VFC<
 
   return (
     <div
-      className={cn(s.chip, {
+      className={classNames(s.chip, {
         [s.loading]: props.loading,
         [s.chipSquared]: props.shape === ChipShape.Squared,
         [s.chipRounded]: props.shape === ChipShape.Rounded,

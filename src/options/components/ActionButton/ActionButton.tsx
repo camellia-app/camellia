@@ -1,6 +1,6 @@
 import s from './ActionButton.module.css';
 import type { VFC, ButtonHTMLAttributes, MouseEventHandler } from 'react';
-import cn from 'classnames';
+import classNames from 'classnames';
 
 export const ActionButton: VFC<{
   buttonHtmlType: NonNullable<ButtonHTMLAttributes<HTMLButtonElement>['type']>;
@@ -17,7 +17,7 @@ export const ActionButton: VFC<{
 
   return (
     <div
-      className={cn(s.actionButton, {
+      className={classNames(s.actionButton, {
         [s.actionButtonLoading]: props.loading,
       })}
     >

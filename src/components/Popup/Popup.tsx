@@ -1,7 +1,7 @@
 import type { MouseEventHandler, VFC } from 'react';
 import { createRef, useEffect, useState } from 'react';
 import s from './Popup.module.css';
-import cn from 'classnames';
+import classNames from 'classnames';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
 import type { Bookmark } from '../../bookmarkManager/bookmark';
 import { useDispatch } from 'react-redux';
@@ -139,7 +139,7 @@ export const Popup: VFC<{
   return (
     <dialog
       aria-labelledby={headerId}
-      className={cn(s.popup, {
+      className={classNames(s.popup, {
         [s.loading]: !popupState.isVisible,
       })}
       open={true}

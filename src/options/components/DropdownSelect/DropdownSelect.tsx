@@ -1,6 +1,6 @@
 import s from './DropdownSelect.module.css';
 import type { ChangeEventHandler, ReactElement } from 'react';
-import cn from 'classnames';
+import classNames from 'classnames';
 
 export type SelectOption<TValue extends string> = {
   label: string;
@@ -32,7 +32,7 @@ export const DropdownSelect = <TValue extends string>(props: DropdownSelectProps
 
   return (
     <div
-      className={cn(s.dropdownSelect, {
+      className={classNames(s.dropdownSelect, {
         [s.dropdownSelectLoading]: props.loading,
       })}
     >

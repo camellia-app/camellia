@@ -1,7 +1,7 @@
 import s from './TextField.module.css';
 import type { ChangeEventHandler, VFC } from 'react';
 import { useRef } from 'react';
-import cn from 'classnames';
+import classNames from 'classnames';
 
 export const TextField: VFC<{
   changeHandler?: ((newValue: string) => void) | undefined;
@@ -48,7 +48,7 @@ export const TextField: VFC<{
 
   return (
     <div
-      className={cn(s.textField, {
+      className={classNames(s.textField, {
         [s.textFieldLoading]: props.loading,
       })}
     >
