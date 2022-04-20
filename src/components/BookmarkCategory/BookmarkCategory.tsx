@@ -10,6 +10,6 @@ export const BookmarkCategory: VFC<{
   <section className={s.bookmarkCategory}>
     <h2 className={s.bookmarkCategoryTitle}>{props.categoryTitle}</h2>
 
-    <BookmarkList bookmarks={props.bookmarks} focusFirstBookmark={false} />
+    <BookmarkList bookmarks={props.bookmarks} focusFirstBookmark={false} type="columns" />
   </section>
 );

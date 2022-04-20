@@ -10,7 +10,6 @@ import { LabeledCheckbox } from './components/Checkbox/LabeledCheckbox';
 import { BackgroundImageSource } from './components/OptionControl/OptionEntry/BackgroundImageSource';
 import { BackgroundMediaFullScreenContainer } from '../components/BackgroundMedia/BackgroundMediaFullScreenContainer';
 import { BackgroundMedia } from '../components/BackgroundMedia/BackgroundMedia';
-import { BookmarkInlineList } from '../components/BookmarkInlineList/BookmarkList';
 import { AboutApp } from './components/AboutApp/AboutApp';
 import { createRoot } from 'react-dom/client';
 import { CopyDebugInformation } from './components/OptionControl/OptionEntry/CopyDebugInformation';
@@ -19,6 +18,7 @@ import { ShowOptionsButton } from './components/OptionControl/OptionEntry/ShowOp
 import { ShowBookmarkManagerButton } from './components/OptionControl/OptionEntry/ShowBookmarkManagerButton';
 import { ContentLayout } from './components/OptionControl/OptionEntry/ContentLayout';
 import { UnsplashPhotographerAttribution } from './components/OptionControl/OptionEntry/UnsplashPhotographerAttribution';
+import { BookmarkList } from '../components/BookmarkList/BookmarkList';
 
 export const Options: VFC = () => {
   const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);
@@ -75,7 +75,7 @@ export const Options: VFC = () => {
                 <>
                   <AboutApp />
 
-                  <BookmarkInlineList
+                  <BookmarkList
                     bookmarks={[
                       {
                         idLocal: '0',
@@ -118,6 +118,8 @@ export const Options: VFC = () => {
                         url: 'https://github.com/camellia-app/camellia/releases',
                       },
                     ]}
+                    focusFirstBookmark={false}
+                    type="inline"
                   />
                 </>
               </CategorizedOption>

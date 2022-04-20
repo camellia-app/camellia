@@ -73,6 +73,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior-y: contain;
+  padding: 1rem;
   scrollbar-color: light;
   scrollbar-width: thin;
 }

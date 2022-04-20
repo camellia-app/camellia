@@ -1,7 +1,7 @@
 @import '../variables.css';
 
 .bookmark-category {
-  margin-top: 2rem;
+  padding: 1rem;
 }
 
 .bookmark-category__title {
@@ -9,7 +9,5 @@
   font-family: var(--font-family-sans-serif);
   font-size: var(--text-size-regular);
   margin-bottom: 1rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
   text-transform: uppercase;
 }

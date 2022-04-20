@@ -158,7 +158,7 @@ export const Popup: VFC<{
 
         <div className={s.bookmarkListContainer}>
           <PopupNestingLevelContext.Provider value={props.nestingLevel + 1}>
-            <BookmarkList bookmarks={props.bookmarks} focusFirstBookmark={true} />
+            <BookmarkList bookmarks={props.bookmarks} focusFirstBookmark={true} type="columns" />
           </PopupNestingLevelContext.Provider>
         </div>
       </div>
