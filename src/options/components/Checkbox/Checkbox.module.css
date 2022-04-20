@@ -45,31 +45,31 @@
   background-image: url('mdi/filled/indeterminate_check_box.svg?fill=%23eee');
 }
 
-input {
+input[type='checkbox'] {
   height: 0;
   opacity: 0;
   position: absolute;
   width: 0;
 }
 
-input:disabled + .checkbox__control {
+input[type='checkbox']:disabled + .checkbox__control {
   cursor: default;
   opacity: 0.5;
 }
 
-input:focus + .checkbox__control {
+input[type='checkbox']:focus + .checkbox__control {
   box-shadow: 0 0 0 var(--outline-width) var(--outline-color);
 }
 
-input:checked + .checkbox__control {
+input[type='checkbox']:checked + .checkbox__control {
   background-image: url('mdi/filled/check_box.svg?fill=%23eee');
 }
 
-input:not(:disabled) + .checkbox__control:hover {
+input[type='checkbox']:not(:disabled) + .checkbox__control:hover {
   background-color: hsla(0, 0%, 0%, 0.25);
   cursor: pointer;
 }
 
-input:not(:disabled) + .checkbox__control:active {
+input[type='checkbox']:not(:disabled) + .checkbox__control:active {
   background-color: hsla(0, 0%, 0%, 0.5);
 }
