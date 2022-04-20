@@ -1,8 +1,10 @@
 {
   "manifest_version": 3,
   "name": "Camellia",
-  "description": "Camellia 2.0. Unstable dev build.",
   "short_name": "Camellia",
+  "description": "Bookmark management browser extension that replaces browser's default new tab page.",
+  "homepage_url": "https://camellia.app",
+  "author": "Petr Flaks",
   "minimum_chrome_version": "80",
 
   "permissions": ["bookmarks", "storage"],

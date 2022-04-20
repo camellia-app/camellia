@@ -6,7 +6,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DotenvWebpackPlugin = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { SourceMapDevToolPlugin } = require('webpack');
-const package = require('./package.json');
 const dotenv = require('dotenv');
 const assert = require('assert');
 
@@ -95,8 +94,6 @@ const commonConfig = {
           transform(content) {
             const manifest = JSON.parse(content.toString());
 
-            manifest.author = package.author.name;
-            manifest.homepage_url = package.homepage;
             manifest.version = `${process.env.APP_VERSION}.${process.env.BUILD_NUMBER}`;
             manifest.version_name = `${process.env.APP_VERSION} build ${process.env.BUILD_NUMBER}`;
             manifest.background.service_worker = `/background.js`;
