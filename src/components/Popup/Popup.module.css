@@ -10,6 +10,7 @@
   height: var(--popup-height);
   left: var(--popup-position-x);
   opacity: 1;
+  overflow: hidden;
   position: fixed;
   top: var(--popup-position-y);
   transition: opacity 0.3s;
@@ -26,6 +27,7 @@
 }
 
 .popup-header {
+  background-color: rgba(0, 0, 0, 0.1);
   display: grid;
   grid-auto-columns: 1fr auto;
   grid-auto-flow: column;
