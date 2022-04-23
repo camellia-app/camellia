@@ -3,7 +3,6 @@
   --popup-position-y: 0;
   --popup-height: auto;
   backdrop-filter: blur(2px);
-  background-color: rgba(33, 33, 33, 0.75);
   border-radius: 8px;
   color: var(--bookmark-text-color);
   font-family: var(--font-family-sans-serif);
@@ -27,7 +26,7 @@
 }
 
 .popup-header {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(33, 33, 33, 0.9);
   display: grid;
   grid-auto-columns: 1fr auto;
   grid-auto-flow: column;
@@ -70,6 +69,7 @@
 }
 
 .bookmark-list-container {
+  background-color: rgba(33, 33, 33, 0.75);
   max-height: calc(100% - var(--popup-title-height));
   -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
