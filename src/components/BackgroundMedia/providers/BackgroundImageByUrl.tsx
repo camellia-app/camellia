@@ -11,11 +11,11 @@ export const BackgroundImageByUrl: VFC<{
   onLoad: () => void;
   url: string;
 }> = (props) => {
-  const handleImageError = (): void => {
+  const handleImageError: ReactEventHandler<HTMLImageElement> = (): void => {
     console.warn('Failed to load background image, falling back to default background media');
   };
 
-  const handleImageLoad = (): void => {
+  const handleImageLoad: ReactEventHandler<HTMLImageElement> = (): void => {
     props.onLoad();
   };
 

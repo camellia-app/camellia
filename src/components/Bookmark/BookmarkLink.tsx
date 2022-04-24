@@ -1,4 +1,4 @@
-import type { VFC } from 'react';
+import type { VFC, MouseEventHandler } from 'react';
 import { createRef, useEffect, useState } from 'react';
 import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
@@ -14,7 +14,7 @@ export const BookmarkLink: VFC<{
 }> = (props) => {
   const [isLoading, setLoading] = useState<boolean>(false);
 
-  const handleClick = async (): Promise<void> => {
+  const handleClick: MouseEventHandler<HTMLElement> = async (): Promise<void> => {
     setLoading(true);
 
     if (isLoading) {
