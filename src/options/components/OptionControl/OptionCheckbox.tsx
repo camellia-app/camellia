@@ -1,5 +1,5 @@
 import type { VFC } from 'react';
-import { useOption } from '../../../hooks/useOption';
+import { useOption } from '../../../api/options/hook';
 import { useEffect, useState } from 'react';
 import { LabeledCheckbox } from '../Checkbox/LabeledCheckbox';
 import type { BooleanOptionKey } from '../../../api/options/options';

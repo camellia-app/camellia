@@ -1,6 +1,6 @@
-import { getAppEnvironment } from '../api/appEnvironment';
+import { getAppEnvironment } from './index';
 import { useEffect, useState } from 'react';
-import type { AppEnvironment } from '../api/appEnvironment/common';
+import type { AppEnvironment } from './common';
 
 export const useAppEnvironment = (): AppEnvironment | undefined => {
   const [value, setValue] = useState<AppEnvironment | undefined>(undefined);

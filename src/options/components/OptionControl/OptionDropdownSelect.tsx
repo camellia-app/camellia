@@ -1,4 +1,4 @@
-import { useOption } from '../../../hooks/useOption';
+import { useOption } from '../../../api/options/hook';
 import type { VFC } from 'react';
 import { useEffect, useState } from 'react';
 import { LabeledDropdownSelect } from '../DropdownSelect/LabeledDropdownSelect';

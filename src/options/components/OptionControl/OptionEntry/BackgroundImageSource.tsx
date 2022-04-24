@@ -2,7 +2,7 @@ import type { VFC } from 'react';
 import { OptionDropdownSelect } from '../OptionDropdownSelect';
 import { OptionTextField } from '../OptionTextField';
 import { BackgroundPreview } from '../../BackgroundPreview/BackgroundPreview';
-import { useOption } from '../../../../hooks/useOption';
+import { useOption } from '../../../../api/options/hook';
 import { BackgroundProviderType } from '../../../../api/options/options';
 import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';

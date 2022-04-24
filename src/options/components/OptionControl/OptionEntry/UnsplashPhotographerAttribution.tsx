@@ -1,6 +1,6 @@
 import type { VFC } from 'react';
 import { OptionCheckbox } from '../OptionCheckbox';
-import { useOption } from '../../../../hooks/useOption';
+import { useOption } from '../../../../api/options/hook';
 import { BackgroundProviderType } from '../../../../api/options/options';
 import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';

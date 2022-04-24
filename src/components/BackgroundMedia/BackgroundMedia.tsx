@@ -1,7 +1,7 @@
 import type { ReactElement, VFC } from 'react';
 import { useEffect, useState } from 'react';
 import s from './BackgroundMedia.module.css';
-import { useOption } from '../../hooks/useOption';
+import { useOption } from '../../api/options/hook';
 import { UnsplashImageFromCollection } from './providers/UnsplashImageFromCollection';
 import { BackgroundImageByUrl } from './providers/BackgroundImageByUrl';
 import { BackgroundProviderType } from '../../api/options/options';

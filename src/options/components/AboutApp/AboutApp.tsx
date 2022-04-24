@@ -1,6 +1,6 @@
 import s from './AboutApp.module.css';
 import type { VFC } from 'react';
-import { useAppEnvironment } from '../../../hooks/useAppEnvironment';
+import { useAppEnvironment } from '../../../api/appEnvironment/hook';
 import { Paragraph } from '../Paragraph/Paragraph';
 
 export const AboutApp: VFC = () => {

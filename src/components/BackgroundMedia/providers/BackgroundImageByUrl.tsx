@@ -1,4 +1,4 @@
-import type { VFC } from 'react';
+import type { ReactEventHandler, VFC } from 'react';
 import s from './BackgroundImageByUrl.module.css';
 
 type ImageDimensions = {
