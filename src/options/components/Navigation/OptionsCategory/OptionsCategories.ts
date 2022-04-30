@@ -17,6 +17,11 @@ export const categoriesMap = {
     id: 'bookmarks',
     icon: Icon.BookmarkBorder,
   },
+  search: {
+    label: 'Search',
+    id: 'search',
+    icon: Icon.ManageSearch,
+  },
   bottomToolbar: {
     label: 'Bottom toolbar',
     id: 'bottom-toolbar',

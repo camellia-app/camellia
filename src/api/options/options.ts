@@ -17,6 +17,7 @@ export type OptionsTypeMap = {
   installation_date: number;
   show_bookmark_manager_button: boolean;
   show_options_button: boolean;
+  show_search_button: boolean;
   vote_remind_displayed: boolean;
 };
 
@@ -25,6 +26,7 @@ export type BooleanOptionKey =
   | 'display_unsplash_attribution'
   | 'show_bookmark_manager_button'
   | 'show_options_button'
+  | 'show_search_button'
   | 'vote_remind_displayed';
 export type StringOptionKey = 'background_image_link' | 'background_image_unsplash_collection_id';
 export type EnumOptionKey = 'background_provider_type' | 'content_layout';

@@ -77,6 +77,7 @@ export const setDefaultOptionValues = async (): Promise<void> => {
     setOptionIfNotSet('display_unsplash_attribution', true),
     setOptionIfNotSet('show_bookmark_manager_button', true),
     setOptionIfNotSet('show_options_button', true),
+    setOptionIfNotSet('show_search_button', true),
   ]);
 
   console.groupEnd();
@@ -95,6 +96,7 @@ export const resetOptionsToDefaultValues = async (): Promise<void> => {
     setOption('display_unsplash_attribution', true),
     setOption('show_bookmark_manager_button', true),
     setOption('show_options_button', true),
+    setOption('show_search_button', true),
   ]);
 
   console.groupEnd();

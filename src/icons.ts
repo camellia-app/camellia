@@ -19,6 +19,9 @@ const iconInfo = require('mdi/filled/info.svg?fill=%23eee');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconConstruction = require('mdi/filled/construction.svg?fill=%23eee');
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const iconManageSearch = require('mdi/filled/manage_search.svg?fill=%23eee');
+
 export enum Icon {
   Wallpaper = iconWallpaper,
   Analytics = iconAnalytics,
@@ -27,4 +30,5 @@ export enum Icon {
   CallToAction = iconCallToAction,
   Info = iconInfo,
   Construction = iconConstruction,
+  ManageSearch = iconManageSearch,
 }

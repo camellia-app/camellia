@@ -19,6 +19,7 @@ import { ContentLayout } from './components/OptionControl/OptionEntry/ContentLay
 import { UnsplashPhotographerAttribution } from './components/OptionControl/OptionEntry/UnsplashPhotographerAttribution';
 import { BookmarkList } from '../components/BookmarkList/BookmarkList';
 import { getSupportedRuntimeFeatures } from '../api/applicationRuntime/features';
+import { ShowSearchButton } from './components/OptionControl/OptionEntry/ShowSearchButton';
 
 export const Options: VFC = () => {
   const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);
@@ -46,6 +47,8 @@ export const Options: VFC = () => {
               {getSupportedRuntimeFeatures().bookmarkManagerPage ? <ShowBookmarkManagerButton /> : undefined}
 
               <ShowOptionsButton />
+
+              <ShowSearchButton />
 
               <CategorizedOption categories={[categoriesMap.analytics]}>
                 <LabeledCheckbox
