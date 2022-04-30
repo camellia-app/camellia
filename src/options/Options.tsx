@@ -18,6 +18,7 @@ import { ShowBookmarkManagerButton } from './components/OptionControl/OptionEntr
 import { ContentLayout } from './components/OptionControl/OptionEntry/ContentLayout';
 import { UnsplashPhotographerAttribution } from './components/OptionControl/OptionEntry/UnsplashPhotographerAttribution';
 import { BookmarkList } from '../components/BookmarkList/BookmarkList';
+import { getSupportedRuntimeFeatures } from '../api/applicationRuntime/features';
 
 export const Options: VFC = () => {
   const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);
@@ -42,7 +43,7 @@ export const Options: VFC = () => {
 
               <UnsplashPhotographerAttribution />
 
-              <ShowBookmarkManagerButton />
+              {getSupportedRuntimeFeatures().bookmarkManagerPage ? <ShowBookmarkManagerButton /> : undefined}
 
               <ShowOptionsButton />
 
