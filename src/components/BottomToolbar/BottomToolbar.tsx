@@ -1,18 +1,28 @@
 import s from './BottomToolbar.module.css';
 import { BookmarkManager } from './ToolbarItem/BookmarkManager';
 import type { VFC } from 'react';
-import { AppPlatform, getPlatform } from '../../api/appEnvironment';
+import { OptionsButton } from './ToolbarItem/OptionsButton';
+import { useOption } from '../../api/options/hook';
+import { getSupportedRuntimeFeatures } from '../../api/applicationRuntime/features';
 
 export const BottomToolbar: VFC = () => {
-  const toolbarItems = [];
-
-  if (getPlatform() === AppPlatform.Chromium) {
-    toolbarItems.push(<BookmarkManager />);
-  }
+  const [showOptionsButton] = useOption('show_options_button');
+  const [showBookmarkManagerButton] = useOption('show_bookmark_manager_button');
 
   return (
     <footer className={s.bottomToolbar}>
-      <ul className={s.bottomToolbarItems}>{toolbarItems}</ul>
+      <ul className={s.bottomToolbarItems}>
+        {showOptionsButton === true ? (
+          <li>
+            <OptionsButton />
+          </li>
+        ) : undefined}
+        {getSupportedRuntimeFeatures().bookmarkManagerPage && showBookmarkManagerButton === true ? (
+          <li>
+            <BookmarkManager />
+          </li>
+        ) : undefined}
+      </ul>
     </footer>
   );
 };
