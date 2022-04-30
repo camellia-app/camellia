@@ -53,19 +53,18 @@
   cursor: pointer;
   font-size: 0;
   height: var(--popup-title-height);
-  transition: background-size 0.1s ease-in-out, background-color 0.1s ease-in-out;
+  opacity: 0.6;
+  transition: opacity 0.1s ease-in-out;
   width: var(--popup-title-height);
 }
 
 .popup-close-button:focus-visible {
-  background-color: var(--bookmark-background-color-hover);
-  background-size: 1rem;
   box-shadow: inset 0 0 0 var(--outline-width) var(--outline-color);
+  opacity: 1;
 }
 
 .popup-close-button:hover {
-  background-color: var(--bookmark-background-color-hover);
-  background-size: 1rem;
+  opacity: 1;
 }
 
 .bookmark-list-container {
