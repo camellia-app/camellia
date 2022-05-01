@@ -3,12 +3,12 @@ import { createRef, useEffect, useState } from 'react';
 import s from './Popup.module.css';
 import classNames from 'classnames';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
-import type { Bookmark } from '../../bookmarkManager/bookmark';
 import { useDispatch } from 'react-redux';
 import { closePopup } from '../../store/actionCreators/popup';
 import type * as CSS from 'csstype';
 import type { PopupId } from '../../store/reducers/popupReducer';
 import { PopupNestingLevelContext } from './PopupNestingLevelContext';
+import type { Bookmark } from '../../api/bookmark/common';
 
 export type ClickPosition = {
   x: number;

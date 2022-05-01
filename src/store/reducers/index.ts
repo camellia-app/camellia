@@ -1,10 +1,8 @@
-import { bookmarkReducer } from './bookmarkReducer';
 import { combineReducers } from 'redux';
-import { bookmarkSearchReducer } from './bookmarkSearchReducer';
 import { popupReducer } from './popupReducer';
+import { bookmarkSearchReducer } from './bookmarkSearchReducer';
 
 export const rootReducer = combineReducers({
-  bookmark: bookmarkReducer,
   bookmarkSearch: bookmarkSearchReducer,
   popup: popupReducer,
 });

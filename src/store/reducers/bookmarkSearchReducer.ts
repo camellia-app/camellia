@@ -1,27 +1,33 @@
 import type { Reducer } from 'redux';
+import type { Bookmark } from '../../api/bookmark/common';
 
 export enum BookmarkSearchActionTypes {
   CLOSE_SEARCH = 'CLOSE_SEARCH',
-  OPEN_SEARCH = 'OPEN_SEARCH',
+  SEARCH = 'SEARCH',
 }
 
 export type BookmarkSearchState = {
-  initialSearchQuery: string;
-  show: boolean;
+  bookmarks: Array<Bookmark>;
+  isActive: boolean;
+  searchQuery: string;
 };
 
 export type BookmarkSearchAction =
   | {
-      payload: string;
-      type: BookmarkSearchActionTypes.OPEN_SEARCH;
+      payload: {
+        bookmarks: Array<Bookmark>;
+        searchQuery: string;
+      };
+      type: BookmarkSearchActionTypes.SEARCH;
     }
   | {
       type: BookmarkSearchActionTypes.CLOSE_SEARCH;
     };
 
 const initialState: BookmarkSearchState = {
-  initialSearchQuery: '',
-  show: false,
+  bookmarks: [],
+  searchQuery: '',
+  isActive: false,
 };
 
 export const bookmarkSearchReducer: Reducer<BookmarkSearchState, BookmarkSearchAction> = (
@@ -29,16 +35,18 @@ export const bookmarkSearchReducer: Reducer<BookmarkSearchState, BookmarkSearchA
   action,
 ) => {
   switch (action.type) {
-    case BookmarkSearchActionTypes.OPEN_SEARCH:
+    case BookmarkSearchActionTypes.SEARCH:
       return {
-        show: true,
-        initialSearchQuery: action.payload,
+        isActive: true,
+        bookmarks: action.payload.bookmarks,
+        searchQuery: action.payload.searchQuery,
       };
 
     case BookmarkSearchActionTypes.CLOSE_SEARCH:
       return {
-        show: false,
-        initialSearchQuery: '',
+        isActive: false,
+        bookmarks: [],
+        searchQuery: '',
       };
 
     default:

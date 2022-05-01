@@ -3,10 +3,10 @@ import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
 import { useDispatch } from 'react-redux';
 import { togglePopup } from '../../store/actionCreators/popup';
-import type { Folder } from '../../bookmarkManager/bookmark';
 import { createRef, useContext, useEffect } from 'react';
-import { getBookmarkManager } from '../../bookmarkManager';
 import { PopupNestingLevelContext } from '../Popup/PopupNestingLevelContext';
+import { getFolderChildrenBookmarks } from '../../api/bookmark';
+import type { Folder } from '../../api/bookmark/common';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconFolder = require('mdi/filled/folder.svg?fill=%23eee');
@@ -24,14 +24,12 @@ export const BookmarkFolder: VFC<{
       y: event.pageY,
     };
 
-    const bookmarkManager = getBookmarkManager();
-
     dispatch(
       togglePopup({
         clickPosition: clickPosition,
-        id: `bookmark-folder-${props.bookmark.idLocal}`,
+        id: `bookmark-folder-${props.bookmark.id}`,
         title: props.bookmark.title,
-        bookmarks: await bookmarkManager.getFolderChildren(props.bookmark.idLocal),
+        bookmarks: await getFolderChildrenBookmarks(props.bookmark.id),
         nestingLevel: nestingLevelContext,
       }),
     );

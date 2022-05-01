@@ -1,9 +1,9 @@
-import type { Bookmark } from '../../bookmarkManager/bookmark';
 import { BookmarkFolder } from '../Bookmark/BookmarkFolder';
 import { BookmarkLink } from '../Bookmark/BookmarkLink';
 import s from './BookmarkList.module.css';
 import type { VFC } from 'react';
 import classNames from 'classnames';
+import type { Bookmark } from '../../api/bookmark/common';
 
 export const BookmarkList: VFC<{
   bookmarks: Array<Bookmark>;
@@ -23,14 +23,14 @@ export const BookmarkList: VFC<{
         case 'link':
           return (
             <li className={s.bookmarkListItem}>
-              <BookmarkLink bookmark={item} focus={enableAutoFocus} key={item.idLocal} />
+              <BookmarkLink bookmark={item} focus={enableAutoFocus} key={item.id} />
             </li>
           );
 
         case 'folder':
           return (
             <li className={s.bookmarkListItem}>
-              <BookmarkFolder bookmark={item} focus={enableAutoFocus} key={item.idLocal} />
+              <BookmarkFolder bookmark={item} focus={enableAutoFocus} key={item.id} />
             </li>
           );
       }

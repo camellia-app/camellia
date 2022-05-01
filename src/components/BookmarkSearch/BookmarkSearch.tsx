@@ -2,9 +2,8 @@ import type { ChangeEventHandler, FormEventHandler, VFC } from 'react';
 import { useEffect } from 'react';
 import s from './BookmarkSearch.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBookmarks, searchBookmarks } from '../../store/actionCreators/bookmark';
 import type { RootState } from '../../store/reducers';
-import { closeSearch, openSearch } from '../../store/actionCreators/bookmarkSearch';
+import { closeSearch, search } from '../../store/actionCreators/bookmarkSearch';
 import type { BookmarkSearchState } from '../../store/reducers/bookmarkSearchReducer';
 
 export const BookmarkSearch: VFC = () => {
@@ -14,7 +13,7 @@ export const BookmarkSearch: VFC = () => {
 
   useEffect(() => {
     const characterKeyPressHandler = (event: KeyboardEvent): void => {
-      if (bookmarkSearchState.show) {
+      if (bookmarkSearchState.isActive) {
         return;
       }
 
@@ -26,7 +25,7 @@ export const BookmarkSearch: VFC = () => {
         return;
       }
 
-      dispatch(openSearch(event.key));
+      dispatch(search(event.key));
     };
 
     const searchHotKeyPressHandler = (event: KeyboardEvent): void => {
@@ -35,13 +34,12 @@ export const BookmarkSearch: VFC = () => {
       if ((isCtrlPressed && event.key === 'f') || (isCtrlPressed && event.key === 'g')) {
         event.preventDefault();
 
-        dispatch(openSearch(''));
+        dispatch(search(''));
       }
     };
 
     const escapePressHandler = (event: KeyboardEvent): void => {
-      if (event.key === 'Escape' && bookmarkSearchState.show) {
-        dispatch(fetchBookmarks());
+      if (event.key === 'Escape' && bookmarkSearchState.isActive) {
         dispatch(closeSearch());
       }
     };
@@ -55,22 +53,21 @@ export const BookmarkSearch: VFC = () => {
       document.removeEventListener('keydown', searchHotKeyPressHandler);
       document.removeEventListener('keydown', escapePressHandler);
     };
-  }, [bookmarkSearchState.show, dispatch]);
+  }, [bookmarkSearchState.isActive, dispatch]);
 
   const formSubmitHandler: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
   };
 
   const formResetHandler: FormEventHandler<HTMLFormElement> = () => {
-    dispatch(fetchBookmarks());
     dispatch(closeSearch());
   };
 
   const fieldInputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
-    dispatch(searchBookmarks(event.currentTarget.value));
+    dispatch(search(event.currentTarget.value));
   };
 
-  if (!bookmarkSearchState.show) {
+  if (!bookmarkSearchState.isActive) {
     return null;
   }
 
@@ -79,6 +76,7 @@ export const BookmarkSearch: VFC = () => {
       <input
         autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
         className={s.bookmarkSearchField}
+        defaultValue={bookmarkSearchState.searchQuery}
         onChange={fieldInputHandler}
         placeholder="Start typing to search bookmarks..."
         type="search"

@@ -2,8 +2,8 @@ import type { VFC, MouseEventHandler } from 'react';
 import { createRef, useEffect, useState } from 'react';
 import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
-import type { Link } from '../../bookmarkManager/bookmark';
 import { getFaviconProcessor } from '../../faviconProcessor';
+import type { Link } from '../../api/bookmark/common';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconPublic = require('mdi/filled/public.svg?fill=%23eee');

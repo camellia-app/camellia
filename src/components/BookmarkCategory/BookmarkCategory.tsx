@@ -1,7 +1,7 @@
-import type { Bookmark } from '../../bookmarkManager/bookmark';
 import { BookmarkList } from '../BookmarkList/BookmarkList';
 import s from './BookmarkCategory.module.css';
 import type { VFC } from 'react';
+import type { Bookmark } from '../../api/bookmark/common';
 
 export const BookmarkCategory: VFC<{
   bookmarks: Array<Bookmark>;

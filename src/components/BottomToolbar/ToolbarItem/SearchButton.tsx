@@ -1,7 +1,7 @@
 import type { MouseEventHandler, VFC } from 'react';
 import bookmarkStyles from '../../Bookmark/Bookmark.module.css';
 import { Chip, ChipShape } from '../../Chip/Chip';
-import { openSearch } from '../../../store/actionCreators/bookmarkSearch';
+import { search } from '../../../store/actionCreators/bookmarkSearch';
 import { useDispatch } from 'react-redux';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -16,7 +16,7 @@ export const SearchButton: VFC = () => {
   const handleClick: MouseEventHandler<HTMLElement> = (event): void => {
     event.preventDefault();
 
-    dispatch(openSearch(''));
+    dispatch(search(''));
   };
 
   return (

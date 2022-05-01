@@ -1,5 +1,5 @@
 import type { Reducer } from 'redux';
-import type { Bookmark } from '../../bookmarkManager/bookmark';
+import type { Bookmark } from '../../api/bookmark/common';
 
 export enum PopupActionTypes {
   CLOSE_ALL_POPUPS = 'CLOSE_ALL_POPUPS',

@@ -1,25 +1,56 @@
 import type { VFC } from 'react';
-import { useSelector } from 'react-redux';
-import type { RootState } from '../../store/reducers';
-import type { BookmarkState } from '../../store/reducers/bookmarkReducer';
 import s from './BookmarkWorkspace.module.css';
 import { BookmarkSearch } from '../BookmarkSearch/BookmarkSearch';
-import { BookmarkBrowser } from '../BookmarkBrowser/BookmarkBrowser';
 import { PopupManager } from '../Popup/PopupManager';
 import classNames from 'classnames';
+import { useBookmarksBarChildren, useOtherBookmarksChildren } from '../../api/bookmark/hook';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../store/reducers';
+import type { BookmarkSearchState } from '../../store/reducers/bookmarkSearchReducer';
+import type { Bookmark } from '../../api/bookmark/common';
+import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
 
 export const BookmarkWorkspace: VFC = () => {
-  const bookmarkState = useSelector<RootState, BookmarkState>((state) => state.bookmark);
+  const bookmarkSearchState = useSelector<RootState, BookmarkSearchState>((state) => state.bookmarkSearch);
+
+  const [bookmarksBarChildren] = useBookmarksBarChildren();
+  const [otherBookmarksChildren] = useOtherBookmarksChildren();
 
   const mainClasses = classNames(s.bookmarkWorkspace, {
-    [s.loading]: !bookmarkState.loaded,
+    [s.bookmarkWorkspaceLoading]: bookmarksBarChildren === undefined || otherBookmarksChildren === undefined,
   });
 
+  const bookmarkCategories: Array<{ bookmarks: Array<Bookmark>; title: string }> = [];
+
+  if (bookmarkSearchState.isActive) {
+    bookmarkCategories.push({
+      title: 'Search results',
+      bookmarks: bookmarkSearchState.bookmarks,
+    });
+  } else {
+    if (bookmarksBarChildren !== undefined && bookmarksBarChildren.length > 0) {
+      bookmarkCategories.push({
+        title: 'Bookmarks bar',
+        bookmarks: bookmarksBarChildren,
+      });
+    }
+
+    if (otherBookmarksChildren !== undefined && otherBookmarksChildren.length > 0) {
+      bookmarkCategories.push({
+        title: 'Other bookmarks',
+        bookmarks: otherBookmarksChildren,
+      });
+    }
+  }
+
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
     <main className={mainClasses}>
       <BookmarkSearch />
-      <BookmarkBrowser />
+      {bookmarkCategories.map((bookmarkCategory, index) => {
+        return (
+          <BookmarkCategory bookmarks={bookmarkCategory.bookmarks} categoryTitle={bookmarkCategory.title} key={index} />
+        );
+      })}
       <PopupManager />
     </main>
   );
