@@ -17,4 +17,8 @@ declare module 'csstype' {
     '--screen-height': string;
     '--screen-width': string;
   };
+
+  type BackgroundMediaFullScreenContainerBrightness = {
+    '--background-brightness': number;
+  };
 }

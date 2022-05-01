@@ -1,6 +1,7 @@
 .background-media-full-screen-container {
+  --background-brightness: 0.75;
   height: 100%;
-  opacity: 0.75;
+  opacity: var(--background-brightness);
   position: fixed;
   top: 0;
   width: 100%;

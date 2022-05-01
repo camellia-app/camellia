@@ -1,8 +1,6 @@
 import type { ImageBrightnessDetector } from './common';
 
 export const calculateImageBrightness: ImageBrightnessDetector = async (image: HTMLImageElement): Promise<number> => {
-  let colorSum = 0;
-
   const canvas = document.createElement('canvas');
   canvas.width = image.width;
   canvas.height = image.height;
@@ -20,19 +18,19 @@ export const calculateImageBrightness: ImageBrightnessDetector = async (image: H
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const data = imageData.data;
 
-  let r = 0;
-  let g = 0;
-  let b = 0;
-  let avg = 0;
+  let colorSum = 0;
 
-  for (let x = 0, len = data.length; x < len; x += 4) {
-    r = data[x] ?? 0;
-    g = data[x + 1] ?? 0;
-    b = data[x + 2] ?? 0;
+  for (let x = 0; x < data.length; x += 4) {
+    const r = data[x] ?? 0;
+    const g = data[x + 1] ?? 0;
+    const b = data[x + 2] ?? 0;
 
-    avg = Math.floor((r + g + b) / 3);
+    const avg = Math.floor((r + g + b) / 3);
+
     colorSum += avg;
   }
 
-  return Math.floor(colorSum / (image.width * image.height));
+  const brightness = Math.floor(colorSum / (image.width * image.height));
+
+  return brightness / 255;
 };
