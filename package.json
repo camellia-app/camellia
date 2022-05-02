@@ -12,7 +12,7 @@
     "node": ">=16"
   },
   "dependencies": {
-    "@material-design-icons/svg": "0.10.8",
+    "@material-design-icons/svg": "0.10.9",
     "@sentry/react": "6.19.6",
     "@sentry/tracing": "6.19.6",
     "@sentry/webpack-plugin": "1.18.8",
