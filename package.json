@@ -17,7 +17,7 @@
     "@sentry/tracing": "6.19.6",
     "@sentry/webpack-plugin": "1.18.8",
     "@teamsupercell/typings-for-css-modules-loader": "2.5.1",
-    "@types/chrome": "0.0.180",
+    "@types/chrome": "0.0.183",
     "@types/firefox-webext-browser": "94.0.1",
     "@types/lodash.debounce": "4.0.6",
     "@types/react": "18.0.8",
