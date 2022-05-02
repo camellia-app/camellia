@@ -1,11 +1,11 @@
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import { useOption } from '../../../api/options/hook';
 import { useEffect, useState } from 'react';
 import { LabeledTextField } from '../TextField/LabeledTextField';
 import debounce from 'lodash.debounce';
 import type { StringOptionKey } from '../../../api/options/options';
 
-export const OptionTextField: VFC<{
+export const OptionTextField: FC<{
   description: string;
   label: string;
   optionKey: StringOptionKey;

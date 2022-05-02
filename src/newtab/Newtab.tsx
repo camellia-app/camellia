@@ -1,6 +1,6 @@
 import { BackgroundMedia } from '../components/BackgroundMedia/BackgroundMedia';
 import { BottomToolbar } from '../components/BottomToolbar/BottomToolbar';
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import { Provider } from 'react-redux';
 import { store } from '../store';
 import { BookmarkWorkspace } from '../components/BookmarkWorkspace/BookmarkWorkspace';
@@ -9,7 +9,7 @@ import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
 import s from './Newtab.module.css';
 
-export const Newtab: VFC = () => {
+export const Newtab: FC = () => {
   return (
     <StrictMode>
       <div className={s.newtabWrapper}>

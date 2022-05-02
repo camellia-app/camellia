@@ -1,4 +1,4 @@
-import type { ReactEventHandler, VFC } from 'react';
+import type { ReactEventHandler, FC } from 'react';
 import s from './Chip.module.css';
 import type { Favicon } from '../../faviconProcessor/favicon';
 import { useState } from 'react';
@@ -9,7 +9,7 @@ export enum ChipShape {
   Squared,
 }
 
-export const Chip: VFC<
+export const Chip: FC<
   {
     label: string;
     loading: boolean;

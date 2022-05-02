@@ -1,8 +1,8 @@
 import s from './ActionButton.module.css';
-import type { VFC, ButtonHTMLAttributes, MouseEventHandler } from 'react';
+import type { FC, ButtonHTMLAttributes, MouseEventHandler } from 'react';
 import classNames from 'classnames';
 
-export const ActionButton: VFC<{
+export const ActionButton: FC<{
   buttonHtmlType: NonNullable<ButtonHTMLAttributes<HTMLButtonElement>['type']>;
   clickHandler?: (() => void) | undefined;
   disabled: boolean;

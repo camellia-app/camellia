@@ -1,4 +1,4 @@
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import { useEffect } from 'react';
 import { Popup } from './Popup';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +8,7 @@ import bookmarkClasses from '../Bookmark/Bookmark.module.css';
 import popupClasses from './Popup.module.css';
 import { closeAllPopups, closeLastPopup } from '../../store/actionCreators/popup';
 
-export const PopupManager: VFC = () => {
+export const PopupManager: FC = () => {
   const popupsState = useSelector<RootState, PopupState>((state) => state.popup);
 
   const dispatch = useDispatch();

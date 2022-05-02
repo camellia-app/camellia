@@ -1,9 +1,9 @@
 import s from './LabeledActionButton.module.css';
-import type { VFC, ButtonHTMLAttributes } from 'react';
+import type { FC, ButtonHTMLAttributes } from 'react';
 import { ActionButton } from './ActionButton';
 import { Paragraph } from '../Paragraph/Paragraph';
 
-export const LabeledActionButton: VFC<{
+export const LabeledActionButton: FC<{
   buttonHtmlType: NonNullable<ButtonHTMLAttributes<HTMLButtonElement>['type']>;
   clickHandler?: (() => void) | undefined;
   description: string;

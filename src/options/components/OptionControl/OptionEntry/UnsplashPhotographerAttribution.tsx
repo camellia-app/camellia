@@ -1,11 +1,11 @@
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import { OptionCheckbox } from '../OptionCheckbox';
 import { useOption } from '../../../../api/options/hook';
 import { BackgroundProviderType } from '../../../../api/options/options';
 import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
 
-export const UnsplashPhotographerAttribution: VFC = () => {
+export const UnsplashPhotographerAttribution: FC = () => {
   const [backgroundImageSourceType] = useOption('background_provider_type');
 
   if (backgroundImageSourceType !== BackgroundProviderType.UnsplashCollection) {

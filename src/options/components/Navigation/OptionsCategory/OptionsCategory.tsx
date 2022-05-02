@@ -1,9 +1,9 @@
 import s from './OptionsCategory.module.css';
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import type CSS from 'csstype';
 import type { Icon } from '../../../../icons';
 
-export const OptionsCategory: VFC<{
+export const OptionsCategory: FC<{
   icon: Icon;
   id: string;
   isActive: boolean;

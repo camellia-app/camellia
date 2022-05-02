@@ -1,4 +1,4 @@
-import type { MouseEventHandler, VFC } from 'react';
+import type { MouseEventHandler, FC } from 'react';
 import { createRef, useEffect, useState } from 'react';
 import s from './Popup.module.css';
 import classNames from 'classnames';
@@ -74,7 +74,7 @@ const calculatePopupPlacement = (
   };
 };
 
-export const Popup: VFC<{
+export const Popup: FC<{
   bookmarks: Array<Bookmark>;
   clickPosition: ClickPosition;
   id: PopupId;

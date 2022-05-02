@@ -1,10 +1,10 @@
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
 import { OptionDropdownSelect } from '../OptionDropdownSelect';
 import { ContentLayoutType } from '../../../../api/options/options';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
 
-export const ContentLayout: VFC = () => {
+export const ContentLayout: FC = () => {
   return (
     <CategorizedOption categories={[categoriesMap.bookmarks]}>
       <OptionDropdownSelect

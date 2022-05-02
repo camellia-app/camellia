@@ -1,9 +1,9 @@
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import { OptionCheckbox } from '../OptionCheckbox';
 import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
 
-export const ShowBookmarkManagerButton: VFC = () => {
+export const ShowBookmarkManagerButton: FC = () => {
   return (
     <CategorizedOption categories={[categoriesMap.bottomToolbar]}>
       <OptionCheckbox

@@ -1,4 +1,4 @@
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import { useState, StrictMode } from 'react';
 import s from './Options.module.css';
 import { OptionsSearchForm } from './components/Navigation/OptionsSearchForm/OptionsSearchForm';
@@ -21,7 +21,7 @@ import { BookmarkList } from '../components/BookmarkList/BookmarkList';
 import { getSupportedRuntimeFeatures } from '../api/applicationRuntime/features';
 import { ShowSearchButton } from './components/OptionControl/OptionEntry/ShowSearchButton';
 
-export const Options: VFC = () => {
+export const Options: FC = () => {
   const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);
 
   return (

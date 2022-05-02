@@ -1,11 +1,11 @@
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import { LabeledActionButton } from '../../ActionButton/LabeledActionButton';
 import { useAppEnvironment } from '../../../../api/appEnvironment/hook';
 import { getPlatform } from '../../../../api/appEnvironment';
 import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
 
-export const CopyDebugInformation: VFC = () => {
+export const CopyDebugInformation: FC = () => {
   const appEnvironmentInfo = useAppEnvironment();
 
   return (

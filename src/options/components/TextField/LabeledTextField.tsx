@@ -1,9 +1,9 @@
 import s from './LabeledTextField.module.css';
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import { TextField } from './TextField';
 import { Paragraph } from '../Paragraph/Paragraph';
 
-export const LabeledTextField: VFC<{
+export const LabeledTextField: FC<{
   changeHandler?: ((newValue: string) => void) | undefined;
   description: string;
   disabled: boolean;

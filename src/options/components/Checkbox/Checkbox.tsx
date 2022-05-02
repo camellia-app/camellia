@@ -1,8 +1,8 @@
 import s from './Checkbox.module.css';
-import type { ChangeEventHandler, VFC } from 'react';
+import type { ChangeEventHandler, FC } from 'react';
 import classNames from 'classnames';
 
-export const Checkbox: VFC<{
+export const Checkbox: FC<{
   changeHandler?: ((newValue: boolean) => void) | undefined;
   disabled: boolean;
   label: string;

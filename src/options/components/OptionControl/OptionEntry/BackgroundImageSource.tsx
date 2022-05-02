@@ -1,4 +1,4 @@
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import { OptionDropdownSelect } from '../OptionDropdownSelect';
 import { OptionTextField } from '../OptionTextField';
 import { BackgroundPreview } from '../../BackgroundPreview/BackgroundPreview';
@@ -7,7 +7,7 @@ import { BackgroundProviderType } from '../../../../api/options/options';
 import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
 
-export const BackgroundImageSource: VFC = () => {
+export const BackgroundImageSource: FC = () => {
   const [backgroundImageSourceType] = useOption('background_provider_type');
 
   return (

@@ -1,9 +1,9 @@
 import s from './LabeledCheckbox.module.css';
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import { Checkbox } from './Checkbox';
 import { Paragraph } from '../Paragraph/Paragraph';
 
-export const LabeledCheckbox: VFC<{
+export const LabeledCheckbox: FC<{
   changeHandler?: ((newValue: boolean) => void) | undefined;
   description: string;
   disabled: boolean;

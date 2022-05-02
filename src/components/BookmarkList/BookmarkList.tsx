@@ -1,11 +1,11 @@
 import { BookmarkFolder } from '../Bookmark/BookmarkFolder';
 import { BookmarkLink } from '../Bookmark/BookmarkLink';
 import s from './BookmarkList.module.css';
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import classNames from 'classnames';
 import type { Bookmark } from '../../api/bookmark/common';
 
-export const BookmarkList: VFC<{
+export const BookmarkList: FC<{
   bookmarks: Array<Bookmark>;
   focusFirstBookmark: boolean;
   type: 'columns' | 'inline';

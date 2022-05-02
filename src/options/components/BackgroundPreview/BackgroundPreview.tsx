@@ -1,9 +1,9 @@
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import type CSS from 'csstype';
 import s from './BackgroundPreview.module.css';
 import { BackgroundMedia } from '../../../components/BackgroundMedia/BackgroundMedia';
 
-export const BackgroundPreview: VFC = () => {
+export const BackgroundPreview: FC = () => {
   const screenWidth = window.screen.width;
   const screenHeight = window.screen.height;
 

@@ -1,11 +1,11 @@
 import { useOption } from '../../../api/options/hook';
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { LabeledDropdownSelect } from '../DropdownSelect/LabeledDropdownSelect';
 import type { SelectOption, SelectOptionGroup } from '../DropdownSelect/DropdownSelect';
 import type { EnumOptionKey, OptionsTypeMap } from '../../../api/options/options';
 
-export const OptionDropdownSelect: VFC<{
+export const OptionDropdownSelect: FC<{
   description: string;
   dropdownOptions: Array<
     SelectOption<OptionsTypeMap[EnumOptionKey]> | SelectOptionGroup<OptionsTypeMap[EnumOptionKey]>

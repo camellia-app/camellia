@@ -1,9 +1,9 @@
 import s from './AboutApp.module.css';
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import { useAppEnvironment } from '../../../api/appEnvironment/hook';
 import { Paragraph } from '../Paragraph/Paragraph';
 
-export const AboutApp: VFC = () => {
+export const AboutApp: FC = () => {
   const appEnvironment = useAppEnvironment();
 
   if (appEnvironment === undefined) {

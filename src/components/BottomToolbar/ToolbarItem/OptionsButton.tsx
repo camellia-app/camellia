@@ -1,4 +1,4 @@
-import type { MouseEventHandler, VFC } from 'react';
+import type { MouseEventHandler, FC } from 'react';
 import bookmarkStyles from '../../Bookmark/Bookmark.module.css';
 import { Chip, ChipShape } from '../../Chip/Chip';
 import { openOptionsPage } from '../../../api/applicationRuntime/navigation';
@@ -12,7 +12,7 @@ const handleClick: MouseEventHandler<HTMLElement> = (event): void => {
   openOptionsPage();
 };
 
-export const OptionsButton: VFC = () => {
+export const OptionsButton: FC = () => {
   const label = 'Options';
 
   return (

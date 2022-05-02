@@ -1,12 +1,12 @@
 import s from './BottomToolbar.module.css';
 import { BookmarkManager } from './ToolbarItem/BookmarkManager';
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import { OptionsButton } from './ToolbarItem/OptionsButton';
 import { useOption } from '../../api/options/hook';
 import { getSupportedRuntimeFeatures } from '../../api/applicationRuntime/features';
 import { SearchButton } from './ToolbarItem/SearchButton';
 
-export const BottomToolbar: VFC = () => {
+export const BottomToolbar: FC = () => {
   const [showOptionsButton] = useOption('show_options_button');
   const [showBookmarkManagerButton] = useOption('show_bookmark_manager_button');
   const [showSearchButton] = useOption('show_search_button');

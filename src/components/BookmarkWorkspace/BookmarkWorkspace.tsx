@@ -1,4 +1,4 @@
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import s from './BookmarkWorkspace.module.css';
 import { BookmarkSearch } from '../BookmarkSearch/BookmarkSearch';
 import { PopupManager } from '../Popup/PopupManager';
@@ -10,7 +10,7 @@ import type { BookmarkSearchState } from '../../store/reducers/bookmarkSearchRed
 import type { Bookmark } from '../../api/bookmark/common';
 import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
 
-export const BookmarkWorkspace: VFC = () => {
+export const BookmarkWorkspace: FC = () => {
   const bookmarkSearchState = useSelector<RootState, BookmarkSearchState>((state) => state.bookmarkSearch);
 
   const [bookmarksBarChildren] = useBookmarksBarChildren();

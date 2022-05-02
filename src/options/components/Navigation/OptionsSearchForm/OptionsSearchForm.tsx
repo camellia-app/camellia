@@ -1,10 +1,10 @@
 import s from './OptionsSearchForm.module.css';
-import type { VFC } from 'react';
+import type { FC } from 'react';
 import { OptionsCategory } from '../OptionsCategory/OptionsCategory';
 import { allCategories } from '../OptionsCategory/OptionsCategories';
 import { Icon } from '../../../../icons';
 
-export const OptionsSearchForm: VFC<{
+export const OptionsSearchForm: FC<{
   activeCategory: string | undefined;
   onCategoryChange: (id: string) => void;
   onCategoryReset: () => void;

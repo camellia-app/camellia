@@ -1,4 +1,4 @@
-import type { ReactElement, VFC } from 'react';
+import type { ReactElement, FC } from 'react';
 import { useEffect, useState } from 'react';
 import s from './BackgroundMedia.module.css';
 import { useOption } from '../../api/options/hook';
@@ -7,7 +7,7 @@ import { BackgroundImageByUrl } from './providers/BackgroundImageByUrl';
 import { BackgroundProviderType } from '../../api/options/options';
 import classNames from 'classnames';
 
-export const BackgroundMedia: VFC = () => {
+export const BackgroundMedia: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [backgroundProviderType] = useOption('background_provider_type');
   const [backgroundImageLink] = useOption('background_image_link');

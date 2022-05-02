@@ -1,4 +1,4 @@
-import type { ReactEventHandler, VFC } from 'react';
+import type { ReactEventHandler, FC } from 'react';
 import s from './BackgroundImageByUrl.module.css';
 
 type ImageDimensions = {
@@ -6,7 +6,7 @@ type ImageDimensions = {
   width: number;
 };
 
-export const BackgroundImageByUrl: VFC<{
+export const BackgroundImageByUrl: FC<{
   dimensions?: ImageDimensions;
   onLoad: () => void;
   url: string;

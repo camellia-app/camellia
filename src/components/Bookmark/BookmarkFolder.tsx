@@ -1,4 +1,4 @@
-import type { MouseEventHandler, VFC } from 'react';
+import type { MouseEventHandler, FC } from 'react';
 import { Chip, ChipShape } from '../Chip/Chip';
 import s from './Bookmark.module.css';
 import { useDispatch } from 'react-redux';
@@ -11,7 +11,7 @@ import type { Folder } from '../../api/bookmark/common';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconFolder = require('mdi/filled/folder.svg?fill=%23eee');
 
-export const BookmarkFolder: VFC<{
+export const BookmarkFolder: FC<{
   bookmark: Folder;
   focus: boolean;
 }> = (props) => {
