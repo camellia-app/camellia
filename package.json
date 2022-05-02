@@ -63,7 +63,7 @@
     "eslint-plugin-typescript-sort-keys": "2.1.0",
     "eslint-plugin-unused-imports": "2.0.0",
     "prettier": "2.6.2",
-    "stylelint": "14.6.1",
+    "stylelint": "14.8.1",
     "stylelint-config-recommended": "7.0.0",
     "stylelint-order": "5.0.0"
   }
