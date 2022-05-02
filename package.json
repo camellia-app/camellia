@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@material-design-icons/svg": "0.10.9",
-    "@sentry/react": "6.19.6",
+    "@sentry/react": "6.19.7",
     "@sentry/tracing": "6.19.6",
     "@sentry/webpack-plugin": "1.18.8",
     "@teamsupercell/typings-for-css-modules-loader": "2.5.1",
