@@ -2,11 +2,11 @@ import type { FC } from 'react';
 import { useEffect } from 'react';
 import { Popup } from './Popup';
 import { useDispatch, useSelector } from 'react-redux';
-import type { RootState } from '../../store/reducers';
-import type { PopupState } from '../../store/reducers/popupReducer';
 import bookmarkClasses from '../Bookmark/Bookmark.module.css';
 import popupClasses from './Popup.module.css';
-import { closeAllPopups, closeLastPopup } from '../../store/actionCreators/popup';
+import type { PopupState } from '../../store/slice/popupSlice';
+import { popupSlice } from '../../store/slice/popupSlice';
+import type { RootState } from '../../store';
 
 export const PopupManager: FC = () => {
   const popupsState = useSelector<RootState, PopupState>((state) => state.popup);
@@ -30,18 +30,18 @@ export const PopupManager: FC = () => {
         return;
       }
 
-      dispatch(closeAllPopups());
+      dispatch(popupSlice.actions.closeAllPopups());
     };
 
     const popupEscapeKeyPressHandler = (event: KeyboardEvent): void => {
       if (event.key === 'Escape' && popupsState.popupsStack.length > 0) {
-        dispatch(closeLastPopup());
+        dispatch(popupSlice.actions.closeLastPopup());
       }
     };
 
     const screenResizeHandler = (): void => {
       if (popupsState.popupsStack.length > 0) {
-        dispatch(closeAllPopups());
+        dispatch(popupSlice.actions.closeAllPopups());
       }
     };
 

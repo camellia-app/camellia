@@ -2,14 +2,14 @@ import type { ChangeEventHandler, FormEventHandler, FC } from 'react';
 import { useEffect } from 'react';
 import s from './BookmarkSearch.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import type { RootState } from '../../store/reducers';
-import { closeSearch, search } from '../../store/actionCreators/bookmarkSearch';
-import type { BookmarkSearchState } from '../../store/reducers/bookmarkSearchReducer';
+import type { BookmarkSearchState } from '../../store/slice/bookmarkSearchSlice';
+import { bookmarkSearchSlice, searchBookmarksThunk } from '../../store/slice/bookmarkSearchSlice';
+import type { AppDispatch, RootState } from '../../store';
 
 export const BookmarkSearch: FC = () => {
   const bookmarkSearchState = useSelector<RootState, BookmarkSearchState>((state) => state.bookmarkSearch);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     const characterKeyPressHandler = (event: KeyboardEvent): void => {
@@ -25,7 +25,7 @@ export const BookmarkSearch: FC = () => {
         return;
       }
 
-      dispatch(search(event.key));
+      dispatch(searchBookmarksThunk(event.key));
     };
 
     const searchHotKeyPressHandler = (event: KeyboardEvent): void => {
@@ -34,13 +34,13 @@ export const BookmarkSearch: FC = () => {
       if ((isCtrlPressed && event.key === 'f') || (isCtrlPressed && event.key === 'g')) {
         event.preventDefault();
 
-        dispatch(search(''));
+        dispatch(searchBookmarksThunk(''));
       }
     };
 
     const escapePressHandler = (event: KeyboardEvent): void => {
       if (event.key === 'Escape' && bookmarkSearchState.isActive) {
-        dispatch(closeSearch());
+        dispatch(bookmarkSearchSlice.actions.closeSearch());
       }
     };
 
@@ -60,11 +60,11 @@ export const BookmarkSearch: FC = () => {
   };
 
   const formResetHandler: FormEventHandler<HTMLFormElement> = () => {
-    dispatch(closeSearch());
+    dispatch(bookmarkSearchSlice.actions.closeSearch());
   };
 
   const fieldInputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
-    dispatch(search(event.currentTarget.value));
+    dispatch(searchBookmarksThunk(event.currentTarget.value));
   };
 
   if (!bookmarkSearchState.isActive) {

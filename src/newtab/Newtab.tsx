@@ -2,12 +2,12 @@ import { BackgroundMedia } from '../components/BackgroundMedia/BackgroundMedia';
 import { BottomToolbar } from '../components/BottomToolbar/BottomToolbar';
 import type { FC } from 'react';
 import { Provider } from 'react-redux';
-import { store } from '../store';
 import { BookmarkWorkspace } from '../components/BookmarkWorkspace/BookmarkWorkspace';
 import { BackgroundMediaFullScreenContainer } from '../components/BackgroundMedia/BackgroundMediaFullScreenContainer';
 import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
 import s from './Newtab.module.css';
+import { store } from '../store';
 
 export const Newtab: FC = () => {
   return (

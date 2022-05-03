@@ -5,10 +5,10 @@ import { PopupManager } from '../Popup/PopupManager';
 import classNames from 'classnames';
 import { useBookmarksBarChildren, useOtherBookmarksChildren } from '../../api/bookmark/hook';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../../store/reducers';
-import type { BookmarkSearchState } from '../../store/reducers/bookmarkSearchReducer';
 import type { Bookmark } from '../../api/bookmark/common';
 import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
+import type { RootState } from '../../store';
+import type { BookmarkSearchState } from '../../store/slice/bookmarkSearchSlice';
 
 export const BookmarkWorkspace: FC = () => {
   const bookmarkSearchState = useSelector<RootState, BookmarkSearchState>((state) => state.bookmarkSearch);
