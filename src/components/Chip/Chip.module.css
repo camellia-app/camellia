@@ -1,18 +1,21 @@
 @import '../variables.css';
 
 .chip {
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.chip__body {
   align-items: flex-start;
   background-color: var(--bookmark-background-color);
   color: var(--bookmark-text-color);
-  cursor: pointer;
   display: flex;
   max-width: 100%;
   text-shadow: rgba(33, 33, 33, 1) 0 0 3px;
-  touch-action: manipulation;
   transition: background-color 0.2s, transform 0.2s;
 }
 
-.chip.loading {
+.chip__body--loading {
   animation: backgroundStripAnimation 1s linear infinite reverse;
   background-image: repeating-linear-gradient(
     135deg,
@@ -34,24 +37,24 @@
   }
 }
 
-.chip.chip--rounded {
+.chip__body--rounded {
   border-radius: var(--chip-rounded-border-radius);
 }
 
-.chip.chip--squared {
+.chip__body--squared {
   border-radius: var(--chip-squared-border-radius);
 }
 
-.chip:hover {
+.chip__body:hover {
   background-color: var(--bookmark-background-color-hover);
   transform: translateY(-1px);
 }
 
-:focus-visible .chip {
+.chip:focus-visible .chip__body {
   box-shadow: inset 0 0 0 var(--outline-width) var(--outline-color);
 }
 
-.chip-label {
+.chip__label {
   font-family: var(--font-family-sans-serif);
   font-size: var(--text-size-regular);
   line-height: 32px;
@@ -61,7 +64,7 @@
   white-space: nowrap;
 }
 
-.chip-icon {
+.chip__icon {
   display: inline-block;
   flex-grow: 0;
   flex-shrink: 0;

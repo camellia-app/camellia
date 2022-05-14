@@ -1,6 +1,5 @@
 import type { MouseEventHandler, FC } from 'react';
-import bookmarkStyles from '../../Bookmark/Bookmark.module.css';
-import { Chip, ChipShape } from '../../Chip/Chip';
+import { ChipButton, ChipShape } from '../../Chip/Chip';
 import { openOptionsPage } from '../../../api/applicationRuntime/navigation';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -16,8 +15,14 @@ export const OptionsButton: FC = () => {
   const label = 'Options';
 
   return (
-    <button className={bookmarkStyles.bookmark} onClick={handleClick}>
-      <Chip inlineIcon={iconSettings} label={label} loading={false} shape={ChipShape.Squared} tooltip={label} />
-    </button>
+    <ChipButton
+      clickAction={handleClick}
+      focus={false}
+      iconSrc={iconSettings}
+      isLoading={false}
+      label={label}
+      shape={ChipShape.Squared}
+      tooltip={label}
+    />
   );
 };

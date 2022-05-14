@@ -4,11 +4,12 @@ declare namespace ChipModuleCssNamespace {
   export interface IChipModuleCss {
     backgroundStripAnimation: string;
     chip: string;
+    chipBody: string;
+    chipBodyLoading: string;
+    chipBodyRounded: string;
+    chipBodySquared: string;
     chipIcon: string;
     chipLabel: string;
-    chipRounded: string;
-    chipSquared: string;
-    loading: string;
   }
 }
 

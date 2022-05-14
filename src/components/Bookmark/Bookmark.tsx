@@ -2,13 +2,12 @@ import type { FC, MouseEventHandler } from 'react';
 import type { Bookmark as BookmarkEntry, Folder, Link } from '../../api/bookmark/common';
 import { isLink } from '../../api/bookmark/common';
 import { useDispatch } from 'react-redux';
-import { createRef, useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { PopupNestingLevelContext } from '../Popup/PopupNestingLevelContext';
 import { popupSlice } from '../../store/slice/popupSlice';
 import { getFolderChildrenBookmarks } from '../../api/bookmark';
-import s from './Bookmark.module.css';
-import { Chip, ChipShape } from '../Chip/Chip';
 import { getFaviconProcessor } from '../../faviconProcessor';
+import { ChipButton, ChipLink, ChipShape } from '../Chip/Chip';
 
 export const Bookmark: FC<{
   bookmark: BookmarkEntry;
@@ -30,8 +29,11 @@ const BookmarkFolder: FC<{
 }> = (props) => {
   const dispatch = useDispatch();
   const nestingLevelContext = useContext(PopupNestingLevelContext);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
-  const handleFolderClick: MouseEventHandler<HTMLElement> = async (event) => {
+  const clickAction: MouseEventHandler = async (event) => {
+    setLoading(true);
+
     const clickPosition = {
       x: event.pageX,
       y: event.pageY,
@@ -49,20 +51,20 @@ const BookmarkFolder: FC<{
         nestingLevel: nestingLevelContext,
       }),
     );
+
+    setLoading(false);
   };
 
-  const buttonElementRef = createRef<HTMLButtonElement>();
-
-  useEffect(() => {
-    if (props.focus) {
-      buttonElementRef.current?.focus();
-    }
-  });
-
   return (
-    <button className={s.bookmark} onClick={handleFolderClick} ref={buttonElementRef} type="button">
-      <Chip inlineIcon={iconFolder} label={props.bookmark.title} loading={false} shape={ChipShape.Rounded} />
-    </button>
+    <ChipButton
+      clickAction={clickAction}
+      focus={props.focus}
+      iconSrc={iconFolder}
+      isLoading={isLoading}
+      label={props.bookmark.title}
+      shape={ChipShape.Rounded}
+      tooltip={props.bookmark.title}
+    />
   );
 };
 
@@ -75,42 +77,25 @@ const BookmarkLink: FC<{
 }> = (props) => {
   const [isLoading, setLoading] = useState<boolean>(false);
 
-  const handleClick: MouseEventHandler<HTMLElement> = async (): Promise<void> => {
+  const clickAction = (): void => {
     setLoading(true);
-
-    if (isLoading) {
-      return;
-    }
 
     setTimeout(() => {
       setLoading(false);
     }, 15000);
   };
 
-  const linkElementRef = createRef<HTMLAnchorElement>();
-
-  useEffect(() => {
-    if (props.focus) {
-      linkElementRef.current?.focus();
-    }
-  });
-
   return (
-    <a
-      className={s.bookmark}
-      href={props.bookmark.url}
-      onClick={handleClick}
-      ref={linkElementRef}
-      rel="noopener"
-      target="_self"
-    >
-      <Chip
-        fallbackInlineIcon={iconPublic}
-        favicon={getFaviconProcessor().generateUrl(props.bookmark.url)}
-        label={props.bookmark.title}
-        loading={isLoading}
-        shape={ChipShape.Rounded}
-      />
-    </a>
+    <ChipLink
+      clickAction={clickAction}
+      fallbackIconSrc={iconPublic}
+      focus={props.focus}
+      iconSrc={getFaviconProcessor().generateUrl(props.bookmark.url).default.url}
+      isLoading={isLoading}
+      label={props.bookmark.title}
+      shape={ChipShape.Rounded}
+      tooltip={props.bookmark.title}
+      url={props.bookmark.url}
+    />
   );
 };

@@ -1,6 +1,5 @@
 import type { MouseEventHandler, FC } from 'react';
-import bookmarkStyles from '../../Bookmark/Bookmark.module.css';
-import { Chip, ChipShape } from '../../Chip/Chip';
+import { ChipButton, ChipShape } from '../../Chip/Chip';
 import { useDispatch } from 'react-redux';
 import { searchBookmarksThunk } from '../../../store/slice/bookmarkSearchSlice';
 import type { AppDispatch } from '../../../store';
@@ -21,8 +20,14 @@ export const SearchButton: FC = () => {
   };
 
   return (
-    <button className={bookmarkStyles.bookmark} onClick={handleClick}>
-      <Chip inlineIcon={iconSearch} label={label} loading={false} shape={ChipShape.Squared} tooltip={tooltip} />
-    </button>
+    <ChipButton
+      clickAction={handleClick}
+      focus={false}
+      iconSrc={iconSearch}
+      isLoading={false}
+      label={label}
+      shape={ChipShape.Squared}
+      tooltip={tooltip}
+    />
   );
 };
