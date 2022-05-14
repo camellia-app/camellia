@@ -1,4 +1,6 @@
 .paragraph {
+  hanging-punctuation: first last;
+  hyphens: auto;
 }
 
 .paragraph a {
