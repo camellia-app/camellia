@@ -56,7 +56,6 @@
 
 .chip__label {
   font-family: var(--font-family-sans-serif);
-  font-size: var(--text-size-regular);
   line-height: 32px;
   overflow: hidden;
   padding-right: 12px;

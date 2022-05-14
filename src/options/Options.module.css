@@ -9,6 +9,7 @@
 body {
   background-color: #000;
   color: var(--options-text-color);
+  font-size: var(--text-size-regular);
 }
 
 .options-wrapper {

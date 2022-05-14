@@ -34,7 +34,6 @@
 }
 
 .popup-title {
-  font-size: var(--text-size-regular);
   line-height: var(--popup-title-height);
   overflow: hidden;
   padding-left: calc(1rem + var(--popup-title-height));
