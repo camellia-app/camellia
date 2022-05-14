@@ -1,23 +1,23 @@
 @import '../variables.css';
 
-.bookmark-list {
+.chip-list {
   padding-top: var(--chip-hover-shift);
 }
 
-.bookmark-list--columns {
+.chip-list--columns {
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(var(--bookmark-column-min-width), 1fr));
   justify-items: start;
 }
 
-.bookmark-list--inline {
+.chip-list--inline {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
 }
 
-.bookmark-list__item {
+.chip-list__item {
   max-width: 100%;
 }

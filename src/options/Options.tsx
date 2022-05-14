@@ -17,12 +17,47 @@ import { ShowOptionsButton } from './components/OptionControl/OptionEntry/ShowOp
 import { ShowBookmarkManagerButton } from './components/OptionControl/OptionEntry/ShowBookmarkManagerButton';
 import { ContentLayout } from './components/OptionControl/OptionEntry/ContentLayout';
 import { UnsplashPhotographerAttribution } from './components/OptionControl/OptionEntry/UnsplashPhotographerAttribution';
-import { BookmarkList } from '../components/BookmarkList/BookmarkList';
+import { ChipList } from '../components/ChipList/ChipList';
 import { getSupportedRuntimeFeatures } from '../api/applicationRuntime/features';
 import { ShowSearchButton } from './components/OptionControl/OptionEntry/ShowSearchButton';
+import { Bookmark } from '../components/Bookmark/Bookmark';
+import type { Bookmark as BookmarkEntry } from '../api/bookmark/common';
 
 export const Options: FC = () => {
   const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);
+
+  const links: Array<BookmarkEntry> = [
+    {
+      id: '0',
+      title: 'Source code',
+      type: 'link',
+      url: 'https://github.com/camellia-app/camellia',
+    },
+    {
+      id: '0',
+      title: 'Report a bug',
+      type: 'link',
+      url: 'https://github.com/camellia-app/camellia/issues',
+    },
+    {
+      id: '0',
+      title: 'Community forum',
+      type: 'link',
+      url: 'https://github.com/camellia-app/camellia/discussions',
+    },
+    {
+      id: '0',
+      title: 'User manual',
+      type: 'link',
+      url: 'https://github.com/camellia-app/camellia/wiki',
+    },
+    {
+      id: '0',
+      title: 'Release notes',
+      type: 'link',
+      url: 'https://github.com/camellia-app/camellia/releases',
+    },
+  ];
 
   return (
     <StrictMode>
@@ -78,40 +113,10 @@ export const Options: FC = () => {
                 <>
                   <AboutApp />
 
-                  <BookmarkList
-                    bookmarks={[
-                      {
-                        id: '0',
-                        title: 'Source code',
-                        type: 'link',
-                        url: 'https://github.com/camellia-app/camellia',
-                      },
-                      {
-                        id: '0',
-                        title: 'Report a bug',
-                        type: 'link',
-                        url: 'https://github.com/camellia-app/camellia/issues',
-                      },
-                      {
-                        id: '0',
-                        title: 'Community forum',
-                        type: 'link',
-                        url: 'https://github.com/camellia-app/camellia/discussions',
-                      },
-                      {
-                        id: '0',
-                        title: 'User manual',
-                        type: 'link',
-                        url: 'https://github.com/camellia-app/camellia/wiki',
-                      },
-                      {
-                        id: '0',
-                        title: 'Release notes',
-                        type: 'link',
-                        url: 'https://github.com/camellia-app/camellia/releases',
-                      },
-                    ]}
-                    focusFirstBookmark={false}
+                  <ChipList
+                    chips={links.map((link, index) => (
+                      <Bookmark bookmark={link} focus={false} key={index} />
+                    ))}
                     type="inline"
                   />
                 </>
