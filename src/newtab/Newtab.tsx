@@ -8,6 +8,7 @@ import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
 import s from './Newtab.module.css';
 import { store } from '../store';
+import { PopupManager } from '../components/Popup/PopupManager/PopupManager';
 
 export const Newtab: FC = () => {
   return (
@@ -16,6 +17,7 @@ export const Newtab: FC = () => {
         <Provider store={store}>
           <BookmarkWorkspace />
           <BottomToolbar />
+          <PopupManager />
           <BackgroundMediaFullScreenContainer>
             <BackgroundMedia />
           </BackgroundMediaFullScreenContainer>

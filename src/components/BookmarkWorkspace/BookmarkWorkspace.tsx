@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import s from './BookmarkWorkspace.module.css';
 import { BookmarkSearch } from '../BookmarkSearch/BookmarkSearch';
-import { PopupManager } from '../Popup/PopupManager';
 import classNames from 'classnames';
 import { useBookmarksBarChildren, useOtherBookmarksChildren } from '../../api/bookmark/hook';
 import { useSelector } from 'react-redux';
@@ -51,7 +50,6 @@ export const BookmarkWorkspace: FC = () => {
           <BookmarkCategory bookmarks={bookmarkCategory.bookmarks} categoryTitle={bookmarkCategory.title} key={index} />
         );
       })}
-      <PopupManager />
     </main>
   );
 };
