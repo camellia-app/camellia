@@ -1,6 +1,6 @@
-import type { Bookmark } from '../../api/bookmark/common';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
+import type { Bookmark } from '../../api/bookmark/common';
 
 export type PopupId = string;
 
@@ -10,8 +10,11 @@ export type ClickPosition = {
 };
 
 export type OpenedPopup = {
-  bookmarks: Array<Bookmark>;
   clickPosition: ClickPosition;
+  content: {
+    bookmarks: Array<Bookmark>;
+    type: 'bookmarkList';
+  };
   id: PopupId;
   nestingLevel: number;
   title: string;
