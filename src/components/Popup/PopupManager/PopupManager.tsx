@@ -43,14 +43,18 @@ export const PopupManager: FC = () => {
 
         switch (popupProps.content.type) {
           case 'bookmarkList':
-            popupChildren = (
-              <ChipList
-                chips={popupProps.content.bookmarks.map((bookmark, index) => (
-                  <Bookmark bookmark={bookmark} focus={index === 0} key={bookmark.id} />
-                ))}
-                type={'columns'}
-              />
-            );
+            if (popupProps.content.bookmarks.length > 0) {
+              popupChildren = (
+                <ChipList
+                  chips={popupProps.content.bookmarks.map((bookmark, index) => (
+                    <Bookmark bookmark={bookmark} focus={index === 0} key={bookmark.id} />
+                  ))}
+                  type={'columns'}
+                />
+              );
+            } else {
+              popupChildren = 'This folder is empty.';
+            }
         }
 
         return (
