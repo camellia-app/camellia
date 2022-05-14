@@ -29,11 +29,8 @@ const BookmarkFolder: FC<{
 }> = (props) => {
   const dispatch = useDispatch();
   const nestingLevelContext = useContext(PopupNestingLevelContext);
-  const [isLoading, setLoading] = useState<boolean>(false);
 
   const clickAction: MouseEventHandler = async (event) => {
-    setLoading(true);
-
     const clickPosition = {
       x: event.pageX,
       y: event.pageY,
@@ -51,8 +48,6 @@ const BookmarkFolder: FC<{
         nestingLevel: nestingLevelContext,
       }),
     );
-
-    setLoading(false);
   };
 
   return (
@@ -60,7 +55,7 @@ const BookmarkFolder: FC<{
       clickAction={clickAction}
       focus={props.focus}
       iconSrc={iconFolder}
-      isLoading={isLoading}
+      isLoading={false}
       label={props.bookmark.title}
       shape={ChipShape.Rounded}
       tooltip={props.bookmark.title}
