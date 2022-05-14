@@ -1,11 +1,9 @@
-import type { MouseEventHandler, FC } from 'react';
+import type { MouseEventHandler, FC, ReactNode, RefObject } from 'react';
 import { createRef, useEffect, useState } from 'react';
 import s from './Popup.module.css';
 import classNames from 'classnames';
-import { BookmarkList } from '../BookmarkList/BookmarkList';
 import type * as CSS from 'csstype';
 import { PopupNestingLevelContext } from './PopupNestingLevelContext';
-import type { Bookmark } from '../../api/bookmark/common';
 import type { PopupId } from '../../store/slice/popupSlice';
 import { popupSlice } from '../../store/slice/popupSlice';
 import { useDispatch } from 'react-redux';
@@ -75,10 +73,11 @@ const calculatePopupPlacement = (
 };
 
 export const Popup: FC<{
-  bookmarks: Array<Bookmark>;
+  children: ReactNode;
   clickPosition: ClickPosition;
   id: PopupId;
   nestingLevel: number;
+  popupManagerRef?: RefObject<HTMLElement | null>;
   title: string;
 }> = (props) => {
   const [popupState, setPopupStage] = useState<PopupState>({
@@ -120,7 +119,29 @@ export const Popup: FC<{
     }
   }, [popupElement, props.clickPosition.x, props.clickPosition.y, popupState.isVisible]);
 
-  const handleCloseButtonClick: MouseEventHandler<HTMLElement> = (event) => {
+  useEffect(() => {
+    const listener = (event: MouseEvent | TouchEvent): void => {
+      if (
+        props.popupManagerRef === undefined ||
+        props.popupManagerRef.current === null ||
+        (event.target instanceof HTMLElement && props.popupManagerRef.current.contains(event.target))
+      ) {
+        return;
+      }
+
+      dispatch(popupSlice.actions.closePopup(props.id));
+    };
+
+    document.addEventListener('mousedown', listener);
+    document.addEventListener('touchstart', listener);
+
+    return () => {
+      document.removeEventListener('mousedown', listener);
+      document.removeEventListener('touchstart', listener);
+    };
+  }, [dispatch, props.id, props.popupManagerRef]);
+
+  const handleCloseButtonClick: MouseEventHandler<HTMLDialogElement> = (event) => {
     if (!(event.target instanceof Element)) {
       return;
     }
@@ -158,7 +179,7 @@ export const Popup: FC<{
 
         <div className={s.bookmarkListContainer}>
           <PopupNestingLevelContext.Provider value={props.nestingLevel + 1}>
-            <BookmarkList bookmarks={props.bookmarks} focusFirstBookmark={true} type="columns" />
+            {props.children}
           </PopupNestingLevelContext.Provider>
         </div>
       </div>
