@@ -141,7 +141,7 @@ export const Popup: FC<{
     };
   }, [dispatch, props.id, props.popupManagerRef]);
 
-  const handleCloseButtonClick: MouseEventHandler<HTMLDialogElement> = (event) => {
+  const handleCloseButtonClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     if (!(event.target instanceof Element)) {
       return;
     }
