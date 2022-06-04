@@ -61,6 +61,7 @@
     "eslint-plugin-unused-imports": "2.0.0",
     "prettier": "2.6.2",
     "stylelint": "14.8.5",
+    "stylelint-config-css-modules": "4.1.0",
     "stylelint-config-recommended": "7.0.0",
     "stylelint-order": "5.0.0"
   }
