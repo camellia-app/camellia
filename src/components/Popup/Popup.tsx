@@ -1,12 +1,20 @@
 import type { MouseEventHandler, FC, ReactNode, RefObject } from 'react';
 import { createRef, useEffect, useState } from 'react';
-import s from './Popup.module.css';
 import classNames from 'classnames';
 import type * as CSS from 'csstype';
 import { PopupNestingLevelContext } from './PopupNestingLevelContext';
 import type { PopupId } from '../../store/slice/popupSlice';
 import { popupSlice } from '../../store/slice/popupSlice';
 import { useDispatch } from 'react-redux';
+import {
+  popup,
+  popupCloseButton,
+  popupContent,
+  popupHeader,
+  popupLoading,
+  popupScrollableContainer,
+  popupTitle,
+} from './Popup.module.css';
 
 export type ClickPosition = {
   x: number;
@@ -160,24 +168,24 @@ export const Popup: FC<{
   return (
     <dialog
       aria-labelledby={headerId}
-      className={classNames(s.popup, {
-        [s.loading]: !popupState.isVisible,
+      className={classNames(popup, {
+        [popupLoading]: !popupState.isVisible,
       })}
       open={true}
       ref={popupElement}
       style={styles}
     >
-      <div className={s.popupContent} role="presentation">
-        <header className={s.popupHeader}>
-          <h2 className={s.popupTitle} id={headerId}>
+      <div className={popupContent} role="presentation">
+        <header className={popupHeader}>
+          <h2 className={popupTitle} id={headerId}>
             {props.title}
           </h2>
-          <button className={s.popupCloseButton} onClick={handleCloseButtonClick} title="Close popup [Escape]">
+          <button className={popupCloseButton} onClick={handleCloseButtonClick} title="Close popup [Escape]">
             Close popup [Escape]
           </button>
         </header>
 
-        <div className={s.bookmarkListContainer}>
+        <div className={popupScrollableContainer}>
           <PopupNestingLevelContext.Provider value={props.nestingLevel + 1}>
             {props.children}
           </PopupNestingLevelContext.Provider>

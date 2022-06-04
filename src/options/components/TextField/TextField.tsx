@@ -1,7 +1,7 @@
-import s from './TextField.module.css';
 import type { ChangeEventHandler, FC } from 'react';
 import { useRef } from 'react';
 import classNames from 'classnames';
+import { textField, textFieldControl, textFieldLoading } from './TextField.module.css';
 
 export const TextField: FC<{
   changeHandler?: ((newValue: string) => void) | undefined;
@@ -48,13 +48,13 @@ export const TextField: FC<{
 
   return (
     <div
-      className={classNames(s.textField, {
-        [s.textFieldLoading]: props.loading,
+      className={classNames(textField, {
+        [textFieldLoading]: props.loading,
       })}
     >
       <input
         autoCorrect="off"
-        className={s.textFieldControl}
+        className={textFieldControl}
         defaultValue={props.value}
         disabled={props.disabled}
         onChange={handleChange}

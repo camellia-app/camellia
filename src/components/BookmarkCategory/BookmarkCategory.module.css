@@ -1,10 +1,10 @@
 @import '../variables.css';
 
-.bookmark-category {
+.bookmarkCategory {
   padding: 1rem;
 }
 
-.bookmark-category__title {
+.bookmarkCategoryTitle {
   color: var(--bookmark-category-title-text-color);
   font-family: var(--font-family-sans-serif);
   margin-bottom: 1rem;

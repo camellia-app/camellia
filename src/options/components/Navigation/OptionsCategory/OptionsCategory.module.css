@@ -1,11 +1,11 @@
-.options-category input {
+.optionsCategory input {
   height: 0;
   opacity: 0;
   position: absolute;
   width: 0;
 }
 
-.options-category__button {
+.optionsCategoryButton {
   align-items: flex-start;
   border-radius: 4px;
   color: var(--bookmark-text-color);
@@ -18,16 +18,16 @@
   width: 100%;
 }
 
-.options-category__button:hover {
+.optionsCategoryButton:hover {
   background-color: var(--bookmark-background-color-hover);
   transform: translateY(-1px);
 }
 
-.options-category input:checked + .options-category__button {
+.optionsCategory input:checked + .optionsCategoryButton {
   background-color: var(--bookmark-background-color);
 }
 
-.options-category__label {
+.optionsCategoryLabel {
   font-family: var(--font-family-sans-serif);
   line-height: 40px;
   overflow: hidden;
@@ -36,7 +36,7 @@
   white-space: nowrap;
 }
 
-.options-category__icon {
+.optionsCategoryIcon {
   background-image: var(--inline-icon);
   background-repeat: no-repeat;
   background-size: 24px;

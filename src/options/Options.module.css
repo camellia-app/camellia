@@ -6,13 +6,7 @@
   --options-secondary-text-color: rgb(118, 131, 144);
 }
 
-body {
-  background-color: #000;
-  color: var(--options-text-color);
-  font-size: var(--text-size-regular);
-}
-
-.options-wrapper {
+.optionsWrapper {
   background-color: hsla(0, 0%, 15%, 0.9);
   min-height: 100vh;
 }
@@ -29,7 +23,7 @@ body {
   padding-top: 2rem;
 }
 
-.options__content {
+.optionsContent {
   display: flex;
   flex-direction: column;
   font-family: var(--font-family-sans-serif);

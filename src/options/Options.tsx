@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import { useState, StrictMode } from 'react';
-import s from './Options.module.css';
 import { OptionsSearchForm } from './components/Navigation/OptionsSearchForm/OptionsSearchForm';
 import { categoriesMap } from './components/Navigation/OptionsCategory/OptionsCategories';
 import { ActiveOptionCategory } from './ActiveOptionCategoryContext';
@@ -22,6 +21,7 @@ import { getSupportedRuntimeFeatures } from '../api/applicationRuntime/features'
 import { ShowSearchButton } from './components/OptionControl/OptionEntry/ShowSearchButton';
 import { Bookmark } from '../components/Bookmark/Bookmark';
 import type { Bookmark as BookmarkEntry } from '../api/bookmark/common';
+import { options, optionsContent, optionsWrapper } from './Options.module.css';
 
 export const Options: FC = () => {
   const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);
@@ -61,8 +61,8 @@ export const Options: FC = () => {
 
   return (
     <StrictMode>
-      <div className={s.optionsWrapper}>
-        <div className={s.options}>
+      <div className={optionsWrapper}>
+        <div className={options}>
           <aside>
             <OptionsSearchForm
               activeCategory={activeCategory}
@@ -71,7 +71,7 @@ export const Options: FC = () => {
             />
           </aside>
 
-          <main className={s.optionsContent}>
+          <main className={optionsContent}>
             <ActiveOptionCategory.Provider value={activeCategory}>
               <BackgroundImageSource />
 

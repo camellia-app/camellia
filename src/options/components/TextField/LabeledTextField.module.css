@@ -1,14 +1,14 @@
-.labeled-text-field {
+.labeledTextField {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.labeled-text-field__label-and-control-wrapper {
+.labeledTextFieldLabelAndControlWrapper {
   max-width: fit-content;
 }
 
-.labeled-text-field__label {
+.labeledTextFieldLabel {
   font-size: var(--text-size-header);
   margin-bottom: 1rem;
 }

@@ -1,4 +1,4 @@
-.dropdown-select {
+.dropdownSelect {
   background-color: hsla(0, 0%, 40%, 0.75);
   border-radius: 4px;
   max-width: fit-content;
@@ -14,7 +14,7 @@
   }
 }
 
-.dropdown-select--loading {
+.dropdownSelectLoading {
   animation: backgroundStripAnimation 1s linear infinite reverse;
   background-image: repeating-linear-gradient(
     135deg,
@@ -26,7 +26,7 @@
   background-size: var(--chip-loading-strip-size) var(--chip-loading-strip-size);
 }
 
-.dropdown-select__control {
+.dropdownSelectControl {
   background-image: url('mdi/filled/arrow_drop_down.svg?fill=%23eee');
   background-position: right 8px top 8px;
   background-repeat: no-repeat;
@@ -40,10 +40,10 @@
   user-select: none;
 }
 
-.dropdown-select__control:focus {
+.dropdownSelectControl:focus {
   box-shadow: 0 0 0 var(--outline-width) var(--outline-color);
 }
 
-.dropdown-select__control:not(:disabled):hover {
+.dropdownSelectControl:not(:disabled):hover {
   background-color: hsla(0, 0%, 0%, 0.25);
 }

@@ -1,6 +1,6 @@
-import s from './Checkbox.module.css';
 import type { ChangeEventHandler, FC } from 'react';
 import classNames from 'classnames';
+import { checkbox, checkboxControl, checkboxControlIndeterminate, checkboxLoading } from './Checkbox.module.css';
 
 export const Checkbox: FC<{
   changeHandler?: ((newValue: boolean) => void) | undefined;
@@ -19,14 +19,14 @@ export const Checkbox: FC<{
 
   return (
     <label
-      className={classNames(s.checkbox, {
-        [s.checkboxLoading]: props.loading,
+      className={classNames(checkbox, {
+        [checkboxLoading]: props.loading,
       })}
     >
       <input checked={props.value === true} disabled={props.disabled} onChange={handleChange} type="checkbox" />
       <span
-        className={classNames(s.checkboxControl, {
-          [s.checkboxControlIndeterminate]: isInIndeterminateState,
+        className={classNames(checkboxControl, {
+          [checkboxControlIndeterminate]: isInIndeterminateState,
         })}
       >
         {props.label}

@@ -5,7 +5,7 @@
   touch-action: manipulation;
 }
 
-.chip__body {
+.chipBody {
   align-items: flex-start;
   background-color: var(--bookmark-background-color);
   color: var(--bookmark-text-color);
@@ -15,7 +15,7 @@
   transition: background-color 0.2s, transform 0.2s;
 }
 
-.chip__body--loading {
+.chipBodyLoading {
   animation: backgroundStripAnimation 1s linear infinite reverse;
   background-image: repeating-linear-gradient(
     135deg,
@@ -37,24 +37,24 @@
   }
 }
 
-.chip__body--rounded {
+.chipBodyRounded {
   border-radius: var(--chip-rounded-border-radius);
 }
 
-.chip__body--squared {
+.chipBodySquared {
   border-radius: var(--chip-squared-border-radius);
 }
 
-.chip__body:hover {
+.chipBody:hover {
   background-color: var(--bookmark-background-color-hover);
   transform: translateY(-1px);
 }
 
-.chip:focus-visible .chip__body {
+.chip:focus-visible .chipBody {
   box-shadow: inset 0 0 0 var(--outline-width) var(--outline-color);
 }
 
-.chip__label {
+.chipLabel {
   font-family: var(--font-family-sans-serif);
   line-height: 32px;
   overflow: hidden;
@@ -63,7 +63,7 @@
   white-space: nowrap;
 }
 
-.chip__icon {
+.chipIcon {
   display: inline-block;
   flex-grow: 0;
   flex-shrink: 0;

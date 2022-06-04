@@ -1,6 +1,6 @@
 @import '../variables.css';
 
-.bottom-toolbar {
+.bottomToolbar {
   align-items: center;
   display: flex;
   height: 64px;
@@ -8,7 +8,7 @@
   padding-right: 1rem;
 }
 
-.bottom-toolbar__items {
+.bottomToolbarItems {
   display: grid;
   grid-auto-columns: min-content;
   grid-auto-flow: column;

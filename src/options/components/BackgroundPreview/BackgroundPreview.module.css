@@ -1,4 +1,4 @@
-.background-preview {
+.backgroundPreview {
   --screen-width: 1920;
   --screen-height: 1080;
   aspect-ratio: var(--screen-width) / var(--screen-height);

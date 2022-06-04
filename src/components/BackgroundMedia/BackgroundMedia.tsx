@@ -1,11 +1,11 @@
 import type { ReactElement, FC } from 'react';
 import { useEffect, useState } from 'react';
-import s from './BackgroundMedia.module.css';
 import { useOption } from '../../api/options/hook';
 import { UnsplashImageFromCollection } from './providers/UnsplashImageFromCollection';
 import { BackgroundImageByUrl } from './providers/BackgroundImageByUrl';
 import { BackgroundProviderType } from '../../api/options/options';
 import classNames from 'classnames';
+import { backgroundMedia, backgroundMediaLoading } from './BackgroundMedia.module.css';
 
 export const BackgroundMedia: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -52,8 +52,8 @@ export const BackgroundMedia: FC = () => {
 
   return (
     <div
-      className={classNames(s.backgroundMedia, {
-        [s.backgroundMediaLoading]: isLoading,
+      className={classNames(backgroundMedia, {
+        [backgroundMediaLoading]: isLoading,
       })}
     >
       {background}

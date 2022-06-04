@@ -1,4 +1,4 @@
-.action-button {
+.actionButton {
   background-color: hsla(0, 0%, 40%, 0.75);
   border-radius: 4px;
   max-width: fit-content;
@@ -14,7 +14,7 @@
   }
 }
 
-.action-button--loading {
+.actionButtonLoading {
   animation: backgroundStripAnimation 1s linear infinite reverse;
   background-image: repeating-linear-gradient(
     135deg,
@@ -26,7 +26,7 @@
   background-size: var(--chip-loading-strip-size) var(--chip-loading-strip-size);
 }
 
-.action-button__control {
+.actionButtonControl {
   border-radius: 4px;
   cursor: pointer;
   line-height: 40px;
@@ -36,15 +36,15 @@
   user-select: none;
 }
 
-.action-button__control:focus {
+.actionButtonControl:focus {
   box-shadow: 0 0 0 var(--outline-width) var(--outline-color);
 }
 
-.action-button__control:not(:disabled):hover {
+.actionButtonControl:not(:disabled):hover {
   background-color: hsla(0, 0%, 0%, 0.25);
   cursor: pointer;
 }
 
-.action-button__control:not(:disabled):active {
+.actionButtonControl:not(:disabled):active {
   background-color: hsla(0, 0%, 0%, 0.5);
 }

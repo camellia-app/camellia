@@ -4,6 +4,6 @@
   user-select: none;
 }
 
-.bookmarkWorkspace--loading {
+.bookmarkWorkspaceLoading {
   opacity: 0;
 }

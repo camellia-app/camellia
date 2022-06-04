@@ -12,7 +12,7 @@ body {
   overscroll-behavior-x: none;
 }
 
-.newtab-wrapper {
+.newtabWrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;

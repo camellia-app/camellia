@@ -1,7 +1,11 @@
-import s from './LabeledTextField.module.css';
 import type { FC } from 'react';
 import { TextField } from './TextField';
 import { Paragraph } from '../Paragraph/Paragraph';
+import {
+  labeledTextField,
+  labeledTextFieldLabel,
+  labeledTextFieldLabelAndControlWrapper,
+} from './LabeledTextField.module.css';
 
 export const LabeledTextField: FC<{
   changeHandler?: ((newValue: string) => void) | undefined;
@@ -17,9 +21,9 @@ export const LabeledTextField: FC<{
   value: string | undefined;
 }> = (props) => {
   return (
-    <div className={s.labeledTextField}>
-      <label className={s.labeledTextFieldLabelAndControlWrapper}>
-        <span className={s.labeledTextFieldLabel}>{props.label}</span>
+    <div className={labeledTextField}>
+      <label className={labeledTextFieldLabelAndControlWrapper}>
+        <span className={labeledTextFieldLabel}>{props.label}</span>
 
         <div>
           <TextField

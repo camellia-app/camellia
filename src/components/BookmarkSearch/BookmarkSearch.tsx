@@ -1,10 +1,10 @@
 import type { ChangeEventHandler, FormEventHandler, FC } from 'react';
 import { useEffect } from 'react';
-import s from './BookmarkSearch.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import type { BookmarkSearchState } from '../../store/slice/bookmarkSearchSlice';
 import { bookmarkSearchSlice, searchBookmarksThunk } from '../../store/slice/bookmarkSearchSlice';
 import type { AppDispatch, RootState } from '../../store';
+import { bookmarkSearchCloseButton, bookmarkSearchField } from './BookmarkSearch.module.css';
 
 export const BookmarkSearch: FC = () => {
   const bookmarkSearchState = useSelector<RootState, BookmarkSearchState>((state) => state.bookmarkSearch);
@@ -75,13 +75,13 @@ export const BookmarkSearch: FC = () => {
     <form onReset={formResetHandler} onSubmit={formSubmitHandler}>
       <input
         autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
-        className={s.bookmarkSearchField}
+        className={bookmarkSearchField}
         defaultValue={bookmarkSearchState.searchQuery}
         onChange={fieldInputHandler}
         placeholder="Start typing to search bookmarks..."
         type="search"
       />
-      <button className={s.bookmarkSearchCloseButton} title="Close search" type="reset">
+      <button className={bookmarkSearchCloseButton} title="Close search" type="reset">
         Close search
       </button>
     </form>
