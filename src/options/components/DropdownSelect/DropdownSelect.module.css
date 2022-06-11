@@ -1,5 +1,5 @@
 .dropdownSelect {
-  background-color: hsla(0, 0%, 40%, 0.75);
+  background-color: hsl(0deg 0% 40% / 75%);
   border-radius: 4px;
   max-width: fit-content;
 }
@@ -35,5 +35,5 @@
 }
 
 .dropdownSelectControl:not(:disabled):hover {
-  background-color: hsla(0, 0%, 0%, 0.25);
+  background-color: hsl(0deg 0% 0% / 25%);
 }

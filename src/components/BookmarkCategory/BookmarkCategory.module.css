@@ -6,6 +6,6 @@
   color: var(--bookmark-category-title-text-color);
   font-family: var(--font-family-sans-serif);
   margin-bottom: 1rem;
-  text-shadow: rgba(33, 33, 33, 1) 0 0 3px;
+  text-shadow: rgb(33 33 33 / 100%) 0 0 3px;
   text-transform: uppercase;
 }

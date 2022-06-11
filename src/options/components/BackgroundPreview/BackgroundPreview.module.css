@@ -2,7 +2,7 @@
   --screen-width: 1920;
   --screen-height: 1080;
   aspect-ratio: var(--screen-width) / var(--screen-height);
-  background-color: hsla(0, 0%, 40%, 0.75);
+  background-color: hsl(0deg 0% 40% / 75%);
   border: 2px solid var(--bookmark-text-color);
   border-radius: 8px;
   max-height: 70vh;

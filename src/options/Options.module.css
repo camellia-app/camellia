@@ -1,9 +1,9 @@
-@import "../reset.css";
-@import "../common.css";
-@import "../variables.css";
+@import '../reset.css';
+@import '../common.css';
+@import '../variables.css';
 
 .optionsWrapper {
-  background-color: hsla(0, 0%, 15%, 0.9);
+  background-color: hsl(0deg 0% 15% / 90%);
   min-height: 100vh;
 }
 

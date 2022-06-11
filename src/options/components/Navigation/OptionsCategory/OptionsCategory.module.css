@@ -12,7 +12,7 @@
   cursor: pointer;
   display: flex;
   max-width: 100%;
-  text-shadow: rgba(33, 33, 33, 1) 0 0 3px;
+  text-shadow: rgb(33 33 33 / 100%) 0 0 3px;
   touch-action: manipulation;
   transition: background-color 0.2s, transform 0.2s;
   width: 100%;

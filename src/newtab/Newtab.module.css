@@ -1,6 +1,6 @@
-@import "../reset.css";
-@import "../common.css";
-@import "../variables.css";
+@import '../reset.css';
+@import '../common.css';
+@import '../variables.css';
 
 .newtabWrapper {
   display: flex;

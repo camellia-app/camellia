@@ -4,25 +4,14 @@
   --bookmark-category-title-text-color: #eee;
   --bookmark-column-min-width: 235px;
   --bookmark-text-color: #eee;
-  --loading-strip-size: 20px;
-  --loading-strip-color-1: rgb(238 238 238 / 10%);
-  --loading-strip-color-2: rgb(238 238 238 / 20%);
   --chip-rounded-border-radius: 1rem;
   --chip-squared-border-radius: 0.5rem;
   --chip-hover-shift: 1px;
-  --font-family-sans-serif:
-    -apple-system,
-    blinkmacsystemfont,
-    "Segoe UI",
-    roboto,
-    "Helvetica Neue",
-    arial,
-    "Noto Sans",
-    sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji";
+  --font-family-sans-serif: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue', arial, 'Noto Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --loading-strip-size: 20px;
+  --loading-strip-color-1: rgb(238 238 238 / 10%);
+  --loading-strip-color-2: rgb(238 238 238 / 20%);
   --outline-color: #0288d1;
   --outline-width: 0.125rem; /* 2px */
   --popup-title-height: 40px;

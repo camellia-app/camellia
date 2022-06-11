@@ -4,7 +4,7 @@
   --popup-height: auto;
   backdrop-filter: blur(2px);
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
   color: var(--bookmark-text-color);
   font-family: var(--font-family-sans-serif);
   height: var(--popup-height);
@@ -27,7 +27,7 @@
 }
 
 .popupHeader {
-  background-color: rgba(33, 33, 33, 0.9);
+  background-color: rgb(33 33 33 / 90%);
   display: grid;
   grid-auto-columns: 1fr auto;
   grid-auto-flow: column;
@@ -68,7 +68,7 @@
 }
 
 .popupScrollableContainer {
-  background-color: rgba(33, 33, 33, 0.75);
+  background-color: rgb(33 33 33 / 75%);
   max-height: calc(100% - var(--popup-title-height));
   -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
