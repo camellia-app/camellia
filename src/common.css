@@ -9,3 +9,14 @@ body {
   height: 100%;
   overscroll-behavior-x: none;
 }
+
+/* stylelint-disable-next-line keyframes-name-pattern */
+@keyframes :global(background-loading-strips-animation) {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: calc(var(--loading-strip-size) * -1) 0;
+  }
+}

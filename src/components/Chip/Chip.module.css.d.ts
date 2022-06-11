@@ -1,7 +1,6 @@
 export const chip: string;
 export const chipBody: string;
 export const chipBodyLoading: string;
-export const backgroundStripAnimation: string;
 export const chipBodyRounded: string;
 export const chipBodySquared: string;
 export const chipLabel: string;

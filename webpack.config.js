@@ -45,7 +45,6 @@ const getCssLoaders = () => {
     options: {
       modules: {
         mode: 'local',
-        auto: true,
         exportGlobals: true,
         localIdentName: '[local]--[hash:base64:5]',
         namedExport: true,

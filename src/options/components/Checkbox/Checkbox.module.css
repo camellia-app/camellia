@@ -4,26 +4,16 @@
   max-width: fit-content;
 }
 
-@keyframes backgroundStripAnimation {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: calc(var(--chip-loading-strip-size) * -1) 0;
-  }
-}
-
-.checkboxLoading {
-  animation: backgroundStripAnimation 1s linear infinite reverse;
+.checkboxLoading :global {
+  animation: background-loading-strips-animation 1s linear infinite reverse;
   background-image: repeating-linear-gradient(
     135deg,
-    var(--chip-loading-strip-color-1) 25%,
-    var(--chip-loading-strip-color-1) 50%,
-    var(--chip-loading-strip-color-2) 50%,
-    var(--chip-loading-strip-color-2) 75%
+    var(--loading-strip-color-1) 25%,
+    var(--loading-strip-color-1) 50%,
+    var(--loading-strip-color-2) 50%,
+    var(--loading-strip-color-2) 75%
   );
-  background-size: var(--chip-loading-strip-size) var(--chip-loading-strip-size);
+  background-size: var(--loading-strip-size) var(--loading-strip-size);
 }
 
 .checkboxControl {

@@ -4,9 +4,9 @@
   --bookmark-category-title-text-color: #eee;
   --bookmark-column-min-width: 235px;
   --bookmark-text-color: #eee;
-  --chip-loading-strip-size: 20px;
-  --chip-loading-strip-color-1: rgb(238 238 238 / 10%);
-  --chip-loading-strip-color-2: rgb(238 238 238 / 20%);
+  --loading-strip-size: 20px;
+  --loading-strip-color-1: rgb(238 238 238 / 10%);
+  --loading-strip-color-2: rgb(238 238 238 / 20%);
   --chip-rounded-border-radius: 1rem;
   --chip-squared-border-radius: 0.5rem;
   --chip-hover-shift: 1px;
