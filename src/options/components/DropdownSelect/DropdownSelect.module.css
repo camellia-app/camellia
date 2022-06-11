@@ -1,32 +1,22 @@
-.dropdown-select {
-  background-color: hsla(0, 0%, 40%, 0.75);
+.dropdownSelect {
+  background-color: hsl(0deg 0% 40% / 75%);
   border-radius: 4px;
   max-width: fit-content;
 }
 
-@keyframes backgroundStripAnimation {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: calc(var(--chip-loading-strip-size) * -1) 0;
-  }
-}
-
-.dropdown-select--loading {
-  animation: backgroundStripAnimation 1s linear infinite reverse;
+.dropdownSelectLoading :global {
+  animation: background-loading-strips-animation 1s linear infinite reverse;
   background-image: repeating-linear-gradient(
     135deg,
-    var(--chip-loading-strip-color-1) 25%,
-    var(--chip-loading-strip-color-1) 50%,
-    var(--chip-loading-strip-color-2) 50%,
-    var(--chip-loading-strip-color-2) 75%
+    var(--loading-strip-color-1) 25%,
+    var(--loading-strip-color-1) 50%,
+    var(--loading-strip-color-2) 50%,
+    var(--loading-strip-color-2) 75%
   );
-  background-size: var(--chip-loading-strip-size) var(--chip-loading-strip-size);
+  background-size: var(--loading-strip-size) var(--loading-strip-size);
 }
 
-.dropdown-select__control {
+.dropdownSelectControl {
   background-image: url('mdi/filled/arrow_drop_down.svg?fill=%23eee');
   background-position: right 8px top 8px;
   background-repeat: no-repeat;
@@ -40,10 +30,10 @@
   user-select: none;
 }
 
-.dropdown-select__control:focus {
+.dropdownSelectControl:focus {
   box-shadow: 0 0 0 var(--outline-width) var(--outline-color);
 }
 
-.dropdown-select__control:not(:disabled):hover {
-  background-color: hsla(0, 0%, 0%, 0.25);
+.dropdownSelectControl:not(:disabled):hover {
+  background-color: hsl(0deg 0% 0% / 25%);
 }

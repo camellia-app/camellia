@@ -1,7 +1,7 @@
-import s from './AboutApp.module.css';
 import type { FC } from 'react';
 import { useAppEnvironment } from '../../../api/appEnvironment/hook';
 import { Paragraph } from '../Paragraph/Paragraph';
+import { aboutApp, aboutAppName } from './AboutApp.module.css';
 
 export const AboutApp: FC = () => {
   const appEnvironment = useAppEnvironment();
@@ -11,8 +11,8 @@ export const AboutApp: FC = () => {
   }
 
   return (
-    <div className={s.aboutApp}>
-      <span className={s.aboutAppName}>
+    <div className={aboutApp}>
+      <span className={aboutAppName}>
         {appEnvironment.app.name}, version {appEnvironment.app.version}
       </span>
 

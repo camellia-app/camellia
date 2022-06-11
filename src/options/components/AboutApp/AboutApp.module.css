@@ -1,9 +1,9 @@
-.about-app {
+.aboutApp {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.about-app__name {
+.aboutAppName {
   font-size: var(--text-size-header);
 }

@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import type CSS from 'csstype';
-import s from './BackgroundPreview.module.css';
 import { BackgroundMedia } from '../../../components/BackgroundMedia/BackgroundMedia';
+import { backgroundPreview } from './BackgroundPreview.module.css';
 
 export const BackgroundPreview: FC = () => {
   const screenWidth = window.screen.width;
@@ -13,7 +13,7 @@ export const BackgroundPreview: FC = () => {
   };
 
   return (
-    <div className={s.backgroundPreview} style={styles}>
+    <div className={backgroundPreview} style={styles}>
       <BackgroundMedia />
     </div>
   );

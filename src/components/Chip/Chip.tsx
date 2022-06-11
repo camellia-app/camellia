@@ -1,7 +1,15 @@
 import type { ReactEventHandler, FC, MouseEventHandler } from 'react';
-import s from './Chip.module.css';
 import { createRef, useEffect, useState } from 'react';
 import classNames from 'classnames';
+import {
+  chip,
+  chipBody,
+  chipBodyLoading,
+  chipBodyRounded,
+  chipBodySquared,
+  chipIcon,
+  chipLabel,
+} from './Chip.module.css';
 
 export enum ChipShape {
   Rounded,
@@ -36,16 +44,16 @@ const Chip: FC<ChipProps> = (props) => {
 
   return (
     <div
-      className={classNames(s.chipBody, {
-        [s.chipBodyLoading]: props.isLoading,
-        [s.chipBodySquared]: props.shape === ChipShape.Squared,
-        [s.chipBodyRounded]: props.shape === ChipShape.Rounded,
+      className={classNames(chipBody, {
+        [chipBodyLoading]: props.isLoading,
+        [chipBodySquared]: props.shape === ChipShape.Squared,
+        [chipBodyRounded]: props.shape === ChipShape.Rounded,
       })}
       title={tooltip}
     >
-      <img alt="Favicon" className={s.chipIcon} height="16" onError={handleImageError} src={iconSrc} width="16" />
+      <img alt="Favicon" className={chipIcon} height="16" onError={handleImageError} src={iconSrc} width="16" />
 
-      <span className={s.chipLabel}>{props.label}</span>
+      <span className={chipLabel}>{props.label}</span>
     </div>
   );
 };
@@ -65,7 +73,7 @@ export const ChipButton: FC<
   }, [buttonElementRef, props.focus]);
 
   return (
-    <button className={s.chip} onClick={props.clickAction} ref={buttonElementRef} type="button">
+    <button className={chip} onClick={props.clickAction} ref={buttonElementRef} type="button">
       <Chip
         fallbackIconSrc={props.fallbackIconSrc}
         iconSrc={props.iconSrc}
@@ -95,7 +103,7 @@ export const ChipLink: FC<
 
   return (
     <a
-      className={s.chip}
+      className={chip}
       href={props.url}
       onClick={props.clickAction}
       ref={anchorElementRef}

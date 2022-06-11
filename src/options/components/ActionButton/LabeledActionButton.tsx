@@ -1,7 +1,7 @@
-import s from './LabeledActionButton.module.css';
 import type { FC, ButtonHTMLAttributes } from 'react';
 import { ActionButton } from './ActionButton';
 import { Paragraph } from '../Paragraph/Paragraph';
+import { labeledActionButton } from './LabeledActionButton.module.css';
 
 export const LabeledActionButton: FC<{
   buttonHtmlType: NonNullable<ButtonHTMLAttributes<HTMLButtonElement>['type']>;
@@ -12,7 +12,7 @@ export const LabeledActionButton: FC<{
   loading: boolean;
 }> = (props) => {
   return (
-    <div className={s.labeledActionButton}>
+    <div className={labeledActionButton}>
       <ActionButton
         buttonHtmlType={props.buttonHtmlType}
         clickHandler={props.clickHandler}

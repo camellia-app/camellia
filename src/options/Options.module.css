@@ -1,19 +1,9 @@
 @import '../reset.css';
-@import '../components/variables.css';
+@import '../common.css';
+@import '../variables.css';
 
-:root {
-  --options-text-color: var(--bookmark-text-color);
-  --options-secondary-text-color: rgb(118, 131, 144);
-}
-
-body {
-  background-color: #000;
-  color: var(--options-text-color);
-  font-size: var(--text-size-regular);
-}
-
-.options-wrapper {
-  background-color: hsla(0, 0%, 15%, 0.9);
+.optionsWrapper {
+  background-color: hsl(0deg 0% 15% / 90%);
   min-height: 100vh;
 }
 
@@ -29,7 +19,7 @@ body {
   padding-top: 2rem;
 }
 
-.options__content {
+.optionsContent {
   display: flex;
   flex-direction: column;
   font-family: var(--font-family-sans-serif);

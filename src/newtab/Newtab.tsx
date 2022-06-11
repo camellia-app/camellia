@@ -6,14 +6,14 @@ import { BookmarkWorkspace } from '../components/BookmarkWorkspace/BookmarkWorks
 import { BackgroundMediaFullScreenContainer } from '../components/BackgroundMedia/BackgroundMediaFullScreenContainer';
 import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
-import s from './Newtab.module.css';
 import { store } from '../store';
 import { PopupManager } from '../components/Popup/PopupManager/PopupManager';
+import { newtabWrapper } from './Newtab.module.css';
 
 export const Newtab: FC = () => {
   return (
     <StrictMode>
-      <div className={s.newtabWrapper}>
+      <div className={newtabWrapper}>
         <Provider store={store}>
           <BookmarkWorkspace />
           <BottomToolbar />

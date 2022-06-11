@@ -1,5 +1,5 @@
 {
-  "extends": "stylelint-config-recommended",
+  "extends": ["stylelint-config-standard", "stylelint-config-css-modules", "stylelint-config-prettier"],
   "plugins": ["stylelint-order"],
   "rules": {
     "declaration-empty-line-before": "never",
@@ -8,6 +8,12 @@
       ["all"],
       {
         "unspecified": "bottomAlphabetical"
+      }
+    ],
+    "selector-class-pattern": [
+      "^[a-z][a-zA-Z0-9]+$",
+      {
+        "message": "Expected selector class name to be lowerCamelCase"
       }
     ]
   }

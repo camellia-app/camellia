@@ -1,32 +1,22 @@
 .checkbox {
-  background-color: hsla(0, 0%, 40%, 0.75);
+  background-color: hsl(0deg 0% 40% / 75%);
   border-radius: 4px;
   max-width: fit-content;
 }
 
-@keyframes backgroundStripAnimation {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: calc(var(--chip-loading-strip-size) * -1) 0;
-  }
-}
-
-.checkbox--loading {
-  animation: backgroundStripAnimation 1s linear infinite reverse;
+.checkboxLoading :global {
+  animation: background-loading-strips-animation 1s linear infinite reverse;
   background-image: repeating-linear-gradient(
     135deg,
-    var(--chip-loading-strip-color-1) 25%,
-    var(--chip-loading-strip-color-1) 50%,
-    var(--chip-loading-strip-color-2) 50%,
-    var(--chip-loading-strip-color-2) 75%
+    var(--loading-strip-color-1) 25%,
+    var(--loading-strip-color-1) 50%,
+    var(--loading-strip-color-2) 50%,
+    var(--loading-strip-color-2) 75%
   );
-  background-size: var(--chip-loading-strip-size) var(--chip-loading-strip-size);
+  background-size: var(--loading-strip-size) var(--loading-strip-size);
 }
 
-.checkbox__control {
+.checkboxControl {
   background-image: url('mdi/filled/check_box_outline_blank.svg?fill=%23eee');
   background-position: left 8px top 8px;
   background-repeat: no-repeat;
@@ -40,7 +30,7 @@
   user-select: none;
 }
 
-.checkbox__control--indeterminate {
+.checkboxControlIndeterminate {
   background-image: url('mdi/filled/indeterminate_check_box.svg?fill=%23eee');
 }
 
@@ -51,24 +41,24 @@ input[type='checkbox'] {
   width: 0;
 }
 
-input[type='checkbox']:disabled + .checkbox__control {
+input[type='checkbox']:disabled + .checkboxControl {
   cursor: default;
   opacity: 0.5;
 }
 
-input[type='checkbox']:focus + .checkbox__control {
+input[type='checkbox']:focus + .checkboxControl {
   box-shadow: 0 0 0 var(--outline-width) var(--outline-color);
 }
 
-input[type='checkbox']:checked + .checkbox__control {
+input[type='checkbox']:checked + .checkboxControl {
   background-image: url('mdi/filled/check_box.svg?fill=%23eee');
 }
 
-input[type='checkbox']:not(:disabled) + .checkbox__control:hover {
-  background-color: hsla(0, 0%, 0%, 0.25);
+input[type='checkbox']:not(:disabled) + .checkboxControl:hover {
+  background-color: hsl(0deg 0% 0% / 25%);
   cursor: pointer;
 }
 
-input[type='checkbox']:not(:disabled) + .checkbox__control:active {
-  background-color: hsla(0, 0%, 0%, 0.5);
+input[type='checkbox']:not(:disabled) + .checkboxControl:active {
+  background-color: hsl(0deg 0% 0% / 50%);
 }

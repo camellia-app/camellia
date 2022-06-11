@@ -1,6 +1,4 @@
-@import '../variables.css';
-
-.bookmark-search__field {
+.bookmarkSearchField {
   background-color: var(--bookmark-background-color);
   color: var(--bookmark-text-color);
   font-family: var(--font-family-sans-serif);
@@ -12,26 +10,26 @@
   width: 100%;
 }
 
-.bookmark-search__field::-webkit-search-decoration,
-.bookmark-search__field::-webkit-search-cancel-button,
-.bookmark-search__field::-webkit-search-results-button,
-.bookmark-search__field::-webkit-search-results-decoration {
+.bookmarkSearchField::-webkit-search-decoration,
+.bookmarkSearchField::-webkit-search-cancel-button,
+.bookmarkSearchField::-webkit-search-results-button,
+.bookmarkSearchField::-webkit-search-results-decoration {
   display: none !important;
 }
 
-.bookmark-search__field::placeholder {
+.bookmarkSearchField::placeholder {
   color: var(--search-placeholder-color);
 }
 
-.bookmark-search__field:hover {
+.bookmarkSearchField:hover {
   background-color: var(--bookmark-background-color-hover);
 }
 
-.bookmark-search__field:focus-visible {
+.bookmarkSearchField:focus-visible {
   background-color: var(--bookmark-background-color-hover);
 }
 
-.bookmark-search__close-button {
+.bookmarkSearchCloseButton {
   background-image: url('~mdi/filled/cancel.svg?fill=%23eee');
   background-position: center;
   background-repeat: no-repeat;
@@ -46,11 +44,11 @@
   width: var(--search-bar-height);
 }
 
-.bookmark-search__close-button:focus-visible {
+.bookmarkSearchCloseButton:focus-visible {
   background-size: 28px;
   box-shadow: inset 0 0 0 var(--outline-width) var(--outline-color);
 }
 
-.bookmark-search__close-button:hover {
+.bookmarkSearchCloseButton:hover {
   background-size: 28px;
 }

@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import s from './BookmarkWorkspace.module.css';
 import { BookmarkSearch } from '../BookmarkSearch/BookmarkSearch';
 import classNames from 'classnames';
 import { useBookmarksBarChildren, useOtherBookmarksChildren } from '../../api/bookmark/hook';
@@ -8,6 +7,7 @@ import type { Bookmark } from '../../api/bookmark/common';
 import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
 import type { RootState } from '../../store';
 import type { BookmarkSearchState } from '../../store/slice/bookmarkSearchSlice';
+import { bookmarkWorkspace, bookmarkWorkspaceLoading } from './BookmarkWorkspace.module.css';
 
 export const BookmarkWorkspace: FC = () => {
   const bookmarkSearchState = useSelector<RootState, BookmarkSearchState>((state) => state.bookmarkSearch);
@@ -15,8 +15,8 @@ export const BookmarkWorkspace: FC = () => {
   const [bookmarksBarChildren] = useBookmarksBarChildren();
   const [otherBookmarksChildren] = useOtherBookmarksChildren();
 
-  const mainClasses = classNames(s.bookmarkWorkspace, {
-    [s.bookmarkWorkspaceLoading]: bookmarksBarChildren === undefined || otherBookmarksChildren === undefined,
+  const mainClasses = classNames(bookmarkWorkspace, {
+    [bookmarkWorkspaceLoading]: bookmarksBarChildren === undefined || otherBookmarksChildren === undefined,
   });
 
   const bookmarkCategories: Array<{ bookmarks: Array<Bookmark>; title: string }> = [];

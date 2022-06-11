@@ -1,8 +1,8 @@
-import s from './OptionsSearchForm.module.css';
 import type { FC } from 'react';
 import { OptionsCategory } from '../OptionsCategory/OptionsCategory';
 import { allCategories } from '../OptionsCategory/OptionsCategories';
 import { Icon } from '../../../../icons';
+import { optionsSearchFormCategoryList } from './OptionsSearchForm.module.css';
 
 export const OptionsSearchForm: FC<{
   activeCategory: string | undefined;
@@ -12,7 +12,7 @@ export const OptionsSearchForm: FC<{
   return (
     <form onSubmit={(event): void => event.preventDefault()}>
       <fieldset>
-        <ul className={s.optionsSearchFormCategoryList}>
+        <ul className={optionsSearchFormCategoryList}>
           <li>
             <OptionsCategory
               icon={Icon.ViewList}

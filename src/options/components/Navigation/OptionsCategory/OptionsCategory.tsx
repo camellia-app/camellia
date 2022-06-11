@@ -1,7 +1,7 @@
-import s from './OptionsCategory.module.css';
 import type { FC } from 'react';
 import type CSS from 'csstype';
 import type { Icon } from '../../../../icons';
+import { optionsCategoryButton, optionsCategoryIcon, optionsCategoryLabel } from './OptionsCategory.module.css';
 
 export const OptionsCategory: FC<{
   icon: Icon;
@@ -24,9 +24,9 @@ export const OptionsCategory: FC<{
         value={props.label}
       />
 
-      <div className={s.optionsCategoryButton}>
-        <span className={s.optionsCategoryIcon} style={styles} />
-        <span className={s.optionsCategoryLabel}>{props.label}</span>
+      <div className={optionsCategoryButton}>
+        <span className={optionsCategoryIcon} style={styles} />
+        <span className={optionsCategoryLabel}>{props.label}</span>
       </div>
     </label>
   );

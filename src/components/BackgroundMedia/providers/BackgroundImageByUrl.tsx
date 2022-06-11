@@ -1,5 +1,5 @@
 import type { ReactEventHandler, FC } from 'react';
-import s from './BackgroundImageByUrl.module.css';
+import { backgroundImageByUrl } from './BackgroundImageByUrl.module.css';
 
 type ImageDimensions = {
   height: number;
@@ -22,7 +22,7 @@ export const BackgroundImageByUrl: FC<{
   return (
     <img
       alt=""
-      className={s.backgroundImageByUrl}
+      className={backgroundImageByUrl}
       crossOrigin="anonymous"
       decoding="async"
       height={props.dimensions?.height}

@@ -1,6 +1,6 @@
-import s from './ActionButton.module.css';
 import type { FC, ButtonHTMLAttributes, MouseEventHandler } from 'react';
 import classNames from 'classnames';
+import { actionButton, actionButtonControl, actionButtonLoading } from './ActionButton.module.css';
 
 export const ActionButton: FC<{
   buttonHtmlType: NonNullable<ButtonHTMLAttributes<HTMLButtonElement>['type']>;
@@ -17,12 +17,12 @@ export const ActionButton: FC<{
 
   return (
     <div
-      className={classNames(s.actionButton, {
-        [s.actionButtonLoading]: props.loading,
+      className={classNames(actionButton, {
+        [actionButtonLoading]: props.loading,
       })}
     >
       <button
-        className={s.actionButtonControl}
+        className={actionButtonControl}
         disabled={props.disabled}
         onClick={clickHandler}
         type={props.buttonHtmlType}

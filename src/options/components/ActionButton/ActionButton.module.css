@@ -1,32 +1,22 @@
-.action-button {
-  background-color: hsla(0, 0%, 40%, 0.75);
+.actionButton {
+  background-color: hsl(0deg 0% 40% / 75%);
   border-radius: 4px;
   max-width: fit-content;
 }
 
-@keyframes backgroundStripAnimation {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: calc(var(--chip-loading-strip-size) * -1) 0;
-  }
-}
-
-.action-button--loading {
-  animation: backgroundStripAnimation 1s linear infinite reverse;
+.actionButtonLoading :global {
+  animation: background-loading-strips-animation 1s linear infinite reverse;
   background-image: repeating-linear-gradient(
     135deg,
-    var(--chip-loading-strip-color-1) 25%,
-    var(--chip-loading-strip-color-1) 50%,
-    var(--chip-loading-strip-color-2) 50%,
-    var(--chip-loading-strip-color-2) 75%
+    var(--loading-strip-color-1) 25%,
+    var(--loading-strip-color-1) 50%,
+    var(--loading-strip-color-2) 50%,
+    var(--loading-strip-color-2) 75%
   );
-  background-size: var(--chip-loading-strip-size) var(--chip-loading-strip-size);
+  background-size: var(--loading-strip-size) var(--loading-strip-size);
 }
 
-.action-button__control {
+.actionButtonControl {
   border-radius: 4px;
   cursor: pointer;
   line-height: 40px;
@@ -36,15 +26,15 @@
   user-select: none;
 }
 
-.action-button__control:focus {
+.actionButtonControl:focus {
   box-shadow: 0 0 0 var(--outline-width) var(--outline-color);
 }
 
-.action-button__control:not(:disabled):hover {
-  background-color: hsla(0, 0%, 0%, 0.25);
+.actionButtonControl:not(:disabled):hover {
+  background-color: hsl(0deg 0% 0% / 25%);
   cursor: pointer;
 }
 
-.action-button__control:not(:disabled):active {
-  background-color: hsla(0, 0%, 0%, 0.5);
+.actionButtonControl:not(:disabled):active {
+  background-color: hsl(0deg 0% 0% / 50%);
 }

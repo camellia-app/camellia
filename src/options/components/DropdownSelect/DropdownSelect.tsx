@@ -1,6 +1,6 @@
-import s from './DropdownSelect.module.css';
 import type { ChangeEventHandler, ReactElement } from 'react';
 import classNames from 'classnames';
+import { dropdownSelect, dropdownSelectControl, dropdownSelectLoading } from './DropdownSelect.module.css';
 
 export type SelectOption<TValue extends string> = {
   label: string;
@@ -32,11 +32,11 @@ export const DropdownSelect = <TValue extends string>(props: DropdownSelectProps
 
   return (
     <div
-      className={classNames(s.dropdownSelect, {
-        [s.dropdownSelectLoading]: props.loading,
+      className={classNames(dropdownSelect, {
+        [dropdownSelectLoading]: props.loading,
       })}
     >
-      <select className={s.dropdownSelectControl} disabled={props.disabled} onChange={handleChange} value={props.value}>
+      <select className={dropdownSelectControl} disabled={props.disabled} onChange={handleChange} value={props.value}>
         {props.value === undefined ? <option /> : undefined}
 
         {props.options.map((optionEntry) => {

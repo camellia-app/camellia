@@ -7,7 +7,7 @@ import { popupSlice } from '../../../store/slice/popupSlice';
 import type { RootState } from '../../../store';
 import { ChipList } from '../../ChipList/ChipList';
 import { Bookmark } from '../../Bookmark/Bookmark';
-import s from './PopupManager.module.css';
+import { popupManager } from './PopupManager.module.css';
 
 export const PopupManager: FC = () => {
   const popupsState = useSelector<RootState, PopupState>((state) => state.popup);
@@ -37,7 +37,7 @@ export const PopupManager: FC = () => {
   }, [dispatch]);
 
   return (
-    <div className={s.popupManager} ref={popupManagerRef}>
+    <div className={popupManager} ref={popupManagerRef}>
       {popupsState.popupsStack.map((popupProps) => {
         let popupChildren: ReactNode | undefined;
 

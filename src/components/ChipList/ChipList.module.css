@@ -1,23 +1,20 @@
-@import '../variables.css';
-
-.chip-list {
+.chipList {
   padding-top: var(--chip-hover-shift);
 }
 
-.chip-list--columns {
+.chipListColumns {
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(var(--bookmark-column-min-width), 1fr));
   justify-items: start;
 }
 
-.chip-list--inline {
+.chipListInline {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   gap: 1rem;
 }
 
-.chip-list__item {
+.chipListItem {
   max-width: 100%;
 }

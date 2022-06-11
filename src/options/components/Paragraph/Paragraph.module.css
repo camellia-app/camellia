@@ -7,4 +7,5 @@
   cursor: pointer;
   display: inline;
   text-decoration: underline;
+  touch-action: manipulation;
 }

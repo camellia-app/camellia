@@ -1,14 +1,14 @@
-.labeled-dropdown-select {
+.labeledDropdownSelect {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.labeled-dropdown-select__label-and-control-wrapper {
+.labeledDropdownSelectLabelAndControlWrapper {
   max-width: fit-content;
 }
 
-.labeled-dropdown-select__label {
+.labeledDropdownSelectLabel {
   font-size: var(--text-size-header);
   margin-bottom: 1rem;
 }
