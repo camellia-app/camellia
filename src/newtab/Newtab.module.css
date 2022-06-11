@@ -1,16 +1,6 @@
-@import '../reset.css';
-@import '../components/variables.css';
-
-:root {
-  height: 100%;
-}
-
-body {
-  background-color: #000;
-  font-size: var(--text-size-regular);
-  height: 100%;
-  overscroll-behavior-x: none;
-}
+@import "../reset.css";
+@import "../common.css";
+@import "../variables.css";
 
 .newtabWrapper {
   display: flex;
