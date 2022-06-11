@@ -1,5 +1,3 @@
-@import '../variables.css';
-
 .bookmarkSearchField {
   background-color: var(--bookmark-background-color);
   color: var(--bookmark-text-color);

@@ -1,5 +1,3 @@
-@import '../variables.css';
-
 .chip {
   cursor: pointer;
   touch-action: manipulation;
