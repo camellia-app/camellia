@@ -126,3 +126,14 @@ jobs:
 
       - name: Check TypeScript types
         run: npx tsc --noEmit
+
+  editorconfig:
+    name: EditorConfig
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Check files to follow EditorConfig rules
+        uses: editorconfig-checker/action-editorconfig-checker@v1.0.0
