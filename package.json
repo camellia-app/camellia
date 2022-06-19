@@ -53,7 +53,7 @@
     "@storybook/addon-actions": "6.5.8",
     "@storybook/addon-backgrounds": "6.5.8",
     "@storybook/addon-controls": "6.5.8",
-    "@storybook/addon-measure": "6.5.8",
+    "@storybook/addon-measure": "6.5.9",
     "@storybook/addon-viewport": "6.5.8",
     "@storybook/builder-webpack5": "6.5.8",
     "@storybook/manager-webpack5": "6.5.8",
