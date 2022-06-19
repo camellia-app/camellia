@@ -25,7 +25,7 @@ jobs:
         run: echo "::set-output name=dir::$(npm config get cache)"
 
       - name: Cache npm dependencies
-        uses: actions/cache@v3.0.3
+        uses: actions/cache@v3.0.4
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -61,7 +61,7 @@ jobs:
         run: echo "::set-output name=dir::$(npm config get cache)"
 
       - name: Cache npm dependencies
-        uses: actions/cache@v3.0.3
+        uses: actions/cache@v3.0.4
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
