@@ -1,5 +1,5 @@
-import type { FC } from 'react';
 import type CSS from 'csstype';
+import type { FC } from 'react';
 import type { Icon } from '../../../../icons';
 import { optionsCategoryButton, optionsCategoryIcon, optionsCategoryLabel } from './OptionsCategory.module.css';
 

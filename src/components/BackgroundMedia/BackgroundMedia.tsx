@@ -1,11 +1,11 @@
+import classNames from 'classnames';
 import type { ReactElement, FC } from 'react';
 import { useEffect, useState } from 'react';
 import { useOption } from '../../api/options/hook';
-import { UnsplashImageFromCollection } from './providers/UnsplashImageFromCollection';
-import { BackgroundImageByUrl } from './providers/BackgroundImageByUrl';
 import { BackgroundProviderType } from '../../api/options/options';
-import classNames from 'classnames';
 import { backgroundMedia, backgroundMediaLoading } from './BackgroundMedia.module.css';
+import { BackgroundImageByUrl } from './providers/BackgroundImageByUrl';
+import { UnsplashImageFromCollection } from './providers/UnsplashImageFromCollection';
 
 export const BackgroundMedia: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);

@@ -1,5 +1,5 @@
-import type { FC } from 'react';
 import type CSS from 'csstype';
+import type { FC } from 'react';
 import { BackgroundMedia } from '../../../components/BackgroundMedia/BackgroundMedia';
 import { backgroundPreview } from './BackgroundPreview.module.css';
 

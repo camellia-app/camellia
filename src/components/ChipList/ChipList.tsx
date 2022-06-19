@@ -1,5 +1,5 @@
-import type { FC, ReactNode } from 'react';
 import classNames from 'classnames';
+import type { FC, ReactNode } from 'react';
 import { chipList, chipListColumns, chipListInline, chipListItem } from './ChipList.module.css';
 
 export const ChipList: FC<{

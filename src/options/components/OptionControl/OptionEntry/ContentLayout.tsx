@@ -1,8 +1,8 @@
 import type { FC } from 'react';
-import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
-import { OptionDropdownSelect } from '../OptionDropdownSelect';
 import { ContentLayoutType } from '../../../../api/options/options';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
+import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
+import { OptionDropdownSelect } from '../OptionDropdownSelect';
 
 export const ContentLayout: FC = () => {
   return (

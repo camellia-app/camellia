@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const path = require('path');
+const assert = require('assert');
 const fs = require('fs');
+const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const dotenv = require('dotenv');
 const DotenvWebpackPlugin = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { SourceMapDevToolPlugin } = require('webpack');
-const dotenv = require('dotenv');
-const assert = require('assert');
 
 const dotenvPath = path.resolve(process.cwd(), '.env');
 const dotenvDistPath = path.resolve(process.cwd(), '.env.dist');

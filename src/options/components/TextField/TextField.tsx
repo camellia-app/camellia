@@ -1,6 +1,6 @@
+import classNames from 'classnames';
 import type { ChangeEventHandler, FC } from 'react';
 import { useRef } from 'react';
-import classNames from 'classnames';
 import { textField, textFieldControl, textFieldLoading } from './TextField.module.css';
 
 export const TextField: FC<{

@@ -1,39 +1,34 @@
 import type { FC } from 'react';
 import { useState, StrictMode } from 'react';
-import { OptionsSearchForm } from './components/Navigation/OptionsSearchForm/OptionsSearchForm';
-import { categoriesMap } from './components/Navigation/OptionsCategory/OptionsCategories';
+import { createRoot } from 'react-dom/client';
+import { getSupportedRuntimeFeatures } from '../api/applicationRuntime/features';
+import { BackgroundMedia } from '../components/BackgroundMedia/BackgroundMedia';
+import { BackgroundMediaFullScreenContainer } from '../components/BackgroundMedia/BackgroundMediaFullScreenContainer';
+import { Chip } from '../components/Chip/Chip';
+import { ChipList } from '../components/ChipList/ChipList';
 import { ActiveOptionCategory } from './ActiveOptionCategoryContext';
+import { AboutApp } from './components/AboutApp/AboutApp';
 import { CategorizedOption } from './components/CategorizedOption/CategorizedOption';
 import { LabeledCheckbox } from './components/Checkbox/LabeledCheckbox';
+import { categoriesMap } from './components/Navigation/OptionsCategory/OptionsCategories';
+import { OptionsSearchForm } from './components/Navigation/OptionsSearchForm/OptionsSearchForm';
 import { BackgroundImageSource } from './components/OptionControl/OptionEntry/BackgroundImageSource';
-import { BackgroundMediaFullScreenContainer } from '../components/BackgroundMedia/BackgroundMediaFullScreenContainer';
-import { BackgroundMedia } from '../components/BackgroundMedia/BackgroundMedia';
-import { AboutApp } from './components/AboutApp/AboutApp';
-import { createRoot } from 'react-dom/client';
+import { ContentLayout } from './components/OptionControl/OptionEntry/ContentLayout';
 import { CopyDebugInformation } from './components/OptionControl/OptionEntry/CopyDebugInformation';
 import { ResetOptions } from './components/OptionControl/OptionEntry/ResetOptions';
-import { ShowOptionsButton } from './components/OptionControl/OptionEntry/ShowOptionsButton';
 import { ShowBookmarkManagerButton } from './components/OptionControl/OptionEntry/ShowBookmarkManagerButton';
-import { ContentLayout } from './components/OptionControl/OptionEntry/ContentLayout';
-import { UnsplashPhotographerAttribution } from './components/OptionControl/OptionEntry/UnsplashPhotographerAttribution';
-import { ChipList } from '../components/ChipList/ChipList';
-import { getSupportedRuntimeFeatures } from '../api/applicationRuntime/features';
+import { ShowOptionsButton } from './components/OptionControl/OptionEntry/ShowOptionsButton';
 import { ShowSearchButton } from './components/OptionControl/OptionEntry/ShowSearchButton';
+import { UnsplashPhotographerAttribution } from './components/OptionControl/OptionEntry/UnsplashPhotographerAttribution';
 import { options, optionsContent, optionsWrapper } from './Options.module.css';
-import { Chip } from '../components/Chip/Chip';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconCode = require('mdi/filled/code.svg?fill=%23eee');
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconBugReport = require('mdi/filled/bug_report.svg?fill=%23eee');
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconForum = require('mdi/filled/forum.svg?fill=%23eee');
-
+const iconCode = require('mdi/filled/code.svg?fill=%23eee');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconDescription = require('mdi/filled/description.svg?fill=%23eee');
-
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const iconForum = require('mdi/filled/forum.svg?fill=%23eee');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconNewReleases = require('mdi/filled/new_releases.svg?fill=%23eee');
 

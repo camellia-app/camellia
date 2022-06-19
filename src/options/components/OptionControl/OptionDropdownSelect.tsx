@@ -1,9 +1,9 @@
-import { useOption } from '../../../api/options/hook';
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
-import { LabeledDropdownSelect } from '../DropdownSelect/LabeledDropdownSelect';
-import type { SelectOption, SelectOptionGroup } from '../DropdownSelect/DropdownSelect';
+import { useOption } from '../../../api/options/hook';
 import type { EnumOptionKey, OptionsTypeMap } from '../../../api/options/options';
+import type { SelectOption, SelectOptionGroup } from '../DropdownSelect/DropdownSelect';
+import { LabeledDropdownSelect } from '../DropdownSelect/LabeledDropdownSelect';
 
 export const OptionDropdownSelect: FC<{
   description: string;

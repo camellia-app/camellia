@@ -1,6 +1,6 @@
 import type { FC, ButtonHTMLAttributes, ReactNode } from 'react';
-import { ActionButton } from './ActionButton';
 import { Paragraph } from '../Paragraph/Paragraph';
+import { ActionButton } from './ActionButton';
 import { labeledActionButton } from './LabeledActionButton.module.css';
 
 export const LabeledActionButton: FC<{

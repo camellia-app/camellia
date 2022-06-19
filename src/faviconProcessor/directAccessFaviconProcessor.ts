@@ -1,5 +1,5 @@
-import type { FaviconProcessor } from './faviconProcessor';
 import type { Favicon } from './favicon';
+import type { FaviconProcessor } from './faviconProcessor';
 
 export const directAccessFaviconProcessor: FaviconProcessor = {
   generateUrl: (url: string): Favicon => {

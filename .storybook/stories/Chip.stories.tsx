@@ -1,8 +1,7 @@
+import { faker } from '@faker-js/faker';
+import { action } from '@storybook/addon-actions';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Chip } from '../../src/components/Chip/Chip';
-import { action } from '@storybook/addon-actions';
-import { faker } from '@faker-js/faker';
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const icon = require('mdi/filled/local_florist.svg?fill=%23eee');
 

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { Bookmark } from '../../api/bookmark/common';
 import { searchBookmarks } from '../../api/bookmark';
+import type { Bookmark } from '../../api/bookmark/common';
 
 export type BookmarkSearchState = {
   bookmarks: Array<Bookmark>;

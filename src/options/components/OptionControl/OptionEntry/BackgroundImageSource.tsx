@@ -1,11 +1,11 @@
 import type { FC } from 'react';
-import { OptionDropdownSelect } from '../OptionDropdownSelect';
-import { OptionTextField } from '../OptionTextField';
-import { BackgroundPreview } from '../../BackgroundPreview/BackgroundPreview';
 import { useOption } from '../../../../api/options/hook';
 import { BackgroundProviderType } from '../../../../api/options/options';
-import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
+import { BackgroundPreview } from '../../BackgroundPreview/BackgroundPreview';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
+import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
+import { OptionDropdownSelect } from '../OptionDropdownSelect';
+import { OptionTextField } from '../OptionTextField';
 
 export const BackgroundImageSource: FC = () => {
   const [backgroundImageSourceType] = useOption('background_provider_type');

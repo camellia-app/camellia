@@ -1,5 +1,5 @@
-import type { ChangeEventHandler, FC } from 'react';
 import classNames from 'classnames';
+import type { ChangeEventHandler, FC } from 'react';
 import { checkbox, checkboxControl, checkboxControlIndeterminate, checkboxLoading } from './Checkbox.module.css';
 
 export const Checkbox: FC<{

@@ -1,9 +1,9 @@
 import type { FC } from 'react';
-import { LabeledActionButton } from '../../ActionButton/LabeledActionButton';
-import { useAppEnvironment } from '../../../../api/appEnvironment/hook';
 import { getPlatform } from '../../../../api/appEnvironment';
-import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
+import { useAppEnvironment } from '../../../../api/appEnvironment/hook';
+import { LabeledActionButton } from '../../ActionButton/LabeledActionButton';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
+import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
 
 export const CopyDebugInformation: FC = () => {
   const appEnvironmentInfo = useAppEnvironment();

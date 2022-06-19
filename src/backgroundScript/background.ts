@@ -1,6 +1,6 @@
+import { migrateOptions, setDefaultOptionValues } from '../api/options';
 import { onAppInstalled } from '../appEvents/onAppInstalled';
 import { onAppUpdated } from '../appEvents/onAppUpdated';
-import { migrateOptions, setDefaultOptionValues } from '../api/options';
 
 onAppInstalled(async () => {
   console.group('App installed...');

@@ -1,6 +1,6 @@
+import { faker } from '@faker-js/faker';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Paragraph } from '../../src/options/components/Paragraph/Paragraph';
-import { faker } from '@faker-js/faker';
 
 const story: ComponentMeta<typeof Paragraph> = {
   component: Paragraph,

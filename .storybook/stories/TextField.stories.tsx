@@ -1,6 +1,6 @@
+import { faker } from '@faker-js/faker';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { TextField } from '../../src/options/components/TextField/TextField';
-import { faker } from '@faker-js/faker';
 
 const story: ComponentMeta<typeof TextField> = {
   component: TextField,

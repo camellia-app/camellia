@@ -1,7 +1,7 @@
 import type { FC } from 'react';
-import { OptionsCategory } from '../OptionsCategory/OptionsCategory';
-import { allCategories } from '../OptionsCategory/OptionsCategories';
 import { Icon } from '../../../../icons';
+import { allCategories } from '../OptionsCategory/OptionsCategories';
+import { OptionsCategory } from '../OptionsCategory/OptionsCategory';
 import { optionsSearchFormCategoryList } from './OptionsSearchForm.module.css';
 
 export const OptionsSearchForm: FC<{

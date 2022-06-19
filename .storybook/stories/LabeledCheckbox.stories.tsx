@@ -1,8 +1,8 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Paragraph } from '../../src/options/components/Paragraph/Paragraph';
 import { faker } from '@faker-js/faker';
-import { LabeledCheckbox } from '../../src/options/components/Checkbox/LabeledCheckbox';
+import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Checkbox } from '../../src/options/components/Checkbox/Checkbox';
+import { LabeledCheckbox } from '../../src/options/components/Checkbox/LabeledCheckbox';
+import { Paragraph } from '../../src/options/components/Paragraph/Paragraph';
 
 const story: ComponentMeta<typeof LabeledCheckbox> = {
   component: LabeledCheckbox,

@@ -1,12 +1,12 @@
 import type { FC, ReactNode } from 'react';
 import { useEffect, useRef } from 'react';
-import { Popup } from '../Popup';
 import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../../../store';
 import type { PopupState } from '../../../store/slice/popupSlice';
 import { popupSlice } from '../../../store/slice/popupSlice';
-import type { RootState } from '../../../store';
-import { ChipList } from '../../ChipList/ChipList';
 import { Bookmark } from '../../Bookmark/Bookmark';
+import { ChipList } from '../../ChipList/ChipList';
+import { Popup } from '../Popup';
 import { popupManager } from './PopupManager.module.css';
 
 export const PopupManager: FC = () => {

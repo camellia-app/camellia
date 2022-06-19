@@ -1,7 +1,6 @@
 import type { MouseEventHandler, FC } from 'react';
 import { openOptionsPage } from '../../../api/applicationRuntime/navigation';
 import { Chip } from '../../Chip/Chip';
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconSettings = require('mdi/filled/settings.svg?fill=%23eee');
 
