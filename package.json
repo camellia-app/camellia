@@ -6,7 +6,9 @@
     "start": "webpack --watch",
     "fix-prettier": "npx prettier --write .",
     "fix-eslint": "npx eslint --fix .",
-    "fix-stylelint": "npx stylelint --fix \"src/**/*.css\""
+    "fix-stylelint": "npx stylelint --fix \"src/**/*.css\"",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "engines": {
     "node": ">=16"
@@ -45,8 +47,20 @@
     "webpack-cli": "4.9.2"
   },
   "devDependencies": {
+    "@babel/core": "7.18.2",
+    "@faker-js/faker": "7.2.0",
+    "@storybook/addon-a11y": "6.5.8",
+    "@storybook/addon-actions": "6.5.8",
+    "@storybook/addon-backgrounds": "6.5.8",
+    "@storybook/addon-controls": "6.5.8",
+    "@storybook/addon-measure": "6.5.8",
+    "@storybook/addon-viewport": "6.5.8",
+    "@storybook/builder-webpack5": "6.5.8",
+    "@storybook/manager-webpack5": "6.5.8",
+    "@storybook/react": "6.5.8",
     "@typescript-eslint/eslint-plugin": "5.27.0",
     "@typescript-eslint/parser": "5.27.0",
+    "babel-loader": "8.2.5",
     "clean-webpack-plugin": "4.0.0",
     "dts-css-modules-loader": "2.0.0",
     "eslint": "8.16.0",
@@ -57,9 +71,12 @@
     "eslint-plugin-react-hooks": "4.5.0",
     "eslint-plugin-react-redux": "4.0.0",
     "eslint-plugin-sort-keys-fix": "1.1.2",
+    "eslint-plugin-storybook": "0.5.12",
     "eslint-plugin-typescript-sort-keys": "2.1.0",
     "eslint-plugin-unused-imports": "2.0.0",
     "prettier": "2.6.2",
+    "react-docgen-typescript": "2.2.2",
+    "storybook-dark-mode": "1.1.0",
     "stylelint": "14.9.1",
     "stylelint-config-css-modules": "4.1.0",
     "stylelint-config-prettier": "9.0.3",

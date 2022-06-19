@@ -16,5 +16,5 @@
 }
 
 .chipListItem {
-  max-width: 100%;
+  max-width: var(--bookmark-column-min-width);
 }

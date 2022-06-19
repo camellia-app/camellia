@@ -1,15 +1,42 @@
-import type { FC, ButtonHTMLAttributes } from 'react';
+import type { FC, ButtonHTMLAttributes, ReactNode } from 'react';
 import { ActionButton } from './ActionButton';
 import { Paragraph } from '../Paragraph/Paragraph';
 import { labeledActionButton } from './LabeledActionButton.module.css';
 
 export const LabeledActionButton: FC<{
+  /**
+   * HTML button [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) attribute value.
+   */
   buttonHtmlType: NonNullable<ButtonHTMLAttributes<HTMLButtonElement>['type']>;
+
+  /**
+   * What will happen on clicking the button.
+   */
   clickHandler?: (() => void) | undefined;
-  description: string;
-  disabled: boolean;
+
+  /**
+   * Description of the button.
+   */
+  description: ReactNode;
+
+  /**
+   * Disable button (click handler won't work too).
+   *
+   * @default false
+   */
+  disabled?: boolean | undefined;
+
+  /**
+   * Text label on button.
+   */
   label: string;
-  loading: boolean;
+
+  /**
+   * Show loading animation.
+   *
+   * @default false
+   */
+  loading?: boolean | undefined;
 }> = (props) => {
   return (
     <div className={labeledActionButton}>

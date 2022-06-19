@@ -4,14 +4,56 @@ import classNames from 'classnames';
 import { textField, textFieldControl, textFieldLoading } from './TextField.module.css';
 
 export const TextField: FC<{
+  /**
+   * What will happen on typing to the text field.
+   */
   changeHandler?: ((newValue: string) => void) | undefined;
-  disabled: boolean;
-  loading: boolean;
+
+  /**
+   * Disable checkbox (click handler won't work too).
+   *
+   * @default false
+   */
+  disabled?: boolean | undefined;
+
+  /**
+   * Show loading animation.
+   *
+   * @default false
+   */
+  loading?: boolean | undefined;
+
+  /**
+   * Regular expression to validate value.
+   * Will be passed to [`pattern`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#pattern) attribute.
+   */
   pattern?: string | undefined;
+
+  /**
+   * What should be shown when input is empty.
+   */
   placeholder: string;
-  spellCheck: boolean;
+
+  /**
+   * Do spell check or not.
+   *
+   * @default false
+   */
+  spellCheck?: boolean | undefined;
+
+  /**
+   * HTML [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type) attribute.
+   */
   type: 'number' | 'url';
+
+  /**
+   * Function to validate user input.
+   */
   validate?: ((newValue: string) => string | undefined) | undefined;
+
+  /**
+   * Initial value of the input.
+   */
   value: string | undefined;
 }> = (props) => {
   const inputElementRef = useRef<HTMLInputElement>(null);
@@ -49,20 +91,20 @@ export const TextField: FC<{
   return (
     <div
       className={classNames(textField, {
-        [textFieldLoading]: props.loading,
+        [textFieldLoading]: props.loading === true,
       })}
     >
       <input
         autoCorrect="off"
         className={textFieldControl}
         defaultValue={props.value}
-        disabled={props.disabled}
+        disabled={props.disabled === true}
         onChange={handleChange}
         pattern={props.pattern}
         placeholder={props.placeholder}
         ref={inputElementRef}
         required
-        spellCheck={props.spellCheck}
+        spellCheck={props.spellCheck === true}
         type={props.type}
       />
     </div>

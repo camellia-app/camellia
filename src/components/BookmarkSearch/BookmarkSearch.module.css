@@ -1,7 +1,6 @@
 .bookmarkSearchField {
   background-color: var(--bookmark-background-color);
   color: var(--bookmark-text-color);
-  font-family: var(--font-family-sans-serif);
   font-size: var(--text-size-header);
   height: var(--search-bar-height);
   padding-left: 24px;

@@ -3,8 +3,8 @@
 }
 
 body {
-  background-color: #000;
   color: var(--bookmark-text-color);
+  font-family: var(--font-family-sans-serif);
   font-size: var(--text-size-regular);
   height: 100%;
   overscroll-behavior-x: none;

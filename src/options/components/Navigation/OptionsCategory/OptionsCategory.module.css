@@ -28,7 +28,6 @@
 }
 
 .optionsCategoryLabel {
-  font-family: var(--font-family-sans-serif);
   line-height: 40px;
   overflow: hidden;
   padding-right: 12px;

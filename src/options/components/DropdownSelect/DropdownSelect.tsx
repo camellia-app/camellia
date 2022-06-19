@@ -13,10 +13,33 @@ export type SelectOptionGroup<TValue extends string> = {
 };
 
 type DropdownSelectProps<TValue extends string> = {
+  /**
+   * What will happen on selecting an option.
+   */
   changeHandler?: ((newValue: TValue) => void) | undefined;
-  disabled: boolean;
-  loading: boolean;
+
+  /**
+   * Disable dropdown (click handler won't work too).
+   *
+   * @default false
+   */
+  disabled?: boolean | undefined;
+
+  /**
+   * Show loading animation.
+   *
+   * @default false
+   */
+  loading?: boolean | undefined;
+
+  /**
+   * Possible values to chose from.
+   */
   options: Array<SelectOption<TValue> | SelectOptionGroup<TValue>>;
+
+  /**
+   * Current value chosen in dropdown select.
+   */
   value: TValue | undefined;
 };
 
@@ -33,10 +56,15 @@ export const DropdownSelect = <TValue extends string>(props: DropdownSelectProps
   return (
     <div
       className={classNames(dropdownSelect, {
-        [dropdownSelectLoading]: props.loading,
+        [dropdownSelectLoading]: props.loading === true,
       })}
     >
-      <select className={dropdownSelectControl} disabled={props.disabled} onChange={handleChange} value={props.value}>
+      <select
+        className={dropdownSelectControl}
+        disabled={props.disabled === true}
+        onChange={handleChange}
+        value={props.value}
+      >
         {props.value === undefined ? <option /> : undefined}
 
         {props.options.map((optionEntry) => {

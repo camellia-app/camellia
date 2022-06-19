@@ -19,43 +19,52 @@ import { UnsplashPhotographerAttribution } from './components/OptionControl/Opti
 import { ChipList } from '../components/ChipList/ChipList';
 import { getSupportedRuntimeFeatures } from '../api/applicationRuntime/features';
 import { ShowSearchButton } from './components/OptionControl/OptionEntry/ShowSearchButton';
-import { Bookmark } from '../components/Bookmark/Bookmark';
-import type { Bookmark as BookmarkEntry } from '../api/bookmark/common';
 import { options, optionsContent, optionsWrapper } from './Options.module.css';
+import { Chip } from '../components/Chip/Chip';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const iconCode = require('mdi/filled/code.svg?fill=%23eee');
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const iconBugReport = require('mdi/filled/bug_report.svg?fill=%23eee');
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const iconForum = require('mdi/filled/forum.svg?fill=%23eee');
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const iconDescription = require('mdi/filled/description.svg?fill=%23eee');
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const iconNewReleases = require('mdi/filled/new_releases.svg?fill=%23eee');
 
 export const Options: FC = () => {
   const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);
 
-  const links: Array<BookmarkEntry> = [
+  const links: Array<{ icon: string; title: string; url: string }> = [
     {
-      id: '0',
       title: 'Source code',
-      type: 'link',
       url: 'https://github.com/camellia-app/camellia',
+      icon: iconCode,
     },
     {
-      id: '0',
       title: 'Report a bug',
-      type: 'link',
       url: 'https://github.com/camellia-app/camellia/issues',
+      icon: iconBugReport,
     },
     {
-      id: '0',
       title: 'Community forum',
-      type: 'link',
       url: 'https://github.com/camellia-app/camellia/discussions',
+      icon: iconForum,
     },
     {
-      id: '0',
       title: 'User manual',
-      type: 'link',
       url: 'https://github.com/camellia-app/camellia/wiki',
+      icon: iconDescription,
     },
     {
-      id: '0',
       title: 'Release notes',
-      type: 'link',
       url: 'https://github.com/camellia-app/camellia/releases',
+      icon: iconNewReleases,
     },
   ];
 
@@ -115,7 +124,15 @@ export const Options: FC = () => {
 
                   <ChipList
                     chips={links.map((link, index) => (
-                      <Bookmark bookmark={link} focus={false} key={index} />
+                      <Chip
+                        focus={false}
+                        iconSrc={link.icon}
+                        key={index}
+                        label={link.title}
+                        shape={'rounded'}
+                        tooltip={link.title}
+                        url={link.url}
+                      />
                     ))}
                     type="inline"
                   />

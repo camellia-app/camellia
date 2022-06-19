@@ -1,32 +1,75 @@
 import type { ReactEventHandler, FC, MouseEventHandler } from 'react';
 import { createRef, useEffect, useState } from 'react';
 import classNames from 'classnames';
-import {
-  chip,
-  chipBody,
-  chipBodyLoading,
-  chipBodyRounded,
-  chipBodySquared,
-  chipIcon,
-  chipLabel,
-} from './Chip.module.css';
+import { chip, chipIcon, chipLabel, chipLoading, chipRounded, chipSquared } from './Chip.module.css';
 
-export enum ChipShape {
-  Rounded,
-  Squared,
-}
+export const Chip: FC<{
+  /**
+   * Action that will be triggered after clicking the chip.
+   */
+  clickAction?: MouseEventHandler;
 
-type ChipProps = {
+  /**
+   * Fallback icon of the chip which will be used in case main icon won't load.
+   * It may be an image URL or data URL, but it's recommended to use [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
+   */
   fallbackIconSrc?: string | undefined;
-  iconSrc: string;
-  isLoading: boolean;
-  label: string;
-  shape: ChipShape;
-  tooltip?: string | undefined;
-};
 
-const Chip: FC<ChipProps> = (props) => {
+  /**
+   * Should chip be focused automatically or not.
+   *
+   * @default false
+   */
+  focus?: boolean | undefined;
+
+  /**
+   * Main icon of the chip. It may be an image URL or [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
+   */
+  iconSrc: string;
+
+  /**
+   * Show loading animation or not.
+   *
+   * @default false
+   */
+  isLoading?: boolean | undefined;
+
+  /**
+   * Label (name) of the chip shown next to its icon.
+   */
+  label: string;
+
+  /**
+   * Shape of the chip.
+   */
+  shape: 'rounded' | 'squared';
+
+  /**
+   * Tooltip will be shown when hovering with cursor.
+   */
+  tooltip?: string | undefined;
+
+  /**
+   * URL that will be opened after clicking the chip.
+   */
+  url?: string | undefined;
+}> = (props) => {
   const [iconSrc, setIconSrc] = useState<string>(props.iconSrc);
+
+  const buttonElementRef = createRef<HTMLButtonElement>();
+  const anchorElementRef = createRef<HTMLAnchorElement>();
+
+  useEffect(() => {
+    if (props.focus === true) {
+      buttonElementRef.current?.focus();
+    }
+  }, [buttonElementRef, props.focus]);
+
+  useEffect(() => {
+    if (props.focus === true) {
+      anchorElementRef.current?.focus();
+    }
+  }, [anchorElementRef, props.focus]);
 
   const handleImageError: ReactEventHandler<HTMLImageElement> = (event) => {
     if (!(event.target instanceof HTMLImageElement)) {
@@ -42,82 +85,39 @@ const Chip: FC<ChipProps> = (props) => {
 
   const tooltip = props.tooltip !== undefined ? props.tooltip : props.label;
 
-  return (
-    <div
-      className={classNames(chipBody, {
-        [chipBodyLoading]: props.isLoading,
-        [chipBodySquared]: props.shape === ChipShape.Squared,
-        [chipBodyRounded]: props.shape === ChipShape.Rounded,
-      })}
-      title={tooltip}
-    >
+  const chipBody = (
+    <>
       <img alt="Favicon" className={chipIcon} height="16" onError={handleImageError} src={iconSrc} width="16" />
 
       <span className={chipLabel}>{props.label}</span>
-    </div>
+    </>
   );
-};
 
-export const ChipButton: FC<
-  ChipProps & {
-    clickAction: MouseEventHandler;
-    focus: boolean;
+  const chipClasses = classNames(chip, {
+    [chipLoading]: props.isLoading === true,
+    [chipSquared]: props.shape === 'squared',
+    [chipRounded]: props.shape === 'rounded',
+  });
+
+  if (props.url !== undefined) {
+    return (
+      <a
+        className={chipClasses}
+        href={props.url}
+        onClick={props.clickAction}
+        ref={anchorElementRef}
+        rel="noopener"
+        target="_self"
+        title={tooltip}
+      >
+        {chipBody}
+      </a>
+    );
+  } else {
+    return (
+      <button className={chipClasses} onClick={props.clickAction} ref={buttonElementRef} title={tooltip} type="button">
+        {chipBody}
+      </button>
+    );
   }
-> = (props) => {
-  const buttonElementRef = createRef<HTMLButtonElement>();
-
-  useEffect(() => {
-    if (props.focus) {
-      buttonElementRef.current?.focus();
-    }
-  }, [buttonElementRef, props.focus]);
-
-  return (
-    <button className={chip} onClick={props.clickAction} ref={buttonElementRef} type="button">
-      <Chip
-        fallbackIconSrc={props.fallbackIconSrc}
-        iconSrc={props.iconSrc}
-        isLoading={props.isLoading}
-        label={props.label}
-        shape={props.shape}
-        tooltip={props.tooltip}
-      />
-    </button>
-  );
-};
-
-export const ChipLink: FC<
-  ChipProps & {
-    clickAction: MouseEventHandler;
-    focus: boolean;
-    url: string;
-  }
-> = (props) => {
-  const anchorElementRef = createRef<HTMLAnchorElement>();
-
-  useEffect(() => {
-    if (props.focus) {
-      anchorElementRef.current?.focus();
-    }
-  }, [anchorElementRef, props.focus]);
-
-  return (
-    <a
-      className={chip}
-      href={props.url}
-      onClick={props.clickAction}
-      ref={anchorElementRef}
-      rel="noopener"
-      target="_self"
-    >
-      <Chip
-        fallbackIconSrc={props.fallbackIconSrc}
-        iconSrc={props.iconSrc}
-        isLoading={props.isLoading}
-        label={props.label}
-        shape={props.shape}
-        tooltip={props.tooltip}
-      />
-    </a>
-  );
 };

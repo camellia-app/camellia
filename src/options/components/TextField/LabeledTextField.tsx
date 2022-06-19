@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
 import { TextField } from './TextField';
 import { Paragraph } from '../Paragraph/Paragraph';
 import {
@@ -8,16 +8,66 @@ import {
 } from './LabeledTextField.module.css';
 
 export const LabeledTextField: FC<{
+  /**
+   * What will happen on typing to the text field.
+   */
   changeHandler?: ((newValue: string) => void) | undefined;
-  description: string;
-  disabled: boolean;
+
+  /**
+   * Description of the text field.
+   */
+  description: ReactNode;
+
+  /**
+   * Disable checkbox (click handler won't work too).
+   *
+   * @default false
+   */
+  disabled?: boolean | undefined;
+
+  /**
+   * Text label above the text field.
+   */
   label: string;
-  loading: boolean;
+
+  /**
+   * Show loading animation.
+   *
+   * @default false
+   */
+  loading?: boolean | undefined;
+
+  /**
+   * Regular expression to validate value.
+   * Will be passed to [`pattern`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#pattern) attribute.
+   */
   pattern?: string | undefined;
+
+  /**
+   * What should be shown when input is empty.
+   */
   placeholder: string;
-  spellCheck: boolean;
+
+  /**
+   * Do spell check or not.
+   *
+   * @default false
+   */
+  spellCheck?: boolean | undefined;
+
+  /**
+   * HTML [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type) attribute.
+   */
   type: 'number' | 'url';
+
+  /**
+   * Function to validate user input.
+   */
   validate?: ((newValue: string) => string | undefined) | undefined;
+
+  /**
+   * Initial value of the input.
+   */
   value: string | undefined;
 }> = (props) => {
   return (
