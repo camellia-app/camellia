@@ -22,7 +22,6 @@
 .optionsContent {
   display: flex;
   flex-direction: column;
-  font-family: var(--font-family-sans-serif);
   gap: 3rem;
   line-height: var(--text-line-height);
   padding: 1rem;
