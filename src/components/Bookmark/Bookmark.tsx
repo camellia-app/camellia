@@ -1,39 +1,39 @@
 import type { FC, MouseEventHandler } from 'react';
-import type { Bookmark as BookmarkEntry, Folder, Link } from '../../api/bookmark/common';
-import { isLink } from '../../api/bookmark/common';
+import type { Bookmark as BookmarkEntry } from '../../api/bookmark/common';
 import { useDispatch } from 'react-redux';
 import { useContext, useState } from 'react';
 import { PopupNestingLevelContext } from '../Popup/PopupNestingLevelContext';
 import { popupSlice } from '../../store/slice/popupSlice';
 import { getFolderChildrenBookmarks } from '../../api/bookmark';
 import { getFaviconProcessor } from '../../faviconProcessor';
-import { ChipButton, ChipLink, ChipShape } from '../Chip/Chip';
-
-export const Bookmark: FC<{
-  bookmark: BookmarkEntry;
-  focus: boolean;
-}> = (props) => {
-  if (isLink(props.bookmark)) {
-    return <BookmarkLink bookmark={props.bookmark} focus={props.focus} />;
-  } else {
-    return <BookmarkFolder bookmark={props.bookmark} focus={props.focus} />;
-  }
-};
+import { Chip } from '../Chip/Chip';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconFolder = require('mdi/filled/folder.svg?fill=%23eee');
 
-const BookmarkFolder: FC<{
-  bookmark: Folder;
-  focus: boolean;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const iconPublic = require('mdi/filled/public.svg?fill=%23eee');
+
+export const Bookmark: FC<{
+  bookmark: BookmarkEntry;
+  focus?: boolean | undefined;
 }> = (props) => {
+  const [isLoading, setLoading] = useState<boolean>(false);
   const dispatch = useDispatch();
   const nestingLevelContext = useContext(PopupNestingLevelContext);
 
-  const clickAction: MouseEventHandler = async (event) => {
+  const handleLinkClick = (): void => {
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 15000);
+  };
+
+  const handleFolderClick = async (x: number, y: number): Promise<void> => {
     const clickPosition = {
-      x: event.pageX,
-      y: event.pageY,
+      x: x,
+      y: y,
     };
 
     dispatch(
@@ -50,47 +50,33 @@ const BookmarkFolder: FC<{
     );
   };
 
-  return (
-    <ChipButton
-      clickAction={clickAction}
-      focus={props.focus}
-      iconSrc={iconFolder}
-      isLoading={false}
-      label={props.bookmark.title}
-      shape={ChipShape.Rounded}
-      tooltip={props.bookmark.title}
-    />
-  );
-};
+  const clickAction: MouseEventHandler = (event): void => {
+    switch (props.bookmark.type) {
+      case 'folder':
+        handleFolderClick(event.pageX, event.pageY);
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconPublic = require('mdi/filled/public.svg?fill=%23eee');
+        break;
 
-const BookmarkLink: FC<{
-  bookmark: Link;
-  focus: boolean;
-}> = (props) => {
-  const [isLoading, setLoading] = useState<boolean>(false);
-
-  const clickAction = (): void => {
-    setLoading(true);
-
-    setTimeout(() => {
-      setLoading(false);
-    }, 15000);
+      case 'link':
+        handleLinkClick();
+    }
   };
 
+  const url = props.bookmark.type === 'link' ? props.bookmark.url : undefined;
+  const icon =
+    props.bookmark.type === 'link' ? getFaviconProcessor().generateUrl(props.bookmark.url).default.url : iconFolder;
+
   return (
-    <ChipLink
+    <Chip
       clickAction={clickAction}
       fallbackIconSrc={iconPublic}
       focus={props.focus}
-      iconSrc={getFaviconProcessor().generateUrl(props.bookmark.url).default.url}
+      iconSrc={icon}
       isLoading={isLoading}
       label={props.bookmark.title}
-      shape={ChipShape.Rounded}
+      shape={'rounded'}
       tooltip={props.bookmark.title}
-      url={props.bookmark.url}
+      url={url}
     />
   );
 };

@@ -1,5 +1,5 @@
 import type { MouseEventHandler, FC } from 'react';
-import { ChipButton, ChipShape } from '../../Chip/Chip';
+import { Chip } from '../../Chip/Chip';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconStar = require('mdi/filled/star.svg?fill=%23eee');
@@ -13,13 +13,13 @@ export const BookmarkManager: FC = () => {
   const tooltip = `${label} (Ctrl+Shift+O)`;
 
   return (
-    <ChipButton
+    <Chip
       clickAction={handleClick}
       focus={false}
       iconSrc={iconStar}
       isLoading={false}
       label={label}
-      shape={ChipShape.Squared}
+      shape={'squared'}
       tooltip={tooltip}
     />
   );

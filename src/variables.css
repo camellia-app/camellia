@@ -7,6 +7,7 @@
   --chip-rounded-border-radius: 1rem;
   --chip-squared-border-radius: 0.5rem;
   --chip-hover-shift: 1px;
+  --chip-max-width: max(var(--bookmark-column-min-width), 350px);
   --font-family-sans-serif: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue', arial, 'Noto Sans',
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --loading-strip-size: 20px;
