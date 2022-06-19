@@ -19,7 +19,7 @@
     "@sentry/react": "6.19.7",
     "@sentry/tracing": "6.19.7",
     "@sentry/webpack-plugin": "1.18.9",
-    "@types/chrome": "0.0.188",
+    "@types/chrome": "0.0.190",
     "@types/firefox-webext-browser": "94.0.1",
     "@types/lodash.debounce": "4.0.7",
     "@types/react": "18.0.10",
