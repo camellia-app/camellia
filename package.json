@@ -47,7 +47,7 @@
     "webpack-cli": "4.9.2"
   },
   "devDependencies": {
-    "@babel/core": "7.18.2",
+    "@babel/core": "7.18.5",
     "@faker-js/faker": "7.2.0",
     "@storybook/addon-a11y": "6.5.8",
     "@storybook/addon-actions": "6.5.8",
