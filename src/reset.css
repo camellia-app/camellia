@@ -100,3 +100,7 @@ wbr {
   box-sizing: border-box;
   display: block;
 }
+
+[hidden] {
+  display: none;
+}
