@@ -24,10 +24,19 @@
   border-radius: 4px;
   cursor: pointer;
   line-height: 40px;
+  max-width: 100%;
+  overflow: hidden;
   padding-left: 8px;
   padding-right: 48px;
+  text-overflow: ellipsis;
   transition: 0.5s background-color;
   user-select: none;
+  white-space: nowrap;
+}
+
+.dropdownSelectControl:disabled {
+  cursor: default;
+  opacity: 0.5;
 }
 
 .dropdownSelectControl:focus {
