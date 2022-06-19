@@ -1,6 +1,6 @@
 @import '../reset.css';
-@import '../common.css';
 @import '../variables.css';
+@import '../commons.module.css';
 
 .optionsWrapper {
   background-color: hsl(0deg 0% 15% / 90%);

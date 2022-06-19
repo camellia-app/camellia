@@ -1,8 +1,9 @@
 @import '../reset.css';
-@import '../common.css';
 @import '../variables.css';
+@import '../commons.module.css';
 
 .newtabWrapper {
+  background-color: hsl(0deg 0% 15% / 90%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
