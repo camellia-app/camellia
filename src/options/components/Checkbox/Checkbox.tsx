@@ -3,10 +3,33 @@ import classNames from 'classnames';
 import { checkbox, checkboxControl, checkboxControlIndeterminate, checkboxLoading } from './Checkbox.module.css';
 
 export const Checkbox: FC<{
+  /**
+   * What will happen on clicking the checkbox.
+   */
   changeHandler?: ((newValue: boolean) => void) | undefined;
-  disabled: boolean;
+
+  /**
+   * Disable checkbox (click handler won't work too).
+   *
+   * @default false
+   */
+  disabled?: boolean | undefined;
+
+  /**
+   * Text label on checkbox.
+   */
   label: string;
-  loading: boolean;
+
+  /**
+   * Show loading animation.
+   *
+   * @default false
+   */
+  loading?: boolean | undefined;
+
+  /**
+   * Value of the checkbox.
+   */
   value: boolean | undefined;
 }> = (props) => {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -20,10 +43,15 @@ export const Checkbox: FC<{
   return (
     <label
       className={classNames(checkbox, {
-        [checkboxLoading]: props.loading,
+        [checkboxLoading]: props.loading === true,
       })}
     >
-      <input checked={props.value === true} disabled={props.disabled} onChange={handleChange} type="checkbox" />
+      <input
+        checked={props.value === true}
+        disabled={props.disabled === true}
+        onChange={handleChange}
+        type="checkbox"
+      />
       <span
         className={classNames(checkboxControl, {
           [checkboxControlIndeterminate]: isInIndeterminateState,

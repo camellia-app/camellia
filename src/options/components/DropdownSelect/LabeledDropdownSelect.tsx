@@ -1,6 +1,6 @@
 import type { SelectOption, SelectOptionGroup } from './DropdownSelect';
 import { DropdownSelect } from './DropdownSelect';
-import type { ReactElement } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import { Paragraph } from '../Paragraph/Paragraph';
 import {
   labeledDropdownSelect,
@@ -9,12 +9,43 @@ import {
 } from './LabeledDropdownSelect.module.css';
 
 type LabeledDropdownSelectProps<TValue extends string> = {
+  /**
+   * What will happen on selecting an option.
+   */
   changeHandler?: ((newValue: TValue) => void) | undefined;
-  description: string;
-  disabled: boolean;
+
+  /**
+   * Description of the select.
+   */
+  description: ReactNode;
+
+  /**
+   * Disable dropdown (click handler won't work too).
+   *
+   * @default false
+   */
+  disabled?: boolean | undefined;
+
+  /**
+   * Text label above dropdown select.
+   */
   label: string;
-  loading: boolean;
+
+  /**
+   * Show loading animation.
+   *
+   * @default false
+   */
+  loading?: boolean | undefined;
+
+  /**
+   * Possible values to chose from.
+   */
   options: Array<SelectOption<TValue> | SelectOptionGroup<TValue>>;
+
+  /**
+   * Current value chosen in dropdown select.
+   */
   value: TValue | undefined;
 };
 

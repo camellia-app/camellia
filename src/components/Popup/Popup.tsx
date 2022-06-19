@@ -1,4 +1,4 @@
-import type { MouseEventHandler, FC, ReactNode, RefObject } from 'react';
+import type { FC, MouseEventHandler, ReactNode, RefObject } from 'react';
 import { createRef, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import type * as CSS from 'csstype';
@@ -81,11 +81,34 @@ const calculatePopupPlacement = (
 };
 
 export const Popup: FC<{
+  /**
+   * Content of the popup.
+   */
   children: ReactNode;
+
+  /**
+   * Coordinates where mouse click happened.
+   */
   clickPosition: ClickPosition;
+
+  /**
+   * Unique popup ID.
+   */
   id: PopupId;
+
+  /**
+   * Current nesting level. Used for representation of popups as a stack inside Redux store.
+   */
   nestingLevel: number;
-  popupManagerRef?: RefObject<HTMLElement | null>;
+
+  /**
+   * Ref of the popup manager. It's used to track clicks outside current popup.
+   */
+  popupManagerRef?: RefObject<HTMLElement | null> | undefined;
+
+  /**
+   * Popup title.
+   */
   title: string;
 }> = (props) => {
   const [popupState, setPopupStage] = useState<PopupState>({
