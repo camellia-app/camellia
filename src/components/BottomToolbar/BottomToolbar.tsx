@@ -1,10 +1,10 @@
-import { BookmarkManager } from './ToolbarItem/BookmarkManager';
 import type { FC } from 'react';
-import { OptionsButton } from './ToolbarItem/OptionsButton';
-import { useOption } from '../../api/options/hook';
 import { getSupportedRuntimeFeatures } from '../../api/applicationRuntime/features';
-import { SearchButton } from './ToolbarItem/SearchButton';
+import { useOption } from '../../api/options/hook';
 import { bottomToolbar, bottomToolbarItems } from './BottomToolbar.module.css';
+import { BookmarkManager } from './ToolbarItem/BookmarkManager';
+import { OptionsButton } from './ToolbarItem/OptionsButton';
+import { SearchButton } from './ToolbarItem/SearchButton';
 
 export const BottomToolbar: FC = () => {
   const [showOptionsButton] = useOption('show_options_button');

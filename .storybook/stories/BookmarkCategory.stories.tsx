@@ -1,6 +1,6 @@
+import { faker } from '@faker-js/faker';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { BookmarkCategory } from '../../src/components/BookmarkCategory/BookmarkCategory';
-import { faker } from '@faker-js/faker';
 
 const story: ComponentMeta<typeof BookmarkCategory> = {
   component: BookmarkCategory,

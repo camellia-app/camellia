@@ -1,9 +1,9 @@
 import type { ChangeEventHandler, FormEventHandler, FC } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch, RootState } from '../../store';
 import type { BookmarkSearchState } from '../../store/slice/bookmarkSearchSlice';
 import { bookmarkSearchSlice, searchBookmarksThunk } from '../../store/slice/bookmarkSearchSlice';
-import type { AppDispatch, RootState } from '../../store';
 import { bookmarkSearchCloseButton, bookmarkSearchField } from './BookmarkSearch.module.css';
 
 export const BookmarkSearch: FC = () => {

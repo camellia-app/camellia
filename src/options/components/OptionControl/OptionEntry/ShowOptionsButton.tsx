@@ -1,7 +1,7 @@
 import type { FC } from 'react';
-import { OptionCheckbox } from '../OptionCheckbox';
-import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
+import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
+import { OptionCheckbox } from '../OptionCheckbox';
 
 export const ShowOptionsButton: FC = () => {
   return (

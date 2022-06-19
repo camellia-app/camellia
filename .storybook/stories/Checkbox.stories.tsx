@@ -1,6 +1,6 @@
+import { faker } from '@faker-js/faker';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Checkbox } from '../../src/options/components/Checkbox/Checkbox';
-import { faker } from '@faker-js/faker';
 
 const story: ComponentMeta<typeof Checkbox> = {
   component: Checkbox,

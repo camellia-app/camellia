@@ -1,6 +1,6 @@
+import classNames from 'classnames';
 import type { ReactEventHandler, FC, MouseEventHandler } from 'react';
 import { createRef, useEffect, useState } from 'react';
-import classNames from 'classnames';
 import { chip, chipIcon, chipLabel, chipLoading, chipRounded, chipSquared } from './Chip.module.css';
 
 export const Chip: FC<{

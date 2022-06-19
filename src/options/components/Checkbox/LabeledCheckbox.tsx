@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from 'react';
-import { Checkbox } from './Checkbox';
 import { Paragraph } from '../Paragraph/Paragraph';
+import { Checkbox } from './Checkbox';
 import { labeledCheckbox } from './LabeledCheckbox.module.css';
 
 export const LabeledCheckbox: FC<{

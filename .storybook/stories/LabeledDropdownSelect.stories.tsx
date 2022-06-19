@@ -1,8 +1,8 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Paragraph } from '../../src/options/components/Paragraph/Paragraph';
 import { faker } from '@faker-js/faker';
-import { LabeledDropdownSelect } from '../../src/options/components/DropdownSelect/LabeledDropdownSelect';
+import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { DropdownSelect } from '../../src/options/components/DropdownSelect/DropdownSelect';
+import { LabeledDropdownSelect } from '../../src/options/components/DropdownSelect/LabeledDropdownSelect';
+import { Paragraph } from '../../src/options/components/Paragraph/Paragraph';
 
 const story: ComponentMeta<typeof LabeledDropdownSelect> = {
   component: LabeledDropdownSelect,

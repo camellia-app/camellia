@@ -1,6 +1,6 @@
+import { faker } from '@faker-js/faker';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { DropdownSelect } from '../../src/options/components/DropdownSelect/DropdownSelect';
-import { faker } from '@faker-js/faker';
 
 const story: ComponentMeta<typeof DropdownSelect> = {
   component: DropdownSelect,

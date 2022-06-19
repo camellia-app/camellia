@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getOption, setOption, subscribeToOptionChanges } from './index';
 import type { OptionKey, OptionsTypeMap } from './options';
+import { getOption, setOption, subscribeToOptionChanges } from './index';
 
 type Dispatch<TValue> = (newValue: TValue) => void;
 

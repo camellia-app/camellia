@@ -1,8 +1,8 @@
 import type { FC } from 'react';
-import { LabeledActionButton } from '../../ActionButton/LabeledActionButton';
-import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
-import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
 import { resetOptionsToDefaultValues } from '../../../../api/options';
+import { LabeledActionButton } from '../../ActionButton/LabeledActionButton';
+import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
+import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
 
 export const ResetOptions: FC = () => {
   return (

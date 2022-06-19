@@ -1,9 +1,8 @@
 import type { MouseEventHandler, FC } from 'react';
 import { useDispatch } from 'react-redux';
-import { searchBookmarksThunk } from '../../../store/slice/bookmarkSearchSlice';
 import type { AppDispatch } from '../../../store';
+import { searchBookmarksThunk } from '../../../store/slice/bookmarkSearchSlice';
 import { Chip } from '../../Chip/Chip';
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconSearch = require('mdi/filled/search.svg?fill=%23eee');
 

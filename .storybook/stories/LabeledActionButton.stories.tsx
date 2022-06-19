@@ -1,7 +1,7 @@
+import { faker } from '@faker-js/faker';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ActionButton } from '../../src/options/components/ActionButton/ActionButton';
 import { LabeledActionButton } from '../../src/options/components/ActionButton/LabeledActionButton';
-import { faker } from '@faker-js/faker';
 import { Paragraph } from '../../src/options/components/Paragraph/Paragraph';
 
 const story: ComponentMeta<typeof LabeledActionButton> = {

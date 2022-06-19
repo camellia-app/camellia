@@ -1,5 +1,5 @@
-import { BackgroundImageByUrl } from './BackgroundImageByUrl';
 import type { FC } from 'react';
+import { BackgroundImageByUrl } from './BackgroundImageByUrl';
 
 export const UnsplashImageFromCollection: FC<{
   collectionId: string;

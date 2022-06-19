@@ -1,9 +1,9 @@
 import type { FC } from 'react';
-import { OptionCheckbox } from '../OptionCheckbox';
 import { useOption } from '../../../../api/options/hook';
 import { BackgroundProviderType } from '../../../../api/options/options';
-import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
+import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
+import { OptionCheckbox } from '../OptionCheckbox';
 
 export const UnsplashPhotographerAttribution: FC = () => {
   const [backgroundImageSourceType] = useOption('background_provider_type');

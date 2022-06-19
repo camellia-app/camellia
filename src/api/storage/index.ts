@@ -1,8 +1,8 @@
+import { AppPlatform, getPlatform } from '../appEnvironment';
 import type { Storage } from './common';
 import { StorageType } from './common';
 import { getChromiumStorageManager } from './platform/chromium';
 import { getWebextStorageManager } from './platform/webext';
-import { AppPlatform, getPlatform } from '../appEnvironment';
 
 const getStorage = (type: StorageType): Storage => {
   switch (getPlatform()) {

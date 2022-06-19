@@ -1,5 +1,5 @@
-import type { FaviconProcessor } from './faviconProcessor';
 import type { Favicon } from './favicon';
+import type { FaviconProcessor } from './faviconProcessor';
 
 export const camelliaProxyFaviconProcessor: FaviconProcessor = {
   generateUrl: (url: string): Favicon => {

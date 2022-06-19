@@ -1,7 +1,7 @@
-import { ChipList } from '../ChipList/ChipList';
 import type { FC } from 'react';
-import { Bookmark } from '../Bookmark/Bookmark';
 import type { Bookmark as BookmarkEntry } from '../../api/bookmark/common';
+import { Bookmark } from '../Bookmark/Bookmark';
+import { ChipList } from '../ChipList/ChipList';
 import { bookmarkCategory, bookmarkCategoryTitle } from './BookmarkCategory.module.css';
 
 export const BookmarkCategory: FC<{

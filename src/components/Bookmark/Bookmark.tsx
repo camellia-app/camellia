@@ -1,16 +1,14 @@
 import type { FC, MouseEventHandler } from 'react';
-import type { Bookmark as BookmarkEntry } from '../../api/bookmark/common';
-import { useDispatch } from 'react-redux';
 import { useContext, useState } from 'react';
-import { PopupNestingLevelContext } from '../Popup/PopupNestingLevelContext';
-import { popupSlice } from '../../store/slice/popupSlice';
+import { useDispatch } from 'react-redux';
 import { getFolderChildrenBookmarks } from '../../api/bookmark';
+import type { Bookmark as BookmarkEntry } from '../../api/bookmark/common';
 import { getFaviconProcessor } from '../../faviconProcessor';
+import { popupSlice } from '../../store/slice/popupSlice';
 import { Chip } from '../Chip/Chip';
-
+import { PopupNestingLevelContext } from '../Popup/PopupNestingLevelContext';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconFolder = require('mdi/filled/folder.svg?fill=%23eee');
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const iconPublic = require('mdi/filled/public.svg?fill=%23eee');
 

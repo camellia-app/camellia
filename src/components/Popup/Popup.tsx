@@ -1,11 +1,10 @@
-import type { FC, MouseEventHandler, ReactNode, RefObject } from 'react';
-import { createRef, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import type * as CSS from 'csstype';
-import { PopupNestingLevelContext } from './PopupNestingLevelContext';
-import type { PopupId } from '../../store/slice/popupSlice';
-import { popupSlice } from '../../store/slice/popupSlice';
+import { createRef, useEffect, useState } from 'react';
+import type { FC, MouseEventHandler, ReactNode, RefObject } from 'react';
 import { useDispatch } from 'react-redux';
+import { popupSlice } from '../../store/slice/popupSlice';
+import type { PopupId } from '../../store/slice/popupSlice';
 import {
   popup,
   popupCloseButton,
@@ -15,6 +14,7 @@ import {
   popupScrollableContainer,
   popupTitle,
 } from './Popup.module.css';
+import { PopupNestingLevelContext } from './PopupNestingLevelContext';
 
 export type ClickPosition = {
   x: number;

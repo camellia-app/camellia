@@ -54,6 +54,14 @@
     "@typescript-eslint/method-signature-style": ["warn"],
     "@typescript-eslint/sort-type-union-intersection-members": ["warn"],
     "import/no-cycle": "error",
+    "import/order": [
+      "warn",
+      {
+        "alphabetize": { "order": "asc", "caseInsensitive": true },
+        "newlines-between": "never",
+        "warnOnUnassignedImports": false
+      }
+    ],
     "react/function-component-definition": [
       "warn",
       {

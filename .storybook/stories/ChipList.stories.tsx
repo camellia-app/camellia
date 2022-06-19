@@ -1,8 +1,7 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ChipList } from '../../src/components/ChipList/ChipList';
-import { Chip } from '../../src/components/Chip/Chip';
 import { faker } from '@faker-js/faker';
-
+import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Chip } from '../../src/components/Chip/Chip';
+import { ChipList } from '../../src/components/ChipList/ChipList';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const icon = require('mdi/filled/local_florist.svg?fill=%23eee');
 
