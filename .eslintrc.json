@@ -27,6 +27,7 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:react-redux/recommended",
+    "plugin:storybook/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:typescript-sort-keys/recommended",
@@ -91,6 +92,12 @@
           }
         ],
         "@typescript-eslint/switch-exhaustiveness-check": ["error"]
+      }
+    },
+    {
+      "files": ["*.stories.tsx"],
+      "rules": {
+        "react/jsx-props-no-spreading": "off"
       }
     }
   ]
