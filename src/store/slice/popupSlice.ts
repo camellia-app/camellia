@@ -60,7 +60,7 @@ export const popupSlice = createSlice({
       }
 
       // if popup with same id is NOT opened, add it to the end of the stack
-      state.popupsStack = newStackFilteredByNestingLevel.concat([action.payload]);
+      state.popupsStack = [...newStackFilteredByNestingLevel, action.payload];
     },
   },
 });
