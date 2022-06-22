@@ -48,12 +48,23 @@ export const Bookmark: FC<{
     );
   };
 
-  const clickAction: MouseEventHandler = (event): void => {
+  const clickAction: MouseEventHandler = async (event): Promise<void> => {
     switch (props.bookmark.type) {
-      case 'folder':
-        handleFolderClick(event.pageX, event.pageY);
+      case 'folder': {
+        const isOpenedWithHotkey = event.pageX === 0 && event.pageY === 0;
+
+        if (!isOpenedWithHotkey) {
+          await handleFolderClick(event.pageX, event.pageY);
+
+          return;
+        }
+
+        const clickedElement = event.currentTarget.getBoundingClientRect();
+
+        await handleFolderClick(clickedElement.right, clickedElement.bottom);
 
         break;
+      }
 
       case 'link':
         handleLinkClick();
