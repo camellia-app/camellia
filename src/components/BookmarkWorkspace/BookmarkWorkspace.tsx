@@ -3,6 +3,7 @@ import type { FC } from 'react';
 import { useSelector } from 'react-redux';
 import type { Bookmark } from '../../api/bookmark/common';
 import { useBookmarksBarChildren, useOtherBookmarksChildren } from '../../api/bookmark/hook';
+import { t } from '../../api/i18n/translate';
 import type { RootState } from '../../store';
 import type { BookmarkSearchState } from '../../store/slice/bookmarkSearchSlice';
 import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
@@ -23,20 +24,20 @@ export const BookmarkWorkspace: FC = () => {
 
   if (bookmarkSearchState.isActive) {
     bookmarkCategories.push({
-      title: 'Search results',
+      title: t('bookmarkCategory_searchResults_label'),
       bookmarks: bookmarkSearchState.bookmarks,
     });
   } else {
     if (bookmarksBarChildren !== undefined && bookmarksBarChildren.length > 0) {
       bookmarkCategories.push({
-        title: 'Bookmarks bar',
+        title: t('bookmarkCategory_bookmarksBar_label'),
         bookmarks: bookmarksBarChildren,
       });
     }
 
     if (otherBookmarksChildren !== undefined && otherBookmarksChildren.length > 0) {
       bookmarkCategories.push({
-        title: 'Other bookmarks',
+        title: t('bookmarkCategory_otherBookmarks_label'),
         bookmarks: otherBookmarksChildren,
       });
     }

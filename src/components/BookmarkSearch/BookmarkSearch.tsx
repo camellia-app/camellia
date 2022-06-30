@@ -1,6 +1,7 @@
 import type { ChangeEventHandler, FormEventHandler, FC } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { t } from '../../api/i18n/translate';
 import type { AppDispatch, RootState } from '../../store';
 import type { BookmarkSearchState } from '../../store/slice/bookmarkSearchSlice';
 import { bookmarkSearchSlice, searchBookmarksThunk } from '../../store/slice/bookmarkSearchSlice';
@@ -78,11 +79,11 @@ export const BookmarkSearch: FC = () => {
         className={bookmarkSearchField}
         defaultValue={bookmarkSearchState.searchQuery}
         onChange={fieldInputHandler}
-        placeholder="Start typing to search bookmarks..."
+        placeholder={t('bookmarkSearch_textField_placeholder')}
         type="search"
       />
-      <button className={bookmarkSearchCloseButton} title="Close search" type="reset">
-        Close search
+      <button className={bookmarkSearchCloseButton} title={t('bookmarkSearch_closeButton_label')} type="reset">
+        {t('bookmarkSearch_closeButton_label')}
       </button>
     </form>
   );

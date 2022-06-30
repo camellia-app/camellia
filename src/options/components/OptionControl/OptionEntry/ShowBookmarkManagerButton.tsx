@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { t } from '../../../../api/i18n/translate';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
 import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
 import { OptionCheckbox } from '../OptionCheckbox';
@@ -7,8 +8,8 @@ export const ShowBookmarkManagerButton: FC = () => {
   return (
     <CategorizedOption categories={[categoriesMap.bottomToolbar]}>
       <OptionCheckbox
-        description={'Show "Bookmark Manager" button in bottom toolbar.'}
-        label={'Show "Bookmark Manager" button'}
+        description={t('option_showBookmarkManagerButton_description')}
+        label={t('option_showBookmarkManagerButton_label')}
         optionKey="show_bookmark_manager_button"
       />
     </CategorizedOption>

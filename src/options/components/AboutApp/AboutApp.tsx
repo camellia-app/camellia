@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import { useAppEnvironment } from '../../../api/appEnvironment/hook';
+import { t } from '../../../api/i18n/translate';
 import { Paragraph } from '../Paragraph/Paragraph';
 import { aboutApp, aboutAppName } from './AboutApp.module.css';
 
@@ -13,7 +14,7 @@ export const AboutApp: FC = () => {
   return (
     <div className={aboutApp}>
       <span className={aboutAppName}>
-        {appEnvironment.app.name}, version {appEnvironment.app.version}
+        {t('about_app_version', [appEnvironment.app.name, appEnvironment.app.version])}
       </span>
 
       <Paragraph>

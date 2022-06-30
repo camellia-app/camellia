@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { t } from '../../../../api/i18n/translate';
 import { ContentLayoutType } from '../../../../api/options/options';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
 import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
@@ -8,18 +9,18 @@ export const ContentLayout: FC = () => {
   return (
     <CategorizedOption categories={[categoriesMap.bookmarks]}>
       <OptionDropdownSelect
-        description="Should content be centered or not. Centering content may be useful for people with wide displays."
+        description={t('option_contentLayout_description')}
         dropdownOptions={[
           {
             value: ContentLayoutType.Centered,
-            label: 'Centered',
+            label: t('option_contentLayout_optionCentered'),
           },
           {
             value: ContentLayoutType.Fluid,
-            label: 'Fluid',
+            label: t('option_contentLayout_optionFluid'),
           },
         ]}
-        label="Content layout"
+        label={t('option_contentLayout_label')}
         optionKey="content_layout"
       />
     </CategorizedOption>

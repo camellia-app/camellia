@@ -3,6 +3,7 @@ import type * as CSS from 'csstype';
 import { createRef, useEffect, useState } from 'react';
 import type { FC, MouseEventHandler, ReactNode, RefObject } from 'react';
 import { useDispatch } from 'react-redux';
+import { t } from '../../api/i18n/translate';
 import { popupSlice } from '../../store/slice/popupSlice';
 import type { PopupId } from '../../store/slice/popupSlice';
 import {
@@ -203,8 +204,12 @@ export const Popup: FC<{
           <h2 className={popupTitle} id={headerId}>
             {props.title}
           </h2>
-          <button className={popupCloseButton} onClick={handleCloseButtonClick} title="Close popup [Escape]">
-            Close popup [Escape]
+          <button
+            className={popupCloseButton}
+            onClick={handleCloseButtonClick}
+            title={`${t('popup_closeButton_label')} [Escape]`}
+          >
+            {t('popup_closeButton_label')} [Escape]
           </button>
         </header>
 

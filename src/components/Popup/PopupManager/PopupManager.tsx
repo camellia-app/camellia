@@ -1,6 +1,7 @@
 import type { FC, ReactNode } from 'react';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { t } from '../../../api/i18n/translate';
 import type { RootState } from '../../../store';
 import type { PopupState } from '../../../store/slice/popupSlice';
 import { popupSlice } from '../../../store/slice/popupSlice';
@@ -53,7 +54,7 @@ export const PopupManager: FC = () => {
                 />
               );
             } else {
-              popupChildren = 'This folder is empty.';
+              popupChildren = t('popup_content_emptyFolder');
             }
         }
 

@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { t } from '../../../../api/i18n/translate';
 import { useOption } from '../../../../api/options/hook';
 import { BackgroundProviderType } from '../../../../api/options/options';
 import { BackgroundPreview } from '../../BackgroundPreview/BackgroundPreview';
@@ -13,18 +14,18 @@ export const BackgroundImageSource: FC = () => {
   return (
     <CategorizedOption categories={[categoriesMap.background]}>
       <OptionDropdownSelect
-        description="Select background image source type."
+        description={t('option_backgroundImage_sourceTypeDescription')}
         dropdownOptions={[
           {
             value: BackgroundProviderType.Link,
-            label: 'Load image from link',
+            label: t('option_backgroundImage_sourceTypeOptionLink'),
           },
           {
             value: BackgroundProviderType.UnsplashCollection,
-            label: 'Unsplash collection',
+            label: t('option_backgroundImage_sourceTypeOptionUnsplashCollection'),
           },
         ]}
-        label="Background image source type"
+        label={t('option_backgroundImage_sourceTypeLabel')}
         optionKey="background_provider_type"
       />
 
@@ -32,11 +33,11 @@ export const BackgroundImageSource: FC = () => {
 
       {backgroundImageSourceType === 'link' ? (
         <OptionTextField
-          description={'Link pointing to the image. It should start with "https://".'}
-          label="Image link"
+          description={t('option_backgroundImageLink_description')}
+          label={t('option_backgroundImageLink_label')}
           optionKey="background_image_link"
           pattern={'^https:\\/\\/.+'}
-          placeholder={'e.g. https://example.com/image.jpg'}
+          placeholder={t('option_backgroundImageLink_placeholder', ['https://example.com/image.jpg'])}
           spellCheck={false}
           type={'url'}
         />
@@ -44,11 +45,13 @@ export const BackgroundImageSource: FC = () => {
 
       {backgroundImageSourceType === 'unsplash_collection' ? (
         <OptionTextField
-          description={'Link pointing to Unsplash collection in form of "https://unsplash.com/collections/123".'}
-          label="Unsplash collection link"
+          description={t('option_backgroundImageUnsplashCollectionId_description', [
+            'https://unsplash.com/collections/123',
+          ])}
+          label={t('option_backgroundImageUnsplashCollectionId_label')}
           optionKey="background_image_unsplash_collection_id"
           pattern={'^https:\\/\\/unsplash\\.com\\/collections\\/[1-9]+[0-9]*?.+'}
-          placeholder={'e.g. https://unsplash.com/collections/10745553'}
+          placeholder={t('option_backgroundImageUnsplashCollectionId_placeholder', ['https://example.com/image.jpg'])}
           spellCheck={false}
           type={'url'}
         />

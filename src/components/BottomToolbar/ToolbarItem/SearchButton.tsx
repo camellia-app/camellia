@@ -1,5 +1,6 @@
 import type { MouseEventHandler, FC } from 'react';
 import { useDispatch } from 'react-redux';
+import { t } from '../../../api/i18n/translate';
 import type { AppDispatch } from '../../../store';
 import { searchBookmarksThunk } from '../../../store/slice/bookmarkSearchSlice';
 import { Chip } from '../../Chip/Chip';
@@ -7,7 +8,7 @@ import { Chip } from '../../Chip/Chip';
 const iconSearch = require('mdi/filled/search.svg?fill=%23eee');
 
 export const SearchButton: FC = () => {
-  const label = 'Search';
+  const label = t('bottomToolbar_search_label');
   const tooltip = `${label} [Ctrl + F]`;
 
   const dispatch = useDispatch<AppDispatch>();
