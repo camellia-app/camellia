@@ -24,6 +24,12 @@ If you intend to change something within Camellia or implement new feature, we r
 
 If you're only fixing a bug, it's fine to submit a pull request right away but we still recommend to file an issue detailing what you're fixing. This is helpful in case we don't accept that specific fix but want to keep track of the issue.
 
+## Translating the app
+
+Please read "[Languages](https://github.com/camellia-app/camellia/wiki/Languages)" page to get know what languages we support.
+
+Currently, we do not accept new languages contributions. However, you are welcome to update translations of existing languages.
+
 ## Updating dependencies
 
 We use [Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/configuring-dependabot-security-updates) to manage automatic updates for all our dependencies. There is no need to open such pull requests on your own.
