@@ -55,5 +55,10 @@
   height: 16px;
   margin: 8px;
   pointer-events: none;
+  transition: opacity 0.5s;
   width: 16px;
+}
+
+.chipIconLoading {
+  opacity: 0;
 }

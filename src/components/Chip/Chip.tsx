@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import type { ReactEventHandler, FC, MouseEventHandler } from 'react';
 import { createRef, useEffect, useState } from 'react';
-import { chip, chipIcon, chipLabel, chipLoading, chipRounded, chipSquared } from './Chip.module.css';
+import { chip, chipIcon, chipIconLoading, chipLabel, chipLoading, chipRounded, chipSquared } from './Chip.module.css';
 
 export const Chip: FC<{
   /**
@@ -55,6 +55,9 @@ export const Chip: FC<{
   url?: string | undefined;
 }> = (props) => {
   const [iconSrc, setIconSrc] = useState<string>(props.iconSrc);
+  const [iconIsLoading, setIconLoading] = useState<boolean>(
+    iconSrc.startsWith('http://') || iconSrc.startsWith('https://'),
+  );
 
   const buttonElementRef = createRef<HTMLButtonElement>();
   const anchorElementRef = createRef<HTMLAnchorElement>();
@@ -83,11 +86,27 @@ export const Chip: FC<{
     }
   };
 
+  const handleIconLoaded: ReactEventHandler<HTMLImageElement> = () => {
+    setIconLoading(false);
+  };
+
   const tooltip = props.tooltip !== undefined ? props.tooltip : props.label;
+
+  const chipIconClasses = classNames(chipIcon, {
+    [chipIconLoading]: iconIsLoading,
+  });
 
   const chipBody = (
     <>
-      <img alt="Favicon" className={chipIcon} height="16" onError={handleImageError} src={iconSrc} width="16" />
+      <img
+        alt="Favicon"
+        className={chipIconClasses}
+        height="16"
+        onError={handleImageError}
+        onLoad={handleIconLoaded}
+        src={iconSrc}
+        width="16"
+      />
 
       <span className={chipLabel}>{props.label}</span>
     </>
