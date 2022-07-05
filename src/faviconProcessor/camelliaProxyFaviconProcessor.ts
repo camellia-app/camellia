@@ -7,12 +7,12 @@ export const camelliaProxyFaviconProcessor: FaviconProcessor = {
 
     return {
       default: {
-        url: `https://favicons.camellia.app/?domain=${encodeURIComponent(parsedUrl.hostname)}`,
+        url: `https://website-icons.camellia.app/favicon?domain=${encodeURIComponent(parsedUrl.hostname)}`,
         dpi: 1,
       },
       variants: [
         {
-          url: `https://favicons.camellia.app/?domain=${encodeURIComponent(parsedUrl.hostname)}`,
+          url: `https://website-icons.camellia.app/favicon?domain=${encodeURIComponent(parsedUrl.hostname)}`,
           dpi: 1,
         },
       ],
