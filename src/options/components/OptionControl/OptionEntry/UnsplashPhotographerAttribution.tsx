@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { t } from '../../../../api/i18n/translate';
 import { useOption } from '../../../../api/options/hook';
 import { BackgroundProviderType } from '../../../../api/options/options';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
@@ -15,8 +16,8 @@ export const UnsplashPhotographerAttribution: FC = () => {
   return (
     <CategorizedOption categories={[categoriesMap.background, categoriesMap.bottomToolbar]}>
       <OptionCheckbox
-        description="By default, Camellia displays photographer's name in bottom toolbar, which can be clicked to open full photo if you wish to save it or explore more photos of the author. The attribution may be hidden in case you don't want it to be displayed."
-        label="Display photographer attribution"
+        description={t('option_displayPhotographerAttribution_description')}
+        label={t('option_displayPhotographerAttribution_label')}
         optionKey="display_unsplash_attribution"
       />
     </CategorizedOption>

@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { t } from '../../../../api/i18n/translate';
 import { Icon } from '../../../../icons';
 import { allCategories } from '../OptionsCategory/OptionsCategories';
 import { OptionsCategory } from '../OptionsCategory/OptionsCategory';
@@ -18,7 +19,7 @@ export const OptionsSearchForm: FC<{
               icon={Icon.ViewList}
               id="all"
               isActive={props.activeCategory === undefined}
-              label="All options"
+              label={t('optionsNavigationCategory_allOptions_label')}
               onClick={props.onCategoryReset}
             />
           </li>

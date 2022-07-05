@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { getPlatform } from '../../../../api/appEnvironment';
 import { useAppEnvironment } from '../../../../api/appEnvironment/hook';
+import { t } from '../../../../api/i18n/translate';
 import { LabeledActionButton } from '../../ActionButton/LabeledActionButton';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
 import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
@@ -25,11 +26,9 @@ export const CopyDebugInformation: FC = () => {
             }`,
           );
         }}
-        description={
-          'Information that may be helpful for debugging purposes will be copied to your clipboard by pressing the button. You are safe to share this information with community of contributors via GitHub issues in case you wish to report a bug you discovered in Camellia.'
-        }
+        description={t('option_copyDebugInformation_description')}
         disabled={false}
-        label={'Copy debug information'}
+        label={t('option_copyDebugInformation_label')}
         loading={false}
       />
     </CategorizedOption>

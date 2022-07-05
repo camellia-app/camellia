@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { t } from '../../../../api/i18n/translate';
 import { resetOptionsToDefaultValues } from '../../../../api/options';
 import { LabeledActionButton } from '../../ActionButton/LabeledActionButton';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
@@ -12,11 +13,9 @@ export const ResetOptions: FC = () => {
         clickHandler={(): void => {
           resetOptionsToDefaultValues();
         }}
-        description={
-          'Pressing this button will reset all your options and preferences in Camellia to default values without confirmation! ⚠️'
-        }
+        description={t('option_resetOptions_description')}
         disabled={false}
-        label={'Reset options to defaults'}
+        label={t('option_resetOptions_label')}
         loading={false}
       />
     </CategorizedOption>

@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { useState, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { getSupportedRuntimeFeatures } from '../api/applicationRuntime/features';
+import { t } from '../api/i18n/translate';
 import { BackgroundMedia } from '../components/BackgroundMedia/BackgroundMedia';
 import { BackgroundMediaFullScreenContainer } from '../components/BackgroundMedia/BackgroundMediaFullScreenContainer';
 import { Chip } from '../components/Chip/Chip';
@@ -37,27 +38,27 @@ export const Options: FC = () => {
 
   const links: Array<{ icon: string; title: string; url: string }> = [
     {
-      title: 'Source code',
+      title: t('about_externalLink_sourceCode'),
       url: 'https://github.com/camellia-app/camellia',
       icon: iconCode,
     },
     {
-      title: 'Report a bug',
+      title: t('about_externalLink_bugTracker'),
       url: 'https://github.com/camellia-app/camellia/issues',
       icon: iconBugReport,
     },
     {
-      title: 'Community forum',
+      title: t('about_externalLink_communityForum'),
       url: 'https://github.com/camellia-app/camellia/discussions',
       icon: iconForum,
     },
     {
-      title: 'User manual',
+      title: t('about_externalLink_userManual'),
       url: 'https://github.com/camellia-app/camellia/wiki',
       icon: iconDescription,
     },
     {
-      title: 'Release notes',
+      title: t('about_externalLink_releaseNotes'),
       url: 'https://github.com/camellia-app/camellia/releases',
       icon: iconNewReleases,
     },
@@ -91,9 +92,9 @@ export const Options: FC = () => {
 
               <CategorizedOption categories={[categoriesMap.analytics]}>
                 <LabeledCheckbox
-                  description="We're gathering anonymous usage statistics via Google Analytics. We need such data to be sure our updates make Camellia better. We don't track links you visit, we don't analyze your bookmarks and folders names. At this moment there's no way to disable this option."
+                  description={t('option_analytics_description')}
                   disabled
-                  label="Send anonymous usage statistics"
+                  label={t('option_analytics_label')}
                   loading={false}
                   value={true}
                 />
@@ -101,9 +102,9 @@ export const Options: FC = () => {
 
               <CategorizedOption categories={[categoriesMap.analytics]}>
                 <LabeledCheckbox
-                  description="We're using Sentry to track errors in Camellia. At this moment there's no way to disable this option."
+                  description={t('option_sentry_description')}
                   disabled
-                  label="Send error reports"
+                  label={t('option_sentry_label')}
                   loading={false}
                   value={true}
                 />

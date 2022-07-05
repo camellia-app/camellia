@@ -122,6 +122,7 @@ const commonConfig = {
             return JSON.stringify(manifest, null, process.env.NODE_ENV === 'development' ? 2 : 0);
           },
         },
+        { from: path.resolve(__dirname, 'translations'), to: '_locales' },
         { from: './logo.png' },
       ],
     }),
