@@ -9,12 +9,8 @@ export const CategorizedOption: FC<{
 }> = (props) => {
   const activeCategory = useContext(ActiveOptionCategory);
 
-  if (
-    activeCategory === undefined ||
-    props.categories.find((category) => category.id === activeCategory) !== undefined
-  ) {
-    return <>{props.children}</>;
-  }
+  const isVisible =
+    activeCategory === undefined || props.categories.find((category) => category.id === activeCategory) !== undefined;
 
-  return <></>;
+  return <div hidden={!isVisible}>{props.children}</div>;
 };
