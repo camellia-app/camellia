@@ -20,7 +20,7 @@ import { ShowBookmarkManagerButton } from './components/OptionControl/OptionEntr
 import { ShowOptionsButton } from './components/OptionControl/OptionEntry/ShowOptionsButton';
 import { ShowSearchButton } from './components/OptionControl/OptionEntry/ShowSearchButton';
 import { UnsplashPhotographerAttribution } from './components/OptionControl/OptionEntry/UnsplashPhotographerAttribution';
-import { options, optionsContent, optionsWrapper } from './Options.module.css';
+import { options, optionsContent, optionsNavigation, optionsWrapper } from './Options.module.css';
 
 export const Options: FC = () => {
   const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);
@@ -30,11 +30,13 @@ export const Options: FC = () => {
       <div className={optionsWrapper}>
         <div className={options}>
           <aside>
-            <OptionsSearchForm
-              activeCategory={activeCategory}
-              onCategoryChange={(categoryId): void => setActiveCategory(categoryId)}
-              onCategoryReset={(): void => setActiveCategory(undefined)}
-            />
+            <div className={optionsNavigation}>
+              <OptionsSearchForm
+                activeCategory={activeCategory}
+                onCategoryChange={(categoryId): void => setActiveCategory(categoryId)}
+                onCategoryReset={(): void => setActiveCategory(undefined)}
+              />
+            </div>
           </aside>
 
           <main className={optionsContent}>

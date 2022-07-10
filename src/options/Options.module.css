@@ -19,6 +19,13 @@
   padding-top: 2rem;
 }
 
+.optionsNavigation {
+  bottom: 0;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+}
+
 .optionsContent {
   display: flex;
   flex-direction: column;
