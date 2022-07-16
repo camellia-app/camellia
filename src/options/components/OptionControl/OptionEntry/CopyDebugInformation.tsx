@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { getPlatform } from '../../../../api/appEnvironment';
 import { useAppEnvironment } from '../../../../api/appEnvironment/hook';
+import { useAppInfo } from '../../../../api/appInfo/hook';
 import { t } from '../../../../api/i18n/translate';
 import { LabeledActionButton } from '../../ActionButton/LabeledActionButton';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
@@ -8,6 +9,7 @@ import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategorie
 
 export const CopyDebugInformation: FC = () => {
   const appEnvironmentInfo = useAppEnvironment();
+  const appInfo = useAppInfo();
 
   return (
     <CategorizedOption categories={[categoriesMap.advanced]}>
@@ -19,7 +21,7 @@ export const CopyDebugInformation: FC = () => {
           }
 
           navigator.clipboard.writeText(
-            `- App: ${appEnvironmentInfo.app.name}, ${appEnvironmentInfo.app.version} (${getPlatform()})\n- Browser: ${
+            `- App: ${appInfo.name}, ${appInfo.version} (${getPlatform()})\n- Browser: ${
               appEnvironmentInfo.browser.name
             }, ${appEnvironmentInfo.browser.version}\n- Platform: ${appEnvironmentInfo.platform.os}, ${
               appEnvironmentInfo.platform.arch

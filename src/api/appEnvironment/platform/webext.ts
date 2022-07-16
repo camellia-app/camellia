@@ -5,13 +5,8 @@ export const getWebextAppEnvironment = async (): Promise<AppEnvironment> => {
     browser.runtime.getBrowserInfo(),
     browser.runtime.getPlatformInfo(),
   ]);
-  const manifest = browser.runtime.getManifest();
 
   return {
-    app: {
-      name: manifest.name,
-      version: manifest.version,
-    },
     platform: {
       os: platformInfo.os,
       arch: platformInfo.arch,
