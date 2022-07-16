@@ -59,6 +59,10 @@
   width: 16px;
 }
 
+.chipIconEllipse {
+  border-radius: 50%;
+}
+
 .chipIconLoading {
   opacity: 0;
 }
