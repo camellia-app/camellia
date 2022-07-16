@@ -24,6 +24,7 @@ assert(process.env.NODE_ENV, 'Environment variable NODE_ENV is not defined');
 assert(process.env.APP_VERSION, 'Environment variable APP_VERSION is not defined');
 assert(process.env.BUILD_NUMBER, 'Environment variable BUILD_NUMBER is not defined');
 assert(process.env.TARGET_PLATFORM, 'Environment variable TARGET_PLATFORM is not defined');
+assert(process.env.UNSPLASH_BRIDGE_BASE_HOST, 'Environment variable UNSPLASH_BRIDGE_BASE_HOST is not defined');
 
 const getCssLoaders = () => {
   const loaders = [];

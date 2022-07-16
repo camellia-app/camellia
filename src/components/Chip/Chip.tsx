@@ -1,7 +1,16 @@
 import classNames from 'classnames';
 import type { ReactEventHandler, FC, MouseEventHandler } from 'react';
 import { createRef, useEffect, useState } from 'react';
-import { chip, chipIcon, chipIconLoading, chipLabel, chipLoading, chipRounded, chipSquared } from './Chip.module.css';
+import {
+  chip,
+  chipIcon,
+  chipIconEllipse,
+  chipIconLoading,
+  chipLabel,
+  chipLoading,
+  chipRounded,
+  chipSquared,
+} from './Chip.module.css';
 
 export const Chip: FC<{
   /**
@@ -21,6 +30,13 @@ export const Chip: FC<{
    * @default false
    */
   focus?: boolean | undefined;
+
+  /**
+   * Should icon be circled or not.
+   *
+   * @default false
+   */
+  iconEllipse?: boolean;
 
   /**
    * Main icon of the chip. It may be an image URL or [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
@@ -94,6 +110,7 @@ export const Chip: FC<{
 
   const chipIconClasses = classNames(chipIcon, {
     [chipIconLoading]: iconIsLoading,
+    [chipIconEllipse]: props.iconEllipse === true,
   });
 
   const chipBody = (

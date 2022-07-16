@@ -11,8 +11,9 @@
 
   "permissions": ["bookmarks", "storage"],
 
+  "host_permissions": ["https://*.camellia.app/"],
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'none'; connect-src ws://localhost:8097"
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src ws://localhost:8097 https://*.camellia.app"
   },
 
   "icons": {

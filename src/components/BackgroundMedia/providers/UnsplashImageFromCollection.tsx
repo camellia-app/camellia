@@ -1,25 +1,15 @@
 import type { FC } from 'react';
+import { useRandomPhotoFromUnsplashCollection } from '../../../api/unsplash/hook';
 import { BackgroundImageByUrl } from './BackgroundImageByUrl';
 
 export const UnsplashImageFromCollection: FC<{
-  collectionId: string;
   onLoad: () => void;
 }> = (props) => {
-  const pixelRatio = window.devicePixelRatio;
+  const photo = useRandomPhotoFromUnsplashCollection();
 
-  const realWidth = Math.round(window.screen.width * pixelRatio);
-  const realHeight = Math.round(window.screen.height * pixelRatio);
+  if (photo === undefined) {
+    return <></>;
+  }
 
-  const dimensions = {
-    height: realHeight,
-    width: realWidth,
-  };
-
-  return (
-    <BackgroundImageByUrl
-      dimensions={dimensions}
-      onLoad={props.onLoad}
-      url={`https://source.unsplash.com/collection/${props.collectionId}/${realWidth}x${realHeight}/daily`}
-    />
-  );
+  return <BackgroundImageByUrl dimensions={photo.image.resolution} onLoad={props.onLoad} url={photo.image.url} />;
 };

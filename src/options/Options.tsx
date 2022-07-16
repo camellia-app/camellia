@@ -1,10 +1,12 @@
 import type { FC } from 'react';
 import { useState, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
 import { getSupportedRuntimeFeatures } from '../api/applicationRuntime/features';
 import { t } from '../api/i18n/translate';
 import { BackgroundMedia } from '../components/BackgroundMedia/BackgroundMedia';
 import { BackgroundMediaFullScreenContainer } from '../components/BackgroundMedia/BackgroundMediaFullScreenContainer';
+import { store } from '../store';
 import { ActiveOptionCategory } from './ActiveOptionCategoryContext';
 import { AboutApp } from './components/AboutApp/AboutApp';
 import { CategorizedOption } from './components/CategorizedOption/CategorizedOption';
@@ -27,66 +29,68 @@ export const Options: FC = () => {
 
   return (
     <StrictMode>
-      <div className={optionsWrapper}>
-        <div className={options}>
-          <aside>
-            <div className={optionsNavigation}>
-              <OptionsSearchForm
-                activeCategory={activeCategory}
-                onCategoryChange={(categoryId): void => setActiveCategory(categoryId)}
-                onCategoryReset={(): void => setActiveCategory(undefined)}
-              />
-            </div>
-          </aside>
-
-          <main className={optionsContent}>
-            <ActiveOptionCategory.Provider value={activeCategory}>
-              <BackgroundImageSource />
-
-              <ContentLayout />
-
-              <UnsplashPhotographerAttribution />
-
-              {getSupportedRuntimeFeatures().bookmarkManagerPage ? <ShowBookmarkManagerButton /> : undefined}
-
-              <ShowOptionsButton />
-
-              <ShowSearchButton />
-
-              <CategorizedOption categories={[categoriesMap.analytics]}>
-                <LabeledCheckbox
-                  description={t('option_analytics_description')}
-                  disabled
-                  label={t('option_analytics_label')}
-                  loading={false}
-                  value={true}
+      <Provider store={store}>
+        <div className={optionsWrapper}>
+          <div className={options}>
+            <aside>
+              <div className={optionsNavigation}>
+                <OptionsSearchForm
+                  activeCategory={activeCategory}
+                  onCategoryChange={(categoryId): void => setActiveCategory(categoryId)}
+                  onCategoryReset={(): void => setActiveCategory(undefined)}
                 />
-              </CategorizedOption>
+              </div>
+            </aside>
 
-              <CategorizedOption categories={[categoriesMap.analytics]}>
-                <LabeledCheckbox
-                  description={t('option_sentry_description')}
-                  disabled
-                  label={t('option_sentry_label')}
-                  loading={false}
-                  value={true}
-                />
-              </CategorizedOption>
+            <main className={optionsContent}>
+              <ActiveOptionCategory.Provider value={activeCategory}>
+                <BackgroundImageSource />
 
-              <ResetOptions />
+                <ContentLayout />
 
-              <CopyDebugInformation />
+                <UnsplashPhotographerAttribution />
 
-              <AboutApp />
+                {getSupportedRuntimeFeatures().bookmarkManagerPage ? <ShowBookmarkManagerButton /> : undefined}
 
-              <ContactLinks />
-            </ActiveOptionCategory.Provider>
-          </main>
+                <ShowOptionsButton />
+
+                <ShowSearchButton />
+
+                <CategorizedOption categories={[categoriesMap.analytics]}>
+                  <LabeledCheckbox
+                    description={t('option_analytics_description')}
+                    disabled
+                    label={t('option_analytics_label')}
+                    loading={false}
+                    value={true}
+                  />
+                </CategorizedOption>
+
+                <CategorizedOption categories={[categoriesMap.analytics]}>
+                  <LabeledCheckbox
+                    description={t('option_sentry_description')}
+                    disabled
+                    label={t('option_sentry_label')}
+                    loading={false}
+                    value={true}
+                  />
+                </CategorizedOption>
+
+                <ResetOptions />
+
+                <CopyDebugInformation />
+
+                <AboutApp />
+
+                <ContactLinks />
+              </ActiveOptionCategory.Provider>
+            </main>
+          </div>
+          <BackgroundMediaFullScreenContainer>
+            <BackgroundMedia />
+          </BackgroundMediaFullScreenContainer>
         </div>
-        <BackgroundMediaFullScreenContainer>
-          <BackgroundMedia />
-        </BackgroundMediaFullScreenContainer>
-      </div>
+      </Provider>
     </StrictMode>
   );
 };
