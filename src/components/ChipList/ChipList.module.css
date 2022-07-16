@@ -1,5 +1,6 @@
 .chipList {
   padding-top: var(--chip-hover-shift);
+  width: 100%;
 }
 
 .chipListColumns {
@@ -17,4 +18,8 @@
 
 .chipListItem {
   max-width: var(--bookmark-column-min-width);
+}
+
+.chipListMoveLastChipToRight .chipListItem:last-child {
+  margin-left: auto;
 }
