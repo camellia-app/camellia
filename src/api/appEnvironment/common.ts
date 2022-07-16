@@ -1,6 +1,9 @@
 export type AppEnvironment = {
+  /** @deprecated */
   app: {
+    /** @deprecated */
     name: string;
+    /** @deprecated */
     version: string;
   };
   browser: {
