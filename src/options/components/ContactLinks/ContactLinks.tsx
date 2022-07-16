@@ -1,7 +1,11 @@
 import type { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { t } from '../../../api/i18n/translate';
+import { UnsplashPhotographerAttribution } from '../../../components/BottomToolbar/ToolbarItem/UnsplashPhotographerAttribution';
 import { Chip } from '../../../components/Chip/Chip';
 import { ChipList } from '../../../components/ChipList/ChipList';
+import type { RootState } from '../../../store';
+import type { UnsplashState } from '../../../store/slice/unsplashSlice';
 import { CategorizedOption } from '../CategorizedOption/CategorizedOption';
 import { categoriesMap } from '../Navigation/OptionsCategory/OptionsCategories';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -16,6 +20,8 @@ const iconForum = require('mdi/filled/forum.svg?fill=%23eee');
 const iconNewReleases = require('mdi/filled/new_releases.svg?fill=%23eee');
 
 export const ContactLinks: FC = () => {
+  const unsplashPhotographerAttributionsState = useSelector<RootState, UnsplashState>((state) => state.unsplash);
+
   const links: Array<{ icon: string; title: string; url: string }> = [
     {
       title: t('about_externalLink_sourceCode'),
@@ -44,22 +50,19 @@ export const ContactLinks: FC = () => {
     },
   ];
 
+  const chips = links.map((link, index) => (
+    <Chip iconSrc={link.icon} key={index} label={link.title} shape={'rounded'} url={link.url} />
+  ));
+
+  if (unsplashPhotographerAttributionsState.photo !== undefined) {
+    chips.push(
+      <UnsplashPhotographerAttribution shape={'rounded'} unsplashPhoto={unsplashPhotographerAttributionsState.photo} />,
+    );
+  }
+
   return (
     <CategorizedOption categories={[categoriesMap.about]}>
-      <ChipList
-        chips={links.map((link, index) => (
-          <Chip
-            focus={false}
-            iconSrc={link.icon}
-            key={index}
-            label={link.title}
-            shape={'rounded'}
-            tooltip={link.title}
-            url={link.url}
-          />
-        ))}
-        type="inline"
-      />
+      <ChipList chips={chips} type="inline" />
     </CategorizedOption>
   );
 };

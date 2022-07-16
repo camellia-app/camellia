@@ -5,10 +5,3 @@
   padding-left: 1rem;
   padding-right: 1rem;
 }
-
-.bottomToolbarItems {
-  display: grid;
-  grid-auto-columns: min-content;
-  grid-auto-flow: column;
-  grid-gap: 1rem;
-}
