@@ -5,6 +5,7 @@ export type Storage = {
   delete: (key: string) => Promise<void>;
   exists: (key: string) => Promise<boolean>;
   get: <TValue>(key: string) => Promise<TValue>;
+  getAllKeys: () => Promise<Array<string>>;
   set: <TValue>(key: string, value: TValue) => Promise<void>;
   subscribeToKeyChanges: <TValue>(
     key: string,
