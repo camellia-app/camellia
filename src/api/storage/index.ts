@@ -2,6 +2,7 @@ import { AppPlatform, getPlatform } from '../appEnvironment';
 import type { Storage } from './common';
 import { StorageType } from './common';
 import { getChromiumStorageManager } from './platform/chromium';
+import { getWebStorageManager } from './platform/web';
 import { getWebextStorageManager } from './platform/webext';
 
 const getStorage = (type: StorageType): Storage => {
@@ -11,6 +12,9 @@ const getStorage = (type: StorageType): Storage => {
 
     case AppPlatform.Webext:
       return getWebextStorageManager(type);
+
+    case AppPlatform.Web:
+      return getWebStorageManager(type);
   }
 };
 

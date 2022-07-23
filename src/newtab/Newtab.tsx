@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
+import { AppPlatform, getPlatform } from '../api/appEnvironment';
 import { BackgroundMedia } from '../components/BackgroundMedia/BackgroundMedia';
 import { BackgroundMediaFullScreenContainer } from '../components/BackgroundMedia/BackgroundMediaFullScreenContainer';
 import { BookmarkWorkspace } from '../components/BookmarkWorkspace/BookmarkWorkspace';
@@ -9,6 +10,10 @@ import { BottomToolbar } from '../components/BottomToolbar/BottomToolbar';
 import { PopupManager } from '../components/Popup/PopupManager/PopupManager';
 import { store } from '../store';
 import { newtabWrapper } from './Newtab.module.css';
+
+if (getPlatform() === AppPlatform.Web) {
+  await import('../backgroundScript/background');
+}
 
 export const Newtab: FC = () => {
   return (

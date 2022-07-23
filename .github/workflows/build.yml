@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        targetPlatform: [chromium, webext]
+        targetPlatform: [chromium, webext, web]
 
     steps:
       - name: Checkout repository

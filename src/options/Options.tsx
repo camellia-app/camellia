@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { useState, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
+import { AppPlatform, getPlatform } from '../api/appEnvironment';
 import { getSupportedRuntimeFeatures } from '../api/applicationRuntime/features';
 import { t } from '../api/i18n/translate';
 import { BackgroundMedia } from '../components/BackgroundMedia/BackgroundMedia';
@@ -25,6 +26,10 @@ import { ShowOptionsButton } from './components/OptionControl/OptionEntry/ShowOp
 import { ShowSearchButton } from './components/OptionControl/OptionEntry/ShowSearchButton';
 import { UnsplashPhotographerAttribution } from './components/OptionControl/OptionEntry/UnsplashPhotographerAttribution';
 import { options, optionsContent, optionsNavigation, optionsWrapper } from './Options.module.css';
+
+if (getPlatform() === AppPlatform.Web) {
+  await import('../backgroundScript/background');
+}
 
 export const Options: FC = () => {
   const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);

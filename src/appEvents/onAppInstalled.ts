@@ -13,6 +13,11 @@ export const onAppInstalled = (callback: InstalledCallback): void => {
       onWebextAppInstalled(callback);
 
       break;
+
+    case AppPlatform.Web:
+      onWebAppInstalled(callback);
+
+      break;
   }
 };
 
@@ -34,4 +39,8 @@ const onWebextAppInstalled = (callback: InstalledCallback): void => {
 
     callback();
   });
+};
+
+const onWebAppInstalled = (callback: InstalledCallback): void => {
+  callback();
 };

@@ -35,3 +35,10 @@ const getChromiumTranslatedMessage = (key: TranslationKey, placeholders?: Array<
 
   return message;
 };
+
+/**
+ * TODO: add placeholders support
+ */
+const getWebTranslatedMessage = (key: TranslationKey): string => {
+  return englishTranslations[key].message;
+};

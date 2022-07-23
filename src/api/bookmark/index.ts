@@ -18,6 +18,14 @@ import {
   searchChromiumBookmarks,
 } from './platform/chromium';
 import {
+  createWebBookmark,
+  geWebBookmarksBarChildren,
+  initializeWebRootFolders,
+  getWebFolderChildrenBookmarks,
+  getWebOtherBookmarksChildren,
+  searchWebBookmarks,
+} from './platform/web';
+import {
   createWebextBookmark,
   getWebextBookmarksBarChildren,
   getWebextFolderChildrenBookmarks,
@@ -33,6 +41,9 @@ export const getFolderChildrenBookmarks: GetFolderChildrenBookmarks = (folderBoo
 
     case AppPlatform.Webext:
       return getWebextFolderChildrenBookmarks(folderBookmarkId);
+
+    case AppPlatform.Web:
+      return getWebFolderChildrenBookmarks(folderBookmarkId);
   }
 };
 
@@ -43,6 +54,9 @@ export const getBookmarksBarChildren: GetBookmarksBarChildren = () => {
 
     case AppPlatform.Webext:
       return getWebextBookmarksBarChildren();
+
+    case AppPlatform.Web:
+      return geWebBookmarksBarChildren();
   }
 };
 
@@ -53,6 +67,9 @@ export const getOtherBookmarksChildren: GetOtherBookmarksChildren = () => {
 
     case AppPlatform.Webext:
       return getWebextOtherBookmarksChildren();
+
+    case AppPlatform.Web:
+      return getWebOtherBookmarksChildren();
   }
 };
 
@@ -63,6 +80,9 @@ export const searchBookmarks: SearchBookmarks = (searchQuery) => {
 
     case AppPlatform.Webext:
       return searchWebextBookmarks(searchQuery);
+
+    case AppPlatform.Web:
+      return searchWebBookmarks(searchQuery);
   }
 };
 
