@@ -61,6 +61,14 @@ module.exports = {
       use: ['svg-transform-loader'],
     });
 
+    // For some reason it does not recognize TypeScript syntax without it.
+    // TODO: investigate why Storybook does not work without this rule
+    config.module.rules.push({
+      exclude: /node_modules/,
+      loader: 'ts-loader',
+      test: /\.tsx?$/,
+    });
+
     // Return the altered config
     return config;
   },
