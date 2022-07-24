@@ -11,5 +11,10 @@ export const openOptionsPage = (): void => {
       browser.runtime.openOptionsPage();
 
       break;
+
+    case AppPlatform.Web:
+      open('options.html');
+
+      break;
   }
 };

@@ -41,6 +41,9 @@ const getWebextLocalStorageManager = (): Storage => {
 
   return {
     get: getByKey,
+    getAllKeys: async (): Promise<Array<string>> => {
+      return Object.keys(await browser.storage.local.get());
+    },
     delete: async (key: string): Promise<void> => {
       await browser.storage.local.remove(key);
     },
@@ -105,6 +108,9 @@ const getWebextSynchronizableStorageManager = (): Storage => {
 
   return {
     get: getByKey,
+    getAllKeys: async (): Promise<Array<string>> => {
+      return Object.keys(await browser.storage.sync.get());
+    },
     delete: async (key: string): Promise<void> => {
       await browser.storage.sync.remove(key);
     },

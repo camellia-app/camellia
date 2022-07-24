@@ -69,6 +69,9 @@ const commonConfig = {
     options: './options/Options.tsx',
     background: './backgroundScript/background.ts',
   },
+  experiments: {
+    topLevelAwait: true,
+  },
   mode: 'production',
   module: {
     rules: [

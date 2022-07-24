@@ -1,16 +1,22 @@
+import englishTranslations from '../../../translations/en/messages.json';
 import { AppPlatform, getPlatform } from '../appEnvironment';
 
-export const t = (key: string, placeholders?: Array<string>): string => {
+type TranslationKey = keyof typeof englishTranslations;
+
+export const t = (key: TranslationKey, placeholders?: Array<string>): string => {
   switch (getPlatform()) {
     case AppPlatform.Chromium:
       return getChromiumTranslatedMessage(key, placeholders);
 
     case AppPlatform.Webext:
       return getWebextTranslatedMessage(key, placeholders);
+
+    case AppPlatform.Web:
+      return getWebTranslatedMessage(key);
   }
 };
 
-const getWebextTranslatedMessage = (key: string, placeholders?: Array<string>): string => {
+const getWebextTranslatedMessage = (key: TranslationKey, placeholders?: Array<string>): string => {
   const message = browser.i18n.getMessage(key, placeholders ?? []);
 
   if (message === '') {
@@ -20,7 +26,7 @@ const getWebextTranslatedMessage = (key: string, placeholders?: Array<string>): 
   return message;
 };
 
-const getChromiumTranslatedMessage = (key: string, placeholders?: Array<string>): string => {
+const getChromiumTranslatedMessage = (key: TranslationKey, placeholders?: Array<string>): string => {
   const message = chrome.i18n.getMessage(key, placeholders ?? []);
 
   if (message === '') {
@@ -28,4 +34,11 @@ const getChromiumTranslatedMessage = (key: string, placeholders?: Array<string>)
   }
 
   return message;
+};
+
+/**
+ * TODO: add placeholders support
+ */
+const getWebTranslatedMessage = (key: TranslationKey): string => {
+  return englishTranslations[key].message;
 };

@@ -41,6 +41,9 @@ const getChromiumLocalStorageManager = (): Storage => {
 
   return {
     get: getByKey,
+    getAllKeys: async (): Promise<Array<string>> => {
+      return Object.keys(await chrome.storage.local.get(null));
+    },
     delete: async (key: string): Promise<void> => {
       await chrome.storage.local.remove(key);
     },
@@ -105,6 +108,9 @@ const getChromiumSynchronizableStorageManager = (): Storage => {
 
   return {
     get: getByKey,
+    getAllKeys: async (): Promise<Array<string>> => {
+      return Object.keys(await chrome.storage.sync.get(null));
+    },
     delete: async (key: string): Promise<void> => {
       await chrome.storage.sync.remove(key);
     },

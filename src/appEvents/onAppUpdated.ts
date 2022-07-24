@@ -1,4 +1,5 @@
 import { AppPlatform, getPlatform } from '../api/appEnvironment';
+import { config } from '../config';
 
 export type UpdatedCallback = (previousVersion: string) => void;
 
@@ -11,6 +12,11 @@ export const onAppUpdated = (callback: UpdatedCallback): void => {
 
     case AppPlatform.Webext:
       onWebextAppUpdated(callback);
+
+      break;
+
+    case AppPlatform.Web:
+      onWebAppUpdated(callback);
 
       break;
   }
@@ -34,4 +40,8 @@ const onWebextAppUpdated = (callback: UpdatedCallback): void => {
 
     callback(event.previousVersion);
   });
+};
+
+const onWebAppUpdated = (callback: UpdatedCallback): void => {
+  callback(config.appVersion);
 };

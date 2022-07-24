@@ -16,6 +16,22 @@ export type Folder = BookmarkCommon & {
   type: 'folder';
 };
 
+type CreateBookmarkCommon = {
+  parentId?: BookmarkId | undefined;
+  title: string;
+};
+
+export type CreateLinkParameters = CreateBookmarkCommon & {
+  type: 'link';
+  url: string;
+};
+
+export type CreateFolderParameters = CreateBookmarkCommon & {
+  type: 'folder';
+};
+
+export type CreateBookmarkParameters = CreateFolderParameters | CreateLinkParameters;
+
 export const isFolder = (bookmark: Bookmark): bookmark is Folder => {
   return bookmark.type === 'folder';
 };
@@ -26,7 +42,10 @@ export const isLink = (bookmark: Bookmark): bookmark is Link => {
 
 export type GetBookmarksBarChildren = () => Promise<Array<Bookmark>>;
 export type GetOtherBookmarksChildren = () => Promise<Array<Bookmark>>;
+export type CreateBookmark = (bookmark: CreateBookmarkParameters) => Promise<Bookmark>;
 
 export type SearchBookmarks = (searchQuery: string) => Promise<Array<Bookmark>>;
 
 export type GetFolderChildrenBookmarks = (folderBookmarkId: BookmarkId) => Promise<Array<Bookmark>>;
+
+export type InitializeRootFolders = () => Promise<Array<BookmarkId>>;
