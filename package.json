@@ -18,7 +18,7 @@
     "@reduxjs/toolkit": "1.8.3",
     "@sentry/react": "7.4.1",
     "@sentry/tracing": "7.4.1",
-    "@sentry/webpack-plugin": "1.18.9",
+    "@sentry/webpack-plugin": "1.19.0",
     "@types/chrome": "0.0.191",
     "@types/firefox-webext-browser": "94.0.1",
     "@types/lodash.debounce": "4.0.7",
