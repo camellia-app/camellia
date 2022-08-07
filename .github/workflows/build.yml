@@ -43,6 +43,7 @@ jobs:
           BUILD_NUMBER: ${{ github.run_number }}
           TARGET_PLATFORM: ${{ matrix.targetPlatform }}
           UNSPLASH_BRIDGE_BASE_HOST: https://unsplash.camellia.app
+          WEBSITE_ICONS_PROXY_BASE_HOST: https://website-icons.camellia.app
 
   storybook:
     name: Storybook

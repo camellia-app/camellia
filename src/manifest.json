@@ -5,11 +5,11 @@
   "description": "__MSG_extensionDescription__",
   "homepage_url": "https://camellia.app",
   "author": "Petr Flaks",
-  "minimum_chrome_version": "80",
+  "minimum_chrome_version": "104",
 
   "default_locale": "en",
 
-  "permissions": ["bookmarks", "storage"],
+  "permissions": ["bookmarks", "storage", "favicon"],
 
   "host_permissions": ["https://*.camellia.app/"],
   "content_security_policy": {
