@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getFolderChildrenBookmarks } from '../../api/bookmark';
 import type { Bookmark as BookmarkEntry } from '../../api/bookmark/common';
-import { getFaviconProcessor } from '../../faviconProcessor';
+import { getFavicon } from '../../api/favicon';
 import { popupSlice } from '../../store/slice/popupSlice';
 import { Chip } from '../Chip/Chip';
 import { PopupNestingLevelContext } from '../Popup/PopupNestingLevelContext';
@@ -72,8 +72,7 @@ export const Bookmark: FC<{
   };
 
   const url = props.bookmark.type === 'link' ? props.bookmark.url : undefined;
-  const icon =
-    props.bookmark.type === 'link' ? getFaviconProcessor().generateUrl(props.bookmark.url).default.url : iconFolder;
+  const icon = props.bookmark.type === 'link' ? getFavicon(props.bookmark.url, 128) : iconFolder;
 
   return (
     <Chip
