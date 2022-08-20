@@ -26,6 +26,7 @@ export const config = {
   unsplash: {
     bridge: {
       baseHost: new URL(process.env['UNSPLASH_BRIDGE_BASE_HOST']),
+      mockPhoto: process.env['UNSPLASH_BRIDGE_MOCK_PHOTO'] === '1',
     },
   },
   websiteIconsProxy: {
