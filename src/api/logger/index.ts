@@ -37,26 +37,26 @@ const log = (
   message: string,
   context?: unknown,
 ): void => {
-  const logMessage = `${emoji} ${message}`;
+  const logMessage = `${emoji} [${category}] ${message}`;
 
   switch (level) {
     case 'debug':
-      console.debug(logMessage);
+      console.debug(logMessage, context);
 
       break;
 
     case 'info':
-      console.info(logMessage);
+      console.info(logMessage, context);
 
       break;
 
     case 'warn':
-      console.warn(logMessage);
+      console.warn(logMessage, context);
 
       break;
 
     case 'error':
-      console.error(logMessage);
+      console.error(logMessage, context);
 
       break;
   }
