@@ -62,7 +62,7 @@
     "@storybook/react": "6.5.10",
     "@typescript-eslint/eslint-plugin": "5.36.1",
     "@typescript-eslint/parser": "5.36.1",
-    "babel-loader": "8.2.5",
+    "babel-loader": "9.0.1",
     "clean-webpack-plugin": "4.0.0",
     "dts-css-modules-loader": "2.0.1",
     "eslint": "8.23.0",
