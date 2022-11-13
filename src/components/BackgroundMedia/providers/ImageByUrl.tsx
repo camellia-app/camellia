@@ -1,18 +1,18 @@
 import type { ReactEventHandler, FC } from 'react';
-import { backgroundImageByUrl } from './BackgroundImageByUrl.module.css';
+import { backgroundImageByUrl } from './ImageByUrl.module.css';
 
 type ImageDimensions = {
   height: number;
   width: number;
 };
 
-export const BackgroundImageByUrl: FC<{
+export const ImageByUrl: FC<{
   dimensions?: ImageDimensions;
   onLoad: () => void;
   url: string;
 }> = (props) => {
   const handleImageError: ReactEventHandler<HTMLImageElement> = (): void => {
-    console.warn('Failed to load background image, falling back to default background media');
+    console.warn('Failed to load background image');
   };
 
   const handleImageLoad: ReactEventHandler<HTMLImageElement> = (): void => {

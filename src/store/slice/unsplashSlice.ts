@@ -12,8 +12,8 @@ const initialState: UnsplashState = {
 
 export const getRandomPhotoFromCollectionThunk = createAsyncThunk(
   'unsplash/getRandomPhotoFromCollection',
-  async (collectionId: string) => {
-    return await getRandomUnsplashPhotoFromCollection(collectionId);
+  (collectionId: string) => {
+    return getRandomUnsplashPhotoFromCollection(collectionId);
   },
 );
 
