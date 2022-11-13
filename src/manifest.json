@@ -13,7 +13,7 @@
 
   "host_permissions": ["https://*.camellia.app/"],
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'none'; connect-src ws://localhost:8097 https://*.camellia.app"
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src ws://localhost:8097 https://*.camellia.app https://*.ingest.sentry.io"
   },
 
   "icons": {

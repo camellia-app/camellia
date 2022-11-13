@@ -1,3 +1,5 @@
+import * as Sentry from '@sentry/react';
+import { BrowserTracing } from '@sentry/tracing';
 import type { FC } from 'react';
 import { useState, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -29,6 +31,16 @@ import { options, optionsContent, optionsNavigation, optionsWrapper } from './Op
 
 if (getPlatform() === AppPlatform.Web) {
   await import('../backgroundScript/background');
+}
+
+if (config.sentry.dsn !== undefined) {
+  Sentry.init({
+    dsn: config.sentry.dsn,
+    integrations: [new BrowserTracing()],
+    tracesSampleRate: config.sentry.tracing.sampleRate,
+    environment: config.sentry.environment,
+    release: config.appVersion,
+  });
 }
 
 export const Options: FC = () => {

@@ -20,9 +20,11 @@ assertEnvironmentVariable(process.env['APP_VERSION'], 'Environment variable APP_
 
 assertEnvironmentVariable(process.env['NODE_ENV'], 'Environment variable NODE_ENV should be defined');
 
+const isDevelopment = process.env['NODE_ENV'] !== 'production';
+
 export const config = {
   appVersion: process.env['APP_VERSION'],
-  isDevelopment: process.env['NODE_ENV'] !== 'production',
+  isDevelopment: isDevelopment,
   unsplash: {
     bridge: {
       baseHost: new URL(process.env['UNSPLASH_BRIDGE_BASE_HOST']),
@@ -31,5 +33,12 @@ export const config = {
   },
   websiteIconsProxy: {
     baseHost: new URL(process.env['WEBSITE_ICONS_PROXY_BASE_HOST']),
+  },
+  sentry: {
+    dsn: process.env['SENTRY_DSN'],
+    environment: isDevelopment ? 'development' : 'production',
+    tracing: {
+      sampleRate: isDevelopment ? 1 : 0.1,
+    },
   },
 };
