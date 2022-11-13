@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import * as Sentry from '@sentry/react';
 import { AppPlatform, getPlatform } from '../appEnvironment';
 import topWebsites from './assets/top-websites.json';
 import type {
@@ -8,6 +9,8 @@ import type {
   GetFolderChildrenBookmarks,
   GetOtherBookmarksChildren,
   SearchBookmarks,
+  Bookmark,
+  BookmarkId,
 } from './common';
 import {
   createChromiumBookmark,
@@ -26,93 +29,191 @@ import {
   searchWebBookmarks,
 } from './platform/web';
 import {
-  createWebextBookmark,
   getWebextBookmarksBarChildren,
   getWebextFolderChildrenBookmarks,
   getWebextOtherBookmarksChildren,
   initializeWebextRootFolders,
-  searchWebextBookmarks,
 } from './platform/webext';
 
-export const getFolderChildrenBookmarks: GetFolderChildrenBookmarks = (folderBookmarkId) => {
+export const getFolderChildrenBookmarks: GetFolderChildrenBookmarks = async (folderBookmarkId) => {
+  const span = Sentry.getCurrentHub().getScope()?.getTransaction()?.startChild({
+    op: 'getFolderChildrenBookmarks',
+  });
+
+  let bookmarks: Array<Bookmark> = [];
+
   switch (getPlatform()) {
     case AppPlatform.Chromium:
-      return getChromiumFolderChildrenBookmarks(folderBookmarkId);
+      bookmarks = await getChromiumFolderChildrenBookmarks(folderBookmarkId);
+
+      break;
 
     case AppPlatform.Webext:
-      return getWebextFolderChildrenBookmarks(folderBookmarkId);
+      bookmarks = await getWebextFolderChildrenBookmarks(folderBookmarkId);
+
+      break;
 
     case AppPlatform.Web:
-      return getWebFolderChildrenBookmarks(folderBookmarkId);
+      bookmarks = await getWebFolderChildrenBookmarks(folderBookmarkId);
+
+      break;
   }
+
+  span?.setStatus('ok').setData('bookmarks_amount', bookmarks.length).finish();
+
+  return bookmarks;
 };
 
-export const getBookmarksBarChildren: GetBookmarksBarChildren = () => {
+export const getBookmarksBarChildren: GetBookmarksBarChildren = async () => {
+  const span = Sentry.getCurrentHub().getScope()?.getTransaction()?.startChild({
+    op: 'getBookmarksBarChildren',
+  });
+
+  let bookmarks: Array<Bookmark> = [];
+
   switch (getPlatform()) {
     case AppPlatform.Chromium:
-      return getChromiumBookmarksBarChildren();
+      bookmarks = await getChromiumBookmarksBarChildren();
+
+      break;
 
     case AppPlatform.Webext:
-      return getWebextBookmarksBarChildren();
+      bookmarks = await getWebextBookmarksBarChildren();
+
+      break;
 
     case AppPlatform.Web:
-      return geWebBookmarksBarChildren();
+      bookmarks = await geWebBookmarksBarChildren();
+
+      break;
   }
+
+  span?.setStatus('ok').setData('bookmarks_amount', bookmarks.length).finish();
+
+  return bookmarks;
 };
 
-export const getOtherBookmarksChildren: GetOtherBookmarksChildren = () => {
+export const getOtherBookmarksChildren: GetOtherBookmarksChildren = async () => {
+  const span = Sentry.getCurrentHub().getScope()?.getTransaction()?.startChild({
+    op: 'getOtherBookmarksChildren',
+  });
+
+  let bookmarks: Array<Bookmark> = [];
+
   switch (getPlatform()) {
     case AppPlatform.Chromium:
-      return getChromiumOtherBookmarksChildren();
+      bookmarks = await getChromiumOtherBookmarksChildren();
+
+      break;
 
     case AppPlatform.Webext:
-      return getWebextOtherBookmarksChildren();
+      bookmarks = await getWebextOtherBookmarksChildren();
+
+      break;
 
     case AppPlatform.Web:
-      return getWebOtherBookmarksChildren();
+      bookmarks = await getWebOtherBookmarksChildren();
+
+      break;
   }
+
+  span?.setStatus('ok').setData('bookmarks_amount', bookmarks.length).finish();
+
+  return bookmarks;
 };
 
-export const searchBookmarks: SearchBookmarks = (searchQuery) => {
+export const searchBookmarks: SearchBookmarks = async (searchQuery) => {
+  const span = Sentry.getCurrentHub().getScope()?.getTransaction()?.startChild({
+    op: 'searchBookmarks',
+  });
+
+  let bookmarks: Array<Bookmark> = [];
+
   switch (getPlatform()) {
     case AppPlatform.Chromium:
-      return searchChromiumBookmarks(searchQuery);
+      bookmarks = await searchChromiumBookmarks(searchQuery);
+
+      break;
 
     case AppPlatform.Webext:
-      return searchWebextBookmarks(searchQuery);
+      bookmarks = await searchWebBookmarks(searchQuery);
+
+      break;
 
     case AppPlatform.Web:
-      return searchWebBookmarks(searchQuery);
+      bookmarks = await searchWebBookmarks(searchQuery);
+
+      break;
   }
+
+  span?.setStatus('ok').setData('bookmarks_amount', bookmarks.length).finish();
+
+  return bookmarks;
 };
 
-export const createBookmark: CreateBookmark = (bookmark) => {
+export const createBookmark: CreateBookmark = async (bookmark) => {
+  const span = Sentry.getCurrentHub().getScope()?.getTransaction()?.startChild({
+    op: 'createBookmark',
+  });
+
+  let createdBookmark: Bookmark;
+
   switch (getPlatform()) {
     case AppPlatform.Chromium:
-      return createChromiumBookmark(bookmark);
+      createdBookmark = await createChromiumBookmark(bookmark);
+
+      break;
 
     case AppPlatform.Webext:
-      return createWebextBookmark(bookmark);
+      createdBookmark = await createWebBookmark(bookmark);
+
+      break;
 
     case AppPlatform.Web:
-      return createWebBookmark(bookmark);
+      createdBookmark = await createWebBookmark(bookmark);
+
+      break;
   }
+
+  span?.setStatus('ok').setData('bookmarks_amount', 1).finish();
+
+  return createdBookmark;
 };
 
-const initializeRootFolders: InitializeRootFolders = () => {
+const initializeRootFolders: InitializeRootFolders = async () => {
+  const span = Sentry.getCurrentHub().getScope()?.getTransaction()?.startChild({
+    op: 'initializeRootFolders',
+  });
+
+  let bookmarks: Array<BookmarkId> = [];
+
   switch (getPlatform()) {
     case AppPlatform.Chromium:
-      return initializeChromiumRootFolders();
+      bookmarks = await initializeChromiumRootFolders();
+
+      break;
 
     case AppPlatform.Webext:
-      return initializeWebextRootFolders();
+      bookmarks = await initializeWebextRootFolders();
+
+      break;
 
     case AppPlatform.Web:
-      return initializeWebRootFolders();
+      bookmarks = await initializeWebRootFolders();
+
+      break;
   }
+
+  span?.setStatus('ok').setData('bookmarks_amount', bookmarks.length).finish();
+
+  return bookmarks;
 };
 
 export const generateDemoBookmarks = async (): Promise<void> => {
+  const span = Sentry.getCurrentHub().getScope()?.getTransaction()?.startChild({
+    op: 'initializeRootFolders',
+  });
+
   const folderIds = await initializeRootFolders();
 
   for (const topWebsite of topWebsites) {
@@ -135,4 +236,6 @@ export const generateDemoBookmarks = async (): Promise<void> => {
       folderIds.push(createdFolder.id);
     }
   }
+
+  span?.setStatus('ok').finish();
 };

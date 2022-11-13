@@ -1,3 +1,5 @@
+import * as Sentry from '@sentry/react';
+import { logOptionsSet, logOptionsSubscribe } from '../logger';
 import { storage } from '../storage';
 import { StorageKeyDoesNotExist } from '../storage/common';
 import type { OptionChangeHandler, OptionChangeHandlerDestructor } from './common';
@@ -9,53 +11,98 @@ export const setOption = async <TKey extends OptionKey, TValue extends OptionsTy
   key: TKey,
   value: TValue,
 ): Promise<void> => {
-  console.info(`Setting option with key "${key}" to value:`, value);
+  const span = Sentry.getCurrentHub()
+    .getScope()
+    ?.getTransaction()
+    ?.startChild({
+      op: 'setOption',
+      description: key,
+      tags: {
+        key: key,
+      },
+    });
+
+  logOptionsSet(key, value);
 
   await storage.synchronizable.set(key, value);
+
+  span?.setStatus('ok').finish();
 };
 
 export const getOption = async <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(
   key: TKey,
 ): Promise<TValue> => {
-  console.log(`Retrieving an option by key "${key}"`);
+  const span = Sentry.getCurrentHub()
+    .getScope()
+    ?.getTransaction()
+    ?.startChild({
+      op: 'getOption',
+      description: key,
+      tags: {
+        key: key,
+      },
+    });
+
+  let value: TValue;
 
   try {
-    return storage.synchronizable.get<TValue>(key);
+    console.count(`Getting option "${key}"`);
+
+    value = await storage.synchronizable.get<TValue>(key);
+
+    span?.setStatus('ok');
   } catch (error: unknown) {
     if (error instanceof StorageKeyDoesNotExist) {
+      span?.setStatus('not_found');
+
       throw new OptionIsNotSetError(key);
     }
 
+    span?.setStatus('unknown_error');
+
     throw error;
   }
+
+  span?.finish();
+
+  return value;
 };
 
 export const isOptionSet = async <TKey extends OptionKey>(key: TKey): Promise<boolean> => {
-  console.log(`Checking is option with key "${key}" set`);
+  const span = Sentry.getCurrentHub()
+    .getScope()
+    ?.getTransaction()
+    ?.startChild({
+      op: 'isOptionSet',
+      description: key,
+      tags: {
+        key: key,
+      },
+    });
 
-  return storage.synchronizable.exists(key);
+  const value = storage.synchronizable.exists(key);
+
+  span?.setStatus('ok').finish();
+
+  return value;
 };
 
 export const setOptionIfNotSet = async <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(
   key: TKey,
   value: TValue,
 ): Promise<void> => {
-  console.group(`Setting an option with key "${key}" if not set...`);
-
   if (await isOptionSet(key)) {
     return;
   }
 
   await setOption(key, value);
-
-  console.groupEnd();
 };
 
 export const subscribeToOptionChanges = <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(
   key: TKey,
   handler: OptionChangeHandler<TValue>,
 ): OptionChangeHandlerDestructor => {
-  console.log(`Subscribing to changes of an option with key "${key}"`);
+  logOptionsSubscribe(key);
 
   const storageSubscriptionDestructor = storage.synchronizable.subscribeToKeyChanges(key, handler);
 
@@ -65,8 +112,6 @@ export const subscribeToOptionChanges = <TKey extends OptionKey, TValue extends 
 };
 
 export const setDefaultOptionValues = async (): Promise<void> => {
-  console.group('Setting up default values for options...');
-
   await Promise.all([
     setOptionIfNotSet('installation_date', Date.now()),
     setOptionIfNotSet('vote_remind_displayed', false),
@@ -79,13 +124,9 @@ export const setDefaultOptionValues = async (): Promise<void> => {
     setOptionIfNotSet('show_options_button', true),
     setOptionIfNotSet('show_search_button', true),
   ]);
-
-  console.groupEnd();
 };
 
 export const resetOptionsToDefaultValues = async (): Promise<void> => {
-  console.group('Resetting all options to default values...');
-
   await Promise.all([
     setOption('installation_date', Date.now()),
     setOption('vote_remind_displayed', false),
@@ -98,12 +139,10 @@ export const resetOptionsToDefaultValues = async (): Promise<void> => {
     setOption('show_options_button', true),
     setOption('show_search_button', true),
   ]);
-
-  console.groupEnd();
 };
 
 export const migrateOptions = async (): Promise<void> => {
-  console.group('Migrating options...');
+  console.info('Migrating options...');
 
   // migrate from 1.9.0 to 2.0.0
 
@@ -120,6 +159,4 @@ export const migrateOptions = async (): Promise<void> => {
       setOption('background_provider_type', BackgroundProviderType.Link),
     ]);
   }
-
-  console.groupEnd();
 };
