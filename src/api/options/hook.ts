@@ -1,6 +1,8 @@
+import { getActiveTransaction } from '@sentry/tracing';
 import { useEffect, useState } from 'react';
+import { SENTRY_SPAN_STATUS_OK } from '../utils/sentry';
 import type { OptionKey, OptionsTypeMap } from './options';
-import { getOption, setOption, subscribeToOptionChanges } from './index';
+import { getOptionCached, setOption, subscribeToOptionChanges } from './index';
 
 type Dispatch<TValue> = (newValue: TValue) => void;
 
@@ -10,9 +12,20 @@ export const useOption = <TKey extends OptionKey, TValue extends OptionsTypeMap[
   const [value, setValue] = useState<TValue | undefined>(undefined);
 
   useEffect(() => {
-    getOption<TKey, TValue>(key).then((optionValue) => {
-      setValue(optionValue);
+    const span = getActiveTransaction()?.startChild({
+      op: 'useOption.getOptionCached',
+      description: key,
     });
+
+    getOptionCached<TKey, TValue>(key)
+      .then((optionValue) => {
+        span?.setStatus(SENTRY_SPAN_STATUS_OK);
+
+        setValue(optionValue);
+      })
+      .finally(() => {
+        span?.finish();
+      });
   }, [key]);
 
   useEffect(() => {
@@ -28,7 +41,18 @@ export const useOption = <TKey extends OptionKey, TValue extends OptionsTypeMap[
   return [
     value,
     (newValue): void => {
-      setOption<TKey, TValue>(key, newValue);
+      const span = getActiveTransaction()?.startChild({
+        op: 'useOption.setOption',
+        description: key,
+      });
+
+      setOption<TKey, TValue>(key, newValue)
+        .then(() => {
+          span?.setStatus(SENTRY_SPAN_STATUS_OK);
+        })
+        .finally(() => {
+          span?.finish();
+        });
     },
   ];
 };

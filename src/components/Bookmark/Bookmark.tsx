@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { getFolderChildrenBookmarks } from '../../api/bookmark';
 import type { Bookmark as BookmarkEntry } from '../../api/bookmark/common';
 import { getFavicon } from '../../api/favicon';
+import { createTracingTransaction } from '../../api/utils/sentry';
 import { popupSlice } from '../../store/slice/popupSlice';
 import { Chip } from '../Chip/Chip';
 import { PopupNestingLevelContext } from '../Popup/PopupNestingLevelContext';
@@ -29,6 +30,16 @@ export const Bookmark: FC<{
   };
 
   const handleFolderClick = async (x: number, y: number): Promise<void> => {
+    const transaction = createTracingTransaction('open_bookmark_folder');
+
+    const span = transaction.startChild({
+      op: 'getFolderChildrenBookmarks',
+    });
+
+    const bookmarks = await getFolderChildrenBookmarks(props.bookmark.id);
+
+    span.finish();
+
     const clickPosition = {
       x: x,
       y: y,
@@ -41,11 +52,13 @@ export const Bookmark: FC<{
         title: props.bookmark.title,
         content: {
           type: 'bookmarkList',
-          bookmarks: await getFolderChildrenBookmarks(props.bookmark.id),
+          bookmarks: bookmarks,
         },
         nestingLevel: nestingLevelContext,
       }),
     );
+
+    transaction.finish();
   };
 
   const clickAction: MouseEventHandler = async (event): Promise<void> => {

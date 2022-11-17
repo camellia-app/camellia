@@ -1,5 +1,3 @@
-import * as Sentry from '@sentry/react';
-import { BrowserTracing } from '@sentry/tracing';
 import type { FC } from 'react';
 import { useState, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -7,6 +5,7 @@ import { Provider } from 'react-redux';
 import { AppPlatform, getPlatform } from '../api/appEnvironment';
 import { getSupportedRuntimeFeatures } from '../api/applicationRuntime/features';
 import { t } from '../api/i18n/translate';
+import { initializeSentry } from '../api/utils/sentry';
 import { BackgroundMedia } from '../components/BackgroundMedia/BackgroundMedia';
 import { BackgroundMediaFullScreenContainer } from '../components/BackgroundMedia/BackgroundMediaFullScreenContainer';
 import { config } from '../config';
@@ -29,18 +28,10 @@ import { ShowSearchButton } from './components/OptionControl/OptionEntry/ShowSea
 import { UnsplashPhotographerAttribution } from './components/OptionControl/OptionEntry/UnsplashPhotographerAttribution';
 import { options, optionsContent, optionsNavigation, optionsWrapper } from './Options.module.css';
 
+initializeSentry();
+
 if (getPlatform() === AppPlatform.Web) {
   await import('../backgroundScript/background');
-}
-
-if (config.sentry.dsn !== undefined) {
-  Sentry.init({
-    dsn: config.sentry.dsn,
-    integrations: [new BrowserTracing()],
-    tracesSampleRate: config.sentry.tracing.sampleRate,
-    environment: config.sentry.environment,
-    release: config.appVersion,
-  });
 }
 
 export const Options: FC = () => {

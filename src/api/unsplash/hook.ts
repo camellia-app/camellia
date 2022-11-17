@@ -1,3 +1,4 @@
+import { getActiveTransaction } from '@sentry/tracing';
 import { useEffect, useState } from 'react';
 import type { UnsplashPhoto } from './common';
 import { getRandomUnsplashPhotoFromCollection } from './index';
@@ -6,11 +7,21 @@ export const useRandomPhotoFromUnsplashCollection = (collectionId: string): Unsp
   const [photo, setPhoto] = useState<UnsplashPhoto | undefined>(undefined);
 
   useEffect(() => {
+    const span = getActiveTransaction()?.startChild({
+      op: 'useRandomPhotoFromUnsplashCollection',
+    });
+
     const abortController = new AbortController();
 
-    getRandomUnsplashPhotoFromCollection(collectionId, abortController.signal).then((photo) => {
-      setPhoto(photo);
-    });
+    getRandomUnsplashPhotoFromCollection(collectionId, abortController.signal)
+      .then((photo) => {
+        span?.setStatus('ok');
+
+        setPhoto(photo);
+      })
+      .finally(() => {
+        span?.finish();
+      });
 
     return () => {
       abortController.abort();

@@ -1,5 +1,4 @@
 import { faker } from '@faker-js/faker';
-import * as Sentry from '@sentry/react';
 import { AppPlatform, getPlatform } from '../appEnvironment';
 import topWebsites from './assets/top-websites.json';
 import type {
@@ -36,10 +35,6 @@ import {
 } from './platform/webext';
 
 export const getFolderChildrenBookmarks: GetFolderChildrenBookmarks = async (folderBookmarkId) => {
-  const span = Sentry.getCurrentHub().getScope()?.getTransaction()?.startChild({
-    op: 'getFolderChildrenBookmarks',
-  });
-
   let bookmarks: Array<Bookmark> = [];
 
   switch (getPlatform()) {
@@ -59,16 +54,10 @@ export const getFolderChildrenBookmarks: GetFolderChildrenBookmarks = async (fol
       break;
   }
 
-  span?.setStatus('ok').setData('bookmarks_amount', bookmarks.length).finish();
-
   return bookmarks;
 };
 
 export const getBookmarksBarChildren: GetBookmarksBarChildren = async () => {
-  const span = Sentry.getCurrentHub().getScope()?.getTransaction()?.startChild({
-    op: 'getBookmarksBarChildren',
-  });
-
   let bookmarks: Array<Bookmark> = [];
 
   switch (getPlatform()) {
@@ -88,16 +77,10 @@ export const getBookmarksBarChildren: GetBookmarksBarChildren = async () => {
       break;
   }
 
-  span?.setStatus('ok').setData('bookmarks_amount', bookmarks.length).finish();
-
   return bookmarks;
 };
 
 export const getOtherBookmarksChildren: GetOtherBookmarksChildren = async () => {
-  const span = Sentry.getCurrentHub().getScope()?.getTransaction()?.startChild({
-    op: 'getOtherBookmarksChildren',
-  });
-
   let bookmarks: Array<Bookmark> = [];
 
   switch (getPlatform()) {
@@ -117,16 +100,10 @@ export const getOtherBookmarksChildren: GetOtherBookmarksChildren = async () => 
       break;
   }
 
-  span?.setStatus('ok').setData('bookmarks_amount', bookmarks.length).finish();
-
   return bookmarks;
 };
 
 export const searchBookmarks: SearchBookmarks = async (searchQuery) => {
-  const span = Sentry.getCurrentHub().getScope()?.getTransaction()?.startChild({
-    op: 'searchBookmarks',
-  });
-
   let bookmarks: Array<Bookmark> = [];
 
   switch (getPlatform()) {
@@ -146,16 +123,10 @@ export const searchBookmarks: SearchBookmarks = async (searchQuery) => {
       break;
   }
 
-  span?.setStatus('ok').setData('bookmarks_amount', bookmarks.length).finish();
-
   return bookmarks;
 };
 
 export const createBookmark: CreateBookmark = async (bookmark) => {
-  const span = Sentry.getCurrentHub().getScope()?.getTransaction()?.startChild({
-    op: 'createBookmark',
-  });
-
   let createdBookmark: Bookmark;
 
   switch (getPlatform()) {
@@ -175,16 +146,10 @@ export const createBookmark: CreateBookmark = async (bookmark) => {
       break;
   }
 
-  span?.setStatus('ok').setData('bookmarks_amount', 1).finish();
-
   return createdBookmark;
 };
 
 const initializeRootFolders: InitializeRootFolders = async () => {
-  const span = Sentry.getCurrentHub().getScope()?.getTransaction()?.startChild({
-    op: 'initializeRootFolders',
-  });
-
   let bookmarks: Array<BookmarkId> = [];
 
   switch (getPlatform()) {
@@ -204,16 +169,10 @@ const initializeRootFolders: InitializeRootFolders = async () => {
       break;
   }
 
-  span?.setStatus('ok').setData('bookmarks_amount', bookmarks.length).finish();
-
   return bookmarks;
 };
 
 export const generateDemoBookmarks = async (): Promise<void> => {
-  const span = Sentry.getCurrentHub().getScope()?.getTransaction()?.startChild({
-    op: 'initializeRootFolders',
-  });
-
   const folderIds = await initializeRootFolders();
 
   for (const topWebsite of topWebsites) {
@@ -236,6 +195,4 @@ export const generateDemoBookmarks = async (): Promise<void> => {
       folderIds.push(createdFolder.id);
     }
   }
-
-  span?.setStatus('ok').finish();
 };

@@ -1,6 +1,5 @@
 import { config } from '../../config';
 import { getAppInfo } from '../appInfo';
-import { logHttpRequest, logHttpResponse } from '../logger';
 import type { UnsplashPhoto } from './common';
 
 export const getRandomUnsplashPhotoFromCollection = async (
@@ -15,13 +14,9 @@ export const getRandomUnsplashPhotoFromCollection = async (
     requestUrl.searchParams.set('mock', '1');
   }
 
-  logHttpRequest(requestUrl.toString());
-
   const response = await fetch(requestUrl.toString(), {
     signal: abortSignal ?? null,
   });
-
-  logHttpResponse(requestUrl.toString(), response.status);
 
   const photo: UnsplashPhoto = await response.json();
 

@@ -1,5 +1,3 @@
-import * as Sentry from '@sentry/react';
-import { logOptionsSet, logOptionsSubscribe } from '../logger';
 import { storage } from '../storage';
 import { StorageKeyDoesNotExist } from '../storage/common';
 import type { OptionChangeHandler, OptionChangeHandlerDestructor } from './common';
@@ -7,82 +5,59 @@ import { OptionIsNotSetError } from './common';
 import type { OptionKey, OptionsTypeMap } from './options';
 import { BackgroundProviderType, ContentLayoutType } from './options';
 
+// I don't know how to represent this map in TS using strict type-safe way without using `any`,
+// it may look like an OptionsTypeMap with all keys optional and values promised, but it doesn't
+// work for some reason. Contributions are welcome! :)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const promisedOptionsCache: Record<string, Promise<any>> = {};
+
 export const setOption = async <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(
   key: TKey,
   value: TValue,
 ): Promise<void> => {
-  const span = Sentry.getCurrentHub()
-    .getScope()
-    ?.getTransaction()
-    ?.startChild({
-      op: 'setOption',
-      description: key,
-      tags: {
-        key: key,
-      },
-    });
-
-  logOptionsSet(key, value);
+  promisedOptionsCache[key] = new Promise((resolve) => {
+    resolve(value);
+  });
 
   await storage.synchronizable.set(key, value);
+};
 
-  span?.setStatus('ok').finish();
+export const getOptionCached = async <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(
+  key: TKey,
+): Promise<TValue> => {
+  if (promisedOptionsCache[key] === undefined) {
+    promisedOptionsCache[key] = getOption(key);
+  }
+
+  const value = await promisedOptionsCache[key];
+
+  return value;
 };
 
 export const getOption = async <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(
   key: TKey,
 ): Promise<TValue> => {
-  const span = Sentry.getCurrentHub()
-    .getScope()
-    ?.getTransaction()
-    ?.startChild({
-      op: 'getOption',
-      description: key,
-      tags: {
-        key: key,
-      },
-    });
-
   let value: TValue;
 
   try {
-    console.count(`Getting option "${key}"`);
+    const promisedValue = storage.synchronizable.get<TValue>(key);
 
-    value = await storage.synchronizable.get<TValue>(key);
+    promisedOptionsCache[key] = promisedValue;
 
-    span?.setStatus('ok');
+    value = await promisedValue;
   } catch (error: unknown) {
     if (error instanceof StorageKeyDoesNotExist) {
-      span?.setStatus('not_found');
-
       throw new OptionIsNotSetError(key);
     }
 
-    span?.setStatus('unknown_error');
-
     throw error;
   }
-
-  span?.finish();
 
   return value;
 };
 
 export const isOptionSet = async <TKey extends OptionKey>(key: TKey): Promise<boolean> => {
-  const span = Sentry.getCurrentHub()
-    .getScope()
-    ?.getTransaction()
-    ?.startChild({
-      op: 'isOptionSet',
-      description: key,
-      tags: {
-        key: key,
-      },
-    });
-
-  const value = storage.synchronizable.exists(key);
-
-  span?.setStatus('ok').finish();
+  const value = promisedOptionsCache[key] !== undefined || (await storage.synchronizable.exists(key));
 
   return value;
 };
@@ -102,9 +77,16 @@ export const subscribeToOptionChanges = <TKey extends OptionKey, TValue extends 
   key: TKey,
   handler: OptionChangeHandler<TValue>,
 ): OptionChangeHandlerDestructor => {
-  logOptionsSubscribe(key);
+  const storageSubscriptionDestructor = storage.synchronizable.subscribeToKeyChanges<TValue>(
+    key,
+    (newValue, oldValue) => {
+      promisedOptionsCache[key] = new Promise((resolve) => {
+        resolve(newValue);
+      });
 
-  const storageSubscriptionDestructor = storage.synchronizable.subscribeToKeyChanges(key, handler);
+      handler(newValue, oldValue);
+    },
+  );
 
   return (): void => {
     storageSubscriptionDestructor();
