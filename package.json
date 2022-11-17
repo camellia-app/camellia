@@ -60,7 +60,7 @@
     "@storybook/builder-webpack5": "6.5.10",
     "@storybook/manager-webpack5": "6.5.10",
     "@storybook/react": "6.5.13",
-    "@typescript-eslint/eslint-plugin": "5.36.1",
+    "@typescript-eslint/eslint-plugin": "5.43.0",
     "@typescript-eslint/parser": "5.43.0",
     "babel-loader": "9.1.0",
     "clean-webpack-plugin": "4.0.0",
