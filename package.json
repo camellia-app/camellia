@@ -14,7 +14,7 @@
     "node": ">=16"
   },
   "dependencies": {
-    "@material-design-icons/svg": "0.12.1",
+    "@material-design-icons/svg": "0.14.1",
     "@reduxjs/toolkit": "1.8.5",
     "@sentry/react": "7.19.0",
     "@sentry/tracing": "7.20.0",
