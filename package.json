@@ -78,7 +78,7 @@
     "eslint-plugin-unused-imports": "2.0.0",
     "prettier": "2.7.1",
     "react-docgen-typescript": "2.2.2",
-    "storybook-dark-mode": "1.1.0",
+    "storybook-dark-mode": "1.1.2",
     "stylelint": "14.11.0",
     "stylelint-config-css-modules": "4.1.0",
     "stylelint-config-prettier": "9.0.3",
