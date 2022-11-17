@@ -17,7 +17,7 @@
     "@material-design-icons/svg": "0.12.1",
     "@reduxjs/toolkit": "1.8.5",
     "@sentry/react": "7.19.0",
-    "@sentry/tracing": "7.19.0",
+    "@sentry/tracing": "7.20.0",
     "@sentry/webpack-plugin": "1.20.0",
     "@types/chrome": "0.0.196",
     "@types/firefox-webext-browser": "94.0.1",
