@@ -79,7 +79,6 @@
             "default": "generic"
           }
         ],
-        "@typescript-eslint/consistent-indexed-object-style": ["error", "index-signature"],
         "@typescript-eslint/consistent-type-assertions": [
           "error",
           {
