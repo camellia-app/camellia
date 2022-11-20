@@ -23,5 +23,5 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["src", ".storybook/**/*"]
+  "include": ["src"]
 }
