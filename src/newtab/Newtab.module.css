@@ -1,6 +1,6 @@
-@import '../reset.css';
-@import '../variables.css';
-@import '../commons.module.css';
+@import url('../reset.css');
+@import url('../variables.css');
+@import url('../commons.module.css');
 
 .newtabWrapper {
   background-color: hsl(0deg 0% 15% / 90%);
