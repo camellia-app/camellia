@@ -18,3 +18,20 @@ export const openOptionsPage = (): void => {
       break;
   }
 };
+
+export const openBookmarkManager = (): void => {
+  switch (getPlatform()) {
+    case AppPlatform.Chromium:
+      chrome.tabs.create({
+        url: 'chrome://bookmarks/',
+      });
+
+      break;
+
+    case AppPlatform.Webext:
+      throw new Error('Bookmark manager is not supported by webext platform');
+
+    case AppPlatform.Web:
+      throw new Error('Bookmark manager is not supported by web platform');
+  }
+};
