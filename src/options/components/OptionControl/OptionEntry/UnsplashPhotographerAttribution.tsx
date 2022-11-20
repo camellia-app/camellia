@@ -3,7 +3,7 @@ import { t } from '../../../../api/i18n/translate';
 import { useOption } from '../../../../api/options/hook';
 import { BackgroundProviderType } from '../../../../api/options/options';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
-import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
+import { categoriesMap } from '../../Navigation/OptionsSearchForm/OptionsSearchForm';
 import { OptionCheckbox } from '../OptionCheckbox';
 
 export const UnsplashPhotographerAttribution: FC = () => {

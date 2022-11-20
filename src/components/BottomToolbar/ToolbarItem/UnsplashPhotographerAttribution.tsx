@@ -1,3 +1,4 @@
+import PhotoCamera from '@material-design-icons/svg/filled/photo_camera.svg';
 import type { FC } from 'react';
 import type { UnsplashPhoto } from '../../../api/unsplash/common';
 import { Chip } from '../../Chip/Chip';
@@ -8,6 +9,7 @@ export const UnsplashPhotographerAttribution: FC<{
 }> = (props) => {
   return (
     <Chip
+      fallbackSvg={<PhotoCamera />}
       iconEllipse={true}
       iconSrc={props.unsplashPhoto.photographer.avatar.large.url}
       label={`Photo by ${props.unsplashPhoto.photographer.name}`}

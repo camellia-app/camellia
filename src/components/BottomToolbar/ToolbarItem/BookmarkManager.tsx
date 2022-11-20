@@ -1,9 +1,8 @@
+import Star from '@material-design-icons/svg/filled/star.svg';
 import type { MouseEventHandler, FC } from 'react';
 import { openBookmarkManager } from '../../../api/applicationRuntime/navigation';
 import { t } from '../../../api/i18n/translate';
 import { Chip } from '../../Chip/Chip';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconStar = require('mdi/filled/star.svg?fill=%23eee');
 
 const handleClick: MouseEventHandler<HTMLElement> = (event): void => {
   event.preventDefault();
@@ -19,10 +18,10 @@ export const BookmarkManager: FC = () => {
     <Chip
       clickAction={handleClick}
       focus={false}
-      iconSrc={iconStar}
       isLoading={false}
       label={label}
       shape={'squared'}
+      svg={<Star />}
       tooltip={tooltip}
     />
   );

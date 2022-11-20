@@ -1,4 +1,9 @@
-import type { FC } from 'react';
+import IconBugReport from '@material-design-icons/svg/filled/bug_report.svg';
+import IconCode from '@material-design-icons/svg/filled/code.svg';
+import IconDescription from '@material-design-icons/svg/filled/description.svg';
+import IconForum from '@material-design-icons/svg/filled/forum.svg';
+import IconNewReleases from '@material-design-icons/svg/filled/new_releases.svg';
+import type { FC, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { t } from '../../../api/i18n/translate';
 import { UnsplashPhotographerAttribution } from '../../../components/BottomToolbar/ToolbarItem/UnsplashPhotographerAttribution';
@@ -7,51 +12,41 @@ import { ChipList } from '../../../components/ChipList/ChipList';
 import type { RootState } from '../../../store';
 import type { UnsplashState } from '../../../store/slice/unsplashSlice';
 import { CategorizedOption } from '../CategorizedOption/CategorizedOption';
-import { categoriesMap } from '../Navigation/OptionsCategory/OptionsCategories';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconBugReport = require('mdi/filled/bug_report.svg?fill=%23eee');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconCode = require('mdi/filled/code.svg?fill=%23eee');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconDescription = require('mdi/filled/description.svg?fill=%23eee');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconForum = require('mdi/filled/forum.svg?fill=%23eee');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconNewReleases = require('mdi/filled/new_releases.svg?fill=%23eee');
+import { categoriesMap } from '../Navigation/OptionsSearchForm/OptionsSearchForm';
 
 export const ContactLinks: FC = () => {
   const unsplashPhotographerAttributionsState = useSelector<RootState, UnsplashState>((state) => state.unsplash);
 
-  const links: Array<{ icon: string; title: string; url: string }> = [
+  const links: Array<{ icon: ReactElement; title: string; url: string }> = [
     {
       title: t('about_externalLink_sourceCode'),
       url: 'https://github.com/camellia-app/camellia',
-      icon: iconCode,
+      icon: <IconCode />,
     },
     {
       title: t('about_externalLink_bugTracker'),
       url: 'https://github.com/camellia-app/camellia/issues',
-      icon: iconBugReport,
+      icon: <IconBugReport />,
     },
     {
       title: t('about_externalLink_communityForum'),
       url: 'https://github.com/camellia-app/camellia/discussions',
-      icon: iconForum,
+      icon: <IconForum />,
     },
     {
       title: t('about_externalLink_userManual'),
       url: 'https://github.com/camellia-app/camellia/wiki',
-      icon: iconDescription,
+      icon: <IconDescription />,
     },
     {
       title: t('about_externalLink_releaseNotes'),
       url: 'https://github.com/camellia-app/camellia/releases',
-      icon: iconNewReleases,
+      icon: <IconNewReleases />,
     },
   ];
 
   const chips = links.map((link, index) => (
-    <Chip iconSrc={link.icon} key={index} label={link.title} shape={'rounded'} url={link.url} />
+    <Chip key={index} label={link.title} shape={'rounded'} svg={link.icon} url={link.url} />
   ));
 
   if (unsplashPhotographerAttributionsState.photo !== undefined) {

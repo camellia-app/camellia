@@ -1,80 +1,86 @@
 import classNames from 'classnames';
-import type { ReactEventHandler, FC, MouseEventHandler } from 'react';
+import type { ReactEventHandler, FC, MouseEventHandler, ReactElement } from 'react';
 import { createRef, useEffect, useState } from 'react';
 import {
   chip,
   chipIcon,
   chipIconEllipse,
-  chipIconLoading,
+  chipIconInlinedSvg,
+  chipIconRemoteRasterImage,
+  chipIconRemoteRasterImageLoading,
   chipLabel,
   chipLoading,
   chipRounded,
   chipSquared,
 } from './Chip.module.css';
 
-export const Chip: FC<{
-  /**
-   * Action that will be triggered after clicking the chip.
-   */
-  clickAction?: MouseEventHandler;
+export const Chip: FC<
+  {
+    /**
+     * Action that will be triggered after clicking the chip.
+     */
+    clickAction?: MouseEventHandler | undefined;
 
-  /**
-   * Fallback icon of the chip which will be used in case main icon won't load.
-   * It may be an image URL or data URL, but it's recommended to use [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
-   */
-  fallbackIconSrc?: string | undefined;
+    /**
+     * Should chip be focused automatically or not.
+     *
+     * @default false
+     */
+    focus?: boolean | undefined;
 
-  /**
-   * Should chip be focused automatically or not.
-   *
-   * @default false
-   */
-  focus?: boolean | undefined;
+    /**
+     * Show loading animation or not.
+     *
+     * @default false
+     */
+    isLoading?: boolean | undefined;
 
-  /**
-   * Should icon be circled or not.
-   *
-   * @default false
-   */
-  iconEllipse?: boolean;
+    /**
+     * Label (name) of the chip shown next to its icon.
+     */
+    label: string;
 
-  /**
-   * Main icon of the chip. It may be an image URL or [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
-   */
-  iconSrc: string;
+    /**
+     * Shape of the chip.
+     */
+    shape: 'rounded' | 'squared';
 
-  /**
-   * Show loading animation or not.
-   *
-   * @default false
-   */
-  isLoading?: boolean | undefined;
+    /**
+     * Tooltip will be shown when hovering with cursor.
+     */
+    tooltip?: string | undefined;
 
-  /**
-   * Label (name) of the chip shown next to its icon.
-   */
-  label: string;
+    /**
+     * URL that will be opened after clicking the chip.
+     */
+    url?: string | undefined;
+  } & (
+    | {
+        /**
+         * Fallback icon of the chip which will be used in case main icon won't load.
+         */
+        fallbackSvg: ReactElement;
 
-  /**
-   * Shape of the chip.
-   */
-  shape: 'rounded' | 'squared';
+        /**
+         * Should icon be circled or not.
+         *
+         * @default false
+         */
+        iconEllipse?: boolean | undefined;
 
-  /**
-   * Tooltip will be shown when hovering with cursor.
-   */
-  tooltip?: string | undefined;
-
-  /**
-   * URL that will be opened after clicking the chip.
-   */
-  url?: string | undefined;
-}> = (props) => {
-  const [iconSrc, setIconSrc] = useState<string>(props.iconSrc);
-  const [iconIsLoading, setIconLoading] = useState<boolean>(
-    iconSrc.startsWith('http://') || iconSrc.startsWith('https://'),
-  );
-
+        /**
+         * Main icon of the chip. It may be an image URL or [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
+         */
+        iconSrc: string;
+      }
+    | {
+        /**
+         * Icon of the chip as SVG element.
+         */
+        svg: ReactElement;
+      }
+  )
+> = (props) => {
   const buttonElementRef = createRef<HTMLButtonElement>();
   const anchorElementRef = createRef<HTMLAnchorElement>();
 
@@ -90,41 +96,17 @@ export const Chip: FC<{
     }
   }, [anchorElementRef, props.focus]);
 
-  const handleImageError: ReactEventHandler<HTMLImageElement> = (event) => {
-    if (!(event.target instanceof HTMLImageElement)) {
-      return;
-    }
-
-    if (props.fallbackIconSrc !== undefined) {
-      console.warn('Could not load favicon %s, loading fallback icon instead', event.target.src);
-
-      setIconSrc(props.fallbackIconSrc);
-    }
-  };
-
-  const handleIconLoaded: ReactEventHandler<HTMLImageElement> = () => {
-    setIconLoading(false);
-  };
-
   const tooltip = props.tooltip !== undefined ? props.tooltip : props.label;
-
-  const chipIconClasses = classNames(chipIcon, {
-    [chipIconLoading]: iconIsLoading,
-    [chipIconEllipse]: props.iconEllipse === true,
-  });
 
   const chipBody = (
     <>
-      <img
-        alt="Favicon"
-        className={chipIconClasses}
-        height="16"
-        onError={handleImageError}
-        onLoad={handleIconLoaded}
-        src={iconSrc}
-        width="16"
-      />
-
+      <span className={chipIcon}>
+        {'svg' in props ? (
+          <ChipIconInlineVectorImage svg={props.svg} />
+        ) : (
+          <ChipIconRemoteRasterImage ellipse={props.iconEllipse} fallbackSvg={props.fallbackSvg} src={props.iconSrc} />
+        )}
+      </span>
       <span className={chipLabel}>{props.label}</span>
     </>
   );
@@ -156,4 +138,70 @@ export const Chip: FC<{
       </button>
     );
   }
+};
+
+const ChipIconRemoteRasterImage: FC<{
+  /**
+   * Should icon be circled or not.
+   *
+   * @default false
+   */
+  ellipse?: boolean | undefined;
+
+  /**
+   * Fallback icon of the chip which will be used in case main icon won't load.
+   */
+  fallbackSvg: ReactElement;
+
+  /**
+   * Main icon of the chip. It may be an image URL or [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
+   */
+  src: string;
+}> = (props) => {
+  const [shouldUseFallbackIcon, setShouldUseFallbackIcon] = useState<boolean>(false);
+  const [iconIsLoading, setIconLoading] = useState<boolean>(!props.src.startsWith('data:'));
+
+  const chipIconClasses = classNames(chipIconRemoteRasterImage, {
+    [chipIconRemoteRasterImageLoading]: iconIsLoading,
+    [chipIconEllipse]: props.ellipse === true,
+  });
+
+  const handleImageError: ReactEventHandler<HTMLImageElement> = (event) => {
+    if (!(event.target instanceof HTMLImageElement)) {
+      return;
+    }
+
+    console.warn('Could not load favicon %s, loading fallback icon instead', event.target.src);
+
+    setShouldUseFallbackIcon(true);
+  };
+
+  const handleIconLoaded: ReactEventHandler<HTMLImageElement> = () => {
+    setIconLoading(false);
+  };
+
+  if (shouldUseFallbackIcon) {
+    return <ChipIconInlineVectorImage svg={props.fallbackSvg} />;
+  }
+
+  return (
+    <img
+      alt="Favicon"
+      className={chipIconClasses}
+      height="16"
+      onError={handleImageError}
+      onLoad={handleIconLoaded}
+      src={props.src}
+      width="16"
+    />
+  );
+};
+
+const ChipIconInlineVectorImage: FC<{
+  /**
+   * Icon of the chip as SVG element.
+   */
+  svg: ReactElement;
+}> = (props) => {
+  return <span className={chipIconInlinedSvg}>{props.svg}</span>;
 };

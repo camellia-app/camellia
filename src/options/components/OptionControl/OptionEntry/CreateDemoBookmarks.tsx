@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { generateDemoBookmarks } from '../../../../api/bookmark';
 import { LabeledActionButton } from '../../ActionButton/LabeledActionButton';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
-import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
+import { categoriesMap } from '../../Navigation/OptionsSearchForm/OptionsSearchForm';
 
 export const CreateDemoBookmarks: FC = () => {
   return (

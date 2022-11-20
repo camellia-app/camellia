@@ -1,19 +1,13 @@
-import type CSS from 'csstype';
-import type { FC } from 'react';
-import type { Icon } from '../../../../icons';
+import type { FC, ReactNode } from 'react';
 import { optionsCategoryButton, optionsCategoryIcon, optionsCategoryLabel } from './OptionsCategory.module.css';
 
 export const OptionsCategory: FC<{
-  icon: Icon;
+  icon: ReactNode;
   id: string;
   isActive: boolean;
   label: string;
   onClick: (id: string) => void;
 }> = (props) => {
-  const styles: CSS.OptionsNavigationLinkProperties = {
-    ['--inline-icon']: `url("${props.icon}")`,
-  };
-
   return (
     <label>
       <input
@@ -25,7 +19,8 @@ export const OptionsCategory: FC<{
       />
 
       <div className={optionsCategoryButton}>
-        <span className={optionsCategoryIcon} style={styles} />
+        <div className={optionsCategoryIcon}>{props.icon}</div>
+
         <span className={optionsCategoryLabel}>{props.label}</span>
       </div>
     </label>

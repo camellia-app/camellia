@@ -1,3 +1,5 @@
+import Folder from '@material-design-icons/svg/filled/folder.svg';
+import Public from '@material-design-icons/svg/filled/public.svg';
 import type { FC, MouseEventHandler } from 'react';
 import { useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -8,10 +10,6 @@ import { createTracingTransaction } from '../../api/utils/sentry';
 import { popupSlice } from '../../store/slice/popupSlice';
 import { Chip } from '../Chip/Chip';
 import { PopupNestingLevelContext } from '../Popup/PopupNestingLevelContext';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconFolder = require('mdi/filled/folder.svg?fill=%23eee');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const iconPublic = require('mdi/filled/public.svg?fill=%23eee');
 
 export const Bookmark: FC<{
   bookmark: BookmarkEntry;
@@ -85,19 +83,35 @@ export const Bookmark: FC<{
   };
 
   const url = props.bookmark.type === 'link' ? props.bookmark.url : undefined;
-  const icon = props.bookmark.type === 'link' ? getFavicon(props.bookmark.url, 128) : iconFolder;
 
-  return (
-    <Chip
-      clickAction={clickAction}
-      fallbackIconSrc={iconPublic}
-      focus={props.focus}
-      iconSrc={icon}
-      isLoading={isLoading}
-      label={props.bookmark.title}
-      shape={'rounded'}
-      tooltip={props.bookmark.title}
-      url={url}
-    />
-  );
+  switch (props.bookmark.type) {
+    case 'link':
+      return (
+        <Chip
+          clickAction={clickAction}
+          fallbackSvg={<Public />}
+          focus={props.focus}
+          iconSrc={getFavicon(props.bookmark.url, 128)}
+          isLoading={isLoading}
+          label={props.bookmark.title}
+          shape={'rounded'}
+          tooltip={props.bookmark.title}
+          url={url}
+        />
+      );
+
+    case 'folder':
+      return (
+        <Chip
+          clickAction={clickAction}
+          focus={props.focus}
+          isLoading={isLoading}
+          label={props.bookmark.title}
+          shape={'rounded'}
+          svg={<Folder />}
+          tooltip={props.bookmark.title}
+          url={url}
+        />
+      );
+  }
 };

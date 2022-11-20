@@ -3,7 +3,7 @@ import { t } from '../../../../api/i18n/translate';
 import { resetOptionsToDefaultValues } from '../../../../api/options';
 import { LabeledActionButton } from '../../ActionButton/LabeledActionButton';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
-import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
+import { categoriesMap } from '../../Navigation/OptionsSearchForm/OptionsSearchForm';
 
 export const ResetOptions: FC = () => {
   return (

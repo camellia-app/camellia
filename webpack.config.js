@@ -76,6 +76,25 @@ const commonConfig = {
   module: {
     rules: [
       {
+        test: /\.svg$/,
+        issuer: /\.tsx?$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: 'removeViewBox', // https://github.com/gregberge/svgr/issues/142#issuecomment-1035844445
+                    active: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
+      {
         // include: path.join(__dirname, 'src', 'components'),
         test: /\.module\.css$/,
         use: getCssLoaders(),
@@ -84,6 +103,7 @@ const commonConfig = {
         test: /\.svg(\?.*)?$/, // match img.svg and img.svg?param=value
         type: 'asset/inline',
         use: ['svg-transform-loader'],
+        issuer: /\.css$/,
       },
       {
         exclude: /node_modules/,

@@ -35,6 +35,8 @@ export const BottomToolbar: FC = () => {
 
   let showUnsplashButton = false;
 
+  console.log('asdasdasdasdasd', unsplashPhotographerAttributionsState);
+
   if (unsplashPhotographerAttributionsState.photo !== undefined && displayUnsplashAttribution === true) {
     showUnsplashButton = true;
     toolbarItems.push(

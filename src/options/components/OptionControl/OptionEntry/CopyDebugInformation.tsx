@@ -5,7 +5,7 @@ import { useAppInfo } from '../../../../api/appInfo/hook';
 import { t } from '../../../../api/i18n/translate';
 import { LabeledActionButton } from '../../ActionButton/LabeledActionButton';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
-import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
+import { categoriesMap } from '../../Navigation/OptionsSearchForm/OptionsSearchForm';
 
 export const CopyDebugInformation: FC = () => {
   const appEnvironmentInfo = useAppEnvironment();

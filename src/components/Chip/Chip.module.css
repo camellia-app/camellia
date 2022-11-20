@@ -48,21 +48,37 @@
 }
 
 .chipIcon {
-  display: inline-block;
+  align-items: center;
+  display: flex;
+  fill: var(--bookmark-text-color);
   flex-grow: 0;
   flex-shrink: 0;
   font-size: 0;
   height: 16px;
+  justify-content: center;
   margin: 8px;
   pointer-events: none;
   transition: opacity 0.5s;
   width: 16px;
 }
 
-.chipIconEllipse {
-  border-radius: 50%;
+.chipIconRemoteRasterImage {
+  max-height: 100%;
+  max-width: 100%;
+  pointer-events: none;
+  transition: opacity 0.5s;
 }
 
-.chipIconLoading {
+.chipIconRemoteRasterImageLoading {
   opacity: 0;
+}
+
+.chipIconInlinedSvg svg {
+  fill: var(--bookmark-text-color);
+  height: 16px;
+  width: 16px;
+}
+
+.chipIconEllipse {
+  border-radius: 50%;
 }

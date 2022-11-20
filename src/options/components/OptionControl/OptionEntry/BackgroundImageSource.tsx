@@ -4,7 +4,7 @@ import { useOption } from '../../../../api/options/hook';
 import { BackgroundProviderType } from '../../../../api/options/options';
 import { BackgroundPreview } from '../../BackgroundPreview/BackgroundPreview';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
-import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
+import { categoriesMap } from '../../Navigation/OptionsSearchForm/OptionsSearchForm';
 import { OptionDropdownSelect } from '../OptionDropdownSelect';
 import { OptionTextField } from '../OptionTextField';
 

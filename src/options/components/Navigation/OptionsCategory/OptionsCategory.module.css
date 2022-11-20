@@ -36,15 +36,11 @@
 }
 
 .optionsCategoryIcon {
-  background-image: var(--inline-icon);
-  background-repeat: no-repeat;
-  background-size: 24px;
-  display: inline-block;
-  flex-grow: 0;
-  flex-shrink: 0;
-  font-size: 0;
+  align-items: center;
+  display: flex;
+  fill: var(--bookmark-text-color);
   height: 24px;
+  justify-content: center;
   margin: 8px;
-  pointer-events: none;
   width: 24px;
 }

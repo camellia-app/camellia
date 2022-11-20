@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { t } from '../../../../api/i18n/translate';
 import { ContentLayoutType } from '../../../../api/options/options';
 import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
-import { categoriesMap } from '../../Navigation/OptionsCategory/OptionsCategories';
+import { categoriesMap } from '../../Navigation/OptionsSearchForm/OptionsSearchForm';
 import { OptionDropdownSelect } from '../OptionDropdownSelect';
 
 export const ContentLayout: FC = () => {
