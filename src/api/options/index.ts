@@ -8,30 +8,35 @@ import { BackgroundProviderType, ContentLayoutType } from './options';
 // I don't know how to represent this map in TS using strict type-safe way without using `any`,
 // it may look like an OptionsTypeMap with all keys optional and values promised, but it doesn't
 // work for some reason. Contributions are welcome! :)
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const promisedOptionsCache: Record<string, Promise<any>> = {};
 
+const getPromisedOptionsCache = <T,>(): Record<string, Promise<T>> => {
+  const promisedOptionsCache: Record<string, Promise<T>> = {};
+  return promisedOptionsCache;
+}
 export const setOption = async <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(
   key: TKey,
   value: TValue,
 ): Promise<void> => {
+  const promisedOptionsCache = getPromisedOptionsCache<TValue>()
   promisedOptionsCache[key] = new Promise((resolve) => {
     resolve(value);
   });
 
   await storage.synchronizable.set(key, value);
 };
-
 export const getOptionCached = async <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(
   key: TKey,
-): Promise<TValue> => {
+): Promise<TValue | undefined> => {
+  const promisedOptionsCache = getPromisedOptionsCache<TValue>()
   if (promisedOptionsCache[key] === undefined) {
     promisedOptionsCache[key] = getOption(key);
   }
 
   const value = await promisedOptionsCache[key];
-
-  return value;
+  if(value !== undefined){
+    return value;
+  }
+  return undefined
 };
 
 export const getOption = async <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(
@@ -41,7 +46,7 @@ export const getOption = async <TKey extends OptionKey, TValue extends OptionsTy
 
   try {
     const promisedValue = storage.synchronizable.get<TValue>(key);
-
+    const promisedOptionsCache = getPromisedOptionsCache<TValue>()
     promisedOptionsCache[key] = promisedValue;
 
     value = await promisedValue;
@@ -57,6 +62,7 @@ export const getOption = async <TKey extends OptionKey, TValue extends OptionsTy
 };
 
 export const isOptionSet = async <TKey extends OptionKey>(key: TKey): Promise<boolean> => {
+  const promisedOptionsCache = getPromisedOptionsCache<TKey>()
   const value = promisedOptionsCache[key] !== undefined || (await storage.synchronizable.exists(key));
 
   return value;
@@ -77,6 +83,7 @@ export const subscribeToOptionChanges = <TKey extends OptionKey, TValue extends 
   key: TKey,
   handler: OptionChangeHandler<TValue>,
 ): OptionChangeHandlerDestructor => {
+  const promisedOptionsCache = getPromisedOptionsCache<TValue>()
   const storageSubscriptionDestructor = storage.synchronizable.subscribeToKeyChanges<TValue>(
     key,
     (newValue, oldValue) => {
