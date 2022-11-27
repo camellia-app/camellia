@@ -1,41 +1,26 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { searchBookmarks } from '../../api/bookmark';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import type { Bookmark } from '../../api/bookmark/common';
 
 export type BookmarkSearchState = {
   bookmarks: Array<Bookmark>;
   isActive: boolean;
-  searchQuery: string;
 };
 
 const initialState: BookmarkSearchState = {
   bookmarks: [],
-  searchQuery: '',
   isActive: false,
 };
-
-export const searchBookmarksThunk = createAsyncThunk('bookmarks/search', async (searchQuery: string) => {
-  return {
-    bookmarks: await searchBookmarks(searchQuery),
-    searchQuery: searchQuery,
-  };
-});
 
 export const bookmarkSearchSlice = createSlice({
   name: 'bookmarkSearch',
   initialState,
   reducers: {
-    closeSearch: (state) => {
-      state.isActive = false;
-      state.bookmarks = [];
-      state.searchQuery = '';
+    toggleSearch: (state, payload: PayloadAction<boolean>) => {
+      state.isActive = payload.payload;
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(searchBookmarksThunk.fulfilled, (state, action) => {
-      state.isActive = true;
-      state.bookmarks = action.payload.bookmarks;
-      state.searchQuery = action.payload.searchQuery;
-    });
+    updateSearchResults: (state, payload: PayloadAction<Array<Bookmark>>) => {
+      state.bookmarks = payload.payload;
+    },
   },
 });
