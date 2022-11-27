@@ -3,8 +3,8 @@ import { t } from '../../../../api/i18n/translate';
 import { useOption } from '../../../../api/options/hook';
 import { BackgroundProviderType } from '../../../../api/options/options';
 import { BackgroundPreview } from '../../BackgroundPreview/BackgroundPreview';
-import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
-import { categoriesMap } from '../../Navigation/OptionsSearchForm/OptionsSearchForm';
+import { FilteredOptions } from '../../OptionsCategory/FilteredOptions/FilteredOptions';
+import { categoriesMap } from '../../OptionsCategory/OptionsSearchForm/OptionsSearchForm';
 import { OptionDropdownSelect } from '../OptionDropdownSelect';
 import { OptionTextField } from '../OptionTextField';
 
@@ -13,7 +13,7 @@ export const BackgroundImageSource: FC = () => {
 
   return (
     <>
-      <CategorizedOption categories={[categoriesMap.background]}>
+      <FilteredOptions categories={[categoriesMap.background]}>
         <OptionDropdownSelect
           description={t('option_backgroundImage_sourceTypeDescription')}
           dropdownOptions={[
@@ -29,14 +29,14 @@ export const BackgroundImageSource: FC = () => {
           label={t('option_backgroundImage_sourceTypeLabel')}
           optionKey="background_provider_type"
         />
-      </CategorizedOption>
+      </FilteredOptions>
 
-      <CategorizedOption categories={[categoriesMap.background]}>
+      <FilteredOptions categories={[categoriesMap.background]}>
         <BackgroundPreview />
-      </CategorizedOption>
+      </FilteredOptions>
 
       {backgroundImageSourceType === 'link' ? (
-        <CategorizedOption categories={[categoriesMap.background]}>
+        <FilteredOptions categories={[categoriesMap.background]}>
           <OptionTextField
             description={t('option_backgroundImageLink_description')}
             label={t('option_backgroundImageLink_label')}
@@ -46,11 +46,11 @@ export const BackgroundImageSource: FC = () => {
             spellCheck={false}
             type={'url'}
           />
-        </CategorizedOption>
+        </FilteredOptions>
       ) : undefined}
 
       {backgroundImageSourceType === 'unsplash_collection' ? (
-        <CategorizedOption categories={[categoriesMap.background]}>
+        <FilteredOptions categories={[categoriesMap.background]}>
           <OptionTextField
             description={t('option_backgroundImageUnsplashCollectionId_description', [
               'https://unsplash.com/collections/123',
@@ -62,7 +62,7 @@ export const BackgroundImageSource: FC = () => {
             spellCheck={false}
             type={'url'}
           />
-        </CategorizedOption>
+        </FilteredOptions>
       ) : undefined}
     </>
   );

@@ -8,7 +8,8 @@ import ViewList from '@material-design-icons/svg/filled/view_list.svg';
 import Wallpaper from '@material-design-icons/svg/filled/wallpaper.svg';
 import type { FC, ReactElement } from 'react';
 import { t } from '../../../../api/i18n/translate';
-import { OptionsCategory } from '../OptionsCategory/OptionsCategory';
+import { useOptionFilters } from '../../../../store/hooks/useOptionFiltersHook';
+import { OptionsCategory } from './OptionsCategory/OptionsCategory';
 import { optionsSearchFormCategoryList } from './OptionsSearchForm.module.css';
 
 export type OptionCategory = {
@@ -57,11 +58,9 @@ export const categoriesMap = {
 
 const allCategories: Array<OptionCategory> = Object.entries(categoriesMap).map((categoryId) => categoryId[1]);
 
-export const OptionsSearchForm: FC<{
-  activeCategory: string | undefined;
-  onCategoryChange: (id: string) => void;
-  onCategoryReset: () => void;
-}> = (props) => {
+export const OptionsSearchForm: FC = () => {
+  const [activeOptionCategory, setActiveOptionCategory] = useOptionFilters();
+
   return (
     <form onSubmit={(event): void => event.preventDefault()}>
       <fieldset>
@@ -70,9 +69,11 @@ export const OptionsSearchForm: FC<{
             <OptionsCategory
               icon={<ViewList />}
               id="all"
-              isActive={props.activeCategory === undefined}
+              isActive={activeOptionCategory === undefined}
               label={t('optionsNavigationCategory_allOptions_label')}
-              onClick={props.onCategoryReset}
+              onClick={(): void => {
+                setActiveOptionCategory(undefined);
+              }}
             />
           </li>
 
@@ -81,9 +82,11 @@ export const OptionsSearchForm: FC<{
               <OptionsCategory
                 icon={category.icon}
                 id={category.id}
-                isActive={category.id === props.activeCategory}
+                isActive={category.id === activeOptionCategory}
                 label={category.label}
-                onClick={props.onCategoryChange}
+                onClick={(): void => {
+                  setActiveOptionCategory(category.id);
+                }}
               />
             </li>
           ))}

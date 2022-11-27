@@ -1,30 +1,28 @@
 import type { FC } from 'react';
-import { useState, StrictMode } from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { AppPlatform, getPlatform } from '../api/appEnvironment';
 import { getSupportedRuntimeFeatures } from '../api/applicationRuntime/features';
-import { t } from '../api/i18n/translate';
 import { initializeSentry } from '../api/utils/sentry';
 import { BackgroundMedia } from '../components/BackgroundMedia/BackgroundMedia';
 import { BackgroundMediaFullScreenContainer } from '../components/BackgroundMedia/BackgroundMediaFullScreenContainer';
 import { config } from '../config';
 import { store } from '../store';
-import { ActiveOptionCategory } from './ActiveOptionCategoryContext';
 import { AboutApp } from './components/AboutApp/AboutApp';
-import { CategorizedOption } from './components/CategorizedOption/CategorizedOption';
-import { LabeledCheckbox } from './components/Checkbox/LabeledCheckbox';
 import { ContactLinks } from './components/ContactLinks/ContactLinks';
-import { categoriesMap, OptionsSearchForm } from './components/Navigation/OptionsSearchForm/OptionsSearchForm';
 import { BackgroundImageSource } from './components/OptionControl/OptionEntry/BackgroundImageSource';
 import { ContentLayout } from './components/OptionControl/OptionEntry/ContentLayout';
 import { CopyDebugInformation } from './components/OptionControl/OptionEntry/CopyDebugInformation';
 import { CreateDemoBookmarks } from './components/OptionControl/OptionEntry/CreateDemoBookmarks';
+import { EnableAnalytics } from './components/OptionControl/OptionEntry/EnableAnalytics';
+import { EnableErrorReporting } from './components/OptionControl/OptionEntry/EnableErrorReporting';
 import { ResetOptions } from './components/OptionControl/OptionEntry/ResetOptions';
 import { ShowBookmarkManagerButton } from './components/OptionControl/OptionEntry/ShowBookmarkManagerButton';
 import { ShowOptionsButton } from './components/OptionControl/OptionEntry/ShowOptionsButton';
 import { ShowSearchButton } from './components/OptionControl/OptionEntry/ShowSearchButton';
 import { UnsplashPhotographerAttribution } from './components/OptionControl/OptionEntry/UnsplashPhotographerAttribution';
+import { OptionsSearchForm } from './components/OptionsCategory/OptionsSearchForm/OptionsSearchForm';
 import { options, optionsContent, optionsNavigation, optionsWrapper } from './Options.module.css';
 
 initializeSentry();
@@ -34,8 +32,6 @@ if (getPlatform() === AppPlatform.Web) {
 }
 
 export const Options: FC = () => {
-  const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);
-
   return (
     <StrictMode>
       <Provider store={store}>
@@ -43,60 +39,39 @@ export const Options: FC = () => {
           <div className={options}>
             <aside>
               <div className={optionsNavigation}>
-                <OptionsSearchForm
-                  activeCategory={activeCategory}
-                  onCategoryChange={(categoryId): void => setActiveCategory(categoryId)}
-                  onCategoryReset={(): void => setActiveCategory(undefined)}
-                />
+                <OptionsSearchForm />
               </div>
             </aside>
 
             <main className={optionsContent}>
-              <ActiveOptionCategory.Provider value={activeCategory}>
-                <BackgroundImageSource />
+              <BackgroundImageSource />
 
-                <ContentLayout />
+              <ContentLayout />
 
-                <UnsplashPhotographerAttribution />
+              <UnsplashPhotographerAttribution />
 
-                {getSupportedRuntimeFeatures().bookmarkManagerPage ? <ShowBookmarkManagerButton /> : undefined}
+              {getSupportedRuntimeFeatures().bookmarkManagerPage ? <ShowBookmarkManagerButton /> : undefined}
 
-                <ShowOptionsButton />
+              <ShowOptionsButton />
 
-                <ShowSearchButton />
+              <ShowSearchButton />
 
-                <CategorizedOption categories={[categoriesMap.analytics]}>
-                  <LabeledCheckbox
-                    description={t('option_analytics_description')}
-                    disabled
-                    label={t('option_analytics_label')}
-                    loading={false}
-                    value={true}
-                  />
-                </CategorizedOption>
+              <EnableAnalytics />
 
-                <CategorizedOption categories={[categoriesMap.analytics]}>
-                  <LabeledCheckbox
-                    description={t('option_sentry_description')}
-                    disabled
-                    label={t('option_sentry_label')}
-                    loading={false}
-                    value={true}
-                  />
-                </CategorizedOption>
+              <EnableErrorReporting />
 
-                <ResetOptions />
+              <ResetOptions />
 
-                {config.isDevelopment ? <CreateDemoBookmarks /> : undefined}
+              {config.isDevelopment ? <CreateDemoBookmarks /> : undefined}
 
-                <CopyDebugInformation />
+              <CopyDebugInformation />
 
-                <AboutApp />
+              <AboutApp />
 
-                <ContactLinks />
-              </ActiveOptionCategory.Provider>
+              <ContactLinks />
             </main>
           </div>
+
           <BackgroundMediaFullScreenContainer>
             <BackgroundMedia />
           </BackgroundMediaFullScreenContainer>

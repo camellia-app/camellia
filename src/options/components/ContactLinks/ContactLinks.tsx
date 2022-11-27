@@ -11,8 +11,8 @@ import { Chip } from '../../../components/Chip/Chip';
 import { ChipList } from '../../../components/ChipList/ChipList';
 import type { RootState } from '../../../store';
 import type { UnsplashState } from '../../../store/slice/unsplashSlice';
-import { CategorizedOption } from '../CategorizedOption/CategorizedOption';
-import { categoriesMap } from '../Navigation/OptionsSearchForm/OptionsSearchForm';
+import { FilteredOptions } from '../OptionsCategory/FilteredOptions/FilteredOptions';
+import { categoriesMap } from '../OptionsCategory/OptionsSearchForm/OptionsSearchForm';
 
 export const ContactLinks: FC = () => {
   const unsplashPhotographerAttributionsState = useSelector<RootState, UnsplashState>((state) => state.unsplash);
@@ -56,8 +56,8 @@ export const ContactLinks: FC = () => {
   }
 
   return (
-    <CategorizedOption categories={[categoriesMap.about]}>
+    <FilteredOptions categories={[categoriesMap.about]}>
       <ChipList chips={chips} type="inline" />
-    </CategorizedOption>
+    </FilteredOptions>
   );
 };

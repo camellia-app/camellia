@@ -15,6 +15,7 @@
   text-shadow: rgb(33 33 33 / 100%) 0 0 3px;
   touch-action: manipulation;
   transition: background-color 0.2s, transform 0.2s;
+  user-select: none;
   width: 100%;
 }
 

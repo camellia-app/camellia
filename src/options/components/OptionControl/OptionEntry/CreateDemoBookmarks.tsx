@@ -1,12 +1,12 @@
 import type { FC } from 'react';
 import { generateDemoBookmarks } from '../../../../api/bookmark';
 import { LabeledActionButton } from '../../ActionButton/LabeledActionButton';
-import { CategorizedOption } from '../../CategorizedOption/CategorizedOption';
-import { categoriesMap } from '../../Navigation/OptionsSearchForm/OptionsSearchForm';
+import { FilteredOptions } from '../../OptionsCategory/FilteredOptions/FilteredOptions';
+import { categoriesMap } from '../../OptionsCategory/OptionsSearchForm/OptionsSearchForm';
 
 export const CreateDemoBookmarks: FC = () => {
   return (
-    <CategorizedOption categories={[categoriesMap.bookmarks, categoriesMap.advanced]}>
+    <FilteredOptions categories={[categoriesMap.bookmarks, categoriesMap.advanced]}>
       <LabeledActionButton
         buttonHtmlType={'button'}
         clickHandler={(): void => {
@@ -19,6 +19,6 @@ export const CreateDemoBookmarks: FC = () => {
         label={'Create demo bookmarks'}
         loading={false}
       />
-    </CategorizedOption>
+    </FilteredOptions>
   );
 };
