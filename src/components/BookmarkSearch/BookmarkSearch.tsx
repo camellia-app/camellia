@@ -1,20 +1,28 @@
 import type { ChangeEventHandler, FormEventHandler, FC } from 'react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDeferredValue, useEffect, useRef, useState } from 'react';
 import { t } from '../../api/i18n/translate';
-import type { AppDispatch, RootState } from '../../store';
-import type { BookmarkSearchState } from '../../store/slice/bookmarkSearchSlice';
-import { bookmarkSearchSlice, searchBookmarksThunk } from '../../store/slice/bookmarkSearchSlice';
+import { useBookmarkSearch } from '../../store/hooks/useBookmarkSearchHook';
 import { bookmarkSearchCloseButton, bookmarkSearchField } from './BookmarkSearch.module.css';
 
 export const BookmarkSearch: FC = () => {
-  const bookmarkSearchState = useSelector<RootState, BookmarkSearchState>((state) => state.bookmarkSearch);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const deferredSearchQuery = useDeferredValue(searchQuery);
+  const [isActive, , toggleSearch, searchBookmarks] = useBookmarkSearch();
+  const textFieldRef = useRef<HTMLInputElement>(null);
 
-  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    searchBookmarks(deferredSearchQuery);
+  }, [deferredSearchQuery, searchBookmarks]);
+
+  useEffect(() => {
+    if (isActive) {
+      textFieldRef.current?.focus();
+    }
+  }, [isActive]);
 
   useEffect(() => {
     const characterKeyPressHandler = (event: KeyboardEvent): void => {
-      if (bookmarkSearchState.isActive) {
+      if (isActive) {
         return;
       }
 
@@ -26,7 +34,7 @@ export const BookmarkSearch: FC = () => {
         return;
       }
 
-      dispatch(searchBookmarksThunk(event.key));
+      toggleSearch(true);
     };
 
     const searchHotKeyPressHandler = (event: KeyboardEvent): void => {
@@ -35,13 +43,13 @@ export const BookmarkSearch: FC = () => {
       if ((isCtrlPressed && event.key === 'f') || (isCtrlPressed && event.key === 'g')) {
         event.preventDefault();
 
-        dispatch(searchBookmarksThunk(''));
+        toggleSearch(true);
       }
     };
 
     const escapePressHandler = (event: KeyboardEvent): void => {
-      if (event.key === 'Escape' && bookmarkSearchState.isActive) {
-        dispatch(bookmarkSearchSlice.actions.closeSearch());
+      if (event.key === 'Escape' && isActive) {
+        toggleSearch(false);
       }
     };
 
@@ -54,34 +62,36 @@ export const BookmarkSearch: FC = () => {
       document.removeEventListener('keydown', searchHotKeyPressHandler);
       document.removeEventListener('keydown', escapePressHandler);
     };
-  }, [bookmarkSearchState.isActive, dispatch]);
+  }, [isActive, toggleSearch]);
 
   const formSubmitHandler: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
   };
 
   const formResetHandler: FormEventHandler<HTMLFormElement> = () => {
-    dispatch(bookmarkSearchSlice.actions.closeSearch());
+    setSearchQuery('');
+    toggleSearch(false);
   };
 
   const fieldInputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
-    dispatch(searchBookmarksThunk(event.currentTarget.value));
+    setSearchQuery(event.currentTarget.value.trim());
   };
 
-  if (!bookmarkSearchState.isActive) {
+  if (!isActive) {
     return null;
   }
 
   return (
     <form onReset={formResetHandler} onSubmit={formSubmitHandler}>
       <input
-        autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
         className={bookmarkSearchField}
-        defaultValue={bookmarkSearchState.searchQuery}
         onChange={fieldInputHandler}
         placeholder={t('bookmarkSearch_textField_placeholder')}
+        ref={textFieldRef}
         type="search"
+        value={searchQuery}
       />
+
       <button className={bookmarkSearchCloseButton} title={t('bookmarkSearch_closeButton_label')} type="reset">
         {t('bookmarkSearch_closeButton_label')}
       </button>
