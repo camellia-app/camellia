@@ -48,7 +48,7 @@
     "webpack-cli": "5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.20.2",
+    "@babel/core": "7.20.5",
     "@faker-js/faker": "7.6.0",
     "@typescript-eslint/eslint-plugin": "5.43.0",
     "@typescript-eslint/parser": "5.45.0",
