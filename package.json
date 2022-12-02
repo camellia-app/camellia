@@ -23,7 +23,7 @@
     "@types/lodash.debounce": "4.0.7",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
-    "@types/uuid": "8.3.4",
+    "@types/uuid": "9.0.0",
     "classnames": "2.3.2",
     "copy-webpack-plugin": "11.0.0",
     "css-loader": "6.7.2",
