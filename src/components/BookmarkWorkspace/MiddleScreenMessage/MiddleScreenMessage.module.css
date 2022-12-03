@@ -1,0 +1,17 @@
+.middleScreenMessage {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.middleScreenMessageMessage {
+  color: var(--bookmark-category-title-text-color);
+  text-shadow: rgb(33 33 33 / 100%) 0 0 3px;
+}
+
+.middleScreenMessageActions {
+  padding: 1rem;
+}

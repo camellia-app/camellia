@@ -8,14 +8,8 @@ import { useBookmarkSearch } from '../../store/hooks/useBookmarkSearchHook';
 import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
 import { BookmarkSearch } from '../BookmarkSearch/BookmarkSearch';
 import { BookmarkManager } from '../BottomToolbar/ToolbarItem/BookmarkManager';
-import { ChipList } from '../ChipList/ChipList';
-import {
-  bookmarkWorkspace,
-  bookmarkWorkspaceLoading,
-  bookmarkWorkspaceNoBookmarks,
-  bookmarkWorkspaceNoBookmarksActions,
-  bookmarkWorkspaceNoBookmarksMessage,
-} from './BookmarkWorkspace.module.css';
+import { bookmarkWorkspace, bookmarkWorkspaceLoading } from './BookmarkWorkspace.module.css';
+import { MiddleScreenMessage } from './MiddleScreenMessage/MiddleScreenMessage';
 
 export const BookmarkWorkspace: FC = () => {
   const [isSearchActive, searchResultBookmarks] = useBookmarkSearch();
@@ -25,7 +19,7 @@ export const BookmarkWorkspace: FC = () => {
   const isLoading = bookmarksBarChildren === undefined || otherBookmarksChildren === undefined;
 
   const mainClasses = classNames(bookmarkWorkspace, {
-    [bookmarkWorkspaceLoading]: isLoading,
+    [bookmarkWorkspaceLoading]: !isSearchActive && isLoading,
   });
 
   const bookmarkCategories: Array<{ bookmarks: Array<Bookmark>; title: string }> = [];
@@ -33,7 +27,7 @@ export const BookmarkWorkspace: FC = () => {
   if (isSearchActive) {
     bookmarkCategories.push({
       title: t('bookmarkCategory_searchResults_label'),
-      bookmarks: searchResultBookmarks,
+      bookmarks: searchResultBookmarks.slice(0, 200), // 200 search results maximum to prevent lags
     });
   } else {
     if (bookmarksBarChildren !== undefined && bookmarksBarChildren.length > 0) {
@@ -62,15 +56,7 @@ export const BookmarkWorkspace: FC = () => {
       <BookmarkSearch />
 
       {!isLoading && bookmarkCategories.length === 0 ? (
-        <div className={bookmarkWorkspaceNoBookmarks}>
-          <div className={bookmarkWorkspaceNoBookmarksMessage}>{t('bookmarkBrowser_noBookmarks_label')}</div>
-
-          {noBookmarksActionChips.length > 0 ? (
-            <div className={bookmarkWorkspaceNoBookmarksActions}>
-              <ChipList chips={noBookmarksActionChips} type={'inline'} />
-            </div>
-          ) : undefined}
-        </div>
+        <MiddleScreenMessage chips={noBookmarksActionChips} message={t('bookmarkBrowser_noBookmarks_label')} />
       ) : undefined}
 
       {bookmarkCategories.length > 0 &&
