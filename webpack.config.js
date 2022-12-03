@@ -65,8 +65,8 @@ const commonConfig = {
   context: path.join(__dirname, 'src'),
   devtool: false,
   entry: {
-    newtab: './newtab/Newtab.tsx',
-    options: './options/Options.tsx',
+    newtab: './components/NewtabPage/NewtabPage.tsx',
+    options: './components/OptionsPage/OptionsPage.tsx',
     background: './backgroundScript/background.ts',
   },
   experiments: {
@@ -157,7 +157,7 @@ const commonConfig = {
       chunks: ['newtab'],
       filename: 'newtab.html',
       inject: 'body',
-      template: './newtab/newtab.ejs',
+      template: './components/NewtabPage/newtab.ejs',
       templateParameters: {
         env: process.env.NODE_ENV,
       },
@@ -166,7 +166,7 @@ const commonConfig = {
       chunks: ['options'],
       filename: 'options.html',
       inject: 'body',
-      template: './options/options.ejs',
+      template: './components/OptionsPage/options.ejs',
       templateParameters: {
         env: process.env.NODE_ENV,
       },
