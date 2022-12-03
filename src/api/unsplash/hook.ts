@@ -1,10 +1,16 @@
 import { getActiveTransaction } from '@sentry/tracing';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../../store';
+import type { UnsplashState } from '../../store/slice/unsplashSlice';
+import { unsplashSlice } from '../../store/slice/unsplashSlice';
 import type { UnsplashPhoto } from './common';
 import { getRandomUnsplashPhotoFromCollection } from './index';
 
 export const useRandomPhotoFromUnsplashCollection = (collectionId: string): UnsplashPhoto | undefined => {
-  const [photo, setPhoto] = useState<UnsplashPhoto | undefined>(undefined);
+  const unsplashPhotoState = useSelector<RootState, UnsplashState>((state) => state.unsplash);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const span = getActiveTransaction()?.startChild({
@@ -17,7 +23,7 @@ export const useRandomPhotoFromUnsplashCollection = (collectionId: string): Unsp
       .then((photo) => {
         span?.setStatus('ok');
 
-        setPhoto(photo);
+        dispatch(unsplashSlice.actions.updatePhoto(photo));
       })
       .finally(() => {
         span?.finish();
@@ -26,7 +32,13 @@ export const useRandomPhotoFromUnsplashCollection = (collectionId: string): Unsp
     return () => {
       abortController.abort();
     };
-  }, [collectionId]);
+  }, [collectionId, dispatch]);
 
-  return photo;
+  return unsplashPhotoState.photo;
+};
+
+export const useUnsplashAttributions = (): UnsplashPhoto | undefined => {
+  const unsplashPhotoState = useSelector<RootState, UnsplashState>((state) => state.unsplash);
+
+  return unsplashPhotoState.photo;
 };

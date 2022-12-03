@@ -1,9 +1,7 @@
 import type { FC, ReactNode } from 'react';
-import { useSelector } from 'react-redux';
 import { getSupportedRuntimeFeatures } from '../../../api/applicationRuntime/features';
 import { useOption } from '../../../api/options/hook';
-import type { RootState } from '../../../store';
-import type { UnsplashState } from '../../../store/slice/unsplashSlice';
+import { useUnsplashAttributions } from '../../../api/unsplash/hook';
 import { ChipList } from '../../common/ChipList/ChipList';
 import { bottomToolbar } from './BottomToolbar.module.css';
 import { BookmarkManager } from './ToolbarItem/BookmarkManager';
@@ -17,7 +15,7 @@ export const BottomToolbar: FC = () => {
   const [showSearchButton] = useOption('show_search_button');
   const [displayUnsplashAttribution] = useOption('display_unsplash_attribution');
 
-  const unsplashPhotographerAttributionsState = useSelector<RootState, UnsplashState>((state) => state.unsplash);
+  const unsplashPhotographerAttributions = useUnsplashAttributions();
 
   const toolbarItems: Array<ReactNode> = [];
 
@@ -35,12 +33,10 @@ export const BottomToolbar: FC = () => {
 
   let showUnsplashButton = false;
 
-  console.log('asdasdasdasdasd', unsplashPhotographerAttributionsState);
-
-  if (unsplashPhotographerAttributionsState.photo !== undefined && displayUnsplashAttribution === true) {
+  if (unsplashPhotographerAttributions !== undefined && displayUnsplashAttribution === true) {
     showUnsplashButton = true;
     toolbarItems.push(
-      <UnsplashPhotographerAttribution shape={'squared'} unsplashPhoto={unsplashPhotographerAttributionsState.photo} />,
+      <UnsplashPhotographerAttribution shape={'squared'} unsplashPhoto={unsplashPhotographerAttributions} />,
     );
   }
 
