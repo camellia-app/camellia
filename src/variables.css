@@ -4,6 +4,11 @@
   --bookmark-category-title-text-color: #eee;
   --bookmark-column-min-width: 235px;
   --bookmark-text-color: #eee;
+  --bookmark-browser-centered-columns: 6;
+  --bookmark-browser-centered-width: calc(
+    var(--bookmark-column-min-width) * var(--bookmark-browser-centered-columns) + 1rem *
+      (var(--bookmark-browser-centered-columns) - 1) + 2rem
+  );
   --chip-rounded-border-radius: 1rem;
   --chip-squared-border-radius: 0.5rem;
   --chip-hover-shift: 1px;

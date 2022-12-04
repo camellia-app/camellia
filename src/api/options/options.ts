@@ -35,7 +35,7 @@ export const optionDefaults: OptionsTypeMap = {
   background_image_link: 'https://images.unsplash.com/photo-1615931632997-c592e375d6ef',
   background_image_unsplash_collection_id: `https://unsplash.com/collections/${config.unsplash.defaultCollectionId}`,
   background_provider_type: BackgroundProviderType.UnsplashCollection,
-  content_layout: ContentLayoutType.Fluid,
+  content_layout: ContentLayoutType.Centered,
   display_unsplash_attribution: true,
   show_bookmark_manager_button: true,
   show_options_button: true,

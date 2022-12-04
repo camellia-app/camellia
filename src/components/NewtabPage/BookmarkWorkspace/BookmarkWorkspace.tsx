@@ -4,22 +4,27 @@ import { getSupportedRuntimeFeatures } from '../../../api/applicationRuntime/fea
 import type { Bookmark } from '../../../api/bookmark/common';
 import { useBookmarksBarChildren, useOtherBookmarksChildren } from '../../../api/bookmark/hook';
 import { t } from '../../../api/i18n/translate';
+import { useOption } from '../../../api/options/hook';
+import { ContentLayoutType } from '../../../api/options/options';
 import { useBookmarkSearch } from '../../../store/hooks/useBookmarkSearchHook';
 import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
 import { BookmarkSearch } from '../BookmarkSearch/BookmarkSearch';
 import { BookmarkManager } from '../BottomToolbar/ToolbarItem/BookmarkManager';
-import { bookmarkWorkspace, bookmarkWorkspaceLoading } from './BookmarkWorkspace.module.css';
+import { bookmarkWorkspace, bookmarkWorkspaceCentered, bookmarkWorkspaceLoading } from './BookmarkWorkspace.module.css';
 import { MiddleScreenMessage } from './MiddleScreenMessage/MiddleScreenMessage';
 
 export const BookmarkWorkspace: FC = () => {
   const [isSearchActive, searchResultBookmarks] = useBookmarkSearch();
   const [bookmarksBarChildren] = useBookmarksBarChildren();
   const [otherBookmarksChildren] = useOtherBookmarksChildren();
+  const [contentLayout] = useOption('content_layout');
 
-  const isLoading = bookmarksBarChildren === undefined || otherBookmarksChildren === undefined;
+  const isLoading =
+    bookmarksBarChildren === undefined || otherBookmarksChildren === undefined || contentLayout === undefined;
 
   const mainClasses = classNames(bookmarkWorkspace, {
     [bookmarkWorkspaceLoading]: !isSearchActive && isLoading,
+    [bookmarkWorkspaceCentered]: contentLayout === ContentLayoutType.Centered,
   });
 
   const bookmarkCategories: Array<{ bookmarks: Array<Bookmark>; title: string }> = [];

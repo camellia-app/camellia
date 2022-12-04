@@ -7,3 +7,9 @@
 .bookmarkWorkspaceLoading {
   opacity: 0;
 }
+
+.bookmarkWorkspaceCentered {
+  margin: auto;
+  max-width: var(--bookmark-browser-centered-width);
+  width: 100%;
+}
