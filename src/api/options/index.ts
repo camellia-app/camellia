@@ -1,76 +1,33 @@
 import { storage } from '../storage';
 import { StorageKeyDoesNotExist } from '../storage/common';
 import type { OptionChangeHandler, OptionChangeHandlerDestructor } from './common';
-import { OptionIsNotSetError } from './common';
 import type { OptionKey, OptionsTypeMap } from './options';
-import { BackgroundProviderType, ContentLayoutType } from './options';
-
-// I don't know how to represent this map in TS using strict type-safe way without using `any`,
-// it may look like an OptionsTypeMap with all keys optional and values promised, but it doesn't
-// work for some reason. Contributions are welcome! :)
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const promisedOptionsCache: Record<string, Promise<any>> = {};
+import { BackgroundProviderType, optionDefaults } from './options';
 
 export const setOption = async <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(
   key: TKey,
   value: TValue,
 ): Promise<void> => {
-  promisedOptionsCache[key] = new Promise((resolve) => {
-    resolve(value);
-  });
-
-  await storage.synchronizable.set(key, value);
-};
-
-export const getOptionCached = async <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(
-  key: TKey,
-): Promise<TValue> => {
-  if (promisedOptionsCache[key] === undefined) {
-    promisedOptionsCache[key] = getOption(key);
-  }
-
-  const value = await promisedOptionsCache[key];
-
-  return value;
+  await storage.synchronizable.set(`option_${key}`, value);
 };
 
 export const getOption = async <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(
   key: TKey,
 ): Promise<TValue> => {
-  let value: TValue;
-
   try {
-    const promisedValue = storage.synchronizable.get<TValue>(key);
+    const promisedValue = storage.synchronizable.get<TValue>(`option_${key}`);
 
-    promisedOptionsCache[key] = promisedValue;
-
-    value = await promisedValue;
+    return await promisedValue;
   } catch (error: unknown) {
     if (error instanceof StorageKeyDoesNotExist) {
-      throw new OptionIsNotSetError(key);
+      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+      const defaultValue = optionDefaults[key] as TValue;
+
+      return defaultValue;
     }
 
     throw error;
   }
-
-  return value;
-};
-
-export const isOptionSet = async <TKey extends OptionKey>(key: TKey): Promise<boolean> => {
-  const value = promisedOptionsCache[key] !== undefined || (await storage.synchronizable.exists(key));
-
-  return value;
-};
-
-export const setOptionIfNotSet = async <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(
-  key: TKey,
-  value: TValue,
-): Promise<void> => {
-  if (await isOptionSet(key)) {
-    return;
-  }
-
-  await setOption(key, value);
 };
 
 export const subscribeToOptionChanges = <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(
@@ -78,12 +35,8 @@ export const subscribeToOptionChanges = <TKey extends OptionKey, TValue extends 
   handler: OptionChangeHandler<TValue>,
 ): OptionChangeHandlerDestructor => {
   const storageSubscriptionDestructor = storage.synchronizable.subscribeToKeyChanges<TValue>(
-    key,
+    `option_${key}`,
     (newValue, oldValue) => {
-      promisedOptionsCache[key] = new Promise((resolve) => {
-        resolve(newValue);
-      });
-
       handler(newValue, oldValue);
     },
   );
@@ -93,34 +46,10 @@ export const subscribeToOptionChanges = <TKey extends OptionKey, TValue extends 
   };
 };
 
-export const setDefaultOptionValues = async (): Promise<void> => {
-  await Promise.all([
-    setOptionIfNotSet('installation_date', Date.now()),
-    setOptionIfNotSet('vote_remind_displayed', false),
-    setOptionIfNotSet('background_image_link', 'https://images.unsplash.com/photo-1615931632997-c592e375d6ef'),
-    setOptionIfNotSet('background_image_unsplash_collection_id', 'https://unsplash.com/collections/10745553'),
-    setOptionIfNotSet('background_provider_type', BackgroundProviderType.UnsplashCollection),
-    setOptionIfNotSet('content_layout', ContentLayoutType.Fluid),
-    setOptionIfNotSet('display_unsplash_attribution', true),
-    setOptionIfNotSet('show_bookmark_manager_button', true),
-    setOptionIfNotSet('show_options_button', true),
-    setOptionIfNotSet('show_search_button', true),
-  ]);
-};
-
 export const resetOptionsToDefaultValues = async (): Promise<void> => {
-  await Promise.all([
-    setOption('installation_date', Date.now()),
-    setOption('vote_remind_displayed', false),
-    setOption('background_image_link', 'https://images.unsplash.com/photo-1615931632997-c592e375d6ef'),
-    setOption('background_image_unsplash_collection_id', 'https://unsplash.com/collections/10745553'),
-    setOption('background_provider_type', BackgroundProviderType.UnsplashCollection),
-    setOption('content_layout', ContentLayoutType.Fluid),
-    setOption('display_unsplash_attribution', true),
-    setOption('show_bookmark_manager_button', true),
-    setOption('show_options_button', true),
-    setOption('show_search_button', true),
-  ]);
+  const optionKeys = Object.keys(optionDefaults);
+
+  await Promise.all(optionKeys.map((key) => storage.synchronizable.delete(`option_${key}`)));
 };
 
 export const migrateOptions = async (): Promise<void> => {

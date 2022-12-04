@@ -20,12 +20,18 @@ assertEnvironmentVariable(process.env['APP_VERSION'], 'Environment variable APP_
 
 assertEnvironmentVariable(process.env['NODE_ENV'], 'Environment variable NODE_ENV should be defined');
 
+assertEnvironmentVariable(
+  process.env['UNSPLASH_DEFAULT_COLLECTION_ID'],
+  'Environment variable UNSPLASH_DEFAULT_COLLECTION_ID should be defined',
+);
+
 const isDevelopment = process.env['NODE_ENV'] !== 'production';
 
 export const config = {
   appVersion: process.env['APP_VERSION'],
   isDevelopment: isDevelopment,
   unsplash: {
+    defaultCollectionId: process.env['UNSPLASH_DEFAULT_COLLECTION_ID'],
     bridge: {
       baseHost: new URL(process.env['UNSPLASH_BRIDGE_BASE_HOST']),
       mockPhoto: process.env['UNSPLASH_BRIDGE_MOCK_PHOTO'] === '1',
