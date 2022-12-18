@@ -37,7 +37,8 @@
 }
 
 .textFieldControl::placeholder {
-  opacity: 0.5;
+  color: rgb(169 169 169);
+  opacity: 1;
 }
 
 .textFieldControl:focus::placeholder {
