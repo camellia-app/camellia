@@ -44,7 +44,7 @@ export const TextField: FC<{
   /**
    * HTML [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type) attribute.
    */
-  type: 'number' | 'url';
+  type: 'number' | 'search' | 'url';
 
   /**
    * Function to validate user input.
