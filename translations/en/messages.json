@@ -113,6 +113,10 @@
       }
     }
   },
+  "bookmarkSearch_textField_modalTitle": {
+    "message": "Search",
+    "description": "Title of the modal with search field."
+  },
   "bookmarkSearch_textField_placeholder": {
     "message": "Start typing to search bookmarks...",
     "description": "Shown in the search text field when its empty."
