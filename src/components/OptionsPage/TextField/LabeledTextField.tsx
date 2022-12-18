@@ -1,11 +1,11 @@
 import type { FC, ReactNode } from 'react';
+import { TextField } from '../../common/TextField/TextField';
 import { Paragraph } from '../Paragraph/Paragraph';
 import {
   labeledTextField,
   labeledTextFieldLabel,
   labeledTextFieldLabelAndControlWrapper,
 } from './LabeledTextField.module.css';
-import { TextField } from './TextField';
 
 export const LabeledTextField: FC<{
   /**
