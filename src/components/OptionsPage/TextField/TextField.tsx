@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import type { ChangeEventHandler, FC } from 'react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { textField, textFieldControl, textFieldFluid, textFieldLoading } from './TextField.module.css';
 
 export const TextField: FC<{
@@ -106,6 +106,12 @@ export const TextField: FC<{
       props.changeHandler(newValue);
     }
   };
+
+  useEffect(() => {
+    if (props.autoFocus === true) {
+      inputElementRef?.current?.focus();
+    }
+  }, [props.autoFocus]);
 
   return (
     <div
