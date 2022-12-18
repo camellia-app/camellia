@@ -13,7 +13,7 @@ export const openOptionsPage = (): void => {
       break;
 
     case AppPlatform.Web:
-      open('options.html');
+      openUrl('options.html');
 
       break;
   }
@@ -22,9 +22,7 @@ export const openOptionsPage = (): void => {
 export const openBookmarkManager = (): void => {
   switch (getPlatform()) {
     case AppPlatform.Chromium:
-      chrome.tabs.create({
-        url: 'chrome://bookmarks/',
-      });
+      openUrl('chrome://bookmarks/');
 
       break;
 
@@ -33,5 +31,28 @@ export const openBookmarkManager = (): void => {
 
     case AppPlatform.Web:
       throw new Error('Bookmark manager is not supported by web platform');
+  }
+};
+
+export const openUrl = (url: string): void => {
+  switch (getPlatform()) {
+    case AppPlatform.Chromium:
+      chrome.tabs.create({
+        url: url,
+      });
+
+      break;
+
+    case AppPlatform.Webext:
+      browser.tabs.create({
+        url: url,
+      });
+
+      break;
+
+    case AppPlatform.Web:
+      open(url, '_self');
+
+      break;
   }
 };
