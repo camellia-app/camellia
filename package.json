@@ -26,7 +26,7 @@
     "@types/uuid": "9.0.0",
     "classnames": "2.3.2",
     "copy-webpack-plugin": "11.0.0",
-    "css-loader": "6.7.2",
+    "css-loader": "6.7.3",
     "csstype": "3.1.1",
     "detect-browser": "5.3.0",
     "dotenv": "16.0.3",
