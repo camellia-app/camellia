@@ -1,11 +1,11 @@
 import type { FC, ReactNode } from 'react';
+import { TextField } from '../../common/TextField/TextField';
 import { Paragraph } from '../Paragraph/Paragraph';
 import {
   labeledTextField,
   labeledTextFieldLabel,
   labeledTextFieldLabelAndControlWrapper,
 } from './LabeledTextField.module.css';
-import { TextField } from './TextField';
 
 export const LabeledTextField: FC<{
   /**
@@ -78,10 +78,12 @@ export const LabeledTextField: FC<{
         <div>
           <TextField
             changeHandler={props.changeHandler}
+            controlWidth={'short'}
             disabled={props.disabled}
             loading={props.loading}
             pattern={props.pattern}
             placeholder={props.placeholder}
+            required={true}
             spellCheck={props.spellCheck}
             type={props.type}
             validate={props.validate}

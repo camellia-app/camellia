@@ -26,8 +26,7 @@ export type BooleanOptionKey =
   | 'display_unsplash_attribution'
   | 'show_bookmark_manager_button'
   | 'show_options_button'
-  | 'show_search_button'
-  | 'vote_remind_displayed';
+  | 'show_search_button';
 export type StringOptionKey = 'background_image_link' | 'background_image_unsplash_collection_id';
 export type EnumOptionKey = 'background_provider_type' | 'content_layout';
 

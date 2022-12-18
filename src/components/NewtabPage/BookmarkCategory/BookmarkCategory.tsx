@@ -2,14 +2,15 @@ import type { FC } from 'react';
 import type { Bookmark as BookmarkEntry } from '../../../api/bookmark/common';
 import { ChipList } from '../../common/ChipList/ChipList';
 import { Bookmark } from '../Bookmark/Bookmark';
-import { bookmarkCategory, bookmarkCategoryTitle } from './BookmarkCategory.module.css';
+import { Header } from '../Header/Header';
+import { bookmarkCategory } from './BookmarkCategory.module.css';
 
 export const BookmarkCategory: FC<{
   bookmarks: Array<BookmarkEntry>;
   categoryTitle: string;
 }> = (props) => (
   <section className={bookmarkCategory}>
-    <h2 className={bookmarkCategoryTitle}>{props.categoryTitle}</h2>
+    <Header level={2}>{props.categoryTitle}</Header>
 
     <ChipList
       chips={props.bookmarks.map((bookmarkEntry) => (

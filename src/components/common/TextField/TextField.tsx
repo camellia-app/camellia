@@ -1,13 +1,25 @@
 import classNames from 'classnames';
 import type { ChangeEventHandler, FC } from 'react';
-import { useRef } from 'react';
-import { textField, textFieldControl, textFieldLoading } from './TextField.module.css';
+import { useEffect, useRef } from 'react';
+import { textField, textFieldControl, textFieldFluid, textFieldLoading } from './TextField.module.css';
 
 export const TextField: FC<{
+  /**
+   * Focus input automatically.
+   *
+   * @default false
+   */
+  autoFocus?: boolean | undefined;
+
   /**
    * What will happen on typing to the text field.
    */
   changeHandler?: ((newValue: string) => void) | undefined;
+
+  /**
+   * Width of the control. Fluid is 100% width.
+   */
+  controlWidth: 'fluid' | 'short';
 
   /**
    * Disable checkbox (click handler won't work too).
@@ -35,6 +47,13 @@ export const TextField: FC<{
   placeholder: string;
 
   /**
+   * Add required attribute.
+   *
+   * @default false
+   */
+  required?: boolean | undefined;
+
+  /**
    * Do spell check or not.
    *
    * @default false
@@ -44,7 +63,7 @@ export const TextField: FC<{
   /**
    * HTML [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type) attribute.
    */
-  type: 'number' | 'url';
+  type: 'number' | 'search' | 'url';
 
   /**
    * Function to validate user input.
@@ -88,10 +107,17 @@ export const TextField: FC<{
     }
   };
 
+  useEffect(() => {
+    if (props.autoFocus === true) {
+      inputElementRef?.current?.focus();
+    }
+  }, [props.autoFocus]);
+
   return (
     <div
       className={classNames(textField, {
         [textFieldLoading]: props.loading === true,
+        [textFieldFluid]: props.controlWidth === 'fluid',
       })}
     >
       <input
@@ -103,7 +129,7 @@ export const TextField: FC<{
         pattern={props.pattern}
         placeholder={props.placeholder}
         ref={inputElementRef}
-        required
+        required={props.required === true}
         spellCheck={props.spellCheck === true}
         type={props.type}
       />

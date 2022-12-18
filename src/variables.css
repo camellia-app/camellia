@@ -21,6 +21,10 @@
   --outline-color: #0288d1;
   --outline-width: 0.125rem; /* 2px */
   --popup-title-height: 40px;
+  --dialog-border-radius: 8px;
+  --dialog-backdrop-color: rgb(0 0 0 / 50%);
+  --dialog-backdrop-filter: blur(2px);
+  --dialog-background-color: rgb(33 33 33 / 75%);
   --search-bar-height: 64px;
   --search-placeholder-color: rgb(238 238 238 / 60%);
   --text-size-regular: 13px;
