@@ -47,6 +47,13 @@ export const TextField: FC<{
   placeholder: string;
 
   /**
+   * Add required attribute.
+   *
+   * @default false
+   */
+  required?: boolean | undefined;
+
+  /**
    * Do spell check or not.
    *
    * @default false
@@ -116,7 +123,7 @@ export const TextField: FC<{
         pattern={props.pattern}
         placeholder={props.placeholder}
         ref={inputElementRef}
-        required
+        required={props.required === true}
         spellCheck={props.spellCheck === true}
         type={props.type}
       />

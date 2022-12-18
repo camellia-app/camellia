@@ -83,6 +83,7 @@ export const LabeledTextField: FC<{
             loading={props.loading}
             pattern={props.pattern}
             placeholder={props.placeholder}
+            required={true}
             spellCheck={props.spellCheck}
             type={props.type}
             validate={props.validate}
