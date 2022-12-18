@@ -50,7 +50,7 @@
   "devDependencies": {
     "@babel/core": "7.20.5",
     "@faker-js/faker": "7.6.0",
-    "@typescript-eslint/eslint-plugin": "5.45.0",
+    "@typescript-eslint/eslint-plugin": "5.46.1",
     "@typescript-eslint/parser": "5.45.0",
     "babel-loader": "9.1.0",
     "clean-webpack-plugin": "4.0.0",
