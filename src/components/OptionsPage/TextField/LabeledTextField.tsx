@@ -78,6 +78,7 @@ export const LabeledTextField: FC<{
         <div>
           <TextField
             changeHandler={props.changeHandler}
+            controlWidth={'short'}
             disabled={props.disabled}
             loading={props.loading}
             pattern={props.pattern}

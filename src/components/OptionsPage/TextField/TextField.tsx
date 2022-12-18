@@ -1,13 +1,25 @@
 import classNames from 'classnames';
 import type { ChangeEventHandler, FC } from 'react';
 import { useRef } from 'react';
-import { textField, textFieldControl, textFieldLoading } from './TextField.module.css';
+import { textField, textFieldControl, textFieldFluid, textFieldLoading } from './TextField.module.css';
 
 export const TextField: FC<{
+  /**
+   * Focus input automatically.
+   *
+   * @default false
+   */
+  autoFocus?: boolean | undefined;
+
   /**
    * What will happen on typing to the text field.
    */
   changeHandler?: ((newValue: string) => void) | undefined;
+
+  /**
+   * Width of the control. Fluid is 100% width.
+   */
+  controlWidth: 'fluid' | 'short';
 
   /**
    * Disable checkbox (click handler won't work too).
@@ -92,6 +104,7 @@ export const TextField: FC<{
     <div
       className={classNames(textField, {
         [textFieldLoading]: props.loading === true,
+        [textFieldFluid]: props.controlWidth === 'fluid',
       })}
     >
       <input

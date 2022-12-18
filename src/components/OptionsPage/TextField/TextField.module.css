@@ -1,7 +1,11 @@
 .textField {
   background-color: hsl(0deg 0% 40% / 75%);
   border-radius: 4px;
-  max-width: fit-content;
+  width: 20rem;
+}
+
+.textFieldFluid {
+  width: 100%;
 }
 
 .textFieldLoading :global {
@@ -24,7 +28,7 @@
   padding-right: 8px;
   transition: 0.5s background-color;
   user-select: none;
-  width: 20rem;
+  width: 100%;
 }
 
 .textFieldControl:disabled {
