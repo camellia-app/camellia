@@ -109,7 +109,7 @@
     "placeholders": {
       "url": {
         "content": "$1",
-        "example": "https://example.com/image.jpg"
+        "example": "https://unsplash.com/collections/123"
       }
     }
   },

@@ -58,7 +58,9 @@ export const BackgroundImageSource: FC = () => {
             label={t('option_backgroundImageUnsplashCollectionId_label')}
             optionKey="background_image_unsplash_collection_id"
             pattern={'^https:\\/\\/unsplash\\.com\\/collections\\/[1-9]+[0-9]*?.+'}
-            placeholder={t('option_backgroundImageUnsplashCollectionId_placeholder', ['https://example.com/image.jpg'])}
+            placeholder={t('option_backgroundImageUnsplashCollectionId_placeholder', [
+              'https://unsplash.com/collections/123',
+            ])}
             spellCheck={false}
             type={'url'}
           />
