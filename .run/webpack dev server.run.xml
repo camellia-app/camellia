@@ -2,6 +2,7 @@
   <configuration default="false" name="webpack dev server" type="NodeJSConfigurationType" application-parameters="serve" path-to-js-file="node_modules/.bin/webpack" working-dir="$PROJECT_DIR$">
     <envs>
       <env name="NODE_ENV" value="development" />
+      <env name="TARGET_PLATFORM" value="web" />
     </envs>
     <method v="2" />
   </configuration>
