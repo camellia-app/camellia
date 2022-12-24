@@ -121,10 +121,6 @@
     "message": "Start typing to search bookmarks...",
     "description": "Shown in the search text field when its empty."
   },
-  "bookmarkSearch_closeButton_label": {
-    "message": "Close search",
-    "description": "Label of the close button in bookmark search text field. This text shown when hovering the button."
-  },
   "bookmarkBrowser_noBookmarks_label": {
     "message": "Add your first bookmarks to start using Camellia",
     "description": "The message is displayed when there are no bookmarks stored in a browser."
