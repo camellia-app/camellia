@@ -1,0 +1,213 @@
+{
+  "extensionDescription": {
+    "message": "Получите доступ ко всем своим закладкам в окне, которое открывается при создании новой вкладки.",
+    "description": "Description of the extension."
+  },
+  "option_sentry_label": {
+    "message": "Отправлять отчеты об ошибках",
+    "description": "Text that appears next to checkbox icon."
+  },
+  "option_sentry_description": {
+    "message": "Мы используем Sentry для отлавливания ошибок в Camellia. На данный момент эту настройку отключить нельзя.",
+    "description": "Text that appears near form control."
+  },
+  "option_analytics_label": {
+    "message": "Отправлять анонимную статистику"
+  },
+  "option_analytics_description": {
+    "message": "Мы собираем анонимную статистику через Google Analytics. Эти данные нужны нам для того, чтобы сделать Camellia лучше. Мы не отслеживаем ссылки, по которым вы переходите, также мы не анализируем имена закладок и папок. На данный момент эту настройку отключить нельзя."
+  },
+  "option_displayPhotographerAttribution_label": {
+    "message": "Показывать автора фотографии"
+  },
+  "option_displayPhotographerAttribution_description": {
+    "message": "По умолчанию Сamellia отображает информацию об авторе фотографии в нижней панели, при клике по которой откроется полная фотография, что удобно, если вы хотите скачать фотографию или найти больше работ понравившегося фотографа. Эту информацию можно скрыть."
+  },
+  "option_showSearchButton_label": {
+    "message": "Показывать кнопку \"Поиск\""
+  },
+  "option_showSearchButton_description": {
+    "message": "Отображать ли кнопку \"Поиск\" в нижней панели."
+  },
+  "option_showBookmarkManagerButton_label": {
+    "message": "Показывать кнопку \"Менеджер закладок\""
+  },
+  "option_showBookmarkManagerButton_description": {
+    "message": "Отображать ли кнопку \"Менеджер закладок\" в нижней панели."
+  },
+  "option_showOptionsButton_label": {
+    "message": "Показывать кнопку \"Настройки\""
+  },
+  "option_showOptionsButton_description": {
+    "message": "Отображать ли кнопку \"Настройки\" в нижней панели."
+  },
+  "option_resetOptions_label": {
+    "message": "Сбросить настройки"
+  },
+  "option_resetOptions_description": {
+    "message": "Нажатие этой кнопки сбросит все настройки в Camellia без подтверждения! ⚠️"
+  },
+  "option_copyDebugInformation_label": {
+    "message": "Скопировать информацию для отладки"
+  },
+  "option_copyDebugInformation_description": {
+    "message": "Информация, которая может быть полезна для отладки, будет скопирована в буфер обмена. Вы можете безопасно делиться этой информацией в GitHub Issues с ребятами, которые поддерживают Camellia, если захотите сообщить о проблеме в работе приложения."
+  },
+  "option_contentLayout_label": {
+    "message": "Расположение закладок"
+  },
+  "option_contentLayout_description": {
+    "message": "Должны ли закладки быть отцентрированы или нет. Центрирование закладок может оказаться удобным, если у вас очень большой дисплей."
+  },
+  "option_contentLayout_optionCentered": {
+    "message": "Отцентрированное"
+  },
+  "option_contentLayout_optionFluid": {
+    "message": "Не центрировать"
+  },
+  "option_backgroundImage_sourceTypeLabel": {
+    "message": "Тип источника фонового изображения"
+  },
+  "option_backgroundImage_sourceTypeDescription": {
+    "message": "Выберите, откуда хотите брать фоновое изображение.."
+  },
+  "option_backgroundImage_sourceTypeOptionLink": {
+    "message": "По ссылке"
+  },
+  "option_backgroundImage_sourceTypeOptionUnsplashCollection": {
+    "message": "Коллекция в Unsplash"
+  },
+  "option_backgroundImageLink_label": {
+    "message": "Ссылка на изображение"
+  },
+  "option_backgroundImageLink_description": {
+    "message": "Ссылка, указывающая на изображение. Она должна начинаться с \"https://\"."
+  },
+  "option_backgroundImageLink_placeholder": {
+    "message": "например, $URL$",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "https://example.com/image.jpg"
+      }
+    }
+  },
+  "option_backgroundImageUnsplashCollectionId_label": {
+    "message": "Ссылка на коллекцию в Unsplash"
+  },
+  "option_backgroundImageUnsplashCollectionId_description": {
+    "message": "Ссылка, указывающая на коллекцию в Unsplash, например, \"$URL$\".",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "https://unsplash.com/collections/123"
+      }
+    }
+  },
+  "option_backgroundImageUnsplashCollectionId_placeholder": {
+    "message": "например, $URL$",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "https://unsplash.com/collections/123"
+      }
+    }
+  },
+  "bookmarkSearch_textField_modalTitle": {
+    "message": "Поиск",
+    "description": "Title of the modal with search field."
+  },
+  "bookmarkSearch_textField_placeholder": {
+    "message": "Напечатайте что-нибудь, чтобы найти закладки...",
+    "description": "Shown in the search text field when its empty."
+  },
+  "bookmarkBrowser_noBookmarks_label": {
+    "message": "Добавьте свою первую закладку, чтобы начать пользоваться Camellia",
+    "description": "The message is displayed when there are no bookmarks stored in a browser."
+  },
+  "bookmarkCategory_bookmarksBar_label": {
+    "message": "Панель закладок",
+    "description": "Label of the bookmark category that contains bookmarks from 'Bookmarks bar' folder."
+  },
+  "bookmarkCategory_otherBookmarks_label": {
+    "message": "Прочие закладки",
+    "description": "Label of the bookmark category that contains bookmarks from 'Other bookmarks' folder."
+  },
+  "bottomToolbar_bookmarkManager_label": {
+    "message": "Менеджер закладок",
+    "description": "Label on the button that opens default browser's bookmark manager located in bottom toolbar."
+  },
+  "bottomToolbar_options_label": {
+    "message": "Настройки",
+    "description": "Label on the button that opens extension options page (settings) located in bottom toolbar. This button should use the same term as browser uses."
+  },
+  "bottomToolbar_search_label": {
+    "message": "Поиск",
+    "description": "Label on the button that opens bookmark search."
+  },
+  "popup_content_emptyFolder": {
+    "message": "В папке ничего нет.",
+    "description": "Text shown within popup when bookmark list is empty."
+  },
+  "popup_closeButton_label": {
+    "message": "Закрыть",
+    "description": "Label of the close button in popup. This text shown when hovering the button."
+  },
+  "about_externalLink_sourceCode": {
+    "message": "Исходный код",
+    "description": "External link in 'About' section leading to GitHub in the bottom of the options page."
+  },
+  "about_externalLink_bugTracker": {
+    "message": "Сообщить о проблеме",
+    "description": "External link in 'About' section leading to GitHub Issues in the bottom of the options page."
+  },
+  "about_externalLink_communityForum": {
+    "message": "Сообщество",
+    "description": "External link in 'About' section leading to GitHub Discussions in the bottom of the options page."
+  },
+  "about_externalLink_userManual": {
+    "message": "Инструкции",
+    "description": "External link in 'About' section leading to GitHub Wiki in the bottom of the options page."
+  },
+  "about_externalLink_releaseNotes": {
+    "message": "Список изменений",
+    "description": "External link in 'About' section leading to GitHub Releases in the bottom of the options page."
+  },
+  "about_app_version": {
+    "message": "$NAME$, version $VERSION$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Camellia"
+      },
+      "version": {
+        "content": "$2",
+        "example": "2.0.0.0"
+      }
+    }
+  },
+  "optionsNavigationCategory_allOptions_label": {
+    "message": "Все настройки"
+  },
+  "optionsNavigationCategory_background_label": {
+    "message": "Фон"
+  },
+  "optionsNavigationCategory_bookmarks_label": {
+    "message": "Закладки"
+  },
+  "optionsNavigationCategory_search_label": {
+    "message": "Поиск"
+  },
+  "optionsNavigationCategory_bottomToolbar_label": {
+    "message": "Нижняя панель"
+  },
+  "optionsNavigationCategory_dataCollection_label": {
+    "message": "Сбор информации"
+  },
+  "optionsNavigationCategory_advanced_label": {
+    "message": "Дополнительно"
+  },
+  "optionsNavigationCategory_about_label": {
+    "message": "О приложении"
+  }
+}
