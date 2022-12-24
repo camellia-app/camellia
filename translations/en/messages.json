@@ -125,10 +125,6 @@
     "message": "Add your first bookmarks to start using Camellia",
     "description": "The message is displayed when there are no bookmarks stored in a browser."
   },
-  "bookmarkCategory_searchResults_label": {
-    "message": "Search results",
-    "description": "Label of the bookmark category that contains bookmark search results."
-  },
   "bookmarkCategory_bookmarksBar_label": {
     "message": "Bookmarks bar",
     "description": "Label of the bookmark category that contains bookmarks from 'Bookmarks bar' folder."
