@@ -1,1 +1,9 @@
+[chromium]
 chrome 105 # This Chrome version introduced favicons API in Manifest V3
+
+[webext]
+last 1 firefox version # TODO: determine optimal version before stable release
+
+[web]
+chrome 105
+last 1 firefox version

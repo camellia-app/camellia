@@ -26,6 +26,10 @@ assert(process.env.BUILD_NUMBER, 'Environment variable BUILD_NUMBER is not defin
 assert(process.env.TARGET_PLATFORM, 'Environment variable TARGET_PLATFORM is not defined');
 assert(process.env.UNSPLASH_BRIDGE_BASE_HOST, 'Environment variable UNSPLASH_BRIDGE_BASE_HOST is not defined');
 
+if (process.env.BROWSERSLIST_ENV === undefined) {
+  process.env.BROWSERSLIST_ENV = process.env.TARGET_PLATFORM;
+}
+
 const getCssLoaders = () => {
   const loaders = [];
 
