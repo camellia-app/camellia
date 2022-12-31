@@ -28,12 +28,13 @@ jobs:
         uses: actions/cache@v3.2.2
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-npm-production-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
+            ${{ runner.os }}-npm-production-
             ${{ runner.os }}-npm-
 
       - name: Install npm dependencies
-        run: npm ci --prefer-offline
+        run: npm ci --omit=dev --prefer-offline
 
       - name: Run Webpack
         run: npx webpack
