@@ -34,7 +34,6 @@ export const config = {
     defaultCollectionId: process.env['UNSPLASH_DEFAULT_COLLECTION_ID'],
     bridge: {
       baseHost: new URL(process.env['UNSPLASH_BRIDGE_BASE_HOST']),
-      mockPhoto: process.env['UNSPLASH_BRIDGE_MOCK_PHOTO'] === '1',
     },
   },
   websiteIconsProxy: {

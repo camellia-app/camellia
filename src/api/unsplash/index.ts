@@ -10,10 +10,6 @@ export const getRandomUnsplashPhotoFromCollection = async (
   requestUrl.pathname = '/random-collection-entry';
   requestUrl.searchParams.set('id', collectionId);
 
-  if (config.unsplash.bridge.mockPhoto) {
-    requestUrl.searchParams.set('mock', '1');
-  }
-
   const response = await fetch(requestUrl.toString(), {
     signal: abortSignal ?? null,
   });
