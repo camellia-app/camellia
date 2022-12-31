@@ -9,7 +9,7 @@
     "fix-stylelint": "npx stylelint --fix \"src/**/*.css\""
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "dependencies": {
     "@material-design-icons/svg": "0.14.2",
