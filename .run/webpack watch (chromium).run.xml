@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="webpack watch (chromium)" type="NodeJSConfigurationType" application-parameters="--watch" path-to-js-file="node_modules/.bin/webpack" working-dir="$PROJECT_DIR$">
+    <envs>
+      <env name="NODE_ENV" value="development" />
+      <env name="TARGET_PLATFORM" value="chromium" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>
