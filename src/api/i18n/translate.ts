@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser';
 import englishTranslations from '../../../translations/en/messages.json';
 import russianTranslations from '../../../translations/ru/messages.json';
 import { AppPlatform, getPlatform } from '../appEnvironment';
@@ -32,7 +33,10 @@ const getWebextTranslatedMessage = (key: TranslationKey, placeholderReplacements
   const message = browser.i18n.getMessage(key, placeholderReplacements ?? []);
 
   if (message === '') {
-    throw Error(`There are no translation messages with key "${key}"`);
+    console.warn(`There is no translation message with key "${key}"`);
+    Sentry.captureMessage(`There is no translation message with key "${key}"`);
+
+    return key;
   }
 
   return message;
@@ -42,7 +46,10 @@ const getChromiumTranslatedMessage = (key: TranslationKey, placeholderReplacemen
   const message = chrome.i18n.getMessage(key, placeholderReplacements ?? []);
 
   if (message === '') {
-    throw Error(`There are no translation messages with key "${key}"`);
+    console.warn(`There is no translation message with key "${key}"`);
+    Sentry.captureMessage(`There is no translation message with key "${key}"`);
+
+    return key;
   }
 
   return message;
