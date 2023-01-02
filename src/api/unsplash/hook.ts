@@ -25,6 +25,14 @@ export const useRandomPhotoFromUnsplashCollection = (collectionId: string): Unsp
 
         dispatch(unsplashSlice.actions.updatePhoto(photo));
       })
+      .catch((error: unknown) => {
+        // we don't want to see AbortError in Sentry and in logs
+        if (error instanceof DOMException && error.name === 'AbortError') {
+          return;
+        }
+
+        throw error;
+      })
       .finally(() => {
         span?.finish();
       });
