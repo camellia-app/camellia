@@ -17,7 +17,7 @@
 }
 
 .chipListItem {
-  max-width: var(--bookmark-column-min-width);
+  max-width: 100%;
 }
 
 .chipListMoveLastChipToRight .chipListItem:last-child {
