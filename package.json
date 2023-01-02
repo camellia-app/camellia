@@ -12,7 +12,6 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@faker-js/faker": "7.6.0",
     "@material-design-icons/svg": "0.14.2",
     "@reduxjs/toolkit": "1.9.1",
     "@sentry/react": "7.23.0",

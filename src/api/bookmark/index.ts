@@ -1,4 +1,3 @@
-import { faker } from '@faker-js/faker';
 import { AppPlatform, getPlatform } from '../appEnvironment';
 import topWebsites from './assets/top-websites.json';
 import type {
@@ -175,22 +174,28 @@ const initializeRootFolders: InitializeRootFolders = async () => {
 export const generateDemoBookmarks = async (): Promise<void> => {
   const folderIds = await initializeRootFolders();
 
+  let folderNumber = 1;
+
   for (const topWebsite of topWebsites) {
+    const folderId = folderIds[Math.floor(Math.random() * folderIds.length)];
+
     await createBookmark({
       type: 'link',
       title: topWebsite,
-      parentId: faker.helpers.arrayElement(folderIds),
+      parentId: folderId,
       url: `https://${topWebsite}`,
     });
 
-    const shouldCreateFolder = faker.datatype.number({ min: 0, max: 100 }) >= 70;
+    const shouldCreateFolder = Math.random() >= 0.7;
 
     if (shouldCreateFolder) {
       const createdFolder = await createBookmark({
         type: 'folder',
-        title: faker.commerce.productName(),
-        parentId: faker.helpers.arrayElement(folderIds),
+        title: `Folder #${folderNumber}`,
+        parentId: folderId,
       });
+
+      folderNumber++;
 
       folderIds.push(createdFolder.id);
     }
