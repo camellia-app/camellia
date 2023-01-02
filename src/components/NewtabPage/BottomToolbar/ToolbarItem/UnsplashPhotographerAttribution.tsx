@@ -12,7 +12,7 @@ export const UnsplashPhotographerAttribution: FC<{
       fallbackSvg={<PhotoCamera />}
       iconEllipse={true}
       iconSrc={props.unsplashPhoto.photographer.avatar.large.url}
-      label={`Photo by ${props.unsplashPhoto.photographer.name}`}
+      label={`Photo by ${props.unsplashPhoto.photographer.name} on Unsplash`}
       shape={props.shape}
       url={props.unsplashPhoto.webPageUrl}
     />
