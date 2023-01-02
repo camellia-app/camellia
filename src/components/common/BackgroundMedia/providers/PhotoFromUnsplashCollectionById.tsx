@@ -6,9 +6,6 @@ export const PhotoFromUnsplashCollectionById: FC<{
   collectionId: string;
   onLoad: () => void;
 }> = (props) => {
-  console.count('Rerender <PhotoFromUnsplashCollectionById>');
-  console.log(props);
-
   const photo = useRandomPhotoFromUnsplashCollection(props.collectionId);
 
   if (photo === undefined) {

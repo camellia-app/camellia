@@ -15,8 +15,6 @@ export const BackgroundMedia: FC = () => {
     setIsLoading(true);
   }, []);
 
-  console.count('Rerender <BackgroundMedia>');
-
   const handleSuccessfulLoading = (): void => {
     setIsLoading(false);
   };
@@ -35,7 +33,7 @@ export const BackgroundMedia: FC = () => {
       break;
 
     default:
-      console.log('bg image loading');
+      break;
   }
 
   return (

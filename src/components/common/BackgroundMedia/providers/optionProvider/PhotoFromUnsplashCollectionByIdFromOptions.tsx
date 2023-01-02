@@ -5,11 +5,7 @@ import { PhotoFromUnsplashCollectionById } from '../PhotoFromUnsplashCollectionB
 export const PhotoFromUnsplashCollectionByIdFromOptions: FC<{
   onLoad: () => void;
 }> = (props) => {
-  console.count('Rerender <PhotoFromUnsplashCollectionByIdFromOptions>');
-
   const [backgroundImageUnsplashCollectionId] = useOption('background_image_unsplash_collection_id');
-
-  console.log(props, backgroundImageUnsplashCollectionId);
 
   if (backgroundImageUnsplashCollectionId === undefined) {
     return <></>;
