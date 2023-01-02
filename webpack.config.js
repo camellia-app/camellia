@@ -76,6 +76,9 @@ const commonConfig = {
   experiments: {
     topLevelAwait: true,
   },
+  optimization: {
+    minimize: process.env.NODE_ENV === 'production',
+  },
   mode: 'production',
   module: {
     rules: [
