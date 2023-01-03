@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { bookmarkSearchSlice } from './slice/bookmarkSearchSlice';
+import { folderPopupSlice } from './slice/folderPopupSlice';
 import { optionFiltersSlice } from './slice/optionFiltersSlice';
-import { popupSlice } from './slice/popupSlice';
 import { unsplashSlice } from './slice/unsplashSlice';
 
 export const store = configureStore({
   reducer: {
     bookmarkSearch: bookmarkSearchSlice.reducer,
-    popup: popupSlice.reducer,
+    folderPopup: folderPopupSlice.reducer,
     unsplash: unsplashSlice.reducer,
     activeOptionCategory: optionFiltersSlice.reducer,
   },

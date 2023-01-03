@@ -70,6 +70,7 @@ export const ModalDialog: FC<{
         <div className={modalDialogContent}>{props.children}</div>
       </div>
 
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div className={modalDialogBackdrop} onClick={backdropClickHandler} />
     </div>,
     modalRoot,
