@@ -7,7 +7,7 @@ import { getFolderChildrenBookmarks } from '../../../api/bookmark';
 import type { Bookmark as BookmarkEntry } from '../../../api/bookmark/common';
 import { getFavicon } from '../../../api/favicon';
 import { createTracingTransaction } from '../../../api/utils/sentry';
-import { popupSlice } from '../../../store/slice/popupSlice';
+import { folderPopupSlice } from '../../../store/slice/folderPopupSlice';
 import { Chip } from '../../common/Chip/Chip';
 import { PopupNestingLevelContext } from '../Popup/PopupNestingLevelContext';
 
@@ -44,14 +44,13 @@ export const Bookmark: FC<{
     };
 
     dispatch(
-      popupSlice.actions.togglePopup({
-        clickPosition: clickPosition,
+      folderPopupSlice.actions.togglePopup({
+        placement: clickPosition,
         id: `bookmark-folder-${props.bookmark.id}`,
         title: props.bookmark.title,
-        content: {
-          type: 'bookmarkList',
-          bookmarks: bookmarks,
-        },
+        bookmarks: bookmarks,
+        height: undefined,
+        isPositionRecomputed: false,
         nestingLevel: nestingLevelContext,
       }),
     );
