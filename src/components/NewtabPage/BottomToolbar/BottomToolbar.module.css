@@ -4,4 +4,5 @@
   height: 64px;
   padding-left: 1rem;
   padding-right: 1rem;
+  user-select: none;
 }
