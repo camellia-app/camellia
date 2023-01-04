@@ -1,5 +1,6 @@
 .checkbox {
-  background-color: hsl(0deg 0% 40% / 75%);
+  backdrop-filter: var(--acrylic-background-filter);
+  background-color: var(--acrylic-color-light-1);
   border-radius: 4px;
   max-width: fit-content;
 }
@@ -59,7 +60,7 @@ input[type='checkbox']:checked + .checkboxControl {
 }
 
 input[type='checkbox']:not(:disabled) + .checkboxControl:hover {
-  background-color: hsl(0deg 0% 0% / 25%);
+  background-color: var(--acrylic-color-light-2);
   cursor: pointer;
 }
 

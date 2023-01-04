@@ -20,12 +20,12 @@
 }
 
 .optionsCategoryButton:hover {
-  background-color: var(--bookmark-background-color-hover);
+  background-color: var(--acrylic-color-light-2);
   transform: translateY(-1px);
 }
 
 .optionsCategory input:checked + .optionsCategoryButton {
-  background-color: var(--bookmark-background-color);
+  background-color: var(--acrylic-color-light-1);
 }
 
 .optionsCategoryLabel {

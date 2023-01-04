@@ -1,4 +1,5 @@
 export const chip: string;
+export const chipBlurred: string;
 export const chipLoading: string;
 export const chipRounded: string;
 export const chipSquared: string;

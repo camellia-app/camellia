@@ -3,7 +3,7 @@
 @import url('../../commons.module.css');
 
 .optionsWrapper {
-  background-color: hsl(0deg 0% 15% / 90%);
+  background-color: hsl(0deg 0% 15% / 70%);
   min-height: 100vh;
 }
 

@@ -3,6 +3,7 @@ import type { ReactEventHandler, FC, MouseEventHandler, ReactElement } from 'rea
 import { createRef, useEffect, useState } from 'react';
 import {
   chip,
+  chipBlurred,
   chipIcon,
   chipIconEllipse,
   chipIconInlinedSvg,
@@ -16,6 +17,13 @@ import {
 
 export const Chip: FC<
   {
+    /**
+     * Should chip background be blurred.
+     *
+     * @default false
+     */
+    blurred?: boolean | undefined;
+
     /**
      * Action that will be triggered after clicking the chip.
      */
@@ -112,6 +120,7 @@ export const Chip: FC<
   );
 
   const chipClasses = classNames(chip, {
+    [chipBlurred]: props.blurred === true,
     [chipLoading]: props.isLoading === true,
     [chipSquared]: props.shape === 'squared',
     [chipRounded]: props.shape === 'rounded',

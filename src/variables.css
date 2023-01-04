@@ -1,6 +1,9 @@
 :root {
-  --bookmark-background-color: rgb(238 238 238 / 10%);
-  --bookmark-background-color-hover: rgb(238 238 238 / 20%);
+  --acrylic-color-light-1: rgb(255 255 255 / 10%);
+  --acrylic-color-light-2: rgb(255 255 255 / 20%);
+  --acrylic-color-dark-1: rgb(33 33 33 / 75%);
+  --acrylic-color-dark-2: rgb(33 33 33 / 90%);
+  --acrylic-background-filter: blur(2px);
   --bookmark-category-title-text-color: #eee;
   --bookmark-column-min-width: 235px;
   --bookmark-text-color: #eee;
@@ -23,8 +26,6 @@
   --popup-title-height: 40px;
   --dialog-border-radius: 8px;
   --dialog-backdrop-color: rgb(0 0 0 / 50%);
-  --dialog-backdrop-filter: blur(2px);
-  --dialog-background-color: rgb(33 33 33 / 75%);
   --search-bar-height: 64px;
   --search-placeholder-color: rgb(238 238 238 / 60%);
   --text-size-regular: 13px;

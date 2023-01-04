@@ -12,6 +12,7 @@ import { Chip } from '../../common/Chip/Chip';
 import { PopupNestingLevelContext } from '../Popup/PopupNestingLevelContext';
 
 export const Bookmark: FC<{
+  blurred?: boolean | undefined;
   bookmark: BookmarkEntry;
   focus?: boolean | undefined;
 }> = (props) => {
@@ -87,6 +88,7 @@ export const Bookmark: FC<{
     case 'link':
       return (
         <Chip
+          blurred={props.blurred}
           clickAction={clickAction}
           fallbackSvg={<Public />}
           focus={props.focus}
@@ -102,6 +104,7 @@ export const Bookmark: FC<{
     case 'folder':
       return (
         <Chip
+          blurred={props.blurred}
           clickAction={clickAction}
           focus={props.focus}
           isLoading={isLoading}

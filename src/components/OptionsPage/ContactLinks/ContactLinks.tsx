@@ -46,7 +46,7 @@ export const ContactLinks: FC = () => {
   ];
 
   const chips = links.map((link, index) => (
-    <Chip key={index} label={link.title} shape={'rounded'} svg={link.icon} url={link.url} />
+    <Chip blurred={true} key={index} label={link.title} shape={'rounded'} svg={link.icon} url={link.url} />
   ));
 
   if (unsplashPhotographerAttributionsState.photo !== undefined) {

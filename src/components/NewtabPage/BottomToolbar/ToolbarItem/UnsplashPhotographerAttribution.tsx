@@ -13,6 +13,7 @@ export const UnsplashPhotographerAttribution: FC<{
 
   return (
     <Chip
+      blurred={true}
       fallbackSvg={<PhotoCamera />}
       iconEllipse={true}
       iconSrc={props.unsplashPhoto.photographer.avatar.large.url}

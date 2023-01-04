@@ -1,5 +1,6 @@
 .dropdownSelect {
-  background-color: hsl(0deg 0% 40% / 75%);
+  backdrop-filter: var(--acrylic-background-filter);
+  background-color: var(--acrylic-color-light-1);
   border-radius: 4px;
   max-width: fit-content;
 }
@@ -44,5 +45,5 @@
 }
 
 .dropdownSelectControl:not(:disabled):hover {
-  background-color: hsl(0deg 0% 0% / 25%);
+  background-color: var(--acrylic-color-light-2);
 }

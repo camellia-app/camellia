@@ -1,6 +1,6 @@
 .chip {
   align-items: flex-start;
-  background-color: var(--bookmark-background-color);
+  background-color: var(--acrylic-color-light-1);
   color: var(--bookmark-text-color);
   cursor: pointer;
   display: flex;
@@ -8,6 +8,10 @@
   touch-action: manipulation;
   transition: background-color 0.2s, transform 0.2s;
   width: 100%;
+}
+
+.chipBlurred {
+  backdrop-filter: var(--acrylic-background-filter);
 }
 
 .chipLoading :global {
@@ -31,7 +35,7 @@
 }
 
 .chip:hover {
-  background-color: var(--bookmark-background-color-hover);
+  background-color: var(--acrylic-color-light-2);
   transform: translateY(-1px);
 }
 

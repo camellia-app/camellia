@@ -18,8 +18,9 @@
 }
 
 .modalDialogBody {
-  background-color: var(--dialog-background-color);
+  background-color: var(--acrylic-color-dark-1);
   border-radius: var(--dialog-border-radius);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
   margin: 10vh auto;
   max-width: var(--dialog-modal-max-width);
   position: relative;
@@ -27,7 +28,6 @@
 }
 
 .modalDialogBackdrop {
-  backdrop-filter: var(--dialog-backdrop-filter);
   background-color: var(--dialog-backdrop-color);
   bottom: 0;
   height: 100%;

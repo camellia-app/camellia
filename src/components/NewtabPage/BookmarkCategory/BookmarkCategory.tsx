@@ -14,7 +14,7 @@ export const BookmarkCategory: FC<{
 
     <ChipList
       chips={props.bookmarks.map((bookmarkEntry) => (
-        <Bookmark bookmark={bookmarkEntry} focus={false} key={bookmarkEntry.id} />
+        <Bookmark blurred={true} bookmark={bookmarkEntry} focus={false} key={bookmarkEntry.id} />
       ))}
       type="columns"
     />

@@ -16,6 +16,7 @@ export const BookmarkManager: FC = () => {
 
   return (
     <Chip
+      blurred={true}
       clickAction={handleClick}
       focus={false}
       isLoading={false}
