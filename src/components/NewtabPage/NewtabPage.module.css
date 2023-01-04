@@ -4,6 +4,7 @@
 
 .newtabWrapper {
   display: grid;
+  grid-gap: 1rem;
   grid-template-rows: 1fr auto;
   min-height: 100vh;
 }
