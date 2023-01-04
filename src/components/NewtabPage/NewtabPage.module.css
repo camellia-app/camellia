@@ -3,7 +3,6 @@
 @import url('../../commons.module.css');
 
 .newtabWrapper {
-  background-color: hsl(0deg 0% 15% / 70%);
   display: grid;
   grid-template-rows: 1fr auto;
   min-height: 100vh;

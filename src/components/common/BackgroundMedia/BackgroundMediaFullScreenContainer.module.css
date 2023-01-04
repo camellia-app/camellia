@@ -5,3 +5,11 @@
   width: 100%;
   z-index: -1;
 }
+
+.backgroundMediaFullScreenContainerBackdrop {
+  background-color: hsl(0deg 0% 15% / 70%);
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}

@@ -1,1 +1,2 @@
 export const backgroundMediaFullScreenContainer: string;
+export const backgroundMediaFullScreenContainerBackdrop: string;
