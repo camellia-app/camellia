@@ -1,4 +1,4 @@
-export type StorageKeyChangeHandler<TValue> = (newValue: TValue, oldValue: TValue) => void;
+export type StorageKeyChangeHandler<TValue> = (newValue: TValue) => void;
 export type StorageKeyChangeHandlerDestructor = () => void;
 
 export type Storage = {

@@ -1,4 +1,4 @@
-export type OptionChangeHandler<TValue> = (newValue: TValue, oldValue: TValue) => void;
+export type OptionChangeHandler<TValue> = (newValue: TValue) => void;
 export type OptionChangeHandlerDestructor = () => void;
 
 export class OptionsError extends Error {}

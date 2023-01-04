@@ -72,7 +72,7 @@ const getWebextLocalStorageManager = (): Storage => {
           return;
         }
 
-        handler(changedValue.newValue, changedValue.oldValue);
+        handler(changedValue.newValue);
       };
 
       browser.storage.onChanged.addListener(listener);
@@ -139,7 +139,7 @@ const getWebextSynchronizableStorageManager = (): Storage => {
           return;
         }
 
-        handler(changedValue.newValue, changedValue.oldValue);
+        handler(changedValue.newValue);
       };
 
       browser.storage.onChanged.addListener(listener);

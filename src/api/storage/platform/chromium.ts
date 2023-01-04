@@ -72,7 +72,7 @@ const getChromiumLocalStorageManager = (): Storage => {
           return;
         }
 
-        handler(changedValue.newValue, changedValue.oldValue);
+        handler(changedValue.newValue);
       };
 
       chrome.storage.onChanged.addListener(listener);
@@ -139,7 +139,7 @@ const getChromiumSynchronizableStorageManager = (): Storage => {
           return;
         }
 
-        handler(changedValue.newValue, changedValue.oldValue);
+        handler(changedValue.newValue);
       };
 
       chrome.storage.onChanged.addListener(listener);

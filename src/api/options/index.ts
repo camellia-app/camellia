@@ -36,8 +36,8 @@ export const subscribeToOptionChanges = <TKey extends OptionKey, TValue extends 
 ): OptionChangeHandlerDestructor => {
   const storageSubscriptionDestructor = storage.synchronizable.subscribeToKeyChanges<TValue>(
     `option_${key}`,
-    (newValue, oldValue) => {
-      handler(newValue, oldValue);
+    (newValue) => {
+      handler(newValue);
     },
   );
 

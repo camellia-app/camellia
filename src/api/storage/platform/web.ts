@@ -17,6 +17,13 @@ export const getWebStorageManager = (type: StorageType): Storage => {
     },
     delete: async (key: string): Promise<void> => {
       localStorage.removeItem(key);
+
+      window.dispatchEvent(
+        new StorageEvent('storage', {
+          key: key,
+          newValue: null,
+        }),
+      );
     },
     exists: async (key: string): Promise<boolean> => {
       return localStorage.getItem(key) !== null;
@@ -28,9 +35,8 @@ export const getWebStorageManager = (type: StorageType): Storage => {
         }
 
         const newValue = event.newValue !== null ? JSON.parse(event.newValue) : undefined;
-        const oldValue = event.oldValue !== null ? JSON.parse(event.oldValue) : undefined;
 
-        handler(newValue, oldValue);
+        handler(newValue);
       };
 
       window.addEventListener('storage', listener);
@@ -41,6 +47,13 @@ export const getWebStorageManager = (type: StorageType): Storage => {
     },
     set: async <TValue>(key: string, value: TValue): Promise<void> => {
       localStorage.setItem(key, JSON.stringify(value));
+
+      window.dispatchEvent(
+        new StorageEvent('storage', {
+          key: key,
+          newValue: JSON.stringify(value),
+        }),
+      );
     },
   };
 };
