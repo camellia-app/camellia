@@ -7,12 +7,16 @@ export const UnsplashPhotographerAttribution: FC<{
   shape: 'rounded' | 'squared';
   unsplashPhoto: UnsplashPhoto;
 }> = (props) => {
+  // Removes emojis and other non-standard symbols from name
+  // see https://stackoverflow.com/a/63464318/4981937
+  const photographerName = props.unsplashPhoto.photographer.name.replace(/[^\p{L}\p{N}\p{P}\p{Z}]/gu, '');
+
   return (
     <Chip
       fallbackSvg={<PhotoCamera />}
       iconEllipse={true}
       iconSrc={props.unsplashPhoto.photographer.avatar.large.url}
-      label={`Photo by ${props.unsplashPhoto.photographer.name} on Unsplash`}
+      label={`Photo by ${photographerName} on Unsplash`}
       shape={props.shape}
       url={props.unsplashPhoto.webPageUrl}
     />
