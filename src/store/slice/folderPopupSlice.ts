@@ -77,8 +77,6 @@ export const folderPopupSlice = createSlice({
         y: number;
       }>,
     ) => {
-      console.log(action.payload.popupIndex, 'position recomputed');
-
       const popup = state.popupsStack.at(action.payload.popupIndex);
 
       if (popup === undefined) {
