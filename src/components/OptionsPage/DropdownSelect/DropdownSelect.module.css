@@ -35,6 +35,11 @@
   white-space: nowrap;
 }
 
+/* fixes bug in windows/linux with white text on white bg */
+.dropdownSelectControl option {
+  color: black;
+}
+
 .dropdownSelectControl:disabled {
   cursor: default;
   opacity: 0.5;
