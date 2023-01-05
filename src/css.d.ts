@@ -9,4 +9,8 @@ declare module 'csstype' {
     '--screen-height': string;
     '--screen-width': string;
   };
+
+  type Background = {
+    '--background-color': string;
+  };
 }

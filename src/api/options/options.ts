@@ -10,7 +10,13 @@ export enum ContentLayoutType {
   Fluid = 'fluid',
 }
 
+export enum BackgroundBrightnessType {
+  Bright = 'bright',
+  ReducedBrightness = 'reduced_brightness',
+}
+
 export type OptionsTypeMap = {
+  background_brightness: BackgroundBrightnessType;
   background_image_link: string;
   background_image_unsplash_collection_id: string;
   background_provider_type: BackgroundProviderType;
@@ -28,9 +34,10 @@ export type BooleanOptionKey =
   | 'show_options_button'
   | 'show_search_button';
 export type StringOptionKey = 'background_image_link' | 'background_image_unsplash_collection_id';
-export type EnumOptionKey = 'background_provider_type' | 'content_layout';
+export type EnumOptionKey = 'background_brightness' | 'background_provider_type' | 'content_layout';
 
 export const optionDefaults: OptionsTypeMap = {
+  background_brightness: BackgroundBrightnessType.Bright,
   background_image_link: 'https://images.unsplash.com/photo-1615931632997-c592e375d6ef',
   background_image_unsplash_collection_id: `https://unsplash.com/collections/${config.unsplash.defaultCollectionId}`,
   background_provider_type: BackgroundProviderType.UnsplashCollection,

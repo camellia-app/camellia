@@ -11,6 +11,7 @@ import { BackgroundMedia } from '../common/BackgroundMedia/BackgroundMedia';
 import { BackgroundMediaFullScreenContainer } from '../common/BackgroundMedia/BackgroundMediaFullScreenContainer';
 import { AboutApp } from './AboutApp/AboutApp';
 import { ContactLinks } from './ContactLinks/ContactLinks';
+import { BackgroundBrightness } from './OptionControl/OptionEntry/BackgroundBrightness';
 import { BackgroundImageSource } from './OptionControl/OptionEntry/BackgroundImageSource';
 import { ContentLayout } from './OptionControl/OptionEntry/ContentLayout';
 import { CopyDebugInformation } from './OptionControl/OptionEntry/CopyDebugInformation';
@@ -46,6 +47,8 @@ export const OptionsPage: FC = () => {
             <main className={optionsContent}>
               <BackgroundImageSource />
 
+              <BackgroundBrightness />
+
               <UnsplashPhotographerAttribution />
 
               {getSupportedRuntimeFeatures().bookmarkManagerPage ? <ShowBookmarkManagerButton /> : undefined}
@@ -72,7 +75,7 @@ export const OptionsPage: FC = () => {
             </main>
           </div>
 
-          <BackgroundMediaFullScreenContainer>
+          <BackgroundMediaFullScreenContainer forceBrightness={50}>
             <BackgroundMedia />
           </BackgroundMediaFullScreenContainer>
         </div>

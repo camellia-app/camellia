@@ -65,6 +65,18 @@
   "option_contentLayout_optionFluid": {
     "message": "Не центрировать"
   },
+  "option_backgroundBrightness_label": {
+    "message": "Яркость фона"
+  },
+  "option_backgroundBrightness_description": {
+    "message": "Вы можете уменьшить яркость фона, если изображение кажется вам слишком ярким."
+  },
+  "option_backgroundBrightness_optionBright": {
+    "message": "Яркий"
+  },
+  "option_backgroundBrightness_optionReducedBrightness": {
+    "message": "Меньше яркости"
+  },
   "option_backgroundImage_sourceTypeLabel": {
     "message": "Тип источника фонового изображения"
   },

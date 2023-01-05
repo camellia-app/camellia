@@ -65,6 +65,18 @@
   "option_contentLayout_optionFluid": {
     "message": "Fluid"
   },
+  "option_backgroundBrightness_label": {
+    "message": "Background brightness"
+  },
+  "option_backgroundBrightness_description": {
+    "message": "If background image is too bright for you, you may reduce its brightness."
+  },
+  "option_backgroundBrightness_optionBright": {
+    "message": "Bright"
+  },
+  "option_backgroundBrightness_optionReducedBrightness": {
+    "message": "Reduced brightness"
+  },
   "option_backgroundImage_sourceTypeLabel": {
     "message": "Background image source type"
   },

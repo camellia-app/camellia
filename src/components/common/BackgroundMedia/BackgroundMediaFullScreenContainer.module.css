@@ -7,9 +7,11 @@
 }
 
 .backgroundMediaFullScreenContainerBackdrop {
-  background-color: hsl(0deg 0% 15% / 70%);
+  --background-color: hsl(0deg 0% 0% / 100%);
+  background-color: var(--background-color);
   height: 100%;
   position: fixed;
+  transition: background-color 1s;
   width: 100%;
   z-index: 1;
 }
