@@ -15,6 +15,7 @@ export type UnsplashPhoto = {
       small: UnsplashImage;
     };
     name: string;
+    url: string;
   };
   webPageUrl: string;
 };

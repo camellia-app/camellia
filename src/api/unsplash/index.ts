@@ -16,7 +16,7 @@ export const getRandomUnsplashPhotoFromCollection = async (
 
   const photo: UnsplashPhoto = await response.json();
 
-  const webPageUrl = new URL(photo.webPageUrl);
+  const webPageUrl = new URL(photo.photographer.url);
 
   // These UTM parameters are required by Unsplash API Guidelines: https://help.unsplash.com/en/articles/2511245-unsplash-api-guidelines
   webPageUrl.searchParams.set('utm_source', getAppInfo().name);
