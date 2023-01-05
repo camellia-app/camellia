@@ -46,8 +46,6 @@ export const OptionsPage: FC = () => {
             <main className={optionsContent}>
               <BackgroundImageSource />
 
-              <ContentLayout />
-
               <UnsplashPhotographerAttribution />
 
               {getSupportedRuntimeFeatures().bookmarkManagerPage ? <ShowBookmarkManagerButton /> : undefined}
@@ -55,6 +53,8 @@ export const OptionsPage: FC = () => {
               <ShowOptionsButton />
 
               <ShowSearchButton />
+
+              <ContentLayout />
 
               <EnableAnalytics />
 
