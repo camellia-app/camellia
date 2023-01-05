@@ -1,5 +1,5 @@
 .header {
   color: var(--bookmark-category-title-text-color);
-  text-shadow: rgb(33 33 33 / 100%) 0 0 3px;
+  text-shadow: rgb(0 0 0) 0 0 4px, rgb(0 0 0) 0 0 4px;
   text-transform: uppercase;
 }

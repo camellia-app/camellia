@@ -9,6 +9,7 @@
 }
 
 .labeledTextFieldLabel {
+  color: var(--acrylic-color-light-3);
   font-size: var(--text-size-header);
   margin-bottom: 1rem;
 }

@@ -1,6 +1,5 @@
 .dropdownSelect {
   backdrop-filter: var(--acrylic-background-filter);
-  background-color: var(--acrylic-color-light-1);
   border-radius: 4px;
   max-width: fit-content;
 }
@@ -18,7 +17,8 @@
 }
 
 .dropdownSelectControl {
-  background-image: url('mdi/filled/arrow_drop_down.svg?fill=%23eee');
+  background-color: var(--acrylic-color-light-2);
+  background-image: url('mdi/filled/arrow_drop_down.svg?fill=%23000');
   background-position: right 8px top 8px;
   background-repeat: no-repeat;
   background-size: 24px;
@@ -50,5 +50,5 @@
 }
 
 .dropdownSelectControl:not(:disabled):hover {
-  background-color: var(--acrylic-color-light-2);
+  background-color: var(--acrylic-color-light-3);
 }

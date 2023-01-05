@@ -1,6 +1,5 @@
 .actionButton {
   backdrop-filter: var(--acrylic-background-filter);
-  background-color: var(--acrylic-color-light-1);
   border-radius: 4px;
   max-width: fit-content;
 }
@@ -18,6 +17,7 @@
 }
 
 .actionButtonControl {
+  background-color: var(--acrylic-color-light-2);
   border-radius: 4px;
   cursor: pointer;
   line-height: 40px;
@@ -41,10 +41,10 @@
 }
 
 .actionButtonControl:not(:disabled):hover {
-  background-color: var(--acrylic-color-light-2);
+  background-color: var(--acrylic-color-light-3);
   cursor: pointer;
 }
 
 .actionButtonControl:not(:disabled):active {
-  background-color: hsl(0deg 0% 0% / 50%);
+  background-color: var(--acrylic-color-light-1);
 }

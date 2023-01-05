@@ -1,10 +1,9 @@
 .chip {
   align-items: flex-start;
-  background-color: var(--acrylic-color-light-1);
-  color: var(--bookmark-text-color);
+  background-color: var(--acrylic-color-light-2);
+  box-shadow: 2px 2px 8px 0 var(--acrylic-color-dark-1);
   cursor: pointer;
   display: flex;
-  text-shadow: rgb(33 33 33 / 100%) 0 0 3px;
   touch-action: manipulation;
   transition: background-color 0.2s, transform 0.2s;
   width: 100%;
@@ -35,7 +34,7 @@
 }
 
 .chip:hover {
-  background-color: var(--acrylic-color-light-2);
+  background-color: var(--acrylic-color-light-3);
   transform: translateY(-1px);
 }
 
@@ -44,6 +43,7 @@
 }
 
 .chipLabel {
+  color: var(--bookmark-text-color);
   line-height: 32px;
   overflow: hidden;
   padding-right: 12px;

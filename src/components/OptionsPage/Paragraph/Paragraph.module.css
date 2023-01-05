@@ -1,4 +1,5 @@
 .paragraph {
+  color: var(--acrylic-color-light-3);
   hanging-punctuation: first last;
   hyphens: auto;
 }

@@ -1,12 +1,13 @@
 :root {
-  --acrylic-color-light-1: rgb(255 255 255 / 10%);
-  --acrylic-color-light-2: rgb(255 255 255 / 20%);
+  --acrylic-color-light-1: rgb(255 255 255 / 50%);
+  --acrylic-color-light-2: rgb(255 255 255 / 75%);
+  --acrylic-color-light-3: rgb(255 255 255 / 90%);
   --acrylic-color-dark-1: rgb(33 33 33 / 75%);
   --acrylic-color-dark-2: rgb(33 33 33 / 90%);
   --acrylic-background-filter: blur(2px);
   --bookmark-category-title-text-color: #eee;
   --bookmark-column-min-width: 235px;
-  --bookmark-text-color: #eee;
+  --bookmark-text-color: #000;
   --bookmark-browser-centered-columns: 6;
   --bookmark-browser-centered-width: calc(
     var(--bookmark-column-min-width) * var(--bookmark-browser-centered-columns) + 1rem *
@@ -19,8 +20,8 @@
   --font-family-sans-serif: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue', arial, 'Noto Sans',
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --loading-strip-size: 20px;
-  --loading-strip-color-1: rgb(238 238 238 / 10%);
-  --loading-strip-color-2: rgb(238 238 238 / 20%);
+  --loading-strip-color-1: rgb(255 255 255 / 40%);
+  --loading-strip-color-2: rgb(255 255 255 / 80%);
   --outline-color: #0288d1;
   --outline-width: 0.125rem; /* 2px */
   --popup-title-height: 40px;

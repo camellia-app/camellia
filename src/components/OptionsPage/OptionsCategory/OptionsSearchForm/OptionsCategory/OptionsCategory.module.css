@@ -8,24 +8,23 @@
 .optionsCategoryButton {
   align-items: flex-start;
   border-radius: 4px;
-  color: var(--bookmark-text-color);
+  color: var(--acrylic-color-light-3);
   cursor: pointer;
   display: flex;
   max-width: 100%;
-  text-shadow: rgb(33 33 33 / 100%) 0 0 3px;
   touch-action: manipulation;
-  transition: background-color 0.2s, transform 0.2s;
+  transition: background-color 0.2s, transform 0.2s, color 0.2s;
   user-select: none;
   width: 100%;
 }
 
 .optionsCategoryButton:hover {
-  background-color: var(--acrylic-color-light-2);
+  background-color: var(--acrylic-color-light-1);
   transform: translateY(-1px);
 }
 
 .optionsCategory input:checked + .optionsCategoryButton {
-  background-color: var(--acrylic-color-light-1);
+  background-color: var(--acrylic-color-light-2);
 }
 
 .optionsCategoryLabel {
@@ -39,9 +38,13 @@
 .optionsCategoryIcon {
   align-items: center;
   display: flex;
-  fill: var(--bookmark-text-color);
+  fill: var(--acrylic-color-light-3);
   height: 24px;
   justify-content: center;
   margin: 8px;
   width: 24px;
+}
+
+.optionsCategoryButton:hover .optionsCategoryIcon {
+  fill: currentcolor;
 }

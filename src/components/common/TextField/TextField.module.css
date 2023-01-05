@@ -1,6 +1,5 @@
 .textField {
   backdrop-filter: var(--acrylic-background-filter);
-  background-color: var(--acrylic-color-light-1);
   border-radius: 4px;
   width: 20rem;
 }
@@ -22,6 +21,7 @@
 }
 
 .textFieldControl {
+  background-color: var(--acrylic-color-light-2);
   border-radius: 4px;
   cursor: text;
   line-height: 40px;
@@ -38,7 +38,7 @@
 }
 
 .textFieldControl::placeholder {
-  color: rgb(169 169 169);
+  color: var(--acrylic-color-dark-1);
   opacity: 1;
 }
 
@@ -55,5 +55,5 @@
 }
 
 .textFieldControl:not(:disabled):hover {
-  background-color: var(--acrylic-color-light-2);
+  background-color: var(--acrylic-color-light-3);
 }
