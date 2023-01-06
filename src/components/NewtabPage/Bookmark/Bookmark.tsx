@@ -82,10 +82,14 @@ export const Bookmark: FC<{
     }
   };
 
-  const url = props.bookmark.type === 'link' ? props.bookmark.url : undefined;
-
   switch (props.bookmark.type) {
-    case 'link':
+    case 'link': {
+      let title = props.bookmark.title;
+
+      if (title.trim().length === 0) {
+        title = new URL(props.bookmark.url).hostname;
+      }
+
       return (
         <Chip
           blurred={props.blurred}
@@ -94,12 +98,13 @@ export const Bookmark: FC<{
           focus={props.focus}
           iconSrc={getFavicon(props.bookmark.url, 128)}
           isLoading={isLoading}
-          label={props.bookmark.title}
+          label={title}
           shape={'rounded'}
-          tooltip={props.bookmark.title}
-          url={url}
+          tooltip={title}
+          url={props.bookmark.url}
         />
       );
+    }
 
     case 'folder':
       return (
@@ -112,7 +117,6 @@ export const Bookmark: FC<{
           shape={'rounded'}
           svg={<Folder />}
           tooltip={props.bookmark.title}
-          url={url}
         />
       );
   }
