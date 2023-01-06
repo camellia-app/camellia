@@ -18,7 +18,6 @@ export const SearchButton: FC = () => {
 
   return (
     <Chip
-      blurred={true}
       clickAction={handleClick}
       focus={false}
       isLoading={false}

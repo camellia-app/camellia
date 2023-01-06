@@ -15,7 +15,6 @@ export const OptionsButton: FC = () => {
 
   return (
     <Chip
-      blurred={true}
       clickAction={handleClick}
       focus={false}
       isLoading={false}
