@@ -20,8 +20,8 @@
   --font-family-sans-serif: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue', arial, 'Noto Sans',
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --loading-strip-size: 20px;
-  --loading-strip-color-1: rgb(255 255 255 / 40%);
-  --loading-strip-color-2: rgb(255 255 255 / 80%);
+  --loading-strip-color-1: rgb(33 33 33 / 15%);
+  --loading-strip-color-2: rgb(255 255 255 / 15%);
   --outline-color: #0288d1;
   --outline-width: 0.125rem; /* 2px */
   --popup-title-height: 40px;
