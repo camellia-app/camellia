@@ -1,7 +1,27 @@
 .checkbox {
   backdrop-filter: var(--acrylic-background-filter);
+  background-color: var(--acrylic-color-light-2);
   border-radius: 4px;
+  cursor: pointer;
   max-width: fit-content;
+  transition: 0.5s background-color;
+}
+
+.checkbox:has(input[type='checkbox']:disabled) {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.checkbox:has(input[type='checkbox']:focus) {
+  box-shadow: 0 0 0 var(--outline-width) var(--outline-color);
+}
+
+.checkbox:has(input[type='checkbox']:not(:disabled):hover) {
+  background-color: var(--acrylic-color-light-3);
+}
+
+.checkbox:has(input[type='checkbox']:not(:disabled):active) {
+  background-color: var(--acrylic-color-light-1);
 }
 
 .checkboxLoading :global {
@@ -16,21 +36,24 @@
   background-size: var(--loading-strip-size) var(--loading-strip-size);
 }
 
+input[type='checkbox'] {
+  height: 0;
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
 .checkboxControl {
-  background-color: var(--acrylic-color-light-2);
   background-image: url('mdi/filled/check_box_outline_blank.svg?fill=%23000');
   background-position: left 8px top 8px;
   background-repeat: no-repeat;
   background-size: 24px;
-  border-radius: 4px;
-  cursor: pointer;
   line-height: 40px;
   max-width: 100%;
   overflow: hidden;
   padding-left: 40px;
   padding-right: 8px;
   text-overflow: ellipsis;
-  transition: 0.5s background-color;
   user-select: none;
   white-space: nowrap;
 }
@@ -39,31 +62,6 @@
   background-image: url('mdi/filled/indeterminate_check_box.svg?fill=%23000');
 }
 
-input[type='checkbox'] {
-  height: 0;
-  opacity: 0;
-  position: absolute;
-  width: 0;
-}
-
-input[type='checkbox']:disabled + .checkboxControl {
-  cursor: default;
-  opacity: 0.5;
-}
-
-input[type='checkbox']:focus + .checkboxControl {
-  box-shadow: 0 0 0 var(--outline-width) var(--outline-color);
-}
-
 input[type='checkbox']:checked + .checkboxControl {
   background-image: url('mdi/filled/check_box.svg?fill=%23000');
-}
-
-input[type='checkbox']:not(:disabled) + .checkboxControl:hover {
-  background-color: var(--acrylic-color-light-3);
-  cursor: pointer;
-}
-
-input[type='checkbox']:not(:disabled) + .checkboxControl:active {
-  background-color: var(--acrylic-color-light-1);
 }

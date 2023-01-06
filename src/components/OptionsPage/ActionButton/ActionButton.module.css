@@ -1,7 +1,27 @@
 .actionButton {
   backdrop-filter: var(--acrylic-background-filter);
+  background-color: var(--acrylic-color-light-2);
   border-radius: 4px;
+  cursor: pointer;
   max-width: fit-content;
+  transition: 0.5s background-color;
+}
+
+.actionButton:has(button:disabled) {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.actionButton:has(button:focus) {
+  box-shadow: 0 0 0 var(--outline-width) var(--outline-color);
+}
+
+.actionButton:has(button:not(:disabled):hover) {
+  background-color: var(--acrylic-color-light-3);
+}
+
+.actionButton:has(button:not(:disabled):active) {
+  background-color: var(--acrylic-color-light-1);
 }
 
 .actionButtonLoading :global {
@@ -17,34 +37,12 @@
 }
 
 .actionButtonControl {
-  background-color: var(--acrylic-color-light-2);
-  border-radius: 4px;
-  cursor: pointer;
   line-height: 40px;
   max-width: 100%;
   overflow: hidden;
   padding-left: 8px;
   padding-right: 8px;
   text-overflow: ellipsis;
-  transition: 0.5s background-color;
   user-select: none;
   white-space: nowrap;
-}
-
-.actionButtonControl:disabled {
-  cursor: default;
-  opacity: 0.5;
-}
-
-.actionButtonControl:focus {
-  box-shadow: 0 0 0 var(--outline-width) var(--outline-color);
-}
-
-.actionButtonControl:not(:disabled):hover {
-  background-color: var(--acrylic-color-light-3);
-  cursor: pointer;
-}
-
-.actionButtonControl:not(:disabled):active {
-  background-color: var(--acrylic-color-light-1);
 }
