@@ -104,10 +104,10 @@
       }
     }
   },
-  "option_backgroundImageUnsplashCollectionId_label": {
+  "option_backgroundImageUnsplashCollection_label": {
     "message": "Unsplash collection link"
   },
-  "option_backgroundImageUnsplashCollectionId_description": {
+  "option_backgroundImageUnsplashCollection_description": {
     "message": "Link pointing to Unsplash collection in form of \"$URL$\".",
     "placeholders": {
       "url": {
@@ -116,7 +116,7 @@
       }
     }
   },
-  "option_backgroundImageUnsplashCollectionId_placeholder": {
+  "option_backgroundImageUnsplashCollection_placeholder": {
     "message": "e.g. $URL$",
     "placeholders": {
       "url": {
@@ -124,6 +124,9 @@
         "example": "https://unsplash.com/collections/123"
       }
     }
+  },
+  "option_backgroundImageUnsplashCollection_error_notFound": {
+    "message": "Could not find a collection by given link"
   },
   "bookmarkSearch_textField_modalTitle": {
     "message": "Search",

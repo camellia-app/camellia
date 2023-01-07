@@ -63,7 +63,7 @@ export const LabeledTextField: FC<{
   /**
    * Function to validate user input.
    */
-  validate?: ((newValue: string) => string | undefined) | undefined;
+  validate?: ((newValue: string) => Promise<string | undefined>) | undefined;
 
   /**
    * Initial value of the input.

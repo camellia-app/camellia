@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { t } from '../../../../api/i18n/translate';
 import { useOption } from '../../../../api/options/hook';
+import { CollectionDoesNotExist, getRandomUnsplashPhotoFromCollectionByUrl } from '../../../../api/unsplash';
 import { BackgroundPreview } from '../../BackgroundPreview/BackgroundPreview';
 import { FilteredOptions } from '../../OptionsCategory/FilteredOptions/FilteredOptions';
 import { categoriesMap } from '../../OptionsCategory/OptionsSearchForm/OptionsSearchForm';
@@ -9,6 +10,22 @@ import { OptionTextField } from '../OptionTextField';
 
 export const BackgroundImageSource: FC = () => {
   const [backgroundImageSourceType] = useOption('background_provider_type');
+
+  const validateUnsplashCollection = async (newValue: string): Promise<string | undefined> => {
+    try {
+      await getRandomUnsplashPhotoFromCollectionByUrl(newValue);
+    } catch (error: unknown) {
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        return;
+      }
+
+      if (error instanceof CollectionDoesNotExist) {
+        return t('option_backgroundImageUnsplashCollection_error_notFound');
+      }
+    }
+
+    return undefined;
+  };
 
   return (
     <>
@@ -51,17 +68,18 @@ export const BackgroundImageSource: FC = () => {
       {backgroundImageSourceType === 'unsplash_collection' ? (
         <FilteredOptions categories={[categoriesMap.background]}>
           <OptionTextField
-            description={t('option_backgroundImageUnsplashCollectionId_description', [
+            description={t('option_backgroundImageUnsplashCollection_description', [
               'https://unsplash.com/collections/123',
             ])}
-            label={t('option_backgroundImageUnsplashCollectionId_label')}
-            optionKey="background_image_unsplash_collection_id"
+            label={t('option_backgroundImageUnsplashCollection_label')}
+            optionKey="background_image_unsplash_collection"
             pattern={'^https:\\/\\/unsplash\\.com\\/collections\\/[1-9]+[0-9]*?.+'}
-            placeholder={t('option_backgroundImageUnsplashCollectionId_placeholder', [
+            placeholder={t('option_backgroundImageUnsplashCollection_placeholder', [
               'https://unsplash.com/collections/123',
             ])}
             spellCheck={false}
             type={'url'}
+            validate={validateUnsplashCollection}
           />
         </FilteredOptions>
       ) : undefined}

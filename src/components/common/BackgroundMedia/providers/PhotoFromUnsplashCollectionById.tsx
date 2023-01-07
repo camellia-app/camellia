@@ -3,10 +3,10 @@ import { useRandomPhotoFromUnsplashCollection } from '../../../../api/unsplash/h
 import { ImageByUrl } from './ImageByUrl';
 
 export const PhotoFromUnsplashCollectionById: FC<{
-  collectionId: string;
+  collection: string;
   onLoad: () => void;
 }> = (props) => {
-  const photo = useRandomPhotoFromUnsplashCollection(props.collectionId);
+  const photo = useRandomPhotoFromUnsplashCollection(props.collection);
 
   if (photo === undefined) {
     return <></>;

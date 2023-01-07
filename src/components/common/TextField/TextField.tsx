@@ -68,7 +68,7 @@ export const TextField: FC<{
   /**
    * Function to validate user input.
    */
-  validate?: ((newValue: string) => string | undefined) | undefined;
+  validate?: ((newValue: string) => Promise<string | undefined>) | undefined;
 
   /**
    * Initial value of the input.
@@ -77,7 +77,7 @@ export const TextField: FC<{
 }> = (props) => {
   const inputElementRef = useRef<HTMLInputElement>(null);
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = async (event) => {
     if (inputElementRef.current === null) {
       return;
     }
@@ -92,7 +92,7 @@ export const TextField: FC<{
     const newValue = event.target.value;
 
     if (props.validate !== undefined) {
-      const validationErrorMessage = props.validate(newValue);
+      const validationErrorMessage = await props.validate(newValue);
 
       if (validationErrorMessage !== undefined) {
         inputElementRef.current.setCustomValidity(validationErrorMessage);

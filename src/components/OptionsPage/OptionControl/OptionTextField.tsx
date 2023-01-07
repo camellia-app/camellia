@@ -13,7 +13,7 @@ export const OptionTextField: FC<{
   placeholder: string;
   spellCheck: boolean;
   type: 'number' | 'url';
-  validate?: ((value: string) => string | undefined) | undefined;
+  validate?: ((value: string) => Promise<string | undefined>) | undefined;
 }> = (props) => {
   const [optionValue, setOptionValue] = useOption(props.optionKey);
   const [isLoading, setIsLoading] = useState<boolean>(optionValue === undefined);

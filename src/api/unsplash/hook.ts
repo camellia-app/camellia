@@ -5,9 +5,9 @@ import type { RootState } from '../../store';
 import type { UnsplashState } from '../../store/slice/unsplashSlice';
 import { unsplashSlice } from '../../store/slice/unsplashSlice';
 import type { UnsplashPhoto } from './common';
-import { getRandomUnsplashPhotoFromCollection } from './index';
+import { CollectionDoesNotExist, getRandomUnsplashPhotoFromCollectionByUrl } from './index';
 
-export const useRandomPhotoFromUnsplashCollection = (collectionId: string): UnsplashPhoto | undefined => {
+export const useRandomPhotoFromUnsplashCollection = (collectionUrl: string): UnsplashPhoto | undefined => {
   const unsplashPhotoState = useSelector<RootState, UnsplashState>((state) => state.unsplash);
 
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ export const useRandomPhotoFromUnsplashCollection = (collectionId: string): Unsp
 
     const abortController = new AbortController();
 
-    getRandomUnsplashPhotoFromCollection(collectionId, abortController.signal)
+    getRandomUnsplashPhotoFromCollectionByUrl(collectionUrl, abortController.signal)
       .then((photo) => {
         span?.setStatus('ok');
 
@@ -28,6 +28,12 @@ export const useRandomPhotoFromUnsplashCollection = (collectionId: string): Unsp
       .catch((error: unknown) => {
         // we don't want to see AbortError in Sentry and in logs
         if (error instanceof DOMException && error.name === 'AbortError') {
+          return;
+        }
+
+        if (error instanceof CollectionDoesNotExist) {
+          console.warn(error.message);
+
           return;
         }
 
@@ -40,7 +46,7 @@ export const useRandomPhotoFromUnsplashCollection = (collectionId: string): Unsp
     return () => {
       abortController.abort();
     };
-  }, [collectionId, dispatch]);
+  }, [collectionUrl, dispatch]);
 
   return unsplashPhotoState.photo;
 };

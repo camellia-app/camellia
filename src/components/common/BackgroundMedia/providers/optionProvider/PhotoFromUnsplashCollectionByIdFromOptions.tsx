@@ -5,16 +5,11 @@ import { PhotoFromUnsplashCollectionById } from '../PhotoFromUnsplashCollectionB
 export const PhotoFromUnsplashCollectionByIdFromOptions: FC<{
   onLoad: () => void;
 }> = (props) => {
-  const [backgroundImageUnsplashCollectionId] = useOption('background_image_unsplash_collection_id');
+  const [backgroundImageUnsplashCollection] = useOption('background_image_unsplash_collection');
 
-  if (backgroundImageUnsplashCollectionId === undefined) {
+  if (backgroundImageUnsplashCollection === undefined) {
     return <></>;
   }
 
-  const collectionId = backgroundImageUnsplashCollectionId.replace(
-    /^https:\/\/unsplash\.com\/collections\/([0-9]+).+/,
-    '$1',
-  );
-
-  return <PhotoFromUnsplashCollectionById collectionId={collectionId} onLoad={props.onLoad} />;
+  return <PhotoFromUnsplashCollectionById collection={backgroundImageUnsplashCollection} onLoad={props.onLoad} />;
 };
