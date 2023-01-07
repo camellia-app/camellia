@@ -18,7 +18,7 @@ export const getRandomUnsplashPhotoFromCollectionByUrl = (
   collectionUrl: string,
   abortSignal?: AbortSignal | undefined,
 ): Promise<UnsplashPhoto> => {
-  const collectionId = collectionUrl.replace(/^https:\/\/unsplash\.com\/collections\/([0-9]+).+/, '$1');
+  const collectionId = collectionUrl.replace(/^https:\/\/unsplash\.com\/collections\/([0-9]+).*/, '$1');
 
   return getRandomUnsplashPhotoFromCollectionById(collectionId, abortSignal);
 };
