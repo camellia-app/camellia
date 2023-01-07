@@ -12,7 +12,7 @@ export const PhotoFromUnsplashCollectionByIdFromOptions: FC<{
   }
 
   const collectionId = backgroundImageUnsplashCollectionId.replace(
-    /^https:\/\/unsplash\.com\/collections\/([0-9]+)/,
+    /^https:\/\/unsplash\.com\/collections\/([0-9]+).+/,
     '$1',
   );
 
