@@ -1,21 +1,21 @@
-import { AppPlatform, getPlatform } from '../api/appEnvironment';
+import { getPlatform } from '../api/appEnvironment';
 import { config } from '../config';
 
 export type UpdatedCallback = (previousVersion: string) => void;
 
 export const onAppUpdated = (callback: UpdatedCallback): void => {
   switch (getPlatform()) {
-    case AppPlatform.Chromium:
+    case 'chromium':
       onChromiumAppUpdated(callback);
 
       break;
 
-    case AppPlatform.Webext:
+    case 'webext':
       onWebextAppUpdated(callback);
 
       break;
 
-    case AppPlatform.Web:
+    case 'web':
       onWebAppUpdated(callback);
 
       break;

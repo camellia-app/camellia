@@ -1,20 +1,20 @@
-import { AppPlatform, getPlatform } from '../api/appEnvironment';
+import { getPlatform } from '../api/appEnvironment';
 
 export type InstalledCallback = () => void;
 
 export const onAppInstalled = (callback: InstalledCallback): void => {
   switch (getPlatform()) {
-    case AppPlatform.Chromium:
+    case 'chromium':
       onChromiumAppInstalled(callback);
 
       break;
 
-    case AppPlatform.Webext:
+    case 'webext':
       onWebextAppInstalled(callback);
 
       break;
 
-    case AppPlatform.Web:
+    case 'web':
       onWebAppInstalled(callback);
 
       break;

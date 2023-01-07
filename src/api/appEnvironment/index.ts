@@ -5,33 +5,25 @@ import { getWebextAppEnvironment } from './platform/webext';
 
 export const getAppEnvironment = (): Promise<AppEnvironment> => {
   switch (getPlatform()) {
-    case AppPlatform.Chromium:
+    case 'chromium':
       return getChromiumAppEnvironment();
 
-    case AppPlatform.Webext:
+    case 'webext':
       return getWebextAppEnvironment();
 
-    case AppPlatform.Web:
+    case 'web':
       return getWebAppEnvironment();
   }
 };
 
-export enum AppPlatform {
-  Chromium = 'chromium',
-  Web = 'web',
-  Webext = 'webext',
-}
+export type AppPlatform = 'chromium' | 'web' | 'webext';
 
 export const getPlatform = (): AppPlatform => {
   switch (process.env['TARGET_PLATFORM']) {
     case 'chromium':
-      return AppPlatform.Chromium;
-
     case 'webext':
-      return AppPlatform.Webext;
-
     case 'web':
-      return AppPlatform.Web;
+      return process.env['TARGET_PLATFORM'];
 
     default:
       throw new Error(`Unknown platform: ${process.env['TARGET_PLATFORM']}`);

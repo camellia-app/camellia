@@ -1,18 +1,18 @@
-import { AppPlatform, getPlatform } from '../appEnvironment';
+import { getPlatform } from '../appEnvironment';
 
 export const openOptionsPage = (): void => {
   switch (getPlatform()) {
-    case AppPlatform.Chromium:
+    case 'chromium':
       chrome.runtime.openOptionsPage();
 
       break;
 
-    case AppPlatform.Webext:
+    case 'webext':
       browser.runtime.openOptionsPage();
 
       break;
 
-    case AppPlatform.Web:
+    case 'web':
       openUrl('options.html');
 
       break;
@@ -21,36 +21,36 @@ export const openOptionsPage = (): void => {
 
 export const openBookmarkManager = (): void => {
   switch (getPlatform()) {
-    case AppPlatform.Chromium:
+    case 'chromium':
       openUrl('chrome://bookmarks/');
 
       break;
 
-    case AppPlatform.Webext:
+    case 'webext':
       throw new Error('Bookmark manager is not supported by webext platform');
 
-    case AppPlatform.Web:
+    case 'web':
       throw new Error('Bookmark manager is not supported by web platform');
   }
 };
 
 export const openUrl = (url: string): void => {
   switch (getPlatform()) {
-    case AppPlatform.Chromium:
+    case 'chromium':
       chrome.tabs.create({
         url: url,
       });
 
       break;
 
-    case AppPlatform.Webext:
+    case 'webext':
       browser.tabs.create({
         url: url,
       });
 
       break;
 
-    case AppPlatform.Web:
+    case 'web':
       open(url, '_self');
 
       break;

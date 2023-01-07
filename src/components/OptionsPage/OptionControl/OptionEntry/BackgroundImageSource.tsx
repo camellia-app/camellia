@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import { t } from '../../../../api/i18n/translate';
 import { useOption } from '../../../../api/options/hook';
-import { BackgroundProviderType } from '../../../../api/options/options';
 import { BackgroundPreview } from '../../BackgroundPreview/BackgroundPreview';
 import { FilteredOptions } from '../../OptionsCategory/FilteredOptions/FilteredOptions';
 import { categoriesMap } from '../../OptionsCategory/OptionsSearchForm/OptionsSearchForm';
@@ -18,11 +17,11 @@ export const BackgroundImageSource: FC = () => {
           description={t('option_backgroundImage_sourceTypeDescription')}
           dropdownOptions={[
             {
-              value: BackgroundProviderType.Link,
+              value: 'link',
               label: t('option_backgroundImage_sourceTypeOptionLink'),
             },
             {
-              value: BackgroundProviderType.UnsplashCollection,
+              value: 'unsplash_collection',
               label: t('option_backgroundImage_sourceTypeOptionUnsplashCollection'),
             },
           ]}

@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import { t } from '../../../../api/i18n/translate';
-import { ContentLayoutType } from '../../../../api/options/options';
 import { FilteredOptions } from '../../OptionsCategory/FilteredOptions/FilteredOptions';
 import { categoriesMap } from '../../OptionsCategory/OptionsSearchForm/OptionsSearchForm';
 import { OptionDropdownSelect } from '../OptionDropdownSelect';
@@ -12,11 +11,11 @@ export const ContentLayout: FC = () => {
         description={t('option_contentLayout_description')}
         dropdownOptions={[
           {
-            value: ContentLayoutType.Centered,
+            value: 'centered',
             label: t('option_contentLayout_optionCentered'),
           },
           {
-            value: ContentLayoutType.Fluid,
+            value: 'fluid',
             label: t('option_contentLayout_optionFluid'),
           },
         ]}

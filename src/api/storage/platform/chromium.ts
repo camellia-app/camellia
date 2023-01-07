@@ -1,28 +1,25 @@
-import type { Storage, StorageKeyChangeHandler } from '../common';
-import { StorageKeyDoesNotExist, StorageType } from '../common';
+import type { Storage, StorageKeyChangeHandler, StorageType } from '../common';
+import { StorageKeyDoesNotExist } from '../common';
 
 export const getChromiumStorageManager = (type: StorageType): Storage => {
   switch (type) {
-    case StorageType.Local:
+    case 'local':
       return getChromiumLocalStorageManager();
 
-    case StorageType.Synchronizable:
+    case 'synchronizable':
       return getChromiumSynchronizableStorageManager();
   }
 };
 
-enum StorageAreaType {
-  Local = 'local',
-  Sync = 'sync',
-}
+type StorageAreaType = 'local' | 'sync';
 
 const getStorageAreaTypeByStorageManagerType = (storageManagerType: StorageType): StorageAreaType => {
   switch (storageManagerType) {
-    case StorageType.Synchronizable:
-      return StorageAreaType.Sync;
+    case 'synchronizable':
+      return 'sync';
 
-    case StorageType.Local:
-      return StorageAreaType.Local;
+    case 'local':
+      return 'local';
   }
 };
 
@@ -33,7 +30,7 @@ const getChromiumLocalStorageManager = (): Storage => {
     const value = data[key];
 
     if (value === undefined) {
-      throw new StorageKeyDoesNotExist(StorageType.Local, key);
+      throw new StorageKeyDoesNotExist('local', key);
     }
 
     return value;
@@ -62,7 +59,7 @@ const getChromiumLocalStorageManager = (): Storage => {
     },
     subscribeToKeyChanges: <TValue>(key: string, handler: StorageKeyChangeHandler<TValue>): (() => void) => {
       const listener: Parameters<typeof chrome.storage.onChanged.addListener>[0] = function (changes, area: string) {
-        if (getStorageAreaTypeByStorageManagerType(StorageType.Local) !== area) {
+        if (getStorageAreaTypeByStorageManagerType('local') !== area) {
           return;
         }
 
@@ -100,7 +97,7 @@ const getChromiumSynchronizableStorageManager = (): Storage => {
     const value = data[key];
 
     if (value === undefined) {
-      throw new StorageKeyDoesNotExist(StorageType.Synchronizable, key);
+      throw new StorageKeyDoesNotExist('synchronizable', key);
     }
 
     return value;
@@ -129,7 +126,7 @@ const getChromiumSynchronizableStorageManager = (): Storage => {
     },
     subscribeToKeyChanges: <TValue>(key: string, handler: StorageKeyChangeHandler<TValue>): (() => void) => {
       const listener: Parameters<typeof chrome.storage.onChanged.addListener>[0] = function (changes, area: string) {
-        if (getStorageAreaTypeByStorageManagerType(StorageType.Synchronizable) !== area) {
+        if (getStorageAreaTypeByStorageManagerType('synchronizable') !== area) {
           return;
         }
 

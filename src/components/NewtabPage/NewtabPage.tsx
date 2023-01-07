@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { AppPlatform, getPlatform } from '../../api/appEnvironment';
+import { getPlatform } from '../../api/appEnvironment';
 import { initializeSentry } from '../../api/utils/sentry';
 import { store } from '../../store';
 import { BackgroundMedia } from '../common/BackgroundMedia/BackgroundMedia';
@@ -15,7 +15,7 @@ import { PopupManager } from './Popup/PopupManager/PopupManager';
 
 initializeSentry();
 
-if (getPlatform() === AppPlatform.Web) {
+if (getPlatform() === 'web') {
   await import('../../backgroundScript/background');
 }
 

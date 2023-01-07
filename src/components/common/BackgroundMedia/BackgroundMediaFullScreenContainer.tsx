@@ -1,7 +1,6 @@
 import type CSS from 'csstype';
 import type { FC, ReactNode } from 'react';
 import { useOption } from '../../../api/options/hook';
-import { BackgroundBrightnessType } from '../../../api/options/options';
 import {
   backgroundMediaFullScreenContainer,
   backgroundMediaFullScreenContainerBackdrop,
@@ -17,12 +16,12 @@ export const BackgroundMediaFullScreenContainer: FC<{
 
   if (props.forceBrightness === undefined) {
     switch (backgroundBrightness) {
-      case BackgroundBrightnessType.Bright:
+      case 'bright':
         brightness = 100;
 
         break;
 
-      case BackgroundBrightnessType.ReducedBrightness:
+      case 'reduced_brightness':
         brightness = 50;
 
         break;

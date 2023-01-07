@@ -1,24 +1,23 @@
-import { AppPlatform, getPlatform } from '../appEnvironment';
-import type { Storage } from './common';
-import { StorageType } from './common';
+import { getPlatform } from '../appEnvironment';
+import type { Storage, StorageType } from './common';
 import { getChromiumStorageManager } from './platform/chromium';
 import { getWebStorageManager } from './platform/web';
 import { getWebextStorageManager } from './platform/webext';
 
 const getStorage = (type: StorageType): Storage => {
   switch (getPlatform()) {
-    case AppPlatform.Chromium:
+    case 'chromium':
       return getChromiumStorageManager(type);
 
-    case AppPlatform.Webext:
+    case 'webext':
       return getWebextStorageManager(type);
 
-    case AppPlatform.Web:
+    case 'web':
       return getWebStorageManager(type);
   }
 };
 
 export const storage = {
-  local: getStorage(StorageType.Local),
-  synchronizable: getStorage(StorageType.Synchronizable),
+  local: getStorage('local'),
+  synchronizable: getStorage('synchronizable'),
 };

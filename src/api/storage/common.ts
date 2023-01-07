@@ -13,10 +13,7 @@ export type Storage = {
   ) => StorageKeyChangeHandlerDestructor;
 };
 
-export enum StorageType {
-  Local = 'local',
-  Synchronizable = 'synchronizable',
-}
+export type StorageType = 'local' | 'synchronizable';
 
 export class StorageError extends Error {}
 
