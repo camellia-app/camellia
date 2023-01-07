@@ -1,19 +1,8 @@
 import { config } from '../../config';
 
-export enum BackgroundProviderType {
-  Link = 'link',
-  UnsplashCollection = 'unsplash_collection',
-}
-
-export enum ContentLayoutType {
-  Centered = 'centered',
-  Fluid = 'fluid',
-}
-
-export enum BackgroundBrightnessType {
-  Bright = 'bright',
-  ReducedBrightness = 'reduced_brightness',
-}
+export type BackgroundProviderType = 'link' | 'unsplash_collection';
+export type ContentLayoutType = 'centered' | 'fluid';
+export type BackgroundBrightnessType = 'bright' | 'reduced_brightness';
 
 export type OptionsTypeMap = {
   background_brightness: BackgroundBrightnessType;
@@ -37,11 +26,11 @@ export type StringOptionKey = 'background_image_link' | 'background_image_unspla
 export type EnumOptionKey = 'background_brightness' | 'background_provider_type' | 'content_layout';
 
 export const optionDefaults: OptionsTypeMap = {
-  background_brightness: BackgroundBrightnessType.Bright,
+  background_brightness: 'bright',
   background_image_link: 'https://images.unsplash.com/photo-1615931632997-c592e375d6ef',
   background_image_unsplash_collection_id: `https://unsplash.com/collections/${config.unsplash.defaultCollectionId}`,
-  background_provider_type: BackgroundProviderType.UnsplashCollection,
-  content_layout: ContentLayoutType.Centered,
+  background_provider_type: 'unsplash_collection',
+  content_layout: 'centered',
   display_unsplash_attribution: true,
   show_bookmark_manager_button: true,
   show_options_button: true,

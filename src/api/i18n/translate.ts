@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/browser';
 import englishTranslations from '../../../translations/en/messages.json';
 import russianTranslations from '../../../translations/ru/messages.json';
-import { AppPlatform, getPlatform } from '../appEnvironment';
+import { getPlatform } from '../appEnvironment';
 
 type TranslationKey = keyof typeof englishTranslations | keyof typeof russianTranslations;
 
@@ -18,13 +18,13 @@ type TranslationEntry = {
 
 export const t = (key: TranslationKey, placeholderReplacements?: Array<string>): string => {
   switch (getPlatform()) {
-    case AppPlatform.Chromium:
+    case 'chromium':
       return getChromiumTranslatedMessage(key, placeholderReplacements);
 
-    case AppPlatform.Webext:
+    case 'webext':
       return getWebextTranslatedMessage(key, placeholderReplacements);
 
-    case AppPlatform.Web:
+    case 'web':
       return getWebTranslatedMessage(key, placeholderReplacements);
   }
 };

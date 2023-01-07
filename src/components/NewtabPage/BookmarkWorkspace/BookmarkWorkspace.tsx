@@ -5,7 +5,6 @@ import type { Bookmark } from '../../../api/bookmark/common';
 import { useBookmarksBarChildren, useOtherBookmarksChildren } from '../../../api/bookmark/hook';
 import { t } from '../../../api/i18n/translate';
 import { useOption } from '../../../api/options/hook';
-import { ContentLayoutType } from '../../../api/options/options';
 import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
 import { BookmarkSearchDialog } from '../BookmarkSearchDialog/BookmarkSearchDialog';
 import { BookmarkManager } from '../BottomToolbar/ToolbarItem/BookmarkManager';
@@ -22,7 +21,7 @@ export const BookmarkWorkspace: FC = () => {
 
   const mainClasses = classNames(bookmarkWorkspace, {
     [bookmarkWorkspaceLoading]: isLoading,
-    [bookmarkWorkspaceCentered]: contentLayout === ContentLayoutType.Centered,
+    [bookmarkWorkspaceCentered]: contentLayout === 'centered',
   });
 
   const bookmarkCategories: Array<{ bookmarks: Array<Bookmark>; title: string }> = [];

@@ -2,7 +2,7 @@ import { storage } from '../storage';
 import { StorageKeyDoesNotExist } from '../storage/common';
 import type { OptionChangeHandler, OptionChangeHandlerDestructor } from './common';
 import type { OptionKey, OptionsTypeMap } from './options';
-import { BackgroundProviderType, optionDefaults } from './options';
+import { optionDefaults } from './options';
 
 export const setOption = async <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(
   key: TKey,
@@ -67,7 +67,7 @@ export const migrateOptions = async (): Promise<void> => {
     await Promise.all([
       storage.synchronizable.delete(oldBackgroundImageKey),
       setOption('background_image_link', backgroundImageUrl),
-      setOption('background_provider_type', BackgroundProviderType.Link),
+      setOption('background_provider_type', 'link'),
     ]);
   }
 };

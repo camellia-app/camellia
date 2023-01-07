@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { AppPlatform, getPlatform } from '../../api/appEnvironment';
+import { getPlatform } from '../../api/appEnvironment';
 import { getSupportedRuntimeFeatures } from '../../api/applicationRuntime/features';
 import { initializeSentry } from '../../api/utils/sentry';
 import { config } from '../../config';
@@ -28,7 +28,7 @@ import { options, optionsContent, optionsNavigation, optionsWrapper } from './Op
 
 initializeSentry();
 
-if (getPlatform() === AppPlatform.Web) {
+if (getPlatform() === 'web') {
   await import('../../backgroundScript/background');
 }
 

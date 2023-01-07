@@ -1,4 +1,4 @@
-import { AppPlatform, getPlatform } from '../appEnvironment';
+import { getPlatform } from '../appEnvironment';
 
 type RuntimeFeatures = {
   bookmarkManagerPage: boolean;
@@ -6,6 +6,6 @@ type RuntimeFeatures = {
 
 export const getSupportedRuntimeFeatures = (): RuntimeFeatures => {
   return {
-    bookmarkManagerPage: getPlatform() === AppPlatform.Chromium,
+    bookmarkManagerPage: getPlatform() === 'chromium',
   };
 };

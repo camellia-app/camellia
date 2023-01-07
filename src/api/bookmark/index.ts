@@ -1,4 +1,4 @@
-import { AppPlatform, getPlatform } from '../appEnvironment';
+import { getPlatform } from '../appEnvironment';
 import topWebsites from './assets/top-websites.json';
 import type {
   CreateBookmark,
@@ -37,17 +37,17 @@ export const getFolderChildrenBookmarks: GetFolderChildrenBookmarks = async (fol
   let bookmarks: Array<Bookmark> = [];
 
   switch (getPlatform()) {
-    case AppPlatform.Chromium:
+    case 'chromium':
       bookmarks = await getChromiumFolderChildrenBookmarks(folderBookmarkId);
 
       break;
 
-    case AppPlatform.Webext:
+    case 'webext':
       bookmarks = await getWebextFolderChildrenBookmarks(folderBookmarkId);
 
       break;
 
-    case AppPlatform.Web:
+    case 'web':
       bookmarks = await getWebFolderChildrenBookmarks(folderBookmarkId);
 
       break;
@@ -60,17 +60,17 @@ export const getBookmarksBarChildren: GetBookmarksBarChildren = async () => {
   let bookmarks: Array<Bookmark> = [];
 
   switch (getPlatform()) {
-    case AppPlatform.Chromium:
+    case 'chromium':
       bookmarks = await getChromiumBookmarksBarChildren();
 
       break;
 
-    case AppPlatform.Webext:
+    case 'webext':
       bookmarks = await getWebextBookmarksBarChildren();
 
       break;
 
-    case AppPlatform.Web:
+    case 'web':
       bookmarks = await geWebBookmarksBarChildren();
 
       break;
@@ -83,17 +83,17 @@ export const getOtherBookmarksChildren: GetOtherBookmarksChildren = async () => 
   let bookmarks: Array<Bookmark> = [];
 
   switch (getPlatform()) {
-    case AppPlatform.Chromium:
+    case 'chromium':
       bookmarks = await getChromiumOtherBookmarksChildren();
 
       break;
 
-    case AppPlatform.Webext:
+    case 'webext':
       bookmarks = await getWebextOtherBookmarksChildren();
 
       break;
 
-    case AppPlatform.Web:
+    case 'web':
       bookmarks = await getWebOtherBookmarksChildren();
 
       break;
@@ -106,17 +106,17 @@ export const searchBookmarks: SearchBookmarks = async (searchQuery) => {
   let bookmarks: Array<Bookmark> = [];
 
   switch (getPlatform()) {
-    case AppPlatform.Chromium:
+    case 'chromium':
       bookmarks = await searchChromiumBookmarks(searchQuery);
 
       break;
 
-    case AppPlatform.Webext:
+    case 'webext':
       bookmarks = await searchWebBookmarks(searchQuery);
 
       break;
 
-    case AppPlatform.Web:
+    case 'web':
       bookmarks = await searchWebBookmarks(searchQuery);
 
       break;
@@ -129,17 +129,17 @@ export const createBookmark: CreateBookmark = async (bookmark) => {
   let createdBookmark: Bookmark;
 
   switch (getPlatform()) {
-    case AppPlatform.Chromium:
+    case 'chromium':
       createdBookmark = await createChromiumBookmark(bookmark);
 
       break;
 
-    case AppPlatform.Webext:
+    case 'webext':
       createdBookmark = await createWebBookmark(bookmark);
 
       break;
 
-    case AppPlatform.Web:
+    case 'web':
       createdBookmark = await createWebBookmark(bookmark);
 
       break;
@@ -152,17 +152,17 @@ const initializeRootFolders: InitializeRootFolders = async () => {
   let bookmarks: Array<BookmarkId> = [];
 
   switch (getPlatform()) {
-    case AppPlatform.Chromium:
+    case 'chromium':
       bookmarks = await initializeChromiumRootFolders();
 
       break;
 
-    case AppPlatform.Webext:
+    case 'webext':
       bookmarks = await initializeWebextRootFolders();
 
       break;
 
-    case AppPlatform.Web:
+    case 'web':
       bookmarks = await initializeWebRootFolders();
 
       break;
