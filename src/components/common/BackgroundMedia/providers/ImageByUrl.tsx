@@ -23,7 +23,6 @@ export const ImageByUrl: FC<{
     <img
       alt=""
       className={backgroundImageByUrl}
-      crossOrigin="anonymous"
       decoding="async"
       height={props.dimensions?.height}
       onError={handleImageError}
