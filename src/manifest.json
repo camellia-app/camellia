@@ -1,30 +1,30 @@
 {
-  "manifest_version": 3,
-  "name": "Camellia",
-  "short_name": "Camellia",
-  "description": "__MSG_extensionDescription__",
-  "homepage_url": "https://camellia.app",
   "author": "Petr Flaks",
-  "minimum_chrome_version": "104",
-
-  "default_locale": "en",
-
-  "permissions": ["bookmarks", "storage", "favicon"],
-
-  "host_permissions": ["https://*.camellia.app/"],
-  "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'none'; connect-src ws://localhost:8097 https://*.camellia.app https://*.ingest.sentry.io"
-  },
-
-  "icons": {
-    "128": "logo.png"
-  },
-
+  "background": {},
   "chrome_url_overrides": {
     "newtab": "/newtab.html"
   },
 
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src ws://localhost:8097 https://*.camellia.app https://*.ingest.sentry.io"
+  },
+
+  "default_locale": "en",
+
+  "description": "__MSG_extensionDescription__",
+  "homepage_url": "https://camellia.app",
+  "host_permissions": ["https://*.camellia.app/"],
+  "icons": {
+    "128": "logo.png"
+  },
+
+  "manifest_version": 3,
+  "minimum_chrome_version": "104",
+
+  "name": "Camellia",
   "options_page": "options.html",
 
-  "background": {}
+  "permissions": ["bookmarks", "storage", "favicon"],
+
+  "short_name": "Camellia"
 }

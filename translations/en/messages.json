@@ -1,193 +1,4 @@
 {
-  "extensionDescription": {
-    "message": "View all your browser bookmarks at the new tab screen.",
-    "description": "Description of the extension."
-  },
-  "option_sentry_label": {
-    "message": "Send error reports",
-    "description": "Text that appears next to checkbox icon."
-  },
-  "option_sentry_description": {
-    "message": "We're using Sentry to track errors in Camellia. At this moment there's no way to disable this option.",
-    "description": "Text that appears near form control."
-  },
-  "option_analytics_label": {
-    "message": "Send anonymous usage statistics"
-  },
-  "option_analytics_description": {
-    "message": "We're gathering anonymous usage statistics via Google Analytics. We need such data to be sure our updates make Camellia better. We don't track links you visit, we don't analyze your bookmarks and folders names. At this moment there's no way to disable this option."
-  },
-  "option_displayPhotographerAttribution_label": {
-    "message": "Display photographer attribution"
-  },
-  "option_displayPhotographerAttribution_description": {
-    "message": "By default, Camellia displays photographer's name in bottom toolbar, which can be clicked to open full photo if you wish to save it or explore more photos of the author. The attribution may be hidden in case you don't want it to be displayed."
-  },
-  "option_showSearchButton_label": {
-    "message": "Show \"Search\" button"
-  },
-  "option_showSearchButton_description": {
-    "message": "Show \"Search\" button in bottom toolbar."
-  },
-  "option_showBookmarkManagerButton_label": {
-    "message": "Show \"Bookmark manager\" button"
-  },
-  "option_showBookmarkManagerButton_description": {
-    "message": "Show \"Bookmark manager\" button in bottom toolbar."
-  },
-  "option_showOptionsButton_label": {
-    "message": "Show \"Options\" button"
-  },
-  "option_showOptionsButton_description": {
-    "message": "Show \"Options\" button in bottom toolbar."
-  },
-  "option_resetOptions_label": {
-    "message": "Reset options to defaults"
-  },
-  "option_resetOptions_description": {
-    "message": "Pressing this button will reset all your options and preferences in Camellia to default values without confirmation! ⚠️"
-  },
-  "option_copyDebugInformation_label": {
-    "message": "Copy debug information"
-  },
-  "option_copyDebugInformation_description": {
-    "message": "Information that may be helpful for debugging purposes will be copied to your clipboard by pressing the button. You are safe to share this information with community of contributors via GitHub issues in case you wish to report a bug you discovered in Camellia."
-  },
-  "option_contentLayout_label": {
-    "message": "Content layout"
-  },
-  "option_contentLayout_description": {
-    "message": "Should content be centered or not. Centering content may be useful for people with wide displays."
-  },
-  "option_contentLayout_optionCentered": {
-    "message": "Centered"
-  },
-  "option_contentLayout_optionFluid": {
-    "message": "Fluid"
-  },
-  "option_backgroundBrightness_label": {
-    "message": "Background brightness"
-  },
-  "option_backgroundBrightness_description": {
-    "message": "If background image is too bright for you, you may reduce its brightness."
-  },
-  "option_backgroundBrightness_optionBright": {
-    "message": "Bright"
-  },
-  "option_backgroundBrightness_optionReducedBrightness": {
-    "message": "Reduced brightness"
-  },
-  "option_backgroundImage_sourceTypeLabel": {
-    "message": "Background image source type"
-  },
-  "option_backgroundImage_sourceTypeDescription": {
-    "message": "Select background image source type."
-  },
-  "option_backgroundImage_sourceTypeOptionLink": {
-    "message": "Load image from link"
-  },
-  "option_backgroundImage_sourceTypeOptionUnsplashCollection": {
-    "message": "Unsplash collection"
-  },
-  "option_backgroundImageLink_label": {
-    "message": "Image link"
-  },
-  "option_backgroundImageLink_description": {
-    "message": "Link pointing to the image. It should start with \"https://\"."
-  },
-  "option_backgroundImageLink_placeholder": {
-    "message": "e.g. $URL$",
-    "placeholders": {
-      "url": {
-        "content": "$1",
-        "example": "https://example.com/image.jpg"
-      }
-    }
-  },
-  "option_backgroundImageUnsplashCollection_label": {
-    "message": "Unsplash collection link"
-  },
-  "option_backgroundImageUnsplashCollection_description": {
-    "message": "Link pointing to Unsplash collection in form of \"$URL$\".",
-    "placeholders": {
-      "url": {
-        "content": "$1",
-        "example": "https://unsplash.com/collections/123"
-      }
-    }
-  },
-  "option_backgroundImageUnsplashCollection_placeholder": {
-    "message": "e.g. $URL$",
-    "placeholders": {
-      "url": {
-        "content": "$1",
-        "example": "https://unsplash.com/collections/123"
-      }
-    }
-  },
-  "option_backgroundImageUnsplashCollection_error_notFound": {
-    "message": "Could not find a collection by given link"
-  },
-  "bookmarkSearch_textField_modalTitle": {
-    "message": "Search",
-    "description": "Title of the modal with search field."
-  },
-  "bookmarkSearch_textField_placeholder": {
-    "message": "Start typing to search bookmarks...",
-    "description": "Shown in the search text field when its empty."
-  },
-  "bookmarkBrowser_noBookmarks_label": {
-    "message": "Add your first bookmarks to start using Camellia",
-    "description": "The message is displayed when there are no bookmarks stored in a browser."
-  },
-  "bookmarkCategory_bookmarksBar_label": {
-    "message": "Bookmarks bar",
-    "description": "Label of the bookmark category that contains bookmarks from 'Bookmarks bar' folder."
-  },
-  "bookmarkCategory_otherBookmarks_label": {
-    "message": "Other bookmarks",
-    "description": "Label of the bookmark category that contains bookmarks from 'Other bookmarks' folder."
-  },
-  "bottomToolbar_bookmarkManager_label": {
-    "message": "Bookmark manager",
-    "description": "Label on the button that opens default browser's bookmark manager located in bottom toolbar."
-  },
-  "bottomToolbar_options_label": {
-    "message": "Options",
-    "description": "Label on the button that opens extension options page (settings) located in bottom toolbar. This button should use the same term as browser uses."
-  },
-  "bottomToolbar_search_label": {
-    "message": "Search",
-    "description": "Label on the button that opens bookmark search."
-  },
-  "popup_content_emptyFolder": {
-    "message": "This folder is empty.",
-    "description": "Text shown within popup when bookmark list is empty."
-  },
-  "popup_closeButton_label": {
-    "message": "Close",
-    "description": "Label of the close button in popup. This text shown when hovering the button."
-  },
-  "about_externalLink_sourceCode": {
-    "message": "Source code",
-    "description": "External link in 'About' section leading to GitHub in the bottom of the options page."
-  },
-  "about_externalLink_bugTracker": {
-    "message": "Report a bug",
-    "description": "External link in 'About' section leading to GitHub Issues in the bottom of the options page."
-  },
-  "about_externalLink_communityForum": {
-    "message": "Community forum",
-    "description": "External link in 'About' section leading to GitHub Discussions in the bottom of the options page."
-  },
-  "about_externalLink_userManual": {
-    "message": "User manual",
-    "description": "External link in 'About' section leading to GitHub Wiki in the bottom of the options page."
-  },
-  "about_externalLink_releaseNotes": {
-    "message": "Release notes",
-    "description": "External link in 'About' section leading to GitHub Releases in the bottom of the options page."
-  },
   "about_app_version": {
     "message": "$NAME$, version $VERSION$",
     "placeholders": {
@@ -201,6 +12,193 @@
       }
     }
   },
+  "about_externalLink_bugTracker": {
+    "message": "Report a bug",
+    "description": "External link in 'About' section leading to GitHub Issues in the bottom of the options page."
+  },
+  "about_externalLink_communityForum": {
+    "message": "Community forum",
+    "description": "External link in 'About' section leading to GitHub Discussions in the bottom of the options page."
+  },
+  "about_externalLink_releaseNotes": {
+    "message": "Release notes",
+    "description": "External link in 'About' section leading to GitHub Releases in the bottom of the options page."
+  },
+  "about_externalLink_sourceCode": {
+    "message": "Source code",
+    "description": "External link in 'About' section leading to GitHub in the bottom of the options page."
+  },
+  "about_externalLink_userManual": {
+    "message": "User manual",
+    "description": "External link in 'About' section leading to GitHub Wiki in the bottom of the options page."
+  },
+  "bookmarkBrowser_noBookmarks_label": {
+    "message": "Add your first bookmarks to start using Camellia",
+    "description": "The message is displayed when there are no bookmarks stored in a browser."
+  },
+  "bookmarkCategory_bookmarksBar_label": {
+    "message": "Bookmarks bar",
+    "description": "Label of the bookmark category that contains bookmarks from 'Bookmarks bar' folder."
+  },
+  "bookmarkCategory_otherBookmarks_label": {
+    "message": "Other bookmarks",
+    "description": "Label of the bookmark category that contains bookmarks from 'Other bookmarks' folder."
+  },
+  "bookmarkSearch_textField_modalTitle": {
+    "message": "Search",
+    "description": "Title of the modal with search field."
+  },
+  "bookmarkSearch_textField_placeholder": {
+    "message": "Start typing to search bookmarks...",
+    "description": "Shown in the search text field when its empty."
+  },
+  "bottomToolbar_bookmarkManager_label": {
+    "message": "Bookmark manager",
+    "description": "Label on the button that opens default browser's bookmark manager located in bottom toolbar."
+  },
+  "bottomToolbar_options_label": {
+    "message": "Options",
+    "description": "Label on the button that opens extension options page (settings) located in bottom toolbar. This button should use the same term as browser uses."
+  },
+  "bottomToolbar_search_label": {
+    "message": "Search",
+    "description": "Label on the button that opens bookmark search."
+  },
+  "extensionDescription": {
+    "message": "View all your browser bookmarks at the new tab screen.",
+    "description": "Description of the extension."
+  },
+  "option_analytics_description": {
+    "message": "We're gathering anonymous usage statistics via Google Analytics. We need such data to be sure our updates make Camellia better. We don't track links you visit, we don't analyze your bookmarks and folders names. At this moment there's no way to disable this option."
+  },
+  "option_analytics_label": {
+    "message": "Send anonymous usage statistics"
+  },
+  "option_backgroundBrightness_description": {
+    "message": "If background image is too bright for you, you may reduce its brightness."
+  },
+  "option_backgroundBrightness_label": {
+    "message": "Background brightness"
+  },
+  "option_backgroundBrightness_optionBright": {
+    "message": "Bright"
+  },
+  "option_backgroundBrightness_optionReducedBrightness": {
+    "message": "Reduced brightness"
+  },
+  "option_backgroundImageLink_description": {
+    "message": "Link pointing to the image. It should start with \"https://\"."
+  },
+  "option_backgroundImageLink_label": {
+    "message": "Image link"
+  },
+  "option_backgroundImageLink_placeholder": {
+    "message": "e.g. $URL$",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "https://example.com/image.jpg"
+      }
+    }
+  },
+  "option_backgroundImageUnsplashCollection_description": {
+    "message": "Link pointing to Unsplash collection in form of \"$URL$\".",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "https://unsplash.com/collections/123"
+      }
+    }
+  },
+  "option_backgroundImageUnsplashCollection_error_notFound": {
+    "message": "Could not find a collection by given link"
+  },
+  "option_backgroundImageUnsplashCollection_label": {
+    "message": "Unsplash collection link"
+  },
+  "option_backgroundImageUnsplashCollection_placeholder": {
+    "message": "e.g. $URL$",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "https://unsplash.com/collections/123"
+      }
+    }
+  },
+  "option_backgroundImage_sourceTypeDescription": {
+    "message": "Select background image source type."
+  },
+  "option_backgroundImage_sourceTypeLabel": {
+    "message": "Background image source type"
+  },
+  "option_backgroundImage_sourceTypeOptionLink": {
+    "message": "Load image from link"
+  },
+  "option_backgroundImage_sourceTypeOptionUnsplashCollection": {
+    "message": "Unsplash collection"
+  },
+  "option_contentLayout_description": {
+    "message": "Should content be centered or not. Centering content may be useful for people with wide displays."
+  },
+  "option_contentLayout_label": {
+    "message": "Content layout"
+  },
+  "option_contentLayout_optionCentered": {
+    "message": "Centered"
+  },
+  "option_contentLayout_optionFluid": {
+    "message": "Fluid"
+  },
+  "option_copyDebugInformation_description": {
+    "message": "Information that may be helpful for debugging purposes will be copied to your clipboard by pressing the button. You are safe to share this information with community of contributors via GitHub issues in case you wish to report a bug you discovered in Camellia."
+  },
+  "option_copyDebugInformation_label": {
+    "message": "Copy debug information"
+  },
+  "option_displayPhotographerAttribution_description": {
+    "message": "By default, Camellia displays photographer's name in bottom toolbar, which can be clicked to open full photo if you wish to save it or explore more photos of the author. The attribution may be hidden in case you don't want it to be displayed."
+  },
+  "option_displayPhotographerAttribution_label": {
+    "message": "Display photographer attribution"
+  },
+  "option_resetOptions_description": {
+    "message": "Pressing this button will reset all your options and preferences in Camellia to default values without confirmation! ⚠️"
+  },
+  "option_resetOptions_label": {
+    "message": "Reset options to defaults"
+  },
+  "option_sentry_description": {
+    "message": "We're using Sentry to track errors in Camellia. At this moment there's no way to disable this option.",
+    "description": "Text that appears near form control."
+  },
+  "option_sentry_label": {
+    "message": "Send error reports",
+    "description": "Text that appears next to checkbox icon."
+  },
+  "option_showBookmarkManagerButton_description": {
+    "message": "Show \"Bookmark manager\" button in bottom toolbar."
+  },
+  "option_showBookmarkManagerButton_label": {
+    "message": "Show \"Bookmark manager\" button"
+  },
+  "option_showOptionsButton_description": {
+    "message": "Show \"Options\" button in bottom toolbar."
+  },
+  "option_showOptionsButton_label": {
+    "message": "Show \"Options\" button"
+  },
+  "option_showSearchButton_description": {
+    "message": "Show \"Search\" button in bottom toolbar."
+  },
+  "option_showSearchButton_label": {
+    "message": "Show \"Search\" button"
+  },
+  "optionsNavigationCategory_about_label": {
+    "message": "About"
+  },
+  "optionsNavigationCategory_advanced_label": {
+    "message": "Advanced"
+  },
   "optionsNavigationCategory_allOptions_label": {
     "message": "All options"
   },
@@ -210,19 +208,21 @@
   "optionsNavigationCategory_bookmarks_label": {
     "message": "Bookmarks"
   },
-  "optionsNavigationCategory_search_label": {
-    "message": "Search"
-  },
   "optionsNavigationCategory_bottomToolbar_label": {
     "message": "Bottom toolbar"
   },
   "optionsNavigationCategory_dataCollection_label": {
     "message": "Data collection"
   },
-  "optionsNavigationCategory_advanced_label": {
-    "message": "Advanced"
+  "optionsNavigationCategory_search_label": {
+    "message": "Search"
   },
-  "optionsNavigationCategory_about_label": {
-    "message": "About"
+  "popup_closeButton_label": {
+    "message": "Close",
+    "description": "Label of the close button in popup. This text shown when hovering the button."
+  },
+  "popup_content_emptyFolder": {
+    "message": "This folder is empty.",
+    "description": "Text shown within popup when bookmark list is empty."
   }
 }

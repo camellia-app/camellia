@@ -1,25 +1,8 @@
 {
-  "root": true,
-  "parser": "@typescript-eslint/parser",
   "env": {
     "browser": true,
     "webextensions": true
   },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
-  "plugins": [
-    "@typescript-eslint",
-    "react",
-    "react-hooks",
-    "react-redux",
-    "typescript-sort-keys",
-    "sort-keys-fix",
-    "unused-imports",
-    "prettier"
-  ],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -31,32 +14,6 @@
     "plugin:import/recommended",
     "plugin:import/typescript"
   ],
-  "rules": {
-    "import/no-cycle": "error",
-    "import/order": [
-      "warn",
-      {
-        "alphabetize": { "order": "asc", "caseInsensitive": true },
-        "newlines-between": "never",
-        "warnOnUnassignedImports": false
-      }
-    ],
-    "react/function-component-definition": [
-      "warn",
-      {
-        "namedComponents": "arrow-function",
-        "unnamedComponents": "arrow-function"
-      }
-    ],
-    "react/jsx-props-no-spreading": "warn",
-    "react/jsx-sort-props": "warn",
-    "react/no-access-state-in-setstate": "error",
-    "react/prop-types": "off",
-    "react/react-in-jsx-scope": "off",
-    "react-redux/useSelector-prefer-selectors": "off",
-    "unused-imports/no-unused-imports": "warn",
-    "unused-imports/no-unused-vars": "warn"
-  },
   "overrides": [
     {
       "files": ["./postcss.config.js", "./webpack.config.js"],
@@ -113,5 +70,48 @@
         "@typescript-eslint/switch-exhaustiveness-check": "error"
       }
     }
-  ]
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "react-redux",
+    "typescript-sort-keys",
+    "sort-keys-fix",
+    "unused-imports",
+    "prettier"
+  ],
+  "root": true,
+  "rules": {
+    "import/no-cycle": "error",
+    "import/order": [
+      "warn",
+      {
+        "alphabetize": { "order": "asc", "caseInsensitive": true },
+        "newlines-between": "never",
+        "warnOnUnassignedImports": false
+      }
+    ],
+    "react/function-component-definition": [
+      "warn",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "react/jsx-props-no-spreading": "warn",
+    "react/jsx-sort-props": "warn",
+    "react/no-access-state-in-setstate": "error",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react-redux/useSelector-prefer-selectors": "off",
+    "unused-imports/no-unused-imports": "warn",
+    "unused-imports/no-unused-vars": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }
