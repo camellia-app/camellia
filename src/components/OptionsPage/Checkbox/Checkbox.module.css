@@ -9,7 +9,7 @@
 
 .checkbox:has(input[type='checkbox']:disabled) {
   cursor: default;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .checkbox:has(input[type='checkbox']:focus) {
