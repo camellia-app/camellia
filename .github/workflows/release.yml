@@ -54,7 +54,7 @@ jobs:
       - name: Upload dist folder as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: dist-${{ matrix.targetPlatform }}
+          name: camellia-${{ github.event.release.tag_name }}-${{ matrix.targetPlatform }}
           path: ./dist/${{ matrix.targetPlatform }}/
           retention-days: 7
 
@@ -72,7 +72,7 @@ jobs:
       - name: Download dist folder
         uses: actions/download-artifact@v3
         with:
-          name: dist-chromium
+          name: camellia-${{ github.event.release.tag_name }}-chromium
           path: ./dist/
 
       - name: Create Sentry release
