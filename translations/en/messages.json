@@ -53,7 +53,7 @@
     "description": "Shown in the search text field when its empty."
   },
   "bottomToolbar_bookmarkManager_label": {
-    "message": "Bookmark manager",
+    "message": "Bookmark Manager",
     "description": "Label on the button that opens default browser's bookmark manager located in bottom toolbar."
   },
   "bottomToolbar_options_label": {
@@ -176,10 +176,10 @@
     "description": "Text that appears next to checkbox icon."
   },
   "option_showBookmarkManagerButton_description": {
-    "message": "Show \"Bookmark manager\" button in bottom toolbar."
+    "message": "Show \"Bookmark Manager\" button in bottom toolbar."
   },
   "option_showBookmarkManagerButton_label": {
-    "message": "Show \"Bookmark manager\" button"
+    "message": "Show \"Bookmark Manager\" button"
   },
   "option_showOptionsButton_description": {
     "message": "Show \"Options\" button in bottom toolbar."
