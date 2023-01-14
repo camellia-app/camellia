@@ -1,0 +1,88 @@
+name: Release
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  build:
+    name: Build (${{ matrix.targetPlatform }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        targetPlatform: [chromium, webext]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+
+      - name: Get npm cache directory
+        id: npm-cache
+        run: echo "::set-output name=dir::$(npm config get cache)"
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v3.2.2
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-npm-production-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-production-
+            ${{ runner.os }}-npm-
+
+      - name: Install npm dependencies
+        run: npm ci --omit=dev --prefer-offline
+
+      - name: Run Webpack
+        run: npx webpack
+        env:
+          NODE_ENV: production
+          APP_VERSION: ${{ github.event.release.tag_name }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          SENTRY_RELEASE: ${{ github.event.repository.name }}@${{ github.event.release.tag_name }}
+          TARGET_PLATFORM: ${{ matrix.targetPlatform }}
+          UNSPLASH_BRIDGE_BASE_HOST: https://unsplash.camellia.app
+          UNSPLASH_DEFAULT_COLLECTION_ID: 10745553
+          WEBSITE_ICONS_PROXY_BASE_HOST: https://website-icons.camellia.app
+
+      - name: Upload dist folder as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-${{ matrix.targetPlatform }}
+          path: ./dist/${{ matrix.targetPlatform }}/
+          retention-days: 7
+
+  sentry_release:
+    runs-on: ubuntu-latest
+    name: Sentry Release
+    needs: [build]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Download dist folder
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-chromium
+          path: ./dist/
+
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1.2.1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ github.event.repository.name }}
+        with:
+          environment: production
+          version: ${{ github.event.repository.name }}@${{ github.event.release.tag_name }}
+          sourcemaps: ./dist/
+          url_prefix: /

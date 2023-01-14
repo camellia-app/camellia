@@ -42,6 +42,7 @@ export const config = {
   sentry: {
     dsn: process.env['SENTRY_DSN'],
     environment: isDevelopment ? 'development' : 'production',
+    release: process.env['SENTRY_RELEASE'],
     tracing: {
       sampleRate: isDevelopment ? 1 : 0.1,
     },

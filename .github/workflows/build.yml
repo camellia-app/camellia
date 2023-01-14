@@ -4,7 +4,7 @@ on: pull_request
 
 jobs:
   build:
-    name: Webpack (${{ matrix.targetPlatform }})
+    name: Build (${{ matrix.targetPlatform }})
     runs-on: ubuntu-latest
 
     strategy:
@@ -41,7 +41,6 @@ jobs:
         env:
           NODE_ENV: production
           APP_VERSION: '2.0.0'
-          BUILD_NUMBER: ${{ github.run_number }}
           TARGET_PLATFORM: ${{ matrix.targetPlatform }}
           UNSPLASH_BRIDGE_BASE_HOST: https://unsplash.camellia.app
           WEBSITE_ICONS_PROXY_BASE_HOST: https://website-icons.camellia.app

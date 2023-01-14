@@ -22,7 +22,6 @@ dotenv.config();
 
 assert(process.env.NODE_ENV, 'Environment variable NODE_ENV is not defined');
 assert(process.env.APP_VERSION, 'Environment variable APP_VERSION is not defined');
-assert(process.env.BUILD_NUMBER, 'Environment variable BUILD_NUMBER is not defined');
 assert(process.env.TARGET_PLATFORM, 'Environment variable TARGET_PLATFORM is not defined');
 assert(process.env.UNSPLASH_BRIDGE_BASE_HOST, 'Environment variable UNSPLASH_BRIDGE_BASE_HOST is not defined');
 
@@ -137,8 +136,8 @@ const commonConfig = {
           transform(content) {
             const manifest = JSON.parse(content.toString());
 
-            manifest.version = `${process.env.APP_VERSION}.${process.env.BUILD_NUMBER}`;
-            manifest.version_name = `${process.env.APP_VERSION} build ${process.env.BUILD_NUMBER}`;
+            manifest.version = process.env.APP_VERSION.replace(/.*?([0-9]+\.[0-9]+\.[0-9]+).*/, '$1');
+            manifest.version_name = process.env.APP_VERSION;
             manifest.background.service_worker = `/background.js`;
 
             switch (process.env.NODE_ENV) {
