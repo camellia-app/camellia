@@ -19,7 +19,7 @@
   },
 
   "manifest_version": 3,
-  "minimum_chrome_version": "104",
+  "minimum_chrome_version": "105",
 
   "name": "Camellia",
   "options_page": "options.html",
