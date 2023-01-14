@@ -1,7 +1,7 @@
 :root {
   --acrylic-color-light-1: rgb(255 255 255 / 50%);
-  --acrylic-color-light-2: rgb(255 255 255 / 75%);
-  --acrylic-color-light-3: rgb(255 255 255 / 90%);
+  --acrylic-color-light-2: rgb(255 255 255 / 85%);
+  --acrylic-color-light-3: rgb(255 255 255 / 95%);
   --acrylic-color-dark-1: rgb(33 33 33 / 75%);
   --acrylic-color-dark-2: rgb(33 33 33 / 90%);
   --acrylic-background-filter: blur(2px);
