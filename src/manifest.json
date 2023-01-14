@@ -6,7 +6,7 @@
   },
 
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'none'; connect-src ws://localhost:8097 https://*.camellia.app https://*.ingest.sentry.io"
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src https://*.camellia.app https://*.ingest.sentry.io"
   },
 
   "default_locale": "en",
