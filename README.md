@@ -1,41 +1,25 @@
 # Camellia
 
-Camellia is a browser extension that helps you access hundreds of bookmarks on the page that appears when you open new tab in your browser. 1st gen Camellia is available as [Google Chrome extension in Chrome Store](https://chrome.google.com/webstore/detail/camellia/mamdkoclkocaejomjcaldmlgfgkgalnl).
+Camellia is a bookmark manager browser extension. When you open a new tab in a browser, the extension will open Camellia instead of default browser’s new tab page with all your browser's bookmarks listed there.
 
-## Camellia 2.0 (2nd gen)
+![Screenshot of the Camellia's interface](https://user-images.githubusercontent.com/12474739/212552906-f5cacef0-e955-40ac-b7a9-8ee45a861985.png)
 
-![Second generation's interface](https://user-images.githubusercontent.com/12474739/84573023-abfecb80-ada6-11ea-8b69-ef39955ef4fd.png)
+## Install
 
-First generation of Camellia has very bad architecture and code under the hood which makes it painful to make significant changes, so I've decided to stop its support. At this moment second generation of Camellia is in development. Second generation is creating from scratch: new codebase, move from Vue.js to React, new architecture, only project's goals remained the same. It will be the same Camellia you loved some day, but better. It will also finally support Firefox and maybe Safari.
+To learn how to install Camellia into your browser, visit "[Installing](https://github.com/camellia-app/camellia/wiki/Installing)" page.
 
-Look at the screen shot attached above (please note that it's early build, something may change). I am focusing on first-class support of touch interfaces, high DPG displays (such as Retina) and screens with various sizes. It will also look more modern, cleaner and more organic.
+## Documentation
 
-## FAQ
+To learn more about Camellia, visit [our wiki](https://github.com/camellia-app/camellia/wiki).
 
-### When will it be released?
+## Contact us
 
-Camellia is just my non-profit pet-project which I do in free time. That's why I do not have any exact plans when to release it. Hopefully in 2021-2022.
+If you want to report a security issue, please take a look at the "[Security Policy](https://github.com/camellia-app/camellia/wiki/Security-Policy)" page.
 
-### What features will ba available?
+If you found a bug, have a suggestion or want to share some feedback, you are welcome to [our discussions](https://github.com/camellia-app/camellia/discussions) and [our issues](https://github.com/camellia-app/camellia/issues).
 
-Only refreshed design and minor improvements are planned for initial release. My goal is to provide as smooth update to 2.0 as possible, most of the job will be done under the hood of the app. New features, such as heavily requested [ability to manage bookmarks right within Camellia](https://github.com/camellia-app/camellia/issues/12), will arrive in future updates.
+## Contributing
 
-### How can I update to new Camellia after release?
+Your contributions are very appreciated! Check out "[How to Contribute](https://github.com/camellia-app/camellia/wiki/How-to-Contribute)" page to get started.
 
-Your 1st gen Camellia will automatically update to 2nd gen, so no additional actions required. However, if you'll prefer 1st gen version for some reason, there will be an option to install it separately via CRX-file.
-
-### How do I get 2nd gen Camellia right now?
-
-You may build it from source files. However, it's not recommended for most users.
-
-### What browsers will be supported?
-
-Camellia will be uploaded to Chrome Store and will be available on all browsers compatible with the store. Camellia for Firefox will arrive in future updates. Safari version is also on roadmap, but Safari extension API and development flow requires some investigation.
-
-### How can I help, contribute, speed-up process?
-
-Here's how you can help:
-
-- [Draw a cool logo for Camellia](https://github.com/camellia-app/camellia/issues/34)
-- Provide some code review and suggest any improvements
-- Tell your friends about Camellia 😏
+This is the main repository of Camellia projects which contains the extension itself, however there are few more repositories with other components that work together. You may find them under [our GitHub organization](https://github.com/camellia-app).
