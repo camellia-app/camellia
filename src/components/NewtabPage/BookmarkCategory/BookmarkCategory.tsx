@@ -1,22 +1,35 @@
+import classNames from 'classnames';
 import type { FC } from 'react';
-import type { Bookmark as BookmarkEntry } from '../../../api/bookmark/common';
+import type { Folder } from '../../../api/bookmark/common';
+import { useFolderBookmarkChildren } from '../../../api/bookmark/hook';
 import { ChipList } from '../../common/ChipList/ChipList';
 import { Bookmark } from '../Bookmark/Bookmark';
 import { Header } from '../Header/Header';
-import { bookmarkCategory } from './BookmarkCategory.module.css';
+import { bookmarkCategory, bookmarkCategoryLoading } from './BookmarkCategory.module.css';
 
 export const BookmarkCategory: FC<{
-  bookmarks: Array<BookmarkEntry>;
-  categoryTitle: string;
-}> = (props) => (
-  <section className={bookmarkCategory}>
-    <Header level={2}>{props.categoryTitle}</Header>
+  bookmarkFolder: Folder;
+}> = (props) => {
+  const [bookmarks] = useFolderBookmarkChildren(props.bookmarkFolder.id);
 
-    <ChipList
-      chips={props.bookmarks.map((bookmarkEntry) => (
-        <Bookmark bookmark={bookmarkEntry} focus={false} key={bookmarkEntry.id} />
-      ))}
-      type="columns"
-    />
-  </section>
-);
+  if (bookmarks === undefined || bookmarks.length === 0) {
+    return <></>;
+  }
+
+  const mainClasses = classNames(bookmarkCategory, {
+    [bookmarkCategoryLoading]: bookmarks === undefined,
+  });
+
+  return (
+    <section className={mainClasses}>
+      <Header level={2}>{props.bookmarkFolder.title}</Header>
+
+      <ChipList
+        chips={bookmarks.map((bookmarkEntry) => (
+          <Bookmark bookmark={bookmarkEntry} focus={false} key={bookmarkEntry.id} />
+        ))}
+        type="columns"
+      />
+    </section>
+  );
+};

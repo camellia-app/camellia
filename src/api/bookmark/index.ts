@@ -3,33 +3,34 @@ import topWebsites from './assets/top-websites.json';
 import type {
   CreateBookmark,
   InitializeRootFolders,
-  GetBookmarksBarChildren,
   GetFolderChildrenBookmarks,
-  GetOtherBookmarksChildren,
   SearchBookmarks,
   Bookmark,
   BookmarkId,
+  GetRootFolderBookmarks,
+  Folder,
+  HasBookmarks,
 } from './common';
 import {
   createChromiumBookmark,
-  getChromiumBookmarksBarChildren,
   getChromiumFolderChildrenBookmarks,
-  getChromiumOtherBookmarksChildren,
+  getChromiumRootFolderBookmarks,
+  hasChromiumBookmarks,
   initializeChromiumRootFolders,
   searchChromiumBookmarks,
 } from './platform/chromium';
 import {
   createWebBookmark,
-  geWebBookmarksBarChildren,
   initializeWebRootFolders,
   getWebFolderChildrenBookmarks,
-  getWebOtherBookmarksChildren,
   searchWebBookmarks,
+  getWebRootFolderBookmarks,
+  hasWebBookmarks,
 } from './platform/web';
 import {
-  getWebextBookmarksBarChildren,
   getWebextFolderChildrenBookmarks,
-  getWebextOtherBookmarksChildren,
+  getWebextRootFolderBookmarks,
+  hasWebextBookmarks,
   initializeWebextRootFolders,
 } from './platform/webext';
 
@@ -49,52 +50,6 @@ export const getFolderChildrenBookmarks: GetFolderChildrenBookmarks = async (fol
 
     case 'web':
       bookmarks = await getWebFolderChildrenBookmarks(folderBookmarkId);
-
-      break;
-  }
-
-  return bookmarks;
-};
-
-export const getBookmarksBarChildren: GetBookmarksBarChildren = async () => {
-  let bookmarks: Array<Bookmark> = [];
-
-  switch (getPlatform()) {
-    case 'chromium':
-      bookmarks = await getChromiumBookmarksBarChildren();
-
-      break;
-
-    case 'webext':
-      bookmarks = await getWebextBookmarksBarChildren();
-
-      break;
-
-    case 'web':
-      bookmarks = await geWebBookmarksBarChildren();
-
-      break;
-  }
-
-  return bookmarks;
-};
-
-export const getOtherBookmarksChildren: GetOtherBookmarksChildren = async () => {
-  let bookmarks: Array<Bookmark> = [];
-
-  switch (getPlatform()) {
-    case 'chromium':
-      bookmarks = await getChromiumOtherBookmarksChildren();
-
-      break;
-
-    case 'webext':
-      bookmarks = await getWebextOtherBookmarksChildren();
-
-      break;
-
-    case 'web':
-      bookmarks = await getWebOtherBookmarksChildren();
 
       break;
   }
@@ -146,6 +101,42 @@ export const createBookmark: CreateBookmark = async (bookmark) => {
   }
 
   return createdBookmark;
+};
+
+export const hasBookmarks: HasBookmarks = async () => {
+  switch (getPlatform()) {
+    case 'chromium':
+      return await hasChromiumBookmarks();
+
+    case 'webext':
+      return await hasWebextBookmarks();
+
+    case 'web':
+      return await hasWebBookmarks();
+  }
+};
+
+export const getRootFolderBookmarks: GetRootFolderBookmarks = async () => {
+  let bookmarks: Array<Folder> = [];
+
+  switch (getPlatform()) {
+    case 'chromium':
+      bookmarks = await getChromiumRootFolderBookmarks();
+
+      break;
+
+    case 'webext':
+      bookmarks = await getWebextRootFolderBookmarks();
+
+      break;
+
+    case 'web':
+      bookmarks = await getWebRootFolderBookmarks();
+
+      break;
+  }
+
+  return bookmarks;
 };
 
 const initializeRootFolders: InitializeRootFolders = async () => {
