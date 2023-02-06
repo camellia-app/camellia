@@ -5,12 +5,12 @@ import type {
   BookmarkId,
   CreateBookmark,
   Folder,
-  GetBookmarksBarChildren,
   GetFolderChildrenBookmarks,
-  GetOtherBookmarksChildren,
   Link,
   SearchBookmarks,
   InitializeRootFolders,
+  GetRootFolderBookmarks,
+  HasBookmarks,
 } from '../common';
 import { isLink } from '../common';
 
@@ -45,46 +45,6 @@ export const getWebFolderChildrenBookmarks: GetFolderChildrenBookmarks = async (
   }
 
   return await Promise.all(bookmark.childrenIds.map((childBookmarkId) => getBookmark(childBookmarkId)));
-};
-
-export const geWebBookmarksBarChildren: GetBookmarksBarChildren = async () => {
-  const syncStorage = storage.synchronizable;
-
-  let bookmarksBarBookmarkId: string | undefined = undefined;
-
-  try {
-    bookmarksBarBookmarkId = await syncStorage.get<string>(STORAGE_KEY_BOOKMARK_ID_BOOKMARKS_BAR);
-  } catch (error) {
-    if (!(error instanceof StorageKeyDoesNotExist)) {
-      throw error;
-    }
-
-    console.warn('Bookmark ID of "Bookmarks bar" folder not found in the storage');
-
-    return [];
-  }
-
-  return getWebFolderChildrenBookmarks(bookmarksBarBookmarkId);
-};
-
-export const getWebOtherBookmarksChildren: GetOtherBookmarksChildren = async () => {
-  const syncStorage = storage.synchronizable;
-
-  let otherBookmarksBookmarkId: string | undefined = undefined;
-
-  try {
-    otherBookmarksBookmarkId = await syncStorage.get<string>(STORAGE_KEY_BOOKMARK_ID_OTHER_BOOKMARKS);
-  } catch (error) {
-    if (!(error instanceof StorageKeyDoesNotExist)) {
-      throw error;
-    }
-
-    console.warn('Bookmark ID of "Other bookmarks" folder not found in the storage');
-
-    return [];
-  }
-
-  return getWebFolderChildrenBookmarks(otherBookmarksBookmarkId);
 };
 
 export const searchWebBookmarks: SearchBookmarks = async (searchQuery) => {
@@ -163,6 +123,46 @@ export const createWebBookmark: CreateBookmark = async (bookmark) => {
   }
 
   return createdBookmark;
+};
+
+export const hasWebBookmarks: HasBookmarks = async () => {
+  const syncStorage = storage.synchronizable;
+
+  const [bookmarksBarId, otherBookmarksId] = await Promise.all([
+    syncStorage.get<string>(STORAGE_KEY_BOOKMARK_ID_BOOKMARKS_BAR),
+    syncStorage.get<string>(STORAGE_KEY_BOOKMARK_ID_OTHER_BOOKMARKS),
+  ]);
+
+  const [bookmarksBarChildren, otherBookmarksChildren] = await Promise.all([
+    getWebFolderChildrenBookmarks(bookmarksBarId),
+    getWebFolderChildrenBookmarks(otherBookmarksId),
+  ]);
+
+  return bookmarksBarChildren.length > 0 || otherBookmarksChildren.length > 0;
+};
+
+export const getWebRootFolderBookmarks: GetRootFolderBookmarks = async () => {
+  const syncStorage = storage.synchronizable;
+
+  const [bookmarksBarId, otherBookmarksId] = await Promise.all([
+    syncStorage.get<string>(STORAGE_KEY_BOOKMARK_ID_BOOKMARKS_BAR),
+    syncStorage.get<string>(STORAGE_KEY_BOOKMARK_ID_OTHER_BOOKMARKS),
+  ]);
+
+  const rootFolders: Array<Folder> = [
+    {
+      id: bookmarksBarId,
+      type: 'folder',
+      title: 'Bookmarks bar',
+    },
+    {
+      id: otherBookmarksId,
+      type: 'folder',
+      title: 'Other bookmarks',
+    },
+  ];
+
+  return rootFolders;
 };
 
 export const initializeWebRootFolders: InitializeRootFolders = async () => {

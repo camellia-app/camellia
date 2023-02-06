@@ -3,5 +3,10 @@
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
+  transition: opacity;
   width: 100%;
+}
+
+.bookmarkCategoryLoading {
+  opacity: 0;
 }

@@ -1,8 +1,7 @@
 import classNames from 'classnames';
 import type { FC } from 'react';
 import { getSupportedRuntimeFeatures } from '../../../api/applicationRuntime/features';
-import type { Bookmark } from '../../../api/bookmark/common';
-import { useBookmarksBarChildren, useOtherBookmarksChildren } from '../../../api/bookmark/hook';
+import { useHasBookmarks, useRootBookmarkFolders } from '../../../api/bookmark/hook';
 import { t } from '../../../api/i18n/translate';
 import { useOption } from '../../../api/options/hook';
 import { BookmarkCategory } from '../BookmarkCategory/BookmarkCategory';
@@ -12,33 +11,16 @@ import { bookmarkWorkspace, bookmarkWorkspaceCentered, bookmarkWorkspaceLoading 
 import { MiddleScreenMessage } from './MiddleScreenMessage/MiddleScreenMessage';
 
 export const BookmarkWorkspace: FC = () => {
-  const [bookmarksBarChildren] = useBookmarksBarChildren();
-  const [otherBookmarksChildren] = useOtherBookmarksChildren();
+  const [rootFolders] = useRootBookmarkFolders();
+  const [hasBookmarks] = useHasBookmarks();
   const [contentLayout] = useOption('content_layout');
 
-  const isLoading =
-    bookmarksBarChildren === undefined || otherBookmarksChildren === undefined || contentLayout === undefined;
+  const isLoading = rootFolders === undefined || hasBookmarks === undefined || contentLayout === undefined;
 
   const mainClasses = classNames(bookmarkWorkspace, {
     [bookmarkWorkspaceLoading]: isLoading,
     [bookmarkWorkspaceCentered]: contentLayout === 'centered',
   });
-
-  const bookmarkCategories: Array<{ bookmarks: Array<Bookmark>; title: string }> = [];
-
-  if (bookmarksBarChildren !== undefined && bookmarksBarChildren.length > 0) {
-    bookmarkCategories.push({
-      title: t('bookmarkCategory_bookmarksBar_label'),
-      bookmarks: bookmarksBarChildren,
-    });
-  }
-
-  if (otherBookmarksChildren !== undefined && otherBookmarksChildren.length > 0) {
-    bookmarkCategories.push({
-      title: t('bookmarkCategory_otherBookmarks_label'),
-      bookmarks: otherBookmarksChildren,
-    });
-  }
 
   const noBookmarksActionChips = [];
 
@@ -48,20 +30,15 @@ export const BookmarkWorkspace: FC = () => {
 
   return (
     <main className={mainClasses}>
-      {!isLoading && bookmarkCategories.length === 0 ? (
+      {hasBookmarks === false ? (
         <MiddleScreenMessage chips={noBookmarksActionChips} message={t('bookmarkBrowser_noBookmarks_label')} />
       ) : undefined}
 
-      {bookmarkCategories.length > 0 &&
-        bookmarkCategories.map((bookmarkCategory, index) => {
-          return (
-            <BookmarkCategory
-              bookmarks={bookmarkCategory.bookmarks}
-              categoryTitle={bookmarkCategory.title}
-              key={index}
-            />
-          );
-        })}
+      {rootFolders === undefined
+        ? undefined
+        : rootFolders.map((rootFolder, index) => {
+            return <BookmarkCategory bookmarkFolder={rootFolder} key={index} />;
+          })}
 
       <BookmarkSearchDialog />
     </main>

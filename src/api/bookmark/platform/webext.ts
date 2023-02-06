@@ -4,14 +4,12 @@ import type {
   Link,
   GetFolderChildrenBookmarks,
   SearchBookmarks,
-  GetBookmarksBarChildren,
-  GetOtherBookmarksChildren,
   CreateBookmark,
   InitializeRootFolders,
+  GetRootFolderBookmarks,
+  HasBookmarks,
 } from '../common';
-
-const BOOKMARK_ID_BOOKMARKS_BAR = '1';
-const BOOKMARK_ID_OTHER_BOOKMARKS = '2';
+import { isFolder } from '../common';
 
 const convertBookmarkTreeNodeToBookmark = (bookmark: browser.bookmarks.BookmarkTreeNode): Bookmark => {
   if (bookmark.url !== undefined) {
@@ -38,14 +36,6 @@ export const getWebextFolderChildrenBookmarks: GetFolderChildrenBookmarks = asyn
   const bookmarkTreeNodes = await browser.bookmarks.getChildren(folderBookmarkId);
 
   return bookmarkTreeNodes.map((bookmarkTreeNode) => convertBookmarkTreeNodeToBookmark(bookmarkTreeNode));
-};
-
-export const getWebextBookmarksBarChildren: GetBookmarksBarChildren = async () => {
-  return getWebextFolderChildrenBookmarks(BOOKMARK_ID_BOOKMARKS_BAR);
-};
-
-export const getWebextOtherBookmarksChildren: GetOtherBookmarksChildren = async () => {
-  return getWebextFolderChildrenBookmarks(BOOKMARK_ID_OTHER_BOOKMARKS);
 };
 
 export const searchWebextBookmarks: SearchBookmarks = async (searchQuery) => {
@@ -81,6 +71,40 @@ export const createWebextBookmark: CreateBookmark = async (bookmark) => {
   return convertBookmarkTreeNodeToBookmark(createdBookmark);
 };
 
+export const hasWebextBookmarks: HasBookmarks = async () => {
+  const rootBookmarks = await browser.bookmarks.getTree();
+
+  const rootFolder = rootBookmarks[0];
+
+  if (rootFolder === undefined) {
+    return false;
+  }
+
+  const bookmarkTreeNodes = rootFolder.children ?? [];
+
+  const amountOfBookmarks = bookmarkTreeNodes.reduce((sum, folder) => sum + (folder.children?.length ?? 0), 0);
+
+  return amountOfBookmarks > 0;
+};
+
+export const getWebextRootFolderBookmarks: GetRootFolderBookmarks = async () => {
+  const rootBookmarks = await browser.bookmarks.getTree();
+
+  const rootFolder = rootBookmarks[0];
+
+  if (rootFolder === undefined) {
+    return [];
+  }
+
+  const bookmarkTreeNodes = rootFolder.children ?? [];
+
+  return bookmarkTreeNodes
+    .map((bookmarkTreeNode) => convertBookmarkTreeNodeToBookmark(bookmarkTreeNode))
+    .filter((bookmark): bookmark is Folder => isFolder(bookmark));
+};
+
 export const initializeWebextRootFolders: InitializeRootFolders = async () => {
-  return [BOOKMARK_ID_BOOKMARKS_BAR, BOOKMARK_ID_OTHER_BOOKMARKS];
+  const rootFolders = await getWebextRootFolderBookmarks();
+
+  return rootFolders.map((folder) => folder.id);
 };
