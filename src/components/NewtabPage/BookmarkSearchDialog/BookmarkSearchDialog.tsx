@@ -8,7 +8,7 @@ import { ChipList } from '../../common/ChipList/ChipList';
 import { TextField } from '../../common/TextField/TextField';
 import { Bookmark } from '../Bookmark/Bookmark';
 import { ModalDialog } from '../ModalDialog/ModalDialog';
-import { bookmarkSearchDialog } from './BookmarkSearchDialog.module.css';
+import { bookmarkSearchDialog, searchDialogTip } from './BookmarkSearchDialog.module.css';
 
 export const BookmarkSearchDialog: FC = () => {
   const [isActive, searchResultBookmarks, toggleSearch, searchBookmarks] = useBookmarkSearch();
@@ -81,6 +81,12 @@ export const BookmarkSearchDialog: FC = () => {
       break;
     }
   };
+  const tipsArray = [
+    'You can open search with Ctrl + F or Ctrl + G shortcuts',
+    'You may press any character to open search',
+    'You can close search with Esc',
+    'Press Enter to open first link',
+  ];
 
   return (
     <ModalDialog isOpen={isActive} onClosePopup={closeSearchModal} title={t('bookmarkSearch_textField_modalTitle')}>
@@ -95,8 +101,8 @@ export const BookmarkSearchDialog: FC = () => {
             value={searchQuery}
           />
         </form>
-
         {bookmarkChips.length > 0 ? <ChipList chips={bookmarkChips} type={'inline'} /> : undefined}
+        <h1 className={searchDialogTip}>{`Tip: ${tipsArray[Math.floor(Math.random() * 4)]}`}</h1>
       </div>
     </ModalDialog>
   );
