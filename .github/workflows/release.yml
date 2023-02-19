@@ -58,10 +58,39 @@ jobs:
           path: ./dist/${{ matrix.targetPlatform }}/
           retention-days: 7
 
+  chrome_web_store_release:
+    runs-on: ubuntu-latest
+    name: Chrome Web Store Release
+    needs: [build]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Download dist folder
+        uses: actions/download-artifact@v3
+        with:
+          name: camellia-${{ github.event.release.tag_name }}-chromium
+          path: ./dist/
+
+      - name: Create ZIP-archive
+        run: zip -r camellia.zip ./dist/
+
+      - name: Upload to Chrome Web Store and release
+        uses: mnao305/chrome-extension-upload@v4.0.1
+        with:
+          file-path: camellia.zip
+          extension-id: ${{ vars.CHROME_WEB_STORE_EXTENSION_ID }}
+          client-id: ${{ secrets.CHROME_WEB_STORE_CLIENT_ID }}
+          client-secret: ${{ secrets.CHROME_WEB_STORE_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.CHROME_WEB_STORE_REFRESH_TOKEN }}
+
   sentry_release:
     runs-on: ubuntu-latest
     name: Sentry Release
-    needs: [build]
+    needs: [chrome_web_store_release]
 
     steps:
       - name: Checkout repository
