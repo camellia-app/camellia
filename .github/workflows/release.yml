@@ -44,12 +44,12 @@ jobs:
         env:
           NODE_ENV: production
           APP_VERSION: ${{ github.event.release.tag_name }}
-          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          SENTRY_DSN: ${{ vars.SENTRY_DSN }}
           SENTRY_RELEASE: ${{ github.event.repository.name }}@${{ github.event.release.tag_name }}
           TARGET_PLATFORM: ${{ matrix.targetPlatform }}
-          UNSPLASH_BRIDGE_BASE_HOST: https://unsplash.camellia.app
-          UNSPLASH_DEFAULT_COLLECTION_ID: 10745553
-          WEBSITE_ICONS_PROXY_BASE_HOST: https://website-icons.camellia.app
+          UNSPLASH_BRIDGE_BASE_HOST: ${{ vars.UNSPLASH_BRIDGE_BASE_HOST }}
+          UNSPLASH_DEFAULT_COLLECTION_ID: ${{ vars.UNSPLASH_DEFAULT_COLLECTION_ID }}
+          WEBSITE_ICONS_PROXY_BASE_HOST: ${{ vars.WEBSITE_ICONS_PROXY_BASE_HOST }}
 
       - name: Upload dist folder as artifact
         uses: actions/upload-artifact@v3
