@@ -20,6 +20,10 @@
     "message": "Сообщество",
     "description": "External link in 'About' section leading to GitHub Discussions in the bottom of the options page."
   },
+  "about_externalLink_privacyPolicy": {
+    "message": "Политика конфиденциальности",
+    "description": "External link in 'About' section leading to Privacy Policy article in the bottom of the options page."
+  },
   "about_externalLink_releaseNotes": {
     "message": "Список изменений",
     "description": "External link in 'About' section leading to GitHub Releases in the bottom of the options page."

@@ -3,6 +3,7 @@ import IconCode from '@material-design-icons/svg/filled/code.svg';
 import IconDescription from '@material-design-icons/svg/filled/description.svg';
 import IconForum from '@material-design-icons/svg/filled/forum.svg';
 import IconNewReleases from '@material-design-icons/svg/filled/new_releases.svg';
+import IconPrivacyTip from '@material-design-icons/svg/filled/privacy_tip.svg';
 import type { FC, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { t } from '../../../api/i18n/translate';
@@ -42,6 +43,11 @@ export const ContactLinks: FC = () => {
       title: t('about_externalLink_releaseNotes'),
       url: 'https://github.com/camellia-app/camellia/releases',
       icon: <IconNewReleases />,
+    },
+    {
+      title: t('about_externalLink_privacyPolicy'),
+      url: 'https://github.com/camellia-app/camellia/wiki/Privacy-Policy',
+      icon: <IconPrivacyTip />,
     },
   ];
 

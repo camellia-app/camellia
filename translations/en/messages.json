@@ -20,6 +20,10 @@
     "message": "Community forum",
     "description": "External link in 'About' section leading to GitHub Discussions in the bottom of the options page."
   },
+  "about_externalLink_privacyPolicy": {
+    "message": "Privacy policy",
+    "description": "External link in 'About' section leading to Privacy Policy article in the bottom of the options page."
+  },
   "about_externalLink_releaseNotes": {
     "message": "Release notes",
     "description": "External link in 'About' section leading to GitHub Releases in the bottom of the options page."
