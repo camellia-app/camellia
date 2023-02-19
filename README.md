@@ -6,15 +6,21 @@ Camellia is a bookmark manager browser extension. When you open a new tab in a b
 
 ## Install
 
-To learn how to install Camellia into your browser, visit "[Installing](https://github.com/camellia-app/camellia/wiki/Installing)" page.
+[![Chrome Web Store rating](https://img.shields.io/chrome-web-store/rating/mamdkoclkocaejomjcaldmlgfgkgalnl?label=Rating)](https://chrome.google.com/webstore/detail/mamdkoclkocaejomjcaldmlgfgkgalnl) [![Chrome Web Store reviews](https://img.shields.io/chrome-web-store/rating-count/mamdkoclkocaejomjcaldmlgfgkgalnl?label=Reviews)](https://chrome.google.com/webstore/detail/mamdkoclkocaejomjcaldmlgfgkgalnl) [![Chrome Web Store users](https://img.shields.io/chrome-web-store/users/mamdkoclkocaejomjcaldmlgfgkgalnl?label=Users)](https://chrome.google.com/webstore/detail/mamdkoclkocaejomjcaldmlgfgkgalnl)
+
+You may install Camellia from extension marketplaces:
+
+- [Chrome Web Store](https://chrome.google.com/webstore/detail/mamdkoclkocaejomjcaldmlgfgkgalnl): for Google Chrome, Microsoft Edge, Yandex Browser and other Chromium-based browsers.
+
+For more installation options please visit "[Installing](https://github.com/camellia-app/camellia/wiki/Installing)" page.
 
 ## Documentation
 
-To learn more about Camellia, visit [our wiki](https://github.com/camellia-app/camellia/wiki).
+To learn more about Camellia visit [our wiki](https://github.com/camellia-app/camellia/wiki).
 
 ## Contact us
 
-If you want to report a security issue, please take a look at the "[Security Policy](https://github.com/camellia-app/camellia/wiki/Security-Policy)" page.
+If you want to report a security issue please take a look at the "[Security Policy](https://github.com/camellia-app/camellia/wiki/Security-Policy)" page.
 
 If you found a bug, have a suggestion or want to share some feedback, you are welcome to [our discussions](https://github.com/camellia-app/camellia/discussions) and [our issues](https://github.com/camellia-app/camellia/issues).
 
