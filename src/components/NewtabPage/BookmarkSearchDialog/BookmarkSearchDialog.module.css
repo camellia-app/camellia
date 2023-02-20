@@ -5,7 +5,6 @@
 }
 
 .searchDialogTip {
-  align-self: center;
-  color: white;
-  display: flex;
+  color: var(--acrylic-color-light-1);
+  text-align: center;
 }

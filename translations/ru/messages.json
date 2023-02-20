@@ -56,6 +56,18 @@
     "message": "Напечатайте что-нибудь, чтобы найти закладки...",
     "description": "Shown in the search text field when its empty."
   },
+  "bookmarkSearch_tip_ctrlF": {
+    "message": "Подсказка: Окно поиска можно открыть с помощью Ctrl + F или Ctrl + G"
+  },
+  "bookmarkSearch_tip_enterKey": {
+    "message": "Подсказка: Если нажать Enter, то откроется первая ссылка"
+  },
+  "bookmarkSearch_tip_escKey": {
+    "message": "Подсказка: Вы можете закрыть окно поиска с помощью Esc"
+  },
+  "bookmarkSearch_tip_pressingAnyCharacter": {
+    "message": "Подсказка: Искать закладки можно не открывая окно поиска, просто начните печатать"
+  },
   "bottomToolbar_bookmarkManager_label": {
     "message": "Менеджер закладок",
     "description": "Label on the button that opens default browser's bookmark manager located in bottom toolbar."

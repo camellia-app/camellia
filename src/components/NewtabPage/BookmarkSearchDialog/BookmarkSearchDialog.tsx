@@ -14,6 +14,18 @@ export const BookmarkSearchDialog: FC = () => {
   const [isActive, searchResultBookmarks, toggleSearch, searchBookmarks] = useBookmarkSearch();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const deferredSearchQuery = useDeferredValue(searchQuery);
+  const [tip, setTip] = useState<string | undefined>();
+
+  useEffect(() => {
+    const tipsMessages = [
+      t('bookmarkSearch_tip_ctrlF'),
+      t('bookmarkSearch_tip_escKey'),
+      t('bookmarkSearch_tip_enterKey'),
+      t('bookmarkSearch_tip_pressingAnyCharacter'),
+    ];
+
+    setTip(tipsMessages[Math.floor(Math.random() * tipsMessages.length)]);
+  }, []);
 
   const fieldInputHandler = (value: string): void => {
     setSearchQuery(value.trim());
@@ -81,12 +93,6 @@ export const BookmarkSearchDialog: FC = () => {
       break;
     }
   };
-  const tipsArray = [
-    t('bookmarkSearch_textField_tip1'),
-    t('bookmarkSearch_textField_tip2'),
-    t('bookmarkSearch_textField_tip3'),
-    t('bookmarkSearch_textField_tip4'),
-  ];
 
   return (
     <ModalDialog isOpen={isActive} onClosePopup={closeSearchModal} title={t('bookmarkSearch_textField_modalTitle')}>
@@ -102,7 +108,7 @@ export const BookmarkSearchDialog: FC = () => {
           />
         </form>
         {bookmarkChips.length > 0 ? <ChipList chips={bookmarkChips} type={'inline'} /> : undefined}
-        <footer className={searchDialogTip}>{`${tipsArray[Math.floor(Math.random() * tipsArray.length)]}`}</footer>
+        <footer className={searchDialogTip}>{tip}</footer>
       </div>
     </ModalDialog>
   );

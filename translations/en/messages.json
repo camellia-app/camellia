@@ -56,17 +56,17 @@
     "message": "Start typing to search bookmarks...",
     "description": "Shown in the search text field when its empty."
   },
-  "bookmarkSearch_textField_tip1": {
+  "bookmarkSearch_tip_ctrlF": {
     "message": "Tip: You can open search with Ctrl + F or Ctrl + G shortcuts"
   },
-  "bookmarkSearch_textField_tip2": {
-    "message": "Tip: You may press any character to open search"
+  "bookmarkSearch_tip_enterKey": {
+    "message": "Tip: Press Enter to open first link"
   },
-  "bookmarkSearch_textField_tip3": {
+  "bookmarkSearch_tip_escKey": {
     "message": "Tip: You can close search with Esc"
   },
-  "bookmarkSearch_textField_tip4": {
-    "message": "Tip: Press Enter to open first link"
+  "bookmarkSearch_tip_pressingAnyCharacter": {
+    "message": "Tip: You may press any character to open search"
   },
   "bottomToolbar_bookmarkManager_label": {
     "message": "Bookmark Manager",
