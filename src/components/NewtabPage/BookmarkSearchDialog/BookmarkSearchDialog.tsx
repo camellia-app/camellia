@@ -82,10 +82,10 @@ export const BookmarkSearchDialog: FC = () => {
     }
   };
   const tipsArray = [
-    'You can open search with Ctrl + F or Ctrl + G shortcuts',
-    'You may press any character to open search',
-    'You can close search with Esc',
-    'Press Enter to open first link',
+    t('bookmarkSearch_textField_tip1'),
+    t('bookmarkSearch_textField_tip2'),
+    t('bookmarkSearch_textField_tip3'),
+    t('bookmarkSearch_textField_tip4'),
   ];
 
   return (
@@ -102,7 +102,7 @@ export const BookmarkSearchDialog: FC = () => {
           />
         </form>
         {bookmarkChips.length > 0 ? <ChipList chips={bookmarkChips} type={'inline'} /> : undefined}
-        <h1 className={searchDialogTip}>{`Tip: ${tipsArray[Math.floor(Math.random() * 4)]}`}</h1>
+        <footer className={searchDialogTip}>{`${tipsArray[Math.floor(Math.random() * tipsArray.length)]}`}</footer>
       </div>
     </ModalDialog>
   );
