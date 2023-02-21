@@ -90,6 +90,10 @@
   "option_analytics_label": {
     "message": "Send anonymous usage statistics"
   },
+  "option_analytics_learnMoreLink": {
+    "message": "Learn more",
+    "description": "Link to the article about anonymous usage statistics."
+  },
   "option_backgroundBrightness_description": {
     "message": "If background image is too bright for you, you may reduce its brightness."
   },
