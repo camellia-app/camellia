@@ -28,6 +28,7 @@ export const OptionCheckbox: FC<{
       description={props.description}
       disabled={false}
       label={props.label}
+      learnMoreLink="https://github.com/camellia-app/camellia/wiki/Privacy-Policy"
       loading={isLoading}
       value={optionValue}
     />

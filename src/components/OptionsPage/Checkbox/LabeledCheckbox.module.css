@@ -3,3 +3,10 @@
   flex-direction: column;
   gap: 1rem;
 }
+
+.learnMoreLink {
+  color: var(--acrylic-color-light-2);
+  cursor: pointer;
+  text-decoration: underline;
+  width: fit-content;
+}
