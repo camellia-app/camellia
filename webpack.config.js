@@ -4,6 +4,7 @@ const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CreateFileWebpackPlugin = require('create-file-webpack');
 const dotenv = require('dotenv');
 const DotenvWebpackPlugin = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -28,6 +29,62 @@ assert(process.env.UNSPLASH_BRIDGE_BASE_HOST, 'Environment variable UNSPLASH_BRI
 if (process.env.BROWSERSLIST_ENV === undefined) {
   process.env.BROWSERSLIST_ENV = process.env.TARGET_PLATFORM;
 }
+
+const buildExtensionManifest = () => {
+  let extensionManifest = {
+    author: 'Petr Flaks',
+    chrome_url_overrides: {
+      newtab: '/newtab.html',
+    },
+    content_security_policy: {
+      extension_pages:
+        "script-src 'self'; object-src 'none'; connect-src https://*.camellia.app https://*.ingest.sentry.io",
+    },
+    default_locale: 'en',
+    description: '__MSG_extensionDescription__',
+    homepage_url: 'https://camellia.app',
+    host_permissions: ['https://*.camellia.app/'],
+    icons: {
+      128: 'logo.png',
+    },
+    manifest_version: 3,
+    name: 'Camellia',
+    options_ui: {
+      open_in_tab: true,
+      page: 'options.html',
+    },
+    permissions: ['bookmarks', 'storage'],
+    short_name: 'Camellia',
+    version: process.env.APP_VERSION.replace(/.*?([0-9]+\.[0-9]+\.[0-9]+).*/, '$1'),
+  };
+
+  switch (process.env.TARGET_PLATFORM) {
+    case 'chromium':
+      extensionManifest.background = {};
+      extensionManifest.background.service_worker = '/background.js';
+      extensionManifest.minimum_chrome_version = '105';
+      extensionManifest.permissions = [...extensionManifest.permissions, 'favicon'];
+      extensionManifest.version_name = process.env.APP_VERSION;
+
+      break;
+
+    case 'webext':
+      extensionManifest.background = {};
+      extensionManifest.background.scripts = ['/background.js'];
+      extensionManifest.browser_specific_settings = {};
+      extensionManifest.browser_specific_settings.gecko = {};
+      extensionManifest.browser_specific_settings.gecko.id = 'firefox@camellia.app';
+      extensionManifest.browser_specific_settings.gecko.strict_min_version = '109.0';
+
+      break;
+  }
+
+  if (process.env.NODE_ENV !== 'production') {
+    extensionManifest.name = `${extensionManifest.name} (${process.env.NODE_ENV})`;
+  }
+
+  return extensionManifest;
+};
 
 const getCssLoaders = () => {
   const loaders = [];
@@ -129,35 +186,13 @@ const commonConfig = {
     new DotenvWebpackPlugin({
       systemvars: true,
     }),
+    new CreateFileWebpackPlugin({
+      path: path.resolve(__dirname, 'dist', process.env.TARGET_PLATFORM),
+      fileName: 'manifest.json',
+      content: JSON.stringify(buildExtensionManifest()),
+    }),
     new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: './manifest.json',
-          transform(content) {
-            const manifest = JSON.parse(content.toString());
-
-            manifest.version = process.env.APP_VERSION.replace(/.*?([0-9]+\.[0-9]+\.[0-9]+).*/, '$1');
-            manifest.version_name = process.env.APP_VERSION;
-            manifest.background.service_worker = `/background.js`;
-
-            switch (process.env.NODE_ENV) {
-              case 'development':
-                manifest.name = `${manifest.name} (dev)`;
-                manifest.version_name = `${manifest.version_name} (dev)`;
-                manifest.content_security_policy.extension_pages = `${manifest.content_security_policy.extension_pages};`;
-
-                break;
-
-              default:
-                break;
-            }
-
-            return JSON.stringify(manifest, null, process.env.NODE_ENV === 'development' ? 2 : 0);
-          },
-        },
-        { from: path.resolve(__dirname, 'translations'), to: '_locales' },
-        { from: './logo.png' },
-      ],
+      patterns: [{ from: path.resolve(__dirname, 'translations'), to: '_locales' }, { from: './logo.png' }],
     }),
     new HtmlWebpackPlugin({
       chunks: ['newtab'],
