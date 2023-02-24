@@ -47,9 +47,6 @@ export const BackgroundImageSource: FC = () => {
         />
       </FilteredOptions>
 
-      <FilteredOptions categories={[categoriesMap.background]}>
-        <BackgroundPreview />
-      </FilteredOptions>
 
       {backgroundImageSourceType === 'link' ? (
         <FilteredOptions categories={[categoriesMap.background]}>
@@ -64,7 +61,7 @@ export const BackgroundImageSource: FC = () => {
           />
         </FilteredOptions>
       ) : undefined}
-
+      
       {backgroundImageSourceType === 'unsplash_collection' ? (
         <FilteredOptions categories={[categoriesMap.background]}>
           <OptionTextField
@@ -83,6 +80,9 @@ export const BackgroundImageSource: FC = () => {
           />
         </FilteredOptions>
       ) : undefined}
+      <FilteredOptions categories={[categoriesMap.background]}>
+        <BackgroundPreview />
+      </FilteredOptions>
     </>
   );
 };
