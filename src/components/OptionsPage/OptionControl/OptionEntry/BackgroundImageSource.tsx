@@ -47,7 +47,6 @@ export const BackgroundImageSource: FC = () => {
         />
       </FilteredOptions>
 
-
       {backgroundImageSourceType === 'link' ? (
         <FilteredOptions categories={[categoriesMap.background]}>
           <OptionTextField
@@ -61,7 +60,7 @@ export const BackgroundImageSource: FC = () => {
           />
         </FilteredOptions>
       ) : undefined}
-      
+
       {backgroundImageSourceType === 'unsplash_collection' ? (
         <FilteredOptions categories={[categoriesMap.background]}>
           <OptionTextField
