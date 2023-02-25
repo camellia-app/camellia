@@ -6,13 +6,11 @@ Camellia is a bookmark manager browser extension. When you open a new tab in a b
 
 ## Install
 
+### [Chrome Web Store](https://chrome.google.com/webstore/detail/mamdkoclkocaejomjcaldmlgfgkgalnl)
+
 [![Chrome Web Store rating](https://img.shields.io/chrome-web-store/rating/mamdkoclkocaejomjcaldmlgfgkgalnl?label=Rating)](https://chrome.google.com/webstore/detail/mamdkoclkocaejomjcaldmlgfgkgalnl) [![Chrome Web Store reviews](https://img.shields.io/chrome-web-store/rating-count/mamdkoclkocaejomjcaldmlgfgkgalnl?label=Reviews)](https://chrome.google.com/webstore/detail/mamdkoclkocaejomjcaldmlgfgkgalnl) [![Chrome Web Store users](https://img.shields.io/chrome-web-store/users/mamdkoclkocaejomjcaldmlgfgkgalnl?label=Users)](https://chrome.google.com/webstore/detail/mamdkoclkocaejomjcaldmlgfgkgalnl)
 
-You may install Camellia from extension marketplaces:
-
-- [Chrome Web Store](https://chrome.google.com/webstore/detail/mamdkoclkocaejomjcaldmlgfgkgalnl): for Google Chrome, Microsoft Edge, Yandex Browser and other Chromium-based browsers.
-
-For more installation options please visit "[Installing](https://github.com/camellia-app/camellia/wiki/Installing)" page.
+To install Camellia for **Google Chrome**, **Microsoft Edge**, **Yandex Browser** and other Chromium-based browsers please visit [Chrome Web Store](https://chrome.google.com/webstore/detail/mamdkoclkocaejomjcaldmlgfgkgalnl).
 
 ## Documentation
 
