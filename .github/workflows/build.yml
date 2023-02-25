@@ -42,5 +42,3 @@ jobs:
           NODE_ENV: production
           APP_VERSION: '2.0.0'
           TARGET_PLATFORM: ${{ matrix.targetPlatform }}
-          UNSPLASH_BRIDGE_BASE_HOST: ${{ vars.UNSPLASH_BRIDGE_BASE_HOST }}
-          WEBSITE_ICONS_PROXY_BASE_HOST: ${{ vars.WEBSITE_ICONS_PROXY_BASE_HOST }}
