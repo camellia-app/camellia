@@ -90,10 +90,6 @@
   "option_analytics_label": {
     "message": "Send anonymous usage statistics"
   },
-  "option_analytics_learnMoreLink": {
-    "message": "Learn more",
-    "description": "Link to the article about anonymous usage statistics."
-  },
   "option_backgroundBrightness_description": {
     "message": "If background image is too bright for you, you may reduce its brightness."
   },
@@ -237,9 +233,9 @@
   "optionsNavigationCategory_search_label": {
     "message": "Search"
   },
-  "options_analytics_learnMoreLink": {
+  "optionsPage_optionControl_learnMoreLink": {
     "message": "Learn more",
-    "description": "Link to the article about anonymous usage statistics."
+    "description": "A link that refers to some external website or documentation."
   },
   "popup_closeButton_label": {
     "message": "Close",

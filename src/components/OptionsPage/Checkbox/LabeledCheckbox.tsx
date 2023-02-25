@@ -1,8 +1,9 @@
 import type { FC, ReactNode } from 'react';
 import { t } from '../../../api/i18n/translate';
 import { Paragraph } from '../Paragraph/Paragraph';
+import { paragraph } from '../Paragraph/Paragraph.module.css';
 import { Checkbox } from './Checkbox';
-import { labeledCheckbox, learnMoreLink } from './LabeledCheckbox.module.css';
+import { labeledCheckbox } from './LabeledCheckbox.module.css';
 
 export const LabeledCheckbox: FC<{
   /**
@@ -30,7 +31,7 @@ export const LabeledCheckbox: FC<{
   /**
    * Link to learn more about data collection.
    */
-  learnMoreLink: string | undefined;
+  learnMoreLink?: string | undefined;
 
   /**
    * Show loading animation.
@@ -54,10 +55,17 @@ export const LabeledCheckbox: FC<{
         value={props.value}
       />
 
-      <Paragraph>{props.description}</Paragraph>
-      <a className={learnMoreLink} href={props.learnMoreLink}>
-        {t('options_analytics_learnMoreLink')}
-      </a>
+      <Paragraph>
+        {props.learnMoreLink !== ''
+          ? props.description
+          : props.description +
+            ' ' +
+            (
+              <a className={paragraph} href={props.learnMoreLink} rel="noreferrer noopener" target="_blank">
+                {t('optionsPage_optionControl_learnMoreLink')}
+              </a>
+            )}
+      </Paragraph>
     </div>
   );
 };
