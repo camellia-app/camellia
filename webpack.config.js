@@ -63,6 +63,7 @@ const buildExtensionManifest = () => {
       extensionManifest.background = {};
       extensionManifest.background.service_worker = '/background.js';
       extensionManifest.minimum_chrome_version = '105';
+      extensionManifest.offline_enabled = true;
       extensionManifest.permissions = [...extensionManifest.permissions, 'favicon'];
       extensionManifest.version_name = process.env.APP_VERSION;
 
