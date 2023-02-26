@@ -11,6 +11,7 @@ export const EnableErrorReporting: FC = () => {
         description={t('option_sentry_description')}
         disabled
         label={t('option_sentry_label')}
+        learnMoreLink="https://github.com/camellia-app/camellia/wiki/Privacy-Policy"
         loading={false}
         value={true}
       />

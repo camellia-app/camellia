@@ -56,15 +56,16 @@ export const LabeledCheckbox: FC<{
       />
 
       <Paragraph>
-        {props.learnMoreLink !== ''
-          ? props.description
-          : props.description +
-            ' ' +
-            (
-              <a className={paragraph} href={props.learnMoreLink} rel="noreferrer noopener" target="_blank">
-                {t('optionsPage_optionControl_learnMoreLink')}
-              </a>
-            )}
+        {props.learnMoreLink === undefined ? (
+          props.description
+        ) : (
+          <>
+            {props.description}{' '}
+            <a className={paragraph} href={props.learnMoreLink} rel="noreferrer noopener" target="_blank">
+              {t('optionsPage_optionControl_learnMoreLink')}
+            </a>
+          </>
+        )}
       </Paragraph>
     </div>
   );
