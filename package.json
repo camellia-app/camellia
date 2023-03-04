@@ -43,7 +43,7 @@
     "webpack-cli": "5.0.1"
   },
   "devDependencies": {
-    "@types/chrome": "0.0.218",
+    "@types/chrome": "0.0.219",
     "@types/firefox-webext-browser": "111.0.0",
     "@types/lodash.debounce": "4.0.7",
     "@types/react": "18.0.28",
