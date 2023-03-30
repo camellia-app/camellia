@@ -233,6 +233,10 @@
   "optionsNavigationCategory_search_label": {
     "message": "Search"
   },
+  "optionsPage_optionControl_learnMoreLink": {
+    "message": "Learn more",
+    "description": "A link that refers to some external website or documentation."
+  },
   "popup_closeButton_label": {
     "message": "Close",
     "description": "Label of the close button in popup. This text shown when hovering the button."

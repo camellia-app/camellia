@@ -11,6 +11,7 @@ export const EnableAnalytics: FC = () => {
         description={t('option_analytics_description')}
         disabled
         label={t('option_analytics_label')}
+        learnMoreLink="https://github.com/camellia-app/camellia/wiki/Privacy-Policy"
         loading={false}
         value={true}
       />
