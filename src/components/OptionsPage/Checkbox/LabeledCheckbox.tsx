@@ -1,7 +1,6 @@
 import type { FC, ReactNode } from 'react';
 import { t } from '../../../api/i18n/translate';
 import { Paragraph } from '../Paragraph/Paragraph';
-import { paragraph } from '../Paragraph/Paragraph.module.css';
 import { Checkbox } from './Checkbox';
 import { labeledCheckbox } from './LabeledCheckbox.module.css';
 
@@ -29,7 +28,7 @@ export const LabeledCheckbox: FC<{
   label: string;
 
   /**
-   * Link to learn more about data collection.
+   * Link that points to some external documentation.
    */
   learnMoreLink?: string | undefined;
 
@@ -56,12 +55,12 @@ export const LabeledCheckbox: FC<{
       />
 
       <Paragraph>
-        {props.learnMoreLink === undefined ? (
-          props.description
-        ) : (
+        {props.description}
+
+        {props.learnMoreLink !== undefined && (
           <>
-            {props.description}{' '}
-            <a className={paragraph} href={props.learnMoreLink} rel="noreferrer noopener" target="_blank">
+            {' '}
+            <a href={props.learnMoreLink} rel="noreferrer noopener" target="_blank">
               {t('optionsPage_optionControl_learnMoreLink')}
             </a>
           </>
