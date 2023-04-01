@@ -1,10 +1,7 @@
 import type CSS from 'csstype';
 import type { FC, ReactNode } from 'react';
 import { useOption } from '../../../api/options/hook';
-import {
-  backgroundMediaFullScreenContainer,
-  backgroundMediaFullScreenContainerBackdrop,
-} from './BackgroundMediaFullScreenContainer.module.css';
+import { backgroundMediaFullScreenContainer, backdrop } from './BackgroundMediaFullScreenContainer.module.css';
 
 export const BackgroundMediaFullScreenContainer: FC<{
   children: ReactNode;
@@ -39,7 +36,7 @@ export const BackgroundMediaFullScreenContainer: FC<{
 
   return (
     <div className={backgroundMediaFullScreenContainer}>
-      <div className={backgroundMediaFullScreenContainerBackdrop} style={styles} />
+      <div className={backdrop} style={styles} />
 
       {props.children}
     </div>

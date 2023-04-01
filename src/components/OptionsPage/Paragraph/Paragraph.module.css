@@ -2,11 +2,11 @@
   color: var(--acrylic-color-light-3);
   hanging-punctuation: first last;
   hyphens: auto;
-}
 
-.paragraph a {
-  cursor: pointer;
-  display: inline;
-  text-decoration: underline;
-  touch-action: manipulation;
+  & a {
+    cursor: pointer;
+    display: inline;
+    text-decoration: underline;
+    touch-action: manipulation;
+  }
 }

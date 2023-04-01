@@ -8,6 +8,6 @@
   width: 100%;
 }
 
-.backgroundMediaLoading {
+.backgroundMedia.loading {
   opacity: 0;
 }
