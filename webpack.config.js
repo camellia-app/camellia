@@ -142,21 +142,7 @@ const commonConfig = {
       {
         test: /\.svg$/,
         issuer: /\.tsx?$/,
-        use: [
-          {
-            loader: '@svgr/webpack',
-            options: {
-              svgoConfig: {
-                plugins: [
-                  {
-                    name: 'removeViewBox', // https://github.com/gregberge/svgr/issues/142#issuecomment-1035844445
-                    active: false,
-                  },
-                ],
-              },
-            },
-          },
-        ],
+        use: ['@svgr/webpack'],
       },
       {
         // include: path.join(__dirname, 'src', 'components'),
