@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import type { FC, ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 import { useOption } from '../../../api/options/hook';
-import { backgroundMedia, backgroundMediaLoading } from './BackgroundMedia.module.css';
+import { backgroundMedia, loading } from './BackgroundMedia.module.css';
 import { ImageByUrlFromOptions } from './providers/optionProvider/ImageByUrlFromOptions';
 import { PhotoFromUnsplashCollectionByIdFromOptions } from './providers/optionProvider/PhotoFromUnsplashCollectionByIdFromOptions';
 
@@ -38,7 +38,7 @@ export const BackgroundMedia: FC = () => {
   return (
     <div
       className={classNames(backgroundMedia, {
-        [backgroundMediaLoading]: isLoading,
+        [loading]: isLoading,
       })}
     >
       {background}

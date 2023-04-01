@@ -1,2 +1,2 @@
 export const backgroundMedia: string;
-export const backgroundMediaLoading: string;
+export const loading: string;
