@@ -29,3 +29,7 @@ export const getPlatform = (): AppPlatform => {
       throw new Error(`Unknown platform: ${process.env['TARGET_PLATFORM']}`);
   }
 };
+
+export const isMacOs = (): boolean => {
+  return navigator.userAgent.indexOf('Mac') !== -1;
+};

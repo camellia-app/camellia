@@ -2,6 +2,7 @@
   color: var(--acrylic-color-light-3);
   hanging-punctuation: first last;
   hyphens: auto;
+  line-height: var(--text-line-height);
 }
 
 .paragraph a {

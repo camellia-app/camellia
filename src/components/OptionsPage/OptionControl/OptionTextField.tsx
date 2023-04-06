@@ -1,12 +1,12 @@
 import debounce from 'lodash.debounce';
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 import { useOption } from '../../../api/options/hook';
 import type { StringOptionKey } from '../../../api/options/options';
 import { LabeledTextField } from '../TextField/LabeledTextField';
 
 export const OptionTextField: FC<{
-  description: string;
+  description: ReactNode;
   label: string;
   optionKey: StringOptionKey;
   pattern?: string | undefined;

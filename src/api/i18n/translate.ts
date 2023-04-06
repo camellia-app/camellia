@@ -1,9 +1,9 @@
 import * as Sentry from '@sentry/browser';
 import englishTranslations from '../../../translations/en/messages.json';
 import russianTranslations from '../../../translations/ru/messages.json';
-import { getPlatform } from '../appEnvironment';
+import { getPlatform, isMacOs } from '../appEnvironment';
 
-type TranslationKey = keyof typeof englishTranslations | keyof typeof russianTranslations;
+export type TranslationKey = keyof typeof englishTranslations | keyof typeof russianTranslations;
 
 type TranslationEntry = {
   message: string;
@@ -27,6 +27,22 @@ export const t = (key: TranslationKey, placeholderReplacements?: Array<string>):
     case 'web':
       return getWebTranslatedMessage(key, placeholderReplacements);
   }
+};
+
+export const getEnterKeyName = (): string => {
+  if (isMacOs()) {
+    return '⏎ return';
+  }
+
+  return '↵ Enter';
+};
+
+export const getCtrlKeyName = (): string => {
+  if (isMacOs()) {
+    return '⌘ Command';
+  }
+
+  return 'Ctrl';
 };
 
 const getWebextTranslatedMessage = (key: TranslationKey, placeholderReplacements?: Array<string>): string => {
