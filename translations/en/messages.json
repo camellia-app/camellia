@@ -57,13 +57,25 @@
     "description": "Shown in the search text field when its empty."
   },
   "bookmarkSearch_tip_ctrlF": {
-    "message": "Tip: You can open search with Ctrl + F or Ctrl + G shortcuts"
+    "message": "Tip: You can open search with <kbd>$KEY$</kbd> + <kbd>K</kbd> shortcut",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "Ctrl"
+      }
+    }
   },
   "bookmarkSearch_tip_enterKey": {
-    "message": "Tip: Press Enter to open first link"
+    "message": "Tip: Press <kbd>$KEY$</kbd> to open first link",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "↵ Enter"
+      }
+    }
   },
   "bookmarkSearch_tip_escKey": {
-    "message": "Tip: You can close search with Esc"
+    "message": "Tip: You can close search with <kbd>Esc</kbd>"
   },
   "bookmarkSearch_tip_pressingAnyCharacter": {
     "message": "Tip: You may press any character to open search"
@@ -204,7 +216,13 @@
     "message": "Show \"Options\" button"
   },
   "option_showSearchButton_description": {
-    "message": "Show \"Search\" button in bottom toolbar."
+    "message": "Show \"Search\" button in bottom toolbar. You may use <kbd>$KEY$</kbd> + <kbd>K</kbd> shortcut to open the search window using a keyboard.",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "Ctrl"
+      }
+    }
   },
   "option_showSearchButton_label": {
     "message": "Show \"Search\" button"

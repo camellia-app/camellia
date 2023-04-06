@@ -2,10 +2,13 @@ import type { FC, FormEventHandler } from 'react';
 import { useCallback, useDeferredValue, useEffect, useState } from 'react';
 import { openUrl } from '../../../api/applicationRuntime/navigation';
 import { isLink } from '../../../api/bookmark/common';
-import { t } from '../../../api/i18n/translate';
+import type { TranslationKey } from '../../../api/i18n/translate';
+import { getCtrlKeyName, getEnterKeyName, t } from '../../../api/i18n/translate';
 import { useBookmarkSearch } from '../../../store/hooks/useBookmarkSearchHook';
 import { ChipList } from '../../common/ChipList/ChipList';
 import { TextField } from '../../common/TextField/TextField';
+import { Translation } from '../../common/Translation/Translation';
+import { Paragraph } from '../../OptionsPage/Paragraph/Paragraph';
 import { Bookmark } from '../Bookmark/Bookmark';
 import { ModalDialog } from '../ModalDialog/ModalDialog';
 import { bookmarkSearchDialog, searchDialogTip } from './BookmarkSearchDialog.module.css';
@@ -14,14 +17,14 @@ export const BookmarkSearchDialog: FC = () => {
   const [isActive, searchResultBookmarks, toggleSearch, searchBookmarks] = useBookmarkSearch();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const deferredSearchQuery = useDeferredValue(searchQuery);
-  const [tip, setTip] = useState<string | undefined>();
+  const [tip, setTip] = useState<[TranslationKey, Array<string> | undefined]>();
 
   useEffect(() => {
-    const tipsMessages = [
-      t('bookmarkSearch_tip_ctrlF'),
-      t('bookmarkSearch_tip_escKey'),
-      t('bookmarkSearch_tip_enterKey'),
-      t('bookmarkSearch_tip_pressingAnyCharacter'),
+    const tipsMessages: Array<[TranslationKey, Array<string> | undefined]> = [
+      ['bookmarkSearch_tip_ctrlF', [getCtrlKeyName()]],
+      ['bookmarkSearch_tip_escKey', undefined],
+      ['bookmarkSearch_tip_enterKey', [getEnterKeyName()]],
+      ['bookmarkSearch_tip_pressingAnyCharacter', undefined],
     ];
 
     setTip(tipsMessages[Math.floor(Math.random() * tipsMessages.length)]);
@@ -55,7 +58,11 @@ export const BookmarkSearchDialog: FC = () => {
     const searchHotKeyPressHandler = (event: KeyboardEvent): void => {
       const isCtrlPressed = event.ctrlKey || event.metaKey;
 
-      if ((isCtrlPressed && event.key === 'f') || (isCtrlPressed && event.key === 'g')) {
+      if (
+        (isCtrlPressed && event.key === 'f') ||
+        (isCtrlPressed && event.key === 'g') ||
+        (isCtrlPressed && event.key === 'k')
+      ) {
         event.preventDefault();
 
         toggleSearch(true);
@@ -107,8 +114,16 @@ export const BookmarkSearchDialog: FC = () => {
             value={searchQuery}
           />
         </form>
-        {bookmarkChips.length > 0 ? <ChipList chips={bookmarkChips} type={'inline'} /> : undefined}
-        <footer className={searchDialogTip}>{tip}</footer>
+
+        {bookmarkChips.length > 0 && <ChipList chips={bookmarkChips} type={'inline'} />}
+
+        {tip !== undefined && (
+          <footer className={searchDialogTip}>
+            <Paragraph>
+              <Translation placeholderReplacements={tip[1]} translationKey={tip[0]} />
+            </Paragraph>
+          </footer>
+        )}
       </div>
     </ModalDialog>
   );

@@ -1,11 +1,11 @@
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 import { useOption } from '../../../api/options/hook';
 import type { BooleanOptionKey } from '../../../api/options/options';
 import { LabeledCheckbox } from '../Checkbox/LabeledCheckbox';
 
 export const OptionCheckbox: FC<{
-  description: string;
+  description: ReactNode;
   label: string;
   optionKey: BooleanOptionKey;
 }> = (props) => {

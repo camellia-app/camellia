@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 import { useOption } from '../../../api/options/hook';
 import type { EnumOptionKey, OptionsTypeMap } from '../../../api/options/options';
@@ -6,7 +6,7 @@ import type { SelectOption, SelectOptionGroup } from '../DropdownSelect/Dropdown
 import { LabeledDropdownSelect } from '../DropdownSelect/LabeledDropdownSelect';
 
 export const OptionDropdownSelect: FC<{
-  description: string;
+  description: ReactNode;
   dropdownOptions: Array<
     SelectOption<OptionsTypeMap[EnumOptionKey]> | SelectOptionGroup<OptionsTypeMap[EnumOptionKey]>
   >;
