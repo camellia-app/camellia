@@ -48,7 +48,7 @@
     "@types/chrome": "0.0.227",
     "@types/firefox-webext-browser": "111.0.1",
     "@types/lodash.debounce": "4.0.7",
-    "@types/react": "18.0.31",
+    "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
     "@types/uuid": "9.0.1",
     "@typescript-eslint/eslint-plugin": "5.57.0",
