@@ -11,6 +11,7 @@ import {
   chipIconRemoteRasterImageLoading,
   chipLabel,
   chipLoading,
+  chipLoadingVisible,
   chipRounded,
   chipSquared,
 } from './Chip.module.css';
@@ -121,7 +122,6 @@ export const Chip: FC<
 
   const chipClasses = classNames(chip, {
     [chipBlurred]: props.blurred === true,
-    [chipLoading]: props.isLoading === true,
     [chipSquared]: props.shape === 'squared',
     [chipRounded]: props.shape === 'rounded',
   });
@@ -138,6 +138,12 @@ export const Chip: FC<
         title={tooltip}
       >
         {chipBody}
+
+        <span
+          className={classNames(chipLoading, {
+            [chipLoadingVisible]: props.isLoading === true,
+          })}
+        />
       </a>
     );
   } else {

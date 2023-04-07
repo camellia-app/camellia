@@ -4,6 +4,8 @@
   box-shadow: 2px 2px 8px 0 var(--acrylic-color-dark-1);
   cursor: pointer;
   display: flex;
+  overflow: hidden;
+  position: relative;
   touch-action: manipulation;
   transition: background-color 0.2s, transform 0.2s;
   user-select: none;
@@ -24,6 +26,16 @@
     var(--loading-strip-color-2) 75%
   );
   background-size: var(--loading-strip-size) var(--loading-strip-size);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 10s;
+  overflow: hidden;
+}
+
+.chipLoadingVisible {
+  opacity: 1;
 }
 
 .chipRounded {
