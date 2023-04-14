@@ -19,6 +19,7 @@
   --chip-max-width: max(var(--bookmark-column-min-width), 350px);
   --font-family-sans-serif: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue', arial, 'Noto Sans',
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --high-contrast-shadow: 0 0 0 1px rgb(0 0 0 / 20%);
   --loading-strip-size: 20px;
   --loading-strip-color-1: rgb(33 33 33 / 15%);
   --loading-strip-color-2: rgb(255 255 255 / 15%);

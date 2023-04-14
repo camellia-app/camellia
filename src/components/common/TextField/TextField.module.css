@@ -2,6 +2,7 @@
   backdrop-filter: var(--acrylic-background-filter);
   background-color: var(--acrylic-color-light-2);
   border-radius: 4px;
+  box-shadow: var(--high-contrast-shadow);
   cursor: text;
   transition: 0.5s background-color;
   width: 20rem;

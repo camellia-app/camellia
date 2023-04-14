@@ -1,7 +1,7 @@
 .chip {
   align-items: flex-start;
   background-color: var(--acrylic-color-light-2);
-  box-shadow: 2px 2px 8px 0 var(--acrylic-color-dark-1);
+  box-shadow: var(--high-contrast-shadow);
   cursor: pointer;
   display: flex;
   touch-action: manipulation;
