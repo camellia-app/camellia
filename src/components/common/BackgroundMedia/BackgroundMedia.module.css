@@ -3,9 +3,13 @@
   object-fit: cover;
   opacity: 1;
   pointer-events: none;
-  transition: opacity 1s;
+  transition: opacity 1s, filter 1s;
   user-select: none;
   width: 100%;
+}
+
+.backgroundMediaBlurred {
+  filter: blur(16px);
 }
 
 .backgroundMediaLoading {

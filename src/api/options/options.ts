@@ -9,6 +9,7 @@ export type OptionsTypeMap = {
   background_image_link: string;
   background_image_unsplash_collection: string;
   background_provider_type: BackgroundProviderType;
+  blur_background: boolean;
   content_layout: ContentLayoutType;
   display_unsplash_attribution: boolean;
   show_bookmark_manager_button: boolean;
@@ -18,6 +19,7 @@ export type OptionsTypeMap = {
 
 export type OptionKey = keyof OptionsTypeMap;
 export type BooleanOptionKey =
+  | 'blur_background'
   | 'display_unsplash_attribution'
   | 'show_bookmark_manager_button'
   | 'show_options_button'
@@ -30,6 +32,7 @@ export const optionDefaults: OptionsTypeMap = {
   background_image_link: 'https://images.unsplash.com/photo-1615931632997-c592e375d6ef',
   background_image_unsplash_collection: `https://unsplash.com/collections/${config.unsplash.defaultCollectionId}`,
   background_provider_type: 'unsplash_collection',
+  blur_background: false,
   content_layout: 'centered',
   display_unsplash_attribution: true,
   show_bookmark_manager_button: true,

@@ -13,6 +13,7 @@ import { AboutApp } from './AboutApp/AboutApp';
 import { ContactLinks } from './ContactLinks/ContactLinks';
 import { BackgroundBrightness } from './OptionControl/OptionEntry/BackgroundBrightness';
 import { BackgroundImageSource } from './OptionControl/OptionEntry/BackgroundImageSource';
+import { BlurBackground } from './OptionControl/OptionEntry/BlurBackground';
 import { ContentLayout } from './OptionControl/OptionEntry/ContentLayout';
 import { CopyDebugInformation } from './OptionControl/OptionEntry/CopyDebugInformation';
 import { CreateDemoBookmarks } from './OptionControl/OptionEntry/CreateDemoBookmarks';
@@ -48,6 +49,8 @@ export const OptionsPage: FC = () => {
               <BackgroundImageSource />
 
               <BackgroundBrightness />
+
+              <BlurBackground />
 
               <UnsplashPhotographerAttribution />
 
