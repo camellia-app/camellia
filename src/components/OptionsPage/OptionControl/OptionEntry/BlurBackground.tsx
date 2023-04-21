@@ -6,7 +6,7 @@ import { OptionCheckbox } from '../OptionCheckbox';
 
 export const BlurBackground: FC = () => {
   return (
-    <FilteredOptions categories={[categoriesMap.background]}>
+    <FilteredOptions categories={[categoriesMap.background, categoriesMap.accessibility]}>
       <OptionCheckbox
         description={t('option_blurBackground_description')}
         label={t('option_blurBackground_label')}

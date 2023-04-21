@@ -236,6 +236,9 @@
   "optionsNavigationCategory_about_label": {
     "message": "About"
   },
+  "optionsNavigationCategory_accessibility_label": {
+    "message": "Accessibility"
+  },
   "optionsNavigationCategory_advanced_label": {
     "message": "Advanced"
   },

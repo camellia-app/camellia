@@ -236,6 +236,9 @@
   "optionsNavigationCategory_about_label": {
     "message": "О приложении"
   },
+  "optionsNavigationCategory_accessibility_label": {
+    "message": "Доступность"
+  },
   "optionsNavigationCategory_advanced_label": {
     "message": "Дополнительно"
   },

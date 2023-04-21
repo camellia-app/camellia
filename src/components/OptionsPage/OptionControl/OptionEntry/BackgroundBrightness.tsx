@@ -6,7 +6,7 @@ import { OptionDropdownSelect } from '../OptionDropdownSelect';
 
 export const BackgroundBrightness: FC = () => {
   return (
-    <FilteredOptions categories={[categoriesMap.background]}>
+    <FilteredOptions categories={[categoriesMap.background, categoriesMap.accessibility]}>
       <OptionDropdownSelect
         description={t('option_backgroundBrightness_description')}
         dropdownOptions={[

@@ -4,6 +4,7 @@ import CallToAction from '@material-design-icons/svg/filled/call_to_action.svg';
 import Construction from '@material-design-icons/svg/filled/construction.svg';
 import Info from '@material-design-icons/svg/filled/info.svg';
 import ManageSearch from '@material-design-icons/svg/filled/manage_search.svg';
+import SettingsAccessibility from '@material-design-icons/svg/filled/settings_accessibility.svg';
 import ViewList from '@material-design-icons/svg/filled/view_list.svg';
 import Wallpaper from '@material-design-icons/svg/filled/wallpaper.svg';
 import type { FC, ReactElement } from 'react';
@@ -38,6 +39,11 @@ export const categoriesMap = {
     label: t('optionsNavigationCategory_bottomToolbar_label'),
     id: 'bottom-toolbar',
     icon: <CallToAction />,
+  },
+  accessibility: {
+    label: t('optionsNavigationCategory_accessibility_label'),
+    id: 'accessibility',
+    icon: <SettingsAccessibility />,
   },
   analytics: {
     label: t('optionsNavigationCategory_dataCollection_label'),
