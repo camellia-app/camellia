@@ -17,7 +17,7 @@
     "@sentry/browser": "7.50.0",
     "@sentry/react": "7.50.0",
     "@sentry/tracing": "7.53.1",
-    "@sentry/types": "7.50.0",
+    "@sentry/types": "7.53.1",
     "@sentry/webpack-plugin": "2.2.0",
     "@svgr/webpack": "8.0.1",
     "autoprefixer": "10.4.14",
