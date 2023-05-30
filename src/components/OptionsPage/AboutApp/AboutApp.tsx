@@ -1,7 +1,9 @@
 import type { FC } from 'react';
+import { getPlatform } from '../../../api/appEnvironment';
 import { useAppEnvironment } from '../../../api/appEnvironment/hook';
 import { useAppInfo } from '../../../api/appInfo/hook';
 import { t } from '../../../api/i18n/translate';
+import { Translation } from '../../common/Translation/Translation';
 import { FilteredOptions } from '../OptionsCategory/FilteredOptions/FilteredOptions';
 import { categoriesMap } from '../OptionsCategory/OptionsSearchForm/OptionsSearchForm';
 import { Paragraph } from '../Paragraph/Paragraph';
@@ -34,6 +36,7 @@ export const AboutApp: FC = () => {
             awesome contributors
           </a>{' '}
           ❤️
+          {getPlatform() === 'chromium' && <Translation translationKey={'about_rateExtensionMessage_chromium'} />}
         </Paragraph>
       </div>
     </FilteredOptions>
