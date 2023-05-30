@@ -36,6 +36,10 @@
     "message": "Инструкции",
     "description": "External link in 'About' section leading to GitHub Wiki in the bottom of the options page."
   },
+  "about_rateExtensionMessage_chromium": {
+    "message": "Если вам нравится это расширение, пожалуйста, оцените его в <a href=\"https://chrome.google.com/webstore/detail/camellia/mamdkoclkocaejomjcaldmlgfgkgalnl\">Интернет-магазине Chrome</a> ⭐️",
+    "description": "Message in 'About' section."
+  },
   "bookmarkBrowser_noBookmarks_label": {
     "message": "Добавьте свою первую закладку, чтобы начать пользоваться Camellia",
     "description": "The message is displayed when there are no bookmarks stored in a browser."
