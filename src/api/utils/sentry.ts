@@ -1,7 +1,9 @@
 import type { BrowserOptions } from '@sentry/browser';
+import type { Transaction } from '@sentry/types/types/transaction';
+
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
-import type { Transaction } from '@sentry/types/types/transaction';
+
 import { config } from '../../config';
 
 export const SENTRY_SPAN_STATUS_OK = 'ok';
@@ -14,9 +16,9 @@ export const initializeSentry = (): void => {
 
   const sentryOptions: BrowserOptions = {
     dsn: config.sentry.dsn,
+    environment: config.sentry.environment,
     integrations: [new BrowserTracing()],
     tracesSampleRate: config.sentry.tracing.sampleRate,
-    environment: config.sentry.environment,
   };
 
   if (config.sentry.release !== undefined) {

@@ -1,6 +1,8 @@
 import type { ReactElement, ReactNode } from 'react';
-import { Paragraph } from '../Paragraph/Paragraph';
+
 import type { SelectOption, SelectOptionGroup } from './DropdownSelect';
+
+import { Paragraph } from '../Paragraph/Paragraph';
 import { DropdownSelect } from './DropdownSelect';
 import {
   labeledDropdownSelect,

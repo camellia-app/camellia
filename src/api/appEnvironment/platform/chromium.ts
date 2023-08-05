@@ -1,4 +1,5 @@
 import { detect } from 'detect-browser';
+
 import type { AppEnvironment } from '../common';
 
 export const getChromiumAppEnvironment = async (): Promise<AppEnvironment> => {
@@ -16,8 +17,8 @@ export const getChromiumAppEnvironment = async (): Promise<AppEnvironment> => {
       version: typeof browserVersion === 'string' ? browserVersion : 'unknown',
     },
     platform: {
-      os: platformInfo.os,
       arch: platformInfo.arch,
+      os: platformInfo.os,
     },
   };
 };

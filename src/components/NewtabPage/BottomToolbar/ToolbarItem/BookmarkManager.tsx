@@ -1,5 +1,7 @@
+import type { FC, MouseEventHandler } from 'react';
+
 import Star from '@material-design-icons/svg/filled/star.svg';
-import type { MouseEventHandler, FC } from 'react';
+
 import { openBookmarkManager } from '../../../../api/applicationRuntime/navigation';
 import { t } from '../../../../api/i18n/translate';
 import { Chip } from '../../../common/Chip/Chip';

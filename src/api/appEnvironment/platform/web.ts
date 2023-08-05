@@ -7,8 +7,8 @@ export const getWebAppEnvironment = async (): Promise<AppEnvironment> => {
       version: 'unknown version',
     },
     platform: {
-      os: 'unknown os',
       arch: 'unknown arch',
+      os: 'unknown os',
     },
   };
 };

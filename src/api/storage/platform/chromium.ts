@@ -1,4 +1,5 @@
 import type { Storage, StorageKeyChangeHandler, StorageType } from '../common';
+
 import { StorageKeyDoesNotExist } from '../common';
 
 export const getChromiumStorageManager = (type: StorageType): Storage => {
@@ -37,10 +38,6 @@ const getChromiumLocalStorageManager = (): Storage => {
   };
 
   return {
-    get: getByKey,
-    getAllKeys: async (): Promise<Array<string>> => {
-      return Object.keys(await chrome.storage.local.get(null));
-    },
     delete: async (key: string): Promise<void> => {
       await chrome.storage.local.remove(key);
     },
@@ -56,6 +53,15 @@ const getChromiumLocalStorageManager = (): Storage => {
       }
 
       return true;
+    },
+    get: getByKey,
+    getAllKeys: async (): Promise<Array<string>> => {
+      return Object.keys(await chrome.storage.local.get(null));
+    },
+    set: async <TValue>(key: string, value: TValue): Promise<void> => {
+      await chrome.storage.local.set({
+        [key]: value,
+      });
     },
     subscribeToKeyChanges: <TValue>(key: string, handler: StorageKeyChangeHandler<TValue>): (() => void) => {
       const listener: Parameters<typeof chrome.storage.onChanged.addListener>[0] = function (changes, area: string) {
@@ -78,11 +84,6 @@ const getChromiumLocalStorageManager = (): Storage => {
         chrome.storage.onChanged.removeListener(listener);
       };
     },
-    set: async <TValue>(key: string, value: TValue): Promise<void> => {
-      await chrome.storage.local.set({
-        [key]: value,
-      });
-    },
   };
 };
 
@@ -104,10 +105,6 @@ const getChromiumSynchronizableStorageManager = (): Storage => {
   };
 
   return {
-    get: getByKey,
-    getAllKeys: async (): Promise<Array<string>> => {
-      return Object.keys(await chrome.storage.sync.get(null));
-    },
     delete: async (key: string): Promise<void> => {
       await chrome.storage.sync.remove(key);
     },
@@ -123,6 +120,15 @@ const getChromiumSynchronizableStorageManager = (): Storage => {
       }
 
       return true;
+    },
+    get: getByKey,
+    getAllKeys: async (): Promise<Array<string>> => {
+      return Object.keys(await chrome.storage.sync.get(null));
+    },
+    set: async <TValue>(key: string, value: TValue): Promise<void> => {
+      await chrome.storage.sync.set({
+        [key]: value,
+      });
     },
     subscribeToKeyChanges: <TValue>(key: string, handler: StorageKeyChangeHandler<TValue>): (() => void) => {
       const listener: Parameters<typeof chrome.storage.onChanged.addListener>[0] = function (changes, area: string) {
@@ -144,11 +150,6 @@ const getChromiumSynchronizableStorageManager = (): Storage => {
       return (): void => {
         chrome.storage.onChanged.removeListener(listener);
       };
-    },
-    set: async <TValue>(key: string, value: TValue): Promise<void> => {
-      await chrome.storage.sync.set({
-        [key]: value,
-      });
     },
   };
 };

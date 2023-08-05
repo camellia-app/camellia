@@ -1,10 +1,13 @@
+import type { FC, MouseEventHandler } from 'react';
+
 import Folder from '@material-design-icons/svg/filled/folder.svg';
 import Public from '@material-design-icons/svg/filled/public.svg';
-import type { FC, MouseEventHandler } from 'react';
 import { useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getFolderChildrenBookmarks } from '../../../api/bookmark';
+
 import type { Bookmark as BookmarkEntry } from '../../../api/bookmark/common';
+
+import { getFolderChildrenBookmarks } from '../../../api/bookmark';
 import { getFavicon } from '../../../api/favicon';
 import { createTracingTransaction } from '../../../api/utils/sentry';
 import { folderPopupSlice } from '../../../store/slice/folderPopupSlice';
@@ -46,13 +49,13 @@ export const Bookmark: FC<{
 
     dispatch(
       folderPopupSlice.actions.togglePopup({
-        placement: clickPosition,
-        id: `bookmark-folder-${props.bookmark.id}`,
-        title: props.bookmark.title,
         bookmarks: bookmarks,
         height: undefined,
+        id: `bookmark-folder-${props.bookmark.id}`,
         isPositionRecomputed: false,
         nestingLevel: nestingLevelContext,
+        placement: clickPosition,
+        title: props.bookmark.title,
       }),
     );
 

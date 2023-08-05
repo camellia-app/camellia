@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
+
 import type { RootState } from '../index';
 import type { OptionFiltersState } from '../slice/optionFiltersSlice';
+
 import { optionFiltersSlice } from '../slice/optionFiltersSlice';
 
 type ActiveOptionCategory = string | undefined;

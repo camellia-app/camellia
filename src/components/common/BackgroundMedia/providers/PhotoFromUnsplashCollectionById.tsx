@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+
 import { useRandomPhotoFromUnsplashCollection } from '../../../../api/unsplash/hook';
 import { ImageByUrl } from './ImageByUrl';
 

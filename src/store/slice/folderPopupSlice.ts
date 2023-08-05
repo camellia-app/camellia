@@ -1,5 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
+
 import { createSlice } from '@reduxjs/toolkit';
+
 import type { Bookmark } from '../../api/bookmark/common';
 
 type PopupId = string;
@@ -26,19 +28,14 @@ const initialState: FolderPopupsState = {
 };
 
 export const folderPopupSlice = createSlice({
-  name: 'folderPopup',
   initialState: initialState,
+  name: 'folderPopup',
   reducers: {
     closeAllPopups: (state) => {
       state.popupsStack = [];
     },
     closeLastPopup: (state) => {
       state.popupsStack = state.popupsStack.slice(0, -1);
-    },
-    closePopup: (state, action: PayloadAction<number>) => {
-      const popupIndex = action.payload;
-
-      state.popupsStack = state.popupsStack.slice(0, popupIndex);
     },
     closeNextPopups: (state, action: PayloadAction<number>) => {
       const popupIndex = action.payload;
@@ -49,24 +46,10 @@ export const folderPopupSlice = createSlice({
 
       state.popupsStack = state.popupsStack.slice(0, popupIndex + 1);
     },
-    togglePopup: (state, action: PayloadAction<FolderPopup>) => {
-      const newStackFilteredByNestingLevel = state.popupsStack.filter(
-        (popup) => popup.nestingLevel < action.payload.nestingLevel,
-      );
+    closePopup: (state, action: PayloadAction<number>) => {
+      const popupIndex = action.payload;
 
-      const indexOfOpenedPopupInStack = state.popupsStack.findIndex((popup) => popup.id === action.payload.id);
-
-      const isThisPopupAlreadyOpened = indexOfOpenedPopupInStack !== -1;
-
-      // if popup with same id is opened, close it with all following popups
-      if (isThisPopupAlreadyOpened) {
-        state.popupsStack = newStackFilteredByNestingLevel.slice(0, indexOfOpenedPopupInStack);
-
-        return;
-      }
-
-      // if popup with same id is NOT opened, add it to the end of the stack
-      state.popupsStack = [...newStackFilteredByNestingLevel, action.payload];
+      state.popupsStack = state.popupsStack.slice(0, popupIndex);
     },
     repositionPopup: (
       state,
@@ -87,6 +70,25 @@ export const folderPopupSlice = createSlice({
       popup.placement.x = action.payload.x;
       popup.placement.y = action.payload.y;
       popup.isPositionRecomputed = true;
+    },
+    togglePopup: (state, action: PayloadAction<FolderPopup>) => {
+      const newStackFilteredByNestingLevel = state.popupsStack.filter(
+        (popup) => popup.nestingLevel < action.payload.nestingLevel,
+      );
+
+      const indexOfOpenedPopupInStack = state.popupsStack.findIndex((popup) => popup.id === action.payload.id);
+
+      const isThisPopupAlreadyOpened = indexOfOpenedPopupInStack !== -1;
+
+      // if popup with same id is opened, close it with all following popups
+      if (isThisPopupAlreadyOpened) {
+        state.popupsStack = newStackFilteredByNestingLevel.slice(0, indexOfOpenedPopupInStack);
+
+        return;
+      }
+
+      // if popup with same id is NOT opened, add it to the end of the stack
+      state.popupsStack = [...newStackFilteredByNestingLevel, action.payload];
     },
   },
 });

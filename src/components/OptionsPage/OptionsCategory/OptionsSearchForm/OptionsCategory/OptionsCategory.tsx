@@ -1,4 +1,5 @@
 import type { FC, ReactNode } from 'react';
+
 import { optionsCategoryButton, optionsCategoryIcon, optionsCategoryLabel } from './OptionsCategory.module.css';
 
 export const OptionsCategory: FC<{

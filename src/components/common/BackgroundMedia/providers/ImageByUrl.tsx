@@ -1,4 +1,5 @@
-import type { ReactEventHandler, FC } from 'react';
+import type { FC, ReactEventHandler } from 'react';
+
 import { backgroundImageByUrl } from './ImageByUrl.module.css';
 
 type ImageDimensions = {

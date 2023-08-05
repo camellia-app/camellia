@@ -7,13 +7,13 @@ export const getWebextAppEnvironment = async (): Promise<AppEnvironment> => {
   ]);
 
   return {
-    platform: {
-      os: platformInfo.os,
-      arch: platformInfo.arch,
-    },
     browser: {
       name: `${browserInfo.vendor} ${browserInfo.name}`,
       version: `${browserInfo.version} (build ID: ${browserInfo.buildID})`,
+    },
+    platform: {
+      arch: platformInfo.arch,
+      os: platformInfo.os,
     },
   };
 };

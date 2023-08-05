@@ -1,6 +1,9 @@
-import classNames from 'classnames';
 import type { FC } from 'react';
+
+import classNames from 'classnames';
+
 import type { Folder } from '../../../api/bookmark/common';
+
 import { useFolderBookmarkChildren } from '../../../api/bookmark/hook';
 import { ChipList } from '../../common/ChipList/ChipList';
 import { Bookmark } from '../Bookmark/Bookmark';

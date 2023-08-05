@@ -1,5 +1,7 @@
-import classNames from 'classnames';
 import type { ChangeEventHandler, ReactElement } from 'react';
+
+import classNames from 'classnames';
+
 import { dropdownSelect, dropdownSelectControl, dropdownSelectLoading } from './DropdownSelect.module.css';
 
 export type SelectOption<TValue extends string> = {

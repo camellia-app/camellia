@@ -1,7 +1,8 @@
-import { storage } from '../storage';
-import { StorageKeyDoesNotExist } from '../storage/common';
 import type { OptionChangeHandler, OptionChangeHandlerDestructor } from './common';
 import type { OptionKey, OptionsTypeMap } from './options';
+
+import { storage } from '../storage';
+import { StorageKeyDoesNotExist } from '../storage/common';
 import { optionDefaults } from './options';
 
 export const setOption = async <TKey extends OptionKey, TValue extends OptionsTypeMap[TKey]>(

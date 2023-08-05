@@ -1,5 +1,6 @@
-import { getPlatform } from '../appEnvironment';
 import type { GetFavicon } from './common';
+
+import { getPlatform } from '../appEnvironment';
 import { getChromiumFavicon } from './implementation/chromium';
 import { getWebsiteIconsProxyFavicon } from './implementation/websiteIconsProxy';
 

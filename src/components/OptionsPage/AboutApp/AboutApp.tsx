@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+
 import { getPlatform } from '../../../api/appEnvironment';
 import { useAppEnvironment } from '../../../api/appEnvironment/hook';
 import { useAppInfo } from '../../../api/appInfo/hook';

@@ -1,6 +1,8 @@
 import type { FC, ReactNode } from 'react';
-import { useOptionFilters } from '../../../../store/hooks/useOptionFiltersHook';
+
 import type { OptionCategory } from '../OptionsSearchForm/OptionsSearchForm';
+
+import { useOptionFilters } from '../../../../store/hooks/useOptionFiltersHook';
 
 export const FilteredOptions: FC<{
   categories: Array<OptionCategory>;

@@ -1,5 +1,7 @@
+import type { FC, MouseEventHandler } from 'react';
+
 import Settings from '@material-design-icons/svg/filled/settings.svg';
-import type { MouseEventHandler, FC } from 'react';
+
 import { openOptionsPage } from '../../../../api/applicationRuntime/navigation';
 import { t } from '../../../../api/i18n/translate';
 import { Chip } from '../../../common/Chip/Chip';

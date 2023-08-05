@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+
 import { getCtrlKeyName, t } from '../../../../api/i18n/translate';
 import { Translation } from '../../../common/Translation/Translation';
 import { FilteredOptions } from '../../OptionsCategory/FilteredOptions/FilteredOptions';

@@ -1,5 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
+
 import { createSlice } from '@reduxjs/toolkit';
+
 import type { Bookmark } from '../../api/bookmark/common';
 
 export type BookmarkSearchState = {
@@ -13,8 +15,8 @@ const initialState: BookmarkSearchState = {
 };
 
 export const bookmarkSearchSlice = createSlice({
-  name: 'bookmarkSearch',
   initialState,
+  name: 'bookmarkSearch',
   reducers: {
     toggleSearch: (state, payload: PayloadAction<boolean>) => {
       state.isActive = payload.payload;

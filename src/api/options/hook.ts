@@ -1,7 +1,9 @@
 import { getActiveTransaction } from '@sentry/tracing';
 import { useCallback, useEffect, useState } from 'react';
-import { SENTRY_SPAN_STATUS_OK } from '../utils/sentry';
+
 import type { OptionKey, OptionsTypeMap } from './options';
+
+import { SENTRY_SPAN_STATUS_OK } from '../utils/sentry';
 import { getOption, setOption, subscribeToOptionChanges } from './index';
 
 type Dispatch<TValue> = (newValue: TValue) => void;
@@ -13,8 +15,8 @@ export const useOption = <TKey extends OptionKey, TValue extends OptionsTypeMap[
 
   useEffect(() => {
     const span = getActiveTransaction()?.startChild({
-      op: 'useOption.getOption',
       description: key,
+      op: 'useOption.getOption',
     });
 
     getOption<TKey, TValue>(key)
@@ -41,8 +43,8 @@ export const useOption = <TKey extends OptionKey, TValue extends OptionsTypeMap[
   const setOptionDispatcher = useCallback<Dispatch<TValue>>(
     (newValue): void => {
       const span = getActiveTransaction()?.startChild({
-        op: 'useOption.setOption',
         description: key,
+        op: 'useOption.setOption',
       });
 
       setOption<TKey, TValue>(key, newValue)

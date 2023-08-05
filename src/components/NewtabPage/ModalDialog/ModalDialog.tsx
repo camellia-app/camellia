@@ -1,6 +1,8 @@
 import type { FC, ReactNode } from 'react';
+
 import { useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+
 import { t } from '../../../api/i18n/translate';
 import { Header } from '../Header/Header';
 import {
@@ -56,10 +58,10 @@ export const ModalDialog: FC<{
           </div>
 
           <button
-            className={modalDialogCloseButton}
             onClick={(): void => {
               props.onClosePopup();
             }}
+            className={modalDialogCloseButton}
             title={`${t('popup_closeButton_label')} [Escape]`}
             type="button"
           >

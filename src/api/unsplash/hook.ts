@@ -1,10 +1,12 @@
 import { getActiveTransaction } from '@sentry/tracing';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import type { RootState } from '../../store';
 import type { UnsplashState } from '../../store/slice/unsplashSlice';
-import { unsplashSlice } from '../../store/slice/unsplashSlice';
 import type { UnsplashPhoto } from './common';
+
+import { unsplashSlice } from '../../store/slice/unsplashSlice';
 import { CollectionDoesNotExist, getRandomUnsplashPhotoFromCollectionByUrl } from './index';
 
 export const useRandomPhotoFromUnsplashCollection = (collectionUrl: string): UnsplashPhoto | undefined => {

@@ -10,7 +10,7 @@
     "plugin:react-redux/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:typescript-sort-keys/recommended",
+    "plugin:perfectionist/recommended-natural",
     "plugin:import/recommended",
     "plugin:import/typescript"
   ],
@@ -50,9 +50,7 @@
         ],
         "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
         "@typescript-eslint/consistent-type-imports": ["warn", { "prefer": "type-imports" }],
-        "@typescript-eslint/member-ordering": "warn",
         "@typescript-eslint/method-signature-style": "warn",
-        "@typescript-eslint/sort-type-union-intersection-members": "warn",
         "@typescript-eslint/explicit-function-return-type": "warn",
         "@typescript-eslint/no-unnecessary-boolean-literal-compare": "warn",
         "@typescript-eslint/strict-boolean-expressions": [
@@ -77,22 +75,13 @@
     "react",
     "react-hooks",
     "react-redux",
-    "typescript-sort-keys",
-    "sort-keys-fix",
+    "perfectionist",
     "unused-imports",
     "prettier"
   ],
   "root": true,
   "rules": {
     "import/no-cycle": "error",
-    "import/order": [
-      "warn",
-      {
-        "alphabetize": { "order": "asc", "caseInsensitive": true },
-        "newlines-between": "never",
-        "warnOnUnassignedImports": false
-      }
-    ],
     "react/function-component-definition": [
       "warn",
       {
@@ -101,7 +90,6 @@
       }
     ],
     "react/jsx-props-no-spreading": "warn",
-    "react/jsx-sort-props": "warn",
     "react/no-access-state-in-setstate": "error",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",

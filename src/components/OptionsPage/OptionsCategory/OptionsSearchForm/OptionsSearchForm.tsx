@@ -1,3 +1,5 @@
+import type { FC, ReactElement } from 'react';
+
 import Analytics from '@material-design-icons/svg/filled/analytics.svg';
 import BookmarkBorder from '@material-design-icons/svg/filled/bookmark_border.svg';
 import CallToAction from '@material-design-icons/svg/filled/call_to_action.svg';
@@ -7,7 +9,7 @@ import ManageSearch from '@material-design-icons/svg/filled/manage_search.svg';
 import SettingsAccessibility from '@material-design-icons/svg/filled/settings_accessibility.svg';
 import ViewList from '@material-design-icons/svg/filled/view_list.svg';
 import Wallpaper from '@material-design-icons/svg/filled/wallpaper.svg';
-import type { FC, ReactElement } from 'react';
+
 import { t } from '../../../../api/i18n/translate';
 import { useOptionFilters } from '../../../../store/hooks/useOptionFiltersHook';
 import { OptionsCategory } from './OptionsCategory/OptionsCategory';
@@ -20,45 +22,45 @@ export type OptionCategory = {
 };
 
 export const categoriesMap = {
-  background: {
-    label: t('optionsNavigationCategory_background_label'),
-    id: 'background',
-    icon: <Wallpaper />,
-  },
-  bookmarks: {
-    label: t('optionsNavigationCategory_bookmarks_label'),
-    id: 'bookmarks',
-    icon: <BookmarkBorder />,
-  },
-  search: {
-    label: t('optionsNavigationCategory_search_label'),
-    id: 'search',
-    icon: <ManageSearch />,
-  },
-  bottomToolbar: {
-    label: t('optionsNavigationCategory_bottomToolbar_label'),
-    id: 'bottom-toolbar',
-    icon: <CallToAction />,
+  about: {
+    icon: <Info />,
+    id: 'about',
+    label: t('optionsNavigationCategory_about_label'),
   },
   accessibility: {
-    label: t('optionsNavigationCategory_accessibility_label'),
-    id: 'accessibility',
     icon: <SettingsAccessibility />,
-  },
-  analytics: {
-    label: t('optionsNavigationCategory_dataCollection_label'),
-    id: 'data-collection',
-    icon: <Analytics />,
+    id: 'accessibility',
+    label: t('optionsNavigationCategory_accessibility_label'),
   },
   advanced: {
-    label: t('optionsNavigationCategory_advanced_label'),
-    id: 'advanced',
     icon: <Construction />,
+    id: 'advanced',
+    label: t('optionsNavigationCategory_advanced_label'),
   },
-  about: {
-    label: t('optionsNavigationCategory_about_label'),
-    id: 'about',
-    icon: <Info />,
+  analytics: {
+    icon: <Analytics />,
+    id: 'data-collection',
+    label: t('optionsNavigationCategory_dataCollection_label'),
+  },
+  background: {
+    icon: <Wallpaper />,
+    id: 'background',
+    label: t('optionsNavigationCategory_background_label'),
+  },
+  bookmarks: {
+    icon: <BookmarkBorder />,
+    id: 'bookmarks',
+    label: t('optionsNavigationCategory_bookmarks_label'),
+  },
+  bottomToolbar: {
+    icon: <CallToAction />,
+    id: 'bottom-toolbar',
+    label: t('optionsNavigationCategory_bottomToolbar_label'),
+  },
+  search: {
+    icon: <ManageSearch />,
+    id: 'search',
+    label: t('optionsNavigationCategory_search_label'),
   },
 };
 
@@ -73,26 +75,26 @@ export const OptionsSearchForm: FC = () => {
         <ul className={optionsSearchFormCategoryList}>
           <li>
             <OptionsCategory
+              onClick={(): void => {
+                setActiveOptionCategory(undefined);
+              }}
               icon={<ViewList />}
               id="all"
               isActive={activeOptionCategory === undefined}
               label={t('optionsNavigationCategory_allOptions_label')}
-              onClick={(): void => {
-                setActiveOptionCategory(undefined);
-              }}
             />
           </li>
 
           {allCategories.map((category) => (
             <li key={category.id}>
               <OptionsCategory
+                onClick={(): void => {
+                  setActiveOptionCategory(category.id);
+                }}
                 icon={category.icon}
                 id={category.id}
                 isActive={category.id === activeOptionCategory}
                 label={category.label}
-                onClick={(): void => {
-                  setActiveOptionCategory(category.id);
-                }}
               />
             </li>
           ))}

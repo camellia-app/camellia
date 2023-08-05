@@ -1,6 +1,8 @@
-import classNames from 'classnames';
 import type { FC, ReactNode } from 'react';
+
+import classNames from 'classnames';
 import { useEffect, useState } from 'react';
+
 import { useOption } from '../../../api/options/hook';
 import { backgroundMedia, backgroundMediaBlurred, backgroundMediaLoading } from './BackgroundMedia.module.css';
 import { ImageByUrlFromOptions } from './providers/optionProvider/ImageByUrlFromOptions';
@@ -39,8 +41,8 @@ export const BackgroundMedia: FC = () => {
   return (
     <div
       className={classNames(backgroundMedia, {
-        [backgroundMediaLoading]: isLoading,
         [backgroundMediaBlurred]: blurBackground === true,
+        [backgroundMediaLoading]: isLoading,
       })}
     >
       {background}

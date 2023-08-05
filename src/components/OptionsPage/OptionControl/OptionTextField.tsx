@@ -1,8 +1,11 @@
-import debounce from 'lodash.debounce';
 import type { FC, ReactNode } from 'react';
+
+import debounce from 'lodash.debounce';
 import { useEffect, useState } from 'react';
-import { useOption } from '../../../api/options/hook';
+
 import type { StringOptionKey } from '../../../api/options/options';
+
+import { useOption } from '../../../api/options/hook';
 import { LabeledTextField } from '../TextField/LabeledTextField';
 
 export const OptionTextField: FC<{

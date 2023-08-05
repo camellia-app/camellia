@@ -1,8 +1,10 @@
-import * as Sentry from '@sentry/react';
 import type { FC } from 'react';
+
+import * as Sentry from '@sentry/react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
+
 import { getPlatform } from '../../api/appEnvironment';
 import { initializeSentry } from '../../api/utils/sentry';
 import { store } from '../../store';

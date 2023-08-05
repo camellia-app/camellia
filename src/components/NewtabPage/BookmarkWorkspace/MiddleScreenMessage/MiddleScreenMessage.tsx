@@ -1,9 +1,10 @@
 import type { FC, ReactElement } from 'react';
+
 import { ChipList } from '../../../common/ChipList/ChipList';
 import {
   middleScreenMessage,
-  middleScreenMessageMessage,
   middleScreenMessageActions,
+  middleScreenMessageMessage,
 } from './MiddleScreenMessage.module.css';
 
 export const MiddleScreenMessage: FC<{

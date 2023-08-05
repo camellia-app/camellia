@@ -1,14 +1,15 @@
 import type {
   Bookmark,
-  Folder,
-  Link,
-  GetFolderChildrenBookmarks,
-  SearchBookmarks,
   CreateBookmark,
-  InitializeRootFolders,
+  Folder,
+  GetFolderChildrenBookmarks,
   GetRootFolderBookmarks,
   HasBookmarks,
+  InitializeRootFolders,
+  Link,
+  SearchBookmarks,
 } from '../common';
+
 import { isFolder } from '../common';
 
 const convertBookmarkTreeNodeToBookmark = (bookmark: browser.bookmarks.BookmarkTreeNode): Bookmark => {
@@ -16,8 +17,8 @@ const convertBookmarkTreeNodeToBookmark = (bookmark: browser.bookmarks.BookmarkT
     const link: Link = {
       id: bookmark.id,
       title: bookmark.title,
-      url: bookmark.url,
       type: 'link',
+      url: bookmark.url,
     };
 
     return link;
@@ -50,18 +51,18 @@ export const createWebextBookmark: CreateBookmark = async (bookmark) => {
   switch (bookmark.type) {
     case 'link':
       createdBookmark = await browser.bookmarks.create({
-        title: bookmark.title,
         parentId: bookmark.parentId,
-        url: bookmark.url,
+        title: bookmark.title,
         type: 'bookmark',
+        url: bookmark.url,
       });
 
       break;
 
     case 'folder':
       createdBookmark = await browser.bookmarks.create({
-        title: bookmark.title,
         parentId: bookmark.parentId,
+        title: bookmark.title,
         type: 'folder',
       });
 

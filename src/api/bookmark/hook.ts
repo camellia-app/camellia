@@ -1,7 +1,9 @@
 import { getActiveTransaction } from '@sentry/tracing';
 import { useEffect, useState } from 'react';
-import { SENTRY_SPAN_STATUS_OK } from '../utils/sentry';
+
 import type { Bookmark, BookmarkId, Folder } from './common';
+
+import { SENTRY_SPAN_STATUS_OK } from '../utils/sentry';
 import { getFolderChildrenBookmarks, getRootFolderBookmarks, hasBookmarks } from './index';
 
 export const useFolderBookmarkChildren = (folderBookmarkId: BookmarkId): [Array<Bookmark> | undefined] => {
@@ -9,8 +11,8 @@ export const useFolderBookmarkChildren = (folderBookmarkId: BookmarkId): [Array<
 
   useEffect(() => {
     const span = getActiveTransaction()?.startChild({
-      op: 'useFolderChildren',
       description: `id: ${folderBookmarkId}`,
+      op: 'useFolderChildren',
     });
 
     getFolderChildrenBookmarks(folderBookmarkId)
