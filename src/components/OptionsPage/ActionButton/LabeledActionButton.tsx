@@ -1,4 +1,5 @@
-import type { FC, ButtonHTMLAttributes, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, FC, ReactNode } from 'react';
+
 import { Paragraph } from '../Paragraph/Paragraph';
 import { ActionButton } from './ActionButton';
 import { labeledActionButton } from './LabeledActionButton.module.css';

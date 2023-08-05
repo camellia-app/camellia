@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/browser';
+
 import englishTranslations from '../../../translations/en/messages.json';
 import russianTranslations from '../../../translations/ru/messages.json';
 import { getPlatform, isMacOs } from '../appEnvironment';

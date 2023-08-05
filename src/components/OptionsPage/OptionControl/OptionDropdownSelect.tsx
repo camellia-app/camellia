@@ -1,8 +1,11 @@
 import type { FC, ReactNode } from 'react';
+
 import { useEffect, useState } from 'react';
-import { useOption } from '../../../api/options/hook';
+
 import type { EnumOptionKey, OptionsTypeMap } from '../../../api/options/options';
 import type { SelectOption, SelectOptionGroup } from '../DropdownSelect/DropdownSelect';
+
+import { useOption } from '../../../api/options/hook';
 import { LabeledDropdownSelect } from '../DropdownSelect/LabeledDropdownSelect';
 
 export const OptionDropdownSelect: FC<{

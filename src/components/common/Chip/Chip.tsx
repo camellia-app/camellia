@@ -1,6 +1,8 @@
+import type { FC, MouseEventHandler, ReactElement, ReactEventHandler } from 'react';
+
 import classNames from 'classnames';
-import type { ReactEventHandler, FC, MouseEventHandler, ReactElement } from 'react';
 import { createRef, useEffect, useState } from 'react';
+
 import {
   chip,
   chipBlurred,
@@ -122,8 +124,8 @@ export const Chip: FC<
   const chipClasses = classNames(chip, {
     [chipBlurred]: props.blurred === true,
     [chipLoading]: props.isLoading === true,
-    [chipSquared]: props.shape === 'squared',
     [chipRounded]: props.shape === 'rounded',
+    [chipSquared]: props.shape === 'squared',
   });
 
   if (props.url !== undefined) {
@@ -171,8 +173,8 @@ const ChipIconRemoteRasterImage: FC<{
   const [iconIsLoading, setIconLoading] = useState<boolean>(!props.src.startsWith('data:'));
 
   const chipIconClasses = classNames(chipIconRemoteRasterImage, {
-    [chipIconRemoteRasterImageLoading]: iconIsLoading,
     [chipIconEllipse]: props.ellipse === true,
+    [chipIconRemoteRasterImageLoading]: iconIsLoading,
   });
 
   const handleImageError: ReactEventHandler<HTMLImageElement> = (event) => {

@@ -1,4 +1,5 @@
 import type { AppEnvironment } from './common';
+
 import { getChromiumAppEnvironment } from './platform/chromium';
 import { getWebAppEnvironment } from './platform/web';
 import { getWebextAppEnvironment } from './platform/webext';

@@ -1,17 +1,19 @@
 import { v4 as uuidv4 } from 'uuid';
-import { storage } from '../../storage';
-import { StorageKeyDoesNotExist } from '../../storage/common';
+
 import type {
   BookmarkId,
   CreateBookmark,
   Folder,
   GetFolderChildrenBookmarks,
-  Link,
-  SearchBookmarks,
-  InitializeRootFolders,
   GetRootFolderBookmarks,
   HasBookmarks,
+  InitializeRootFolders,
+  Link,
+  SearchBookmarks,
 } from '../common';
+
+import { storage } from '../../storage';
+import { StorageKeyDoesNotExist } from '../../storage/common';
 import { isLink } from '../common';
 
 const STORAGE_KEY_BOOKMARK_ID_BOOKMARKS_BAR = 'bookmark_id_bookmarks_bar';
@@ -89,9 +91,9 @@ export const createWebBookmark: CreateBookmark = async (bookmark) => {
   switch (bookmark.type) {
     case 'link':
       createdBookmark = {
-        type: 'link',
         id: bookmarkId,
         title: bookmark.title,
+        type: 'link',
         url: bookmark.url,
       };
 
@@ -99,10 +101,10 @@ export const createWebBookmark: CreateBookmark = async (bookmark) => {
 
     case 'folder':
       createdBookmark = {
-        type: 'folder',
+        childrenIds: [],
         id: bookmarkId,
         title: bookmark.title,
-        childrenIds: [],
+        type: 'folder',
       };
 
       break;
@@ -152,13 +154,13 @@ export const getWebRootFolderBookmarks: GetRootFolderBookmarks = async () => {
   const rootFolders: Array<Folder> = [
     {
       id: bookmarksBarId,
-      type: 'folder',
       title: 'Bookmarks bar',
+      type: 'folder',
     },
     {
       id: otherBookmarksId,
-      type: 'folder',
       title: 'Other bookmarks',
+      type: 'folder',
     },
   ];
 
@@ -178,8 +180,8 @@ export const initializeWebRootFolders: InitializeRootFolders = async () => {
     }
 
     const bookmarksBarFolder = await createWebBookmark({
-      type: 'folder',
       title: 'Bookmarks bar',
+      type: 'folder',
     });
 
     await storage.synchronizable.set(STORAGE_KEY_BOOKMARK_ID_BOOKMARKS_BAR, bookmarksBarFolder.id);
@@ -197,8 +199,8 @@ export const initializeWebRootFolders: InitializeRootFolders = async () => {
     }
 
     const otherBookmarksFolder = await createWebBookmark({
-      type: 'folder',
       title: 'Other bookmarks',
+      type: 'folder',
     });
 
     await storage.synchronizable.set(STORAGE_KEY_BOOKMARK_ID_OTHER_BOOKMARKS, otherBookmarksFolder.id);

@@ -1,4 +1,5 @@
 import type { FC, ReactNode } from 'react';
+
 import { t } from '../../../api/i18n/translate';
 import { Paragraph } from '../Paragraph/Paragraph';
 import { Checkbox } from './Checkbox';

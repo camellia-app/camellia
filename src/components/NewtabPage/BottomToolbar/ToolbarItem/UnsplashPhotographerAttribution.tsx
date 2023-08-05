@@ -1,6 +1,9 @@
-import PhotoCamera from '@material-design-icons/svg/filled/photo_camera.svg';
 import type { FC } from 'react';
+
+import PhotoCamera from '@material-design-icons/svg/filled/photo_camera.svg';
+
 import type { UnsplashPhoto } from '../../../../api/unsplash/common';
+
 import { Chip } from '../../../common/Chip/Chip';
 
 export const UnsplashPhotographerAttribution: FC<{

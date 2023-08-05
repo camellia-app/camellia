@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+
 import { t } from '../../../../api/i18n/translate';
 import { useOption } from '../../../../api/options/hook';
 import { CollectionDoesNotExist, getRandomUnsplashPhotoFromCollectionByUrl } from '../../../../api/unsplash';
@@ -31,17 +32,17 @@ export const BackgroundImageSource: FC = () => {
     <>
       <FilteredOptions categories={[categoriesMap.background]}>
         <OptionDropdownSelect
-          description={t('option_backgroundImage_sourceTypeDescription')}
           dropdownOptions={[
             {
-              value: 'link',
               label: t('option_backgroundImage_sourceTypeOptionLink'),
+              value: 'link',
             },
             {
-              value: 'unsplash_collection',
               label: t('option_backgroundImage_sourceTypeOptionUnsplashCollection'),
+              value: 'unsplash_collection',
             },
           ]}
+          description={t('option_backgroundImage_sourceTypeDescription')}
           label={t('option_backgroundImage_sourceTypeLabel')}
           optionKey="background_provider_type"
         />
@@ -67,12 +68,12 @@ export const BackgroundImageSource: FC = () => {
             description={t('option_backgroundImageUnsplashCollection_description', [
               'https://unsplash.com/collections/123',
             ])}
-            label={t('option_backgroundImageUnsplashCollection_label')}
-            optionKey="background_image_unsplash_collection"
-            pattern={'^https:\\/\\/unsplash\\.com\\/collections\\/[1-9]+[0-9]*?.*'}
             placeholder={t('option_backgroundImageUnsplashCollection_placeholder', [
               'https://unsplash.com/collections/123',
             ])}
+            label={t('option_backgroundImageUnsplashCollection_label')}
+            optionKey="background_image_unsplash_collection"
+            pattern={'^https:\\/\\/unsplash\\.com\\/collections\\/[1-9]+[0-9]*?.*'}
             spellCheck={false}
             type={'url'}
             validate={validateUnsplashCollection}

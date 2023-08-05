@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+
 import { t } from '../../../../api/i18n/translate';
 import { useOption } from '../../../../api/options/hook';
 import { FilteredOptions } from '../../OptionsCategory/FilteredOptions/FilteredOptions';

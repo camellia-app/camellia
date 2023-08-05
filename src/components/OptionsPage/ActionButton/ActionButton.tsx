@@ -1,5 +1,7 @@
+import type { ButtonHTMLAttributes, FC, MouseEventHandler } from 'react';
+
 import classNames from 'classnames';
-import type { FC, ButtonHTMLAttributes, MouseEventHandler } from 'react';
+
 import { actionButton, actionButtonControl, actionButtonLoading } from './ActionButton.module.css';
 
 export const ActionButton: FC<{

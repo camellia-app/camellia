@@ -1,9 +1,11 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchBookmarks } from '../../api/bookmark';
+
 import type { Bookmark } from '../../api/bookmark/common';
 import type { RootState } from '../index';
 import type { BookmarkSearchState } from '../slice/bookmarkSearchSlice';
+
+import { searchBookmarks } from '../../api/bookmark';
 import { bookmarkSearchSlice } from '../slice/bookmarkSearchSlice';
 
 type SearchDispatcher = (searchQuery: string) => void;

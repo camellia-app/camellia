@@ -1,5 +1,6 @@
-import { getPlatform } from '../appEnvironment';
 import type { AppInfo } from './common';
+
+import { getPlatform } from '../appEnvironment';
 import { getChromiumAppInfo } from './platform/chromium';
 import { getWebAppInfo } from './platform/web';
 import { getWebextAppInfo } from './platform/webext';

@@ -30,15 +30,6 @@ const isDevelopment = process.env['NODE_ENV'] !== 'production';
 export const config = {
   appVersion: process.env['APP_VERSION'],
   isDevelopment: isDevelopment,
-  unsplash: {
-    defaultCollectionId: process.env['UNSPLASH_DEFAULT_COLLECTION_ID'],
-    bridge: {
-      baseHost: new URL(process.env['UNSPLASH_BRIDGE_BASE_HOST']),
-    },
-  },
-  websiteIconsProxy: {
-    baseHost: new URL(process.env['WEBSITE_ICONS_PROXY_BASE_HOST']),
-  },
   sentry: {
     dsn: process.env['SENTRY_DSN'],
     environment: isDevelopment ? 'development' : 'production',
@@ -46,5 +37,14 @@ export const config = {
     tracing: {
       sampleRate: isDevelopment ? 1 : 0.1,
     },
+  },
+  unsplash: {
+    bridge: {
+      baseHost: new URL(process.env['UNSPLASH_BRIDGE_BASE_HOST']),
+    },
+    defaultCollectionId: process.env['UNSPLASH_DEFAULT_COLLECTION_ID'],
+  },
+  websiteIconsProxy: {
+    baseHost: new URL(process.env['WEBSITE_ICONS_PROXY_BASE_HOST']),
   },
 };

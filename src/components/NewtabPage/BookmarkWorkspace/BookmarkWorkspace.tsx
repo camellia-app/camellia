@@ -1,5 +1,7 @@
-import classNames from 'classnames';
 import type { FC } from 'react';
+
+import classNames from 'classnames';
+
 import { getSupportedRuntimeFeatures } from '../../../api/applicationRuntime/features';
 import { useHasBookmarks, useRootBookmarkFolders } from '../../../api/bookmark/hook';
 import { t } from '../../../api/i18n/translate';
@@ -18,8 +20,8 @@ export const BookmarkWorkspace: FC = () => {
   const isLoading = rootFolders === undefined || hasBookmarks === undefined || contentLayout === undefined;
 
   const mainClasses = classNames(bookmarkWorkspace, {
-    [bookmarkWorkspaceLoading]: isLoading,
     [bookmarkWorkspaceCentered]: contentLayout === 'centered',
+    [bookmarkWorkspaceLoading]: isLoading,
   });
 
   const noBookmarksActionChips = [];

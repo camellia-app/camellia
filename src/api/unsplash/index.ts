@@ -1,6 +1,7 @@
+import type { UnsplashPhoto } from './common';
+
 import { config } from '../../config';
 import { getAppInfo } from '../appInfo';
-import type { UnsplashPhoto } from './common';
 
 type ApiProblem = {
   type: 'collection_not_found';

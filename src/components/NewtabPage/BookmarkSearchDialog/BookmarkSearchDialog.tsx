@@ -1,14 +1,17 @@
 import type { FC, FormEventHandler } from 'react';
+
 import { useCallback, useDeferredValue, useEffect, useState } from 'react';
+
+import type { TranslationKey } from '../../../api/i18n/translate';
+
 import { openUrl } from '../../../api/applicationRuntime/navigation';
 import { isLink } from '../../../api/bookmark/common';
-import type { TranslationKey } from '../../../api/i18n/translate';
 import { getCtrlKeyName, getEnterKeyName, t } from '../../../api/i18n/translate';
 import { useBookmarkSearch } from '../../../store/hooks/useBookmarkSearchHook';
+import { Paragraph } from '../../OptionsPage/Paragraph/Paragraph';
 import { ChipList } from '../../common/ChipList/ChipList';
 import { TextField } from '../../common/TextField/TextField';
 import { Translation } from '../../common/Translation/Translation';
-import { Paragraph } from '../../OptionsPage/Paragraph/Paragraph';
 import { Bookmark } from '../Bookmark/Bookmark';
 import { ModalDialog } from '../ModalDialog/ModalDialog';
 import { bookmarkSearchDialog, searchDialogTip } from './BookmarkSearchDialog.module.css';

@@ -1,7 +1,9 @@
 import type { FC } from 'react';
+
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
+
 import { getPlatform } from '../../api/appEnvironment';
 import { getSupportedRuntimeFeatures } from '../../api/applicationRuntime/features';
 import { initializeSentry } from '../../api/utils/sentry';

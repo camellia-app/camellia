@@ -105,15 +105,15 @@ const getCssLoaders = () => {
   loaders.push({
     loader: 'css-loader',
     options: {
+      importLoaders: 1,
       modules: {
-        mode: 'local',
         exportGlobals: true,
-        localIdentName: '[local]--[hash:base64:5]',
-        namedExport: true,
         exportLocalsConvention: 'camelCaseOnly',
         exportOnlyLocals: false,
+        localIdentName: '[local]--[hash:base64:5]',
+        mode: 'local',
+        namedExport: true,
       },
-      importLoaders: 1,
     },
   });
 
@@ -126,22 +126,19 @@ const commonConfig = {
   context: path.join(__dirname, 'src'),
   devtool: false,
   entry: {
+    background: './backgroundScript/background.ts',
     newtab: './components/NewtabPage/NewtabPage.tsx',
     options: './components/OptionsPage/OptionsPage.tsx',
-    background: './backgroundScript/background.ts',
   },
   experiments: {
     topLevelAwait: true,
-  },
-  optimization: {
-    minimize: process.env.NODE_ENV === 'production',
   },
   mode: 'production',
   module: {
     rules: [
       {
-        test: /\.svg$/,
         issuer: /\.tsx?$/,
+        test: /\.svg$/,
         use: ['@svgr/webpack'],
       },
       {
@@ -150,20 +147,23 @@ const commonConfig = {
         use: getCssLoaders(),
       },
       {
+        issuer: /\.css$/,
         test: /\.svg(\?.*)?$/, // match img.svg and img.svg?param=value
         type: 'asset/inline',
         use: ['svg-transform-loader'],
-        issuer: /\.css$/,
       },
       {
         exclude: /node_modules/,
         loader: 'ts-loader',
-        test: /\.tsx?$/,
         options: {
           transpileOnly: true,
         },
+        test: /\.tsx?$/,
       },
     ],
+  },
+  optimization: {
+    minimize: process.env.NODE_ENV === 'production',
   },
   output: {
     filename: `[name].js`,
@@ -174,9 +174,9 @@ const commonConfig = {
       systemvars: true,
     }),
     new CreateFileWebpackPlugin({
-      path: path.resolve(__dirname, 'dist', process.env.TARGET_PLATFORM),
-      fileName: 'manifest.json',
       content: JSON.stringify(buildExtensionManifest()),
+      fileName: 'manifest.json',
+      path: path.resolve(__dirname, 'dist', process.env.TARGET_PLATFORM),
     }),
     new CopyWebpackPlugin({
       patterns: [{ from: path.resolve(__dirname, 'translations'), to: '_locales' }, { from: './logo.png' }],

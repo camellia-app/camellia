@@ -1,7 +1,9 @@
-import classNames from 'classnames';
 import type * as CSS from 'csstype';
-import { createRef, useEffect } from 'react';
 import type { FC, MouseEventHandler, ReactNode } from 'react';
+
+import classNames from 'classnames';
+import { createRef, useEffect } from 'react';
+
 import { t } from '../../../api/i18n/translate';
 import {
   popup,
@@ -67,9 +69,9 @@ export const Popup: FC<{
   const headerId = `popup-header-${props.id}`;
 
   const styles: CSS.PopupProperties = {
+    '--popup-height': props.height === undefined ? 'auto' : `${props.height}px`,
     '--popup-position-x': `${props.x}px`,
     '--popup-position-y': `${props.y}px`,
-    '--popup-height': props.height === undefined ? 'auto' : `${props.height}px`,
   };
 
   const handleClickingPopupBody: MouseEventHandler<HTMLDialogElement> = () => {

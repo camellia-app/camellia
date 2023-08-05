@@ -1,5 +1,7 @@
+import type { FC, MouseEventHandler } from 'react';
+
 import Search from '@material-design-icons/svg/filled/search.svg';
-import type { MouseEventHandler, FC } from 'react';
+
 import { t } from '../../../../api/i18n/translate';
 import { useBookmarkSearch } from '../../../../store/hooks/useBookmarkSearchHook';
 import { Chip } from '../../../common/Chip/Chip';

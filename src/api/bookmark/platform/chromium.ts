@@ -1,14 +1,15 @@
 import type {
   Bookmark,
-  Folder,
-  Link,
-  GetFolderChildrenBookmarks,
-  SearchBookmarks,
   CreateBookmark,
-  InitializeRootFolders,
+  Folder,
+  GetFolderChildrenBookmarks,
   GetRootFolderBookmarks,
   HasBookmarks,
+  InitializeRootFolders,
+  Link,
+  SearchBookmarks,
 } from '../common';
+
 import { isFolder } from '../common';
 
 const convertBookmarkTreeNodeToBookmark = (bookmark: chrome.bookmarks.BookmarkTreeNode): Bookmark => {
@@ -16,8 +17,8 @@ const convertBookmarkTreeNodeToBookmark = (bookmark: chrome.bookmarks.BookmarkTr
     const link: Link = {
       id: bookmark.id,
       title: bookmark.title,
-      url: bookmark.url,
       type: 'link',
+      url: bookmark.url,
     };
 
     return link;
@@ -50,8 +51,8 @@ export const createChromiumBookmark: CreateBookmark = async (bookmark) => {
   switch (bookmark.type) {
     case 'link':
       createdBookmark = await chrome.bookmarks.create({
-        title: bookmark.title,
         parentId: bookmark.parentId,
+        title: bookmark.title,
         url: bookmark.url,
       });
 
@@ -59,8 +60,8 @@ export const createChromiumBookmark: CreateBookmark = async (bookmark) => {
 
     case 'folder':
       createdBookmark = await chrome.bookmarks.create({
-        title: bookmark.title,
         parentId: bookmark.parentId,
+        title: bookmark.title,
       });
 
       break;

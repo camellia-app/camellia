@@ -1,7 +1,9 @@
 import { getActiveTransaction } from '@sentry/tracing';
 import { useEffect, useState } from 'react';
-import { SENTRY_SPAN_STATUS_OK } from '../utils/sentry';
+
 import type { AppEnvironment } from './common';
+
+import { SENTRY_SPAN_STATUS_OK } from '../utils/sentry';
 import { getAppEnvironment } from './index';
 
 export const useAppEnvironment = (): AppEnvironment | undefined => {

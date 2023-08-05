@@ -1,5 +1,6 @@
-import { config } from '../../../config';
 import type { GetFavicon } from '../common';
+
+import { config } from '../../../config';
 
 export const getWebsiteIconsProxyFavicon: GetFavicon = (url) => {
   const faviconUrl = new URL(config.websiteIconsProxy.baseHost);

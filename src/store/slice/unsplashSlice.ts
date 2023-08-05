@@ -1,5 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
+
 import { createSlice } from '@reduxjs/toolkit';
+
 import type { UnsplashPhoto } from '../../api/unsplash/common';
 
 export type UnsplashState = {
@@ -11,8 +13,8 @@ const initialState: UnsplashState = {
 };
 
 export const unsplashSlice = createSlice({
-  name: 'unsplash',
   initialState,
+  name: 'unsplash',
   reducers: {
     updatePhoto: (state, payload: PayloadAction<UnsplashPhoto>) => {
       state.photo = payload.payload;

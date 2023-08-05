@@ -1,4 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
+
 import { createSlice } from '@reduxjs/toolkit';
 
 export type OptionFiltersState = {
@@ -10,8 +11,8 @@ const initialState: OptionFiltersState = {
 };
 
 export const optionFiltersSlice = createSlice({
-  name: 'optionFilters',
   initialState,
+  name: 'optionFilters',
   reducers: {
     changeCategory: (state, action: PayloadAction<string | undefined>) => {
       state.activeCategoryId = action.payload;

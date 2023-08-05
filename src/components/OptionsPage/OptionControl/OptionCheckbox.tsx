@@ -1,7 +1,10 @@
 import type { FC, ReactNode } from 'react';
+
 import { useEffect, useState } from 'react';
-import { useOption } from '../../../api/options/hook';
+
 import type { BooleanOptionKey } from '../../../api/options/options';
+
+import { useOption } from '../../../api/options/hook';
 import { LabeledCheckbox } from '../Checkbox/LabeledCheckbox';
 
 export const OptionCheckbox: FC<{

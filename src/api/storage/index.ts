@@ -1,5 +1,6 @@
-import { getPlatform } from '../appEnvironment';
 import type { Storage, StorageType } from './common';
+
+import { getPlatform } from '../appEnvironment';
 import { getChromiumStorageManager } from './platform/chromium';
 import { getWebStorageManager } from './platform/web';
 import { getWebextStorageManager } from './platform/webext';

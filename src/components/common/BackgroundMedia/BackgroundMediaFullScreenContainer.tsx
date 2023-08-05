@@ -1,5 +1,6 @@
 import type CSS from 'csstype';
 import type { FC, ReactNode } from 'react';
+
 import { useOption } from '../../../api/options/hook';
 import {
   backgroundMediaFullScreenContainer,

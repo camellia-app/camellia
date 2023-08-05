@@ -1,4 +1,5 @@
 import type { Storage, StorageKeyChangeHandler, StorageType } from '../common';
+
 import { StorageKeyDoesNotExist } from '../common';
 
 export const getWebextStorageManager = (type: StorageType): Storage => {
@@ -37,10 +38,6 @@ const getWebextLocalStorageManager = (): Storage => {
   };
 
   return {
-    get: getByKey,
-    getAllKeys: async (): Promise<Array<string>> => {
-      return Object.keys(await browser.storage.local.get());
-    },
     delete: async (key: string): Promise<void> => {
       await browser.storage.local.remove(key);
     },
@@ -56,6 +53,15 @@ const getWebextLocalStorageManager = (): Storage => {
       }
 
       return true;
+    },
+    get: getByKey,
+    getAllKeys: async (): Promise<Array<string>> => {
+      return Object.keys(await browser.storage.local.get());
+    },
+    set: async <TValue>(key: string, value: TValue): Promise<void> => {
+      await browser.storage.local.set({
+        [key]: value,
+      });
     },
     subscribeToKeyChanges: <TValue>(key: string, handler: StorageKeyChangeHandler<TValue>): (() => void) => {
       const listener: Parameters<typeof browser.storage.onChanged.addListener>[0] = function (changes, area: string) {
@@ -78,11 +84,6 @@ const getWebextLocalStorageManager = (): Storage => {
         browser.storage.onChanged.removeListener(listener);
       };
     },
-    set: async <TValue>(key: string, value: TValue): Promise<void> => {
-      await browser.storage.local.set({
-        [key]: value,
-      });
-    },
   };
 };
 
@@ -104,10 +105,6 @@ const getWebextSynchronizableStorageManager = (): Storage => {
   };
 
   return {
-    get: getByKey,
-    getAllKeys: async (): Promise<Array<string>> => {
-      return Object.keys(await browser.storage.sync.get());
-    },
     delete: async (key: string): Promise<void> => {
       await browser.storage.sync.remove(key);
     },
@@ -123,6 +120,15 @@ const getWebextSynchronizableStorageManager = (): Storage => {
       }
 
       return true;
+    },
+    get: getByKey,
+    getAllKeys: async (): Promise<Array<string>> => {
+      return Object.keys(await browser.storage.sync.get());
+    },
+    set: async <TValue>(key: string, value: TValue): Promise<void> => {
+      await browser.storage.sync.set({
+        [key]: value,
+      });
     },
     subscribeToKeyChanges: <TValue>(key: string, handler: StorageKeyChangeHandler<TValue>): (() => void) => {
       const listener: Parameters<typeof browser.storage.onChanged.addListener>[0] = function (changes, area: string) {
@@ -144,11 +150,6 @@ const getWebextSynchronizableStorageManager = (): Storage => {
       return (): void => {
         browser.storage.onChanged.removeListener(listener);
       };
-    },
-    set: async <TValue>(key: string, value: TValue): Promise<void> => {
-      await browser.storage.sync.set({
-        [key]: value,
-      });
     },
   };
 };

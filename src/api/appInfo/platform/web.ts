@@ -1,5 +1,6 @@
-import { config } from '../../../config';
 import type { AppInfo } from '../common';
+
+import { config } from '../../../config';
 
 export const getWebAppInfo = (): AppInfo => {
   return {

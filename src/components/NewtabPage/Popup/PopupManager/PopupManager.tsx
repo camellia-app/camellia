@@ -1,9 +1,12 @@
 import type { FC } from 'react';
+
 import { createRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { t } from '../../../../api/i18n/translate';
+
 import type { RootState } from '../../../../store';
 import type { FolderPopupsState } from '../../../../store/slice/folderPopupSlice';
+
+import { t } from '../../../../api/i18n/translate';
 import { folderPopupSlice } from '../../../../store/slice/folderPopupSlice';
 import { ChipList } from '../../../common/ChipList/ChipList';
 import { useOnClickOutside } from '../../../hooks/useOnClickOutside';
@@ -76,10 +79,10 @@ export const PopupManager: FC = () => {
 
           dispatch(
             folderPopupSlice.actions.repositionPopup({
-              x: calculatedPlacement.x,
-              y: calculatedPlacement.y,
               height: calculatedPlacement.height,
               popupIndex: popupState.nestingLevel,
+              x: calculatedPlacement.x,
+              y: calculatedPlacement.y,
             }),
           );
         };

@@ -1,16 +1,17 @@
-import { getPlatform } from '../appEnvironment';
-import topWebsites from './assets/top-websites.json';
 import type {
-  CreateBookmark,
-  InitializeRootFolders,
-  GetFolderChildrenBookmarks,
-  SearchBookmarks,
   Bookmark,
   BookmarkId,
-  GetRootFolderBookmarks,
+  CreateBookmark,
   Folder,
+  GetFolderChildrenBookmarks,
+  GetRootFolderBookmarks,
   HasBookmarks,
+  InitializeRootFolders,
+  SearchBookmarks,
 } from './common';
+
+import { getPlatform } from '../appEnvironment';
+import topWebsites from './assets/top-websites.json';
 import {
   createChromiumBookmark,
   getChromiumFolderChildrenBookmarks,
@@ -21,11 +22,11 @@ import {
 } from './platform/chromium';
 import {
   createWebBookmark,
-  initializeWebRootFolders,
   getWebFolderChildrenBookmarks,
-  searchWebBookmarks,
   getWebRootFolderBookmarks,
   hasWebBookmarks,
+  initializeWebRootFolders,
+  searchWebBookmarks,
 } from './platform/web';
 import {
   getWebextFolderChildrenBookmarks,
@@ -171,9 +172,9 @@ export const generateDemoBookmarks = async (): Promise<void> => {
     const folderId = folderIds[Math.floor(Math.random() * folderIds.length)];
 
     await createBookmark({
-      type: 'link',
-      title: topWebsite,
       parentId: folderId,
+      title: topWebsite,
+      type: 'link',
       url: `https://${topWebsite}`,
     });
 
@@ -181,9 +182,9 @@ export const generateDemoBookmarks = async (): Promise<void> => {
 
     if (shouldCreateFolder) {
       const createdFolder = await createBookmark({
-        type: 'folder',
-        title: `Folder #${folderNumber}`,
         parentId: folderId,
+        title: `Folder #${folderNumber}`,
+        type: 'folder',
       });
 
       folderNumber++;

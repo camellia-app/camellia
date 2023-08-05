@@ -1,6 +1,8 @@
 import { getActiveTransaction } from '@sentry/tracing';
-import { SENTRY_SPAN_STATUS_OK } from '../utils/sentry';
+
 import type { AppInfo } from './common';
+
+import { SENTRY_SPAN_STATUS_OK } from '../utils/sentry';
 import { getAppInfo } from './index';
 
 export const useAppInfo = (): AppInfo => {
