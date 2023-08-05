@@ -16,7 +16,7 @@
     "@reduxjs/toolkit": "1.9.5",
     "@sentry/browser": "7.50.0",
     "@sentry/react": "7.50.0",
-    "@sentry/tracing": "7.53.1",
+    "@sentry/tracing": "7.61.1",
     "@sentry/types": "7.61.1",
     "@sentry/webpack-plugin": "2.5.0",
     "@svgr/webpack": "8.0.1",
