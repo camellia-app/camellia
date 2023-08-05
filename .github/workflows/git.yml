@@ -15,6 +15,6 @@ jobs:
           fetch-depth: 0
 
       - name: Run commitlint
-        uses: wagoid/commitlint-github-action@v5.4.1
+        uses: wagoid/commitlint-github-action@v5.4.3
         with:
           configFile: .commitlintrc.json
