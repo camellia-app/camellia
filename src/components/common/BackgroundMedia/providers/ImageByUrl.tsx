@@ -24,7 +24,6 @@ export const ImageByUrl: FC<{
     <img
       alt=""
       className={backgroundImageByUrl}
-      decoding="async"
       height={props.dimensions?.height}
       onError={handleImageError}
       onLoad={handleImageLoad}
