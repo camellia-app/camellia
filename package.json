@@ -65,7 +65,7 @@
     "eslint-plugin-react-redux": "4.0.0",
     "eslint-plugin-unused-imports": "2.0.0",
     "prettier": "2.8.8",
-    "prettier-plugin-sort-json": "1.0.0",
+    "prettier-plugin-sort-json": "2.0.0",
     "stylelint": "14.16.1",
     "stylelint-config-css-modules": "4.3.0",
     "stylelint-config-prettier": "9.0.5",
