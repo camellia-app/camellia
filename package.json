@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@types/chrome": "0.0.243",
-    "@types/firefox-webext-browser": "111.0.1",
+    "@types/firefox-webext-browser": "111.0.2",
     "@types/lodash.debounce": "4.0.7",
     "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
