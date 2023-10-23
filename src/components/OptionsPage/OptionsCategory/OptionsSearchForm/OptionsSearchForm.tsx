@@ -75,26 +75,26 @@ export const OptionsSearchForm: FC = () => {
         <ul className={optionsSearchFormCategoryList}>
           <li>
             <OptionsCategory
-              onClick={(): void => {
-                setActiveOptionCategory(undefined);
-              }}
               icon={<ViewList />}
               id="all"
               isActive={activeOptionCategory === undefined}
               label={t('optionsNavigationCategory_allOptions_label')}
+              onClick={(): void => {
+                setActiveOptionCategory(undefined);
+              }}
             />
           </li>
 
           {allCategories.map((category) => (
             <li key={category.id}>
               <OptionsCategory
-                onClick={(): void => {
-                  setActiveOptionCategory(category.id);
-                }}
                 icon={category.icon}
                 id={category.id}
                 isActive={category.id === activeOptionCategory}
                 label={category.label}
+                onClick={(): void => {
+                  setActiveOptionCategory(category.id);
+                }}
               />
             </li>
           ))}

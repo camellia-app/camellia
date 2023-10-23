@@ -9,6 +9,7 @@ export const BackgroundBrightness: FC = () => {
   return (
     <FilteredOptions categories={[categoriesMap.background, categoriesMap.accessibility]}>
       <OptionDropdownSelect
+        description={t('option_backgroundBrightness_description')}
         dropdownOptions={[
           {
             label: t('option_backgroundBrightness_optionBright'),
@@ -19,7 +20,6 @@ export const BackgroundBrightness: FC = () => {
             value: 'reduced_brightness',
           },
         ]}
-        description={t('option_backgroundBrightness_description')}
         label={t('option_backgroundBrightness_label')}
         optionKey="background_brightness"
       />

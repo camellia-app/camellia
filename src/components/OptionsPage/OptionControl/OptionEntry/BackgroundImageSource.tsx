@@ -32,6 +32,7 @@ export const BackgroundImageSource: FC = () => {
     <>
       <FilteredOptions categories={[categoriesMap.background]}>
         <OptionDropdownSelect
+          description={t('option_backgroundImage_sourceTypeDescription')}
           dropdownOptions={[
             {
               label: t('option_backgroundImage_sourceTypeOptionLink'),
@@ -42,7 +43,6 @@ export const BackgroundImageSource: FC = () => {
               value: 'unsplash_collection',
             },
           ]}
-          description={t('option_backgroundImage_sourceTypeDescription')}
           label={t('option_backgroundImage_sourceTypeLabel')}
           optionKey="background_provider_type"
         />
@@ -68,12 +68,12 @@ export const BackgroundImageSource: FC = () => {
             description={t('option_backgroundImageUnsplashCollection_description', [
               'https://unsplash.com/collections/123',
             ])}
-            placeholder={t('option_backgroundImageUnsplashCollection_placeholder', [
-              'https://unsplash.com/collections/123',
-            ])}
             label={t('option_backgroundImageUnsplashCollection_label')}
             optionKey="background_image_unsplash_collection"
             pattern={'^https:\\/\\/unsplash\\.com\\/collections\\/[1-9]+[0-9]*?.*'}
+            placeholder={t('option_backgroundImageUnsplashCollection_placeholder', [
+              'https://unsplash.com/collections/123',
+            ])}
             spellCheck={false}
             type={'url'}
             validate={validateUnsplashCollection}

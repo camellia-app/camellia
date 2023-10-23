@@ -58,10 +58,10 @@ export const ModalDialog: FC<{
           </div>
 
           <button
+            className={modalDialogCloseButton}
             onClick={(): void => {
               props.onClosePopup();
             }}
-            className={modalDialogCloseButton}
             title={`${t('popup_closeButton_label')} [Escape]`}
             type="button"
           >
