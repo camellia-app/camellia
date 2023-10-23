@@ -13,7 +13,10 @@
   display: flex;
   max-width: 100%;
   touch-action: manipulation;
-  transition: background-color 0.2s, transform 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    transform 0.2s,
+    color 0.2s;
   user-select: none;
   width: 100%;
 }
