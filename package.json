@@ -40,7 +40,6 @@
     "svg-transform-loader": "2.0.13",
     "svg-url-loader": "8.0.0",
     "ts-loader": "9.5.0",
-    "uuid": "9.0.1",
     "webpack": "5.89.0",
     "webpack-cli": "5.1.4"
   },

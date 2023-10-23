@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
-
 import type {
   BookmarkId,
   CreateBookmark,
@@ -84,7 +82,7 @@ export const searchWebBookmarks: SearchBookmarks = async (searchQuery) => {
  * if it's called in multiple parallel promises with same `parentId`.
  */
 export const createWebBookmark: CreateBookmark = async (bookmark) => {
-  const bookmarkId = uuidv4();
+  const bookmarkId = crypto.randomUUID();
 
   let createdBookmark: WebStorageBookmark | undefined = undefined;
 
