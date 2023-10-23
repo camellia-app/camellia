@@ -12,7 +12,8 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:perfectionist/recommended-natural",
     "plugin:import/recommended",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "prettier"
   ],
   "overrides": [
     {
@@ -70,15 +71,7 @@
     }
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "react",
-    "react-hooks",
-    "react-redux",
-    "perfectionist",
-    "unused-imports",
-    "prettier"
-  ],
+  "plugins": ["@typescript-eslint", "react", "react-hooks", "react-redux", "perfectionist", "unused-imports"],
   "root": true,
   "rules": {
     "import/no-cycle": "error",
