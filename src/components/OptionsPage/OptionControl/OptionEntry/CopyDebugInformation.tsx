@@ -15,6 +15,7 @@ export const CopyDebugInformation: FC = () => {
   return (
     <FilteredOptions categories={[categoriesMap.advanced]}>
       <LabeledActionButton
+        buttonHtmlType={'button'}
         clickHandler={(): void => {
           if (appEnvironmentInfo === undefined) {
             return;
@@ -28,7 +29,6 @@ export const CopyDebugInformation: FC = () => {
             }`,
           );
         }}
-        buttonHtmlType={'button'}
         description={t('option_copyDebugInformation_description')}
         disabled={false}
         label={t('option_copyDebugInformation_label')}

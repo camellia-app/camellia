@@ -10,10 +10,10 @@ export const ResetOptions: FC = () => {
   return (
     <FilteredOptions categories={[categoriesMap.advanced]}>
       <LabeledActionButton
+        buttonHtmlType={'button'}
         clickHandler={(): void => {
           resetOptionsToDefaultValues();
         }}
-        buttonHtmlType={'button'}
         description={t('option_resetOptions_description')}
         disabled={false}
         label={t('option_resetOptions_label')}

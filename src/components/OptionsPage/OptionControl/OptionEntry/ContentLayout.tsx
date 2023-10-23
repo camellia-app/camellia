@@ -9,6 +9,7 @@ export const ContentLayout: FC = () => {
   return (
     <FilteredOptions categories={[categoriesMap.bookmarks]}>
       <OptionDropdownSelect
+        description={t('option_contentLayout_description')}
         dropdownOptions={[
           {
             label: t('option_contentLayout_optionCentered'),
@@ -19,7 +20,6 @@ export const ContentLayout: FC = () => {
             value: 'fluid',
           },
         ]}
-        description={t('option_contentLayout_description')}
         label={t('option_contentLayout_label')}
         optionKey="content_layout"
       />
