@@ -71,9 +71,8 @@
 .popupScrollableContainer {
   background-color: var(--acrylic-color-dark-1);
   max-height: calc(100% - var(--popup-title-height));
+  overflow: hidden auto;
   -webkit-overflow-scrolling: touch;
-  overflow-x: hidden;
-  overflow-y: auto;
   overscroll-behavior-y: contain;
   padding: 1rem;
   scrollbar-color: light;
