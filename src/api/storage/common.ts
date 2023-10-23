@@ -18,7 +18,10 @@ export type StorageType = 'local' | 'synchronizable';
 export class StorageError extends Error {}
 
 export class StorageKeyDoesNotExist extends StorageError {
-  constructor(public readonly storageType: StorageType, public readonly key: string) {
+  constructor(
+    public readonly storageType: StorageType,
+    public readonly key: string,
+  ) {
     super(`Key "${key}" not found in storage with type "${storageType}"`);
   }
 }
