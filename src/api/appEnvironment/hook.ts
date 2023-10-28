@@ -1,4 +1,4 @@
-import { getActiveTransaction } from '@sentry/tracing';
+import { getActiveTransaction } from '@sentry/react';
 import { useEffect, useState } from 'react';
 
 import type { AppEnvironment } from './common';

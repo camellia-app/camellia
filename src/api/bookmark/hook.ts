@@ -1,4 +1,4 @@
-import { getActiveTransaction } from '@sentry/tracing';
+import { getActiveTransaction } from '@sentry/react';
 import { useEffect, useState } from 'react';
 
 import type { Bookmark, BookmarkId, Folder } from './common';

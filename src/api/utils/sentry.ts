@@ -1,8 +1,6 @@
-import type { BrowserOptions } from '@sentry/browser';
-import type { Transaction } from '@sentry/types/types/transaction';
+import type { BrowserOptions } from '@sentry/react';
 
-import * as Sentry from '@sentry/react';
-import { BrowserTracing } from '@sentry/tracing';
+import { BrowserTracing, getCurrentHub, init, startTransaction } from '@sentry/react';
 
 import { config } from '../../config';
 
@@ -26,16 +24,16 @@ export const initializeSentry = (): void => {
   }
 
   if (config.sentry.dsn !== undefined) {
-    Sentry.init(sentryOptions);
+    init(sentryOptions);
   }
 };
 
-export const createTracingTransaction = (transactionName: string): Transaction => {
-  const transaction = Sentry.startTransaction({
+export const createTracingTransaction = (transactionName: string): ReturnType<typeof startTransaction> => {
+  const transaction = startTransaction({
     name: transactionName,
   });
 
-  Sentry.getCurrentHub().configureScope((scope) => scope.setSpan(transaction));
+  getCurrentHub().configureScope((scope) => scope.setSpan(transaction));
 
   return transaction;
 };

@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/browser';
+import { captureMessage } from '@sentry/react';
 
 import englishTranslations from '../../../translations/en/messages.json';
 import russianTranslations from '../../../translations/ru/messages.json';
@@ -51,7 +51,7 @@ const getWebextTranslatedMessage = (key: TranslationKey, placeholderReplacements
 
   if (message === '') {
     console.warn(`There is no translation message with key "${key}"`);
-    Sentry.captureMessage(`There is no translation message with key "${key}"`);
+    captureMessage(`There is no translation message with key "${key}"`);
 
     return key;
   }
@@ -64,7 +64,7 @@ const getChromiumTranslatedMessage = (key: TranslationKey, placeholderReplacemen
 
   if (message === '') {
     console.warn(`There is no translation message with key "${key}"`);
-    Sentry.captureMessage(`There is no translation message with key "${key}"`);
+    captureMessage(`There is no translation message with key "${key}"`);
 
     return key;
   }

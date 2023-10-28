@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import * as Sentry from '@sentry/react';
+import { withProfiler } from '@sentry/react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -42,7 +42,7 @@ export const NewtabPage: FC = () => {
 const root = document.getElementById('root');
 
 if (root !== null) {
-  const NewtabProfiled = Sentry.withProfiler(NewtabPage);
+  const NewtabProfiled = withProfiler(NewtabPage);
 
   createRoot(root).render(<NewtabProfiled />);
 }

@@ -1,4 +1,4 @@
-import { getActiveTransaction } from '@sentry/tracing';
+import { getActiveTransaction } from '@sentry/react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
