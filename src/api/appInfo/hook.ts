@@ -1,4 +1,4 @@
-import { getActiveTransaction } from '@sentry/tracing';
+import { getActiveTransaction } from '@sentry/react';
 
 import type { AppInfo } from './common';
 

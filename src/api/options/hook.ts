@@ -1,4 +1,4 @@
-import { getActiveTransaction } from '@sentry/tracing';
+import { getActiveTransaction } from '@sentry/react';
 import { useCallback, useEffect, useState } from 'react';
 
 import type { OptionKey, OptionsTypeMap } from './options';
