@@ -14,7 +14,7 @@
   "dependencies": {
     "@material-design-icons/svg": "0.14.13",
     "@reduxjs/toolkit": "1.9.7",
-    "@sentry/browser": "7.74.1",
+    "@sentry/browser": "7.76.0",
     "@sentry/react": "7.74.1",
     "@sentry/tracing": "7.74.1",
     "@sentry/types": "7.76.0",
