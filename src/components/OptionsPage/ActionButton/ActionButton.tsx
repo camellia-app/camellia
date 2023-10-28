@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, FC, MouseEventHandler } from 'react';
 
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 
 import { actionButton, actionButtonControl, actionButtonLoading } from './ActionButton.module.css';
 
@@ -42,7 +42,7 @@ export const ActionButton: FC<{
 
   return (
     <div
-      className={classNames(actionButton, {
+      className={clsx(actionButton, {
         [actionButtonLoading]: props.loading === true,
       })}
     >

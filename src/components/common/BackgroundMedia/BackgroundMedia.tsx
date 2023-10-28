@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from 'react';
 
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 import { useEffect, useState } from 'react';
 
 import { useOption } from '../../../api/options/hook';
@@ -40,7 +40,7 @@ export const BackgroundMedia: FC = () => {
 
   return (
     <div
-      className={classNames(backgroundMedia, {
+      className={clsx(backgroundMedia, {
         [backgroundMediaBlurred]: blurBackground === true,
         [backgroundMediaLoading]: isLoading,
       })}

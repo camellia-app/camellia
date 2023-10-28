@@ -1,6 +1,6 @@
 import type { FC, MouseEventHandler, ReactElement, ReactEventHandler } from 'react';
 
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 import { createRef, useEffect, useState } from 'react';
 
 import {
@@ -121,7 +121,7 @@ export const Chip: FC<
     </>
   );
 
-  const chipClasses = classNames(chip, {
+  const chipClasses = clsx(chip, {
     [chipBlurred]: props.blurred === true,
     [chipLoading]: props.isLoading === true,
     [chipRounded]: props.shape === 'rounded',
@@ -172,7 +172,7 @@ const ChipIconRemoteRasterImage: FC<{
   const [shouldUseFallbackIcon, setShouldUseFallbackIcon] = useState<boolean>(false);
   const [iconIsLoading, setIconLoading] = useState<boolean>(!props.src.startsWith('data:'));
 
-  const chipIconClasses = classNames(chipIconRemoteRasterImage, {
+  const chipIconClasses = clsx(chipIconRemoteRasterImage, {
     [chipIconEllipse]: props.ellipse === true,
     [chipIconRemoteRasterImageLoading]: iconIsLoading,
   });

@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 
 import type { Folder } from '../../../api/bookmark/common';
 
@@ -19,7 +19,7 @@ export const BookmarkCategory: FC<{
     return <></>;
   }
 
-  const mainClasses = classNames(bookmarkCategory, {
+  const mainClasses = clsx(bookmarkCategory, {
     [bookmarkCategoryLoading]: bookmarks === undefined,
   });
 

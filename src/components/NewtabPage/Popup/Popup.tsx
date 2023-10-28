@@ -1,7 +1,7 @@
 import type * as CSS from 'csstype';
 import type { FC, MouseEventHandler, ReactNode } from 'react';
 
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 import { createRef, useEffect } from 'react';
 
 import { t } from '../../../api/i18n/translate';
@@ -82,7 +82,7 @@ export const Popup: FC<{
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
     <dialog
       aria-labelledby={headerId}
-      className={classNames(popup)}
+      className={clsx(popup)}
       onClick={handleClickingPopupBody}
       open={true}
       ref={popupElement}

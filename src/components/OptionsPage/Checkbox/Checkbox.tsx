@@ -1,6 +1,6 @@
 import type { ChangeEventHandler, FC } from 'react';
 
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 
 import { checkbox, checkboxControl, checkboxControlIndeterminate, checkboxLoading } from './Checkbox.module.css';
 
@@ -44,7 +44,7 @@ export const Checkbox: FC<{
 
   return (
     <label
-      className={classNames(checkbox, {
+      className={clsx(checkbox, {
         [checkboxLoading]: props.loading === true,
       })}
     >
@@ -55,7 +55,7 @@ export const Checkbox: FC<{
         type="checkbox"
       />
       <span
-        className={classNames(checkboxControl, {
+        className={clsx(checkboxControl, {
           [checkboxControlIndeterminate]: isInIndeterminateState,
         })}
       >

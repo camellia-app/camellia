@@ -1,6 +1,6 @@
 import type { ChangeEventHandler, ReactElement } from 'react';
 
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 
 import { dropdownSelect, dropdownSelectControl, dropdownSelectLoading } from './DropdownSelect.module.css';
 
@@ -57,7 +57,7 @@ export const DropdownSelect = <TValue extends string>(props: DropdownSelectProps
 
   return (
     <div
-      className={classNames(dropdownSelect, {
+      className={clsx(dropdownSelect, {
         [dropdownSelectLoading]: props.loading === true,
       })}
     >

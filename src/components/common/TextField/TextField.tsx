@@ -1,6 +1,6 @@
 import type { ChangeEventHandler, FC } from 'react';
 
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 import { useEffect, useRef } from 'react';
 
 import { textField, textFieldControl, textFieldFluid, textFieldLoading } from './TextField.module.css';
@@ -117,7 +117,7 @@ export const TextField: FC<{
 
   return (
     <div
-      className={classNames(textField, {
+      className={clsx(textField, {
         [textFieldFluid]: props.controlWidth === 'fluid',
         [textFieldLoading]: props.loading === true,
       })}

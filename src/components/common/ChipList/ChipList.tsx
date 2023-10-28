@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from 'react';
 
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 
 import {
   chipList,
@@ -22,7 +22,7 @@ export const ChipList: FC<{
   type: 'columns' | 'inline';
 }> = (props) => (
   <ul
-    className={classNames(chipList, {
+    className={clsx(chipList, {
       [chipListColumns]: props.type === 'columns',
       [chipListInline]: props.type === 'inline',
       [chipListMoveLastChipToRight]: props.type === 'inline' && props.moveLastChipToRight === true,

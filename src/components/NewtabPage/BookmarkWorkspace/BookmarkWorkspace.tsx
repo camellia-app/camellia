@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 
 import { getSupportedRuntimeFeatures } from '../../../api/applicationRuntime/features';
 import { useHasBookmarks, useRootBookmarkFolders } from '../../../api/bookmark/hook';
@@ -19,7 +19,7 @@ export const BookmarkWorkspace: FC = () => {
 
   const isLoading = rootFolders === undefined || hasBookmarks === undefined || contentLayout === undefined;
 
-  const mainClasses = classNames(bookmarkWorkspace, {
+  const mainClasses = clsx(bookmarkWorkspace, {
     [bookmarkWorkspaceCentered]: contentLayout === 'centered',
     [bookmarkWorkspaceLoading]: isLoading,
   });
