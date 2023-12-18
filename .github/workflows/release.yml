@@ -52,7 +52,7 @@ jobs:
           WEBSITE_ICONS_PROXY_BASE_HOST: ${{ vars.WEBSITE_ICONS_PROXY_BASE_HOST }}
 
       - name: Upload dist folder as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: camellia-${{ github.event.release.tag_name }}-${{ matrix.targetPlatform }}
           path: ./dist/${{ matrix.targetPlatform }}/
