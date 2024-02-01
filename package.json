@@ -14,7 +14,7 @@
   "dependencies": {
     "@material-design-icons/svg": "0.14.13",
     "@reduxjs/toolkit": "2.0.1",
-    "@sentry/react": "7.88.0",
+    "@sentry/react": "7.99.0",
     "@svgr/webpack": "8.1.0",
     "autoprefixer": "10.4.16",
     "clsx": "2.0.0",
