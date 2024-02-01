@@ -27,7 +27,7 @@
     "dotenv-webpack": "8.0.1",
     "html-webpack-plugin": "5.5.4",
     "lodash.debounce": "4.0.8",
-    "postcss": "8.4.32",
+    "postcss": "8.4.33",
     "postcss-loader": "7.3.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
