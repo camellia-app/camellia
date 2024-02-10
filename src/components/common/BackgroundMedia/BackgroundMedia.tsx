@@ -4,14 +4,13 @@ import { clsx } from 'clsx';
 import { useEffect, useState } from 'react';
 
 import { useOption } from '../../../api/options/hook';
-import { backgroundMedia, backgroundMediaBlurred, backgroundMediaLoading } from './BackgroundMedia.module.css';
+import { backgroundMedia, backgroundMediaLoading } from './BackgroundMedia.module.css';
 import { ImageByUrlFromOptions } from './providers/optionProvider/ImageByUrlFromOptions';
 import { PhotoFromUnsplashCollectionByIdFromOptions } from './providers/optionProvider/PhotoFromUnsplashCollectionByIdFromOptions';
 
 export const BackgroundMedia: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [backgroundProviderType] = useOption('background_provider_type');
-  const [blurBackground] = useOption('blur_background');
 
   useEffect(() => {
     setIsLoading(true);
@@ -41,7 +40,6 @@ export const BackgroundMedia: FC = () => {
   return (
     <div
       className={clsx(backgroundMedia, {
-        [backgroundMediaBlurred]: blurBackground === true,
         [backgroundMediaLoading]: isLoading,
       })}
     >

@@ -10,10 +10,6 @@
   width: 100%;
 }
 
-.backgroundMediaBlurred {
-  filter: blur(16px);
-}
-
 .backgroundMediaLoading {
   opacity: 0;
 }

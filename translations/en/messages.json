@@ -169,12 +169,6 @@
   "option_backgroundImage_sourceTypeOptionUnsplashCollection": {
     "message": "Unsplash collection"
   },
-  "option_blurBackground_description": {
-    "message": "Makes background image blurred. It may be useful if you feel too much distraction from detailed background images."
-  },
-  "option_blurBackground_label": {
-    "message": "Blur background"
-  },
   "option_contentLayout_description": {
     "message": "Should content be centered or not. Centering content may be useful for people with wide displays."
   },

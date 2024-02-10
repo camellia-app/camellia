@@ -169,12 +169,6 @@
   "option_backgroundImage_sourceTypeOptionUnsplashCollection": {
     "message": "Коллекция в Unsplash"
   },
-  "option_blurBackground_description": {
-    "message": "Делает фоновое изображение смазанным. Может быть полезно, если высокая детализация фоновых картинок вас отвлекает."
-  },
-  "option_blurBackground_label": {
-    "message": "Заблюрить фоновое изображение"
-  },
   "option_contentLayout_description": {
     "message": "Должны ли закладки быть отцентрированы или нет. Центрирование закладок может оказаться удобным, если у вас очень большой дисплей."
   },
