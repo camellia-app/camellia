@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@material-design-icons/svg": "0.14.13",
-    "@reduxjs/toolkit": "2.0.1",
+    "@reduxjs/toolkit": "2.1.0",
     "@sentry/react": "7.100.1",
     "@svgr/webpack": "8.1.0",
     "autoprefixer": "10.4.16",
