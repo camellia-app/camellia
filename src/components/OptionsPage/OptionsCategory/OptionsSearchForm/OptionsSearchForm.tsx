@@ -22,45 +22,53 @@ export type OptionCategory = {
 };
 
 export const categoriesMap = {
-  about: {
-    icon: <Info />,
-    id: 'about',
-    label: t('optionsNavigationCategory_about_label'),
-  },
-  accessibility: {
-    icon: <SettingsAccessibility />,
-    id: 'accessibility',
-    label: t('optionsNavigationCategory_accessibility_label'),
-  },
-  advanced: {
-    icon: <Construction />,
-    id: 'advanced',
-    label: t('optionsNavigationCategory_advanced_label'),
-  },
-  analytics: {
-    icon: <Analytics />,
-    id: 'data-collection',
-    label: t('optionsNavigationCategory_dataCollection_label'),
-  },
+  // eslint-disable-next-line perfectionist/sort-objects
   background: {
     icon: <Wallpaper />,
     id: 'background',
     label: t('optionsNavigationCategory_background_label'),
   },
+  // eslint-disable-next-line perfectionist/sort-objects
   bookmarks: {
     icon: <BookmarkBorder />,
     id: 'bookmarks',
     label: t('optionsNavigationCategory_bookmarks_label'),
   },
+  // eslint-disable-next-line perfectionist/sort-objects
+  search: {
+    icon: <ManageSearch />,
+    id: 'search',
+    label: t('optionsNavigationCategory_search_label'),
+  },
+  // eslint-disable-next-line perfectionist/sort-objects
   bottomToolbar: {
     icon: <CallToAction />,
     id: 'bottom-toolbar',
     label: t('optionsNavigationCategory_bottomToolbar_label'),
   },
-  search: {
-    icon: <ManageSearch />,
-    id: 'search',
-    label: t('optionsNavigationCategory_search_label'),
+  // eslint-disable-next-line perfectionist/sort-objects
+  accessibility: {
+    icon: <SettingsAccessibility />,
+    id: 'accessibility',
+    label: t('optionsNavigationCategory_accessibility_label'),
+  },
+  // eslint-disable-next-line perfectionist/sort-objects
+  analytics: {
+    icon: <Analytics />,
+    id: 'data-collection',
+    label: t('optionsNavigationCategory_dataCollection_label'),
+  },
+  // eslint-disable-next-line perfectionist/sort-objects
+  advanced: {
+    icon: <Construction />,
+    id: 'advanced',
+    label: t('optionsNavigationCategory_advanced_label'),
+  },
+  // eslint-disable-next-line perfectionist/sort-objects
+  about: {
+    icon: <Info />,
+    id: 'about',
+    label: t('optionsNavigationCategory_about_label'),
   },
 };
 
