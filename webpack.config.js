@@ -75,7 +75,7 @@ const buildExtensionManifest = () => {
       extensionManifest.browser_specific_settings = {};
       extensionManifest.browser_specific_settings.gecko = {};
       extensionManifest.browser_specific_settings.gecko.id = 'firefox@camellia.app';
-      extensionManifest.browser_specific_settings.gecko.strict_min_version = '109.0';
+      extensionManifest.browser_specific_settings.gecko.strict_min_version = '121.0';
 
       break;
   }
