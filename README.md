@@ -2,7 +2,7 @@
 
 Camellia is a bookmark manager browser extension. When you open a new tab in a browser, the extension will open Camellia instead of default browser’s new tab page with all your browser's bookmarks listed there.
 
-![Screenshot of the Camellia's interface](https://user-images.githubusercontent.com/12474739/212552906-f5cacef0-e955-40ac-b7a9-8ee45a861985.png)
+![Screenshot of the Camellia's interface](https://github.com/camellia-app/camellia/assets/12474739/6c8ff946-5b08-4d20-8f31-9987900b78a3)
 
 ## Install
 
