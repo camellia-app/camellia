@@ -79,7 +79,7 @@ jobs:
         run: zip -r camellia.zip ./dist/
 
       - name: Upload to Chrome Web Store and release
-        uses: mnao305/chrome-extension-upload@v4.0.1
+        uses: mnao305/chrome-extension-upload@v5.0.0
         with:
           file-path: camellia.zip
           extension-id: ${{ vars.CHROME_WEB_STORE_EXTENSION_ID }}
