@@ -29,10 +29,12 @@ import {
   searchWebBookmarks,
 } from './platform/web';
 import {
+  createWebextBookmark,
   getWebextFolderChildrenBookmarks,
   getWebextRootFolderBookmarks,
   hasWebextBookmarks,
   initializeWebextRootFolders,
+  searchWebextBookmarks,
 } from './platform/webext';
 
 export const getFolderChildrenBookmarks: GetFolderChildrenBookmarks = async (folderBookmarkId) => {
@@ -68,7 +70,7 @@ export const searchBookmarks: SearchBookmarks = async (searchQuery) => {
       break;
 
     case 'webext':
-      bookmarks = await searchWebBookmarks(searchQuery);
+      bookmarks = await searchWebextBookmarks(searchQuery);
 
       break;
 
@@ -91,7 +93,7 @@ export const createBookmark: CreateBookmark = async (bookmark) => {
       break;
 
     case 'webext':
-      createdBookmark = await createWebBookmark(bookmark);
+      createdBookmark = await createWebextBookmark(bookmark);
 
       break;
 
