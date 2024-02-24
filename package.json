@@ -35,7 +35,7 @@
     "style-loader": "3.3.4",
     "svg-transform-loader": "2.0.13",
     "ts-loader": "9.5.1",
-    "webpack": "5.90.1",
+    "webpack": "5.90.3",
     "webpack-cli": "5.1.4"
   },
   "devDependencies": {
