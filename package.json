@@ -16,7 +16,7 @@
     "@reduxjs/toolkit": "2.2.1",
     "@sentry/react": "7.104.0",
     "@svgr/webpack": "8.1.0",
-    "autoprefixer": "10.4.17",
+    "autoprefixer": "10.4.18",
     "clsx": "2.1.0",
     "copy-webpack-plugin": "12.0.2",
     "create-file-webpack": "1.0.2",
