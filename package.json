@@ -60,7 +60,7 @@
     "prettier-plugin-sort-json": "4.0.0",
     "stylelint": "16.6.1",
     "stylelint-config-css-modules": "4.4.0",
-    "stylelint-config-standard": "36.0.0",
+    "stylelint-config-standard": "36.0.1",
     "stylelint-order": "6.0.4",
     "typescript": "5.4.5",
     "webpack-dev-server": "5.0.4"
