@@ -63,6 +63,6 @@
     "stylelint-config-standard": "36.0.1",
     "stylelint-order": "6.0.4",
     "typescript": "5.4.5",
-    "webpack-dev-server": "5.0.4"
+    "webpack-dev-server": "5.1.0"
   }
 }
