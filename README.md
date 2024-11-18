@@ -29,3 +29,7 @@ If you found a bug, have a suggestion or want to share some feedback, you are we
 Your contributions are very appreciated! Check out "[How to Contribute](https://github.com/camellia-app/camellia/wiki/How-to-Contribute)" page to get started.
 
 This is the main repository of Camellia projects which contains the extension itself, however there are few more repositories with other components that work together. You may find them under [our GitHub organization](https://github.com/camellia-app).
+
+## Special Thanks
+
+[@idlist](https://github.com/idlist) for creating the icon 🤩

@@ -44,9 +44,6 @@ const buildExtensionManifest = () => {
     description: '__MSG_extensionDescription__',
     homepage_url: 'https://camellia.app',
     host_permissions: ['https://*.camellia.app/'],
-    icons: {
-      128: 'logo.png',
-    },
     manifest_version: 3,
     name: 'Camellia',
     options_ui: {
@@ -62,6 +59,12 @@ const buildExtensionManifest = () => {
     case 'chromium':
       extensionManifest.background = {};
       extensionManifest.background.service_worker = '/background.js';
+      extensionManifest.icons = {
+        16: 'logo_16x16.png',
+        32: 'logo_32x32.png',
+        48: 'logo_48x48.png',
+        128: 'logo_128x128.png',
+      };
       extensionManifest.minimum_chrome_version = '105';
       extensionManifest.offline_enabled = true;
       extensionManifest.permissions = [...extensionManifest.permissions, 'favicon'];
@@ -76,6 +79,9 @@ const buildExtensionManifest = () => {
       extensionManifest.browser_specific_settings.gecko = {};
       extensionManifest.browser_specific_settings.gecko.id = 'firefox@camellia.app';
       extensionManifest.browser_specific_settings.gecko.strict_min_version = '121.0';
+      extensionManifest.icons = {
+        16: 'logo.svg',
+      };
 
       break;
   }
@@ -179,7 +185,14 @@ const commonConfig = {
       path: path.resolve(__dirname, 'dist', process.env.TARGET_PLATFORM),
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: path.resolve(__dirname, 'translations'), to: '_locales' }, { from: './logo.png' }],
+      patterns: [
+        { from: path.resolve(__dirname, 'translations'), to: '_locales' },
+        { from: './logo.svg' },
+        { from: './logo_16x16.png' },
+        { from: './logo_32x32.png' },
+        { from: './logo_48x48.png' },
+        { from: './logo_128x128.png' },
+      ],
     }),
     new HtmlWebpackPlugin({
       chunks: ['newtab'],
