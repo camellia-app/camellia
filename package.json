@@ -36,7 +36,7 @@
     "svg-transform-loader": "2.0.13",
     "ts-loader": "9.5.2",
     "webpack": "5.96.1",
-    "webpack-cli": "5.1.4"
+    "webpack-cli": "6.0.1"
   },
   "devDependencies": {
     "@types/chrome": "0.0.307",
